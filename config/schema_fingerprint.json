@@ -1,0 +1,985 @@
+{
+  "fingerprint_version": "v23.2.8-validation-1",
+  "source_family": "Titan V23.x stacked All_In_One or equivalent named worksheets",
+  "protected_bookmaker_identities": {
+    "europe_1x2:281": "Bet365",
+    "europe_1x2:986": "PlanetWin365",
+    "europe_1x2:82": "Ladbrokes UK",
+    "europe_1x2:115": "William Hill",
+    "europe_1x2:104": "Interwetten",
+    "europe_1x2:177": "Pinnacle",
+    "europe_1x2:80": "Macau",
+    "vip:1": "Macau",
+    "vip:4": "Ladbrokes UK",
+    "vip:8": "Bet365",
+    "vip:47": "Pinnacle",
+    "vip:48": "HKJC",
+    "vip:3": "Crown"
+  },
+  "tables": {
+    "Matches_Selected": {
+      "tier": "CRITICAL",
+      "required_columns": [
+        "match_id",
+        "league",
+        "match_time",
+        "data_time",
+        "match_state",
+        "home_team",
+        "away_team"
+      ],
+      "optional_columns": [
+        "analysis_url",
+        "asian_url",
+        "canonical_league",
+        "europe_url",
+        "filter_reason",
+        "finished_reason",
+        "is_finished",
+        "is_jingcai",
+        "jingcai_source_url",
+        "overunder_url",
+        "source",
+        "status_text",
+        "title_text"
+      ],
+      "expected_dtypes": {
+        "match_id": [
+          "string",
+          "integer"
+        ],
+        "data_time": [
+          "string"
+        ],
+        "match_state": [
+          "string",
+          "integer"
+        ],
+        "home_team": [
+          "string"
+        ],
+        "away_team": [
+          "string"
+        ]
+      },
+      "nullable_policy": {
+        "match_id": false,
+        "league": false,
+        "data_time": false,
+        "home_team": false,
+        "away_team": false
+      },
+      "key_fields": [
+        "match_id"
+      ],
+      "unique_key_fields": [
+        "match_id"
+      ],
+      "known_aliases": {
+        "match_id": [
+          "Match_ID"
+        ],
+        "home_team": [
+          "Home_Team"
+        ],
+        "away_team": [
+          "Away_Team"
+        ]
+      }
+    },
+    "Europe_1x2": {
+      "tier": "CRITICAL",
+      "required_columns": [
+        "match_id",
+        "company_id",
+        "company_raw",
+        "initial_home",
+        "initial_draw",
+        "initial_away",
+        "current_home",
+        "current_draw",
+        "current_away"
+      ],
+      "optional_columns": [
+        "away_team",
+        "bookmaker_key",
+        "company",
+        "company_canonical",
+        "company_cn",
+        "company_display",
+        "company_en",
+        "current_away_prob",
+        "current_draw_prob",
+        "current_home_prob",
+        "current_return",
+        "data_id",
+        "home_team",
+        "identity_status",
+        "initial_away_prob",
+        "initial_draw_prob",
+        "initial_home_prob",
+        "initial_return",
+        "is_core",
+        "kelly_away",
+        "kelly_draw",
+        "kelly_home",
+        "league",
+        "raw",
+        "source_url",
+        "update_time"
+      ],
+      "expected_dtypes": {
+        "match_id": [
+          "string",
+          "integer"
+        ],
+        "company_id": [
+          "string",
+          "integer"
+        ],
+        "initial_home": [
+          "number",
+          "numeric_string"
+        ],
+        "current_home": [
+          "number",
+          "numeric_string"
+        ]
+      },
+      "nullable_policy": {
+        "match_id": false,
+        "company_id": false
+      },
+      "key_fields": [
+        "match_id",
+        "company_id"
+      ],
+      "known_aliases": {
+        "company_id": [
+          "Company_ID"
+        ]
+      }
+    },
+    "Europe_1x2_History": {
+      "tier": "CRITICAL",
+      "required_columns": [
+        "match_id",
+        "company_id",
+        "home_odds",
+        "draw_odds",
+        "away_odds",
+        "change_time",
+        "is_opening"
+      ],
+      "optional_columns": [
+        "away_prob",
+        "away_team",
+        "bookmaker_key",
+        "change_time_raw",
+        "company",
+        "company_canonical",
+        "company_display",
+        "company_raw",
+        "data_id",
+        "draw_prob",
+        "home_prob",
+        "home_team",
+        "identity_status",
+        "is_core",
+        "kelly_away",
+        "kelly_draw",
+        "kelly_home",
+        "league",
+        "raw_text",
+        "return_rate",
+        "sequence",
+        "source_url"
+      ],
+      "expected_dtypes": {
+        "match_id": [
+          "string",
+          "integer"
+        ],
+        "company_id": [
+          "string",
+          "integer"
+        ],
+        "home_odds": [
+          "number",
+          "numeric_string"
+        ],
+        "draw_odds": [
+          "number",
+          "numeric_string"
+        ],
+        "away_odds": [
+          "number",
+          "numeric_string"
+        ],
+        "change_time": [
+          "string"
+        ]
+      },
+      "nullable_policy": {
+        "match_id": false,
+        "company_id": false,
+        "home_odds": false,
+        "draw_odds": false,
+        "away_odds": false,
+        "change_time": false
+      },
+      "key_fields": [
+        "match_id",
+        "company_id",
+        "change_time"
+      ],
+      "known_aliases": {
+        "change_time": [
+          "timestamp",
+          "update_time"
+        ]
+      }
+    },
+    "Asian_Current": {
+      "tier": "CRITICAL",
+      "required_columns": [
+        "match_id",
+        "company_id",
+        "initial_left",
+        "initial_line",
+        "initial_right",
+        "current_left",
+        "current_line",
+        "current_right"
+      ],
+      "optional_columns": [
+        "away_team",
+        "bookmaker_key",
+        "company",
+        "company_canonical",
+        "company_display",
+        "company_raw",
+        "home_team",
+        "identity_status",
+        "is_core",
+        "league",
+        "market",
+        "raw_text",
+        "source_url"
+      ],
+      "expected_dtypes": {
+        "match_id": [
+          "string",
+          "integer"
+        ],
+        "company_id": [
+          "string",
+          "integer"
+        ],
+        "initial_left": [
+          "number",
+          "numeric_string"
+        ],
+        "current_left": [
+          "number",
+          "numeric_string"
+        ]
+      },
+      "nullable_policy": {
+        "match_id": false,
+        "company_id": false
+      },
+      "key_fields": [
+        "match_id",
+        "company_id"
+      ],
+      "known_aliases": {}
+    },
+    "Asian_History": {
+      "tier": "CRITICAL",
+      "required_columns": [
+        "match_id",
+        "company_id",
+        "left_water",
+        "market_line",
+        "right_water",
+        "change_time",
+        "Record_Type"
+      ],
+      "optional_columns": [
+        "Line_Type",
+        "Parse_QC",
+        "Source_Node_Index",
+        "Source_Row_Index",
+        "Timestamp_Source",
+        "away_team",
+        "bookmaker_key",
+        "company",
+        "company_canonical",
+        "company_display",
+        "company_raw",
+        "home_team",
+        "identity_status",
+        "is_core",
+        "league",
+        "market",
+        "raw_text",
+        "sequence",
+        "source_url"
+      ],
+      "expected_dtypes": {
+        "match_id": [
+          "string",
+          "integer"
+        ],
+        "company_id": [
+          "string",
+          "integer"
+        ],
+        "left_water": [
+          "number",
+          "numeric_string"
+        ],
+        "right_water": [
+          "number",
+          "numeric_string"
+        ],
+        "change_time": [
+          "string"
+        ]
+      },
+      "nullable_policy": {
+        "match_id": false,
+        "company_id": false,
+        "change_time": false
+      },
+      "key_fields": [
+        "match_id",
+        "company_id",
+        "change_time"
+      ],
+      "known_aliases": {}
+    },
+    "OverUnder_Current": {
+      "tier": "CRITICAL",
+      "required_columns": [
+        "match_id",
+        "company_id",
+        "initial_left",
+        "initial_line",
+        "initial_right",
+        "current_left",
+        "current_line",
+        "current_right"
+      ],
+      "optional_columns": [
+        "away_team",
+        "bookmaker_key",
+        "company",
+        "company_canonical",
+        "company_display",
+        "company_raw",
+        "home_team",
+        "identity_status",
+        "is_core",
+        "league",
+        "market",
+        "raw_text",
+        "source_url"
+      ],
+      "expected_dtypes": {
+        "match_id": [
+          "string",
+          "integer"
+        ],
+        "company_id": [
+          "string",
+          "integer"
+        ],
+        "initial_left": [
+          "number",
+          "numeric_string"
+        ],
+        "current_left": [
+          "number",
+          "numeric_string"
+        ]
+      },
+      "nullable_policy": {
+        "match_id": false,
+        "company_id": false
+      },
+      "key_fields": [
+        "match_id",
+        "company_id"
+      ],
+      "known_aliases": {}
+    },
+    "OverUnder_History": {
+      "tier": "CRITICAL",
+      "required_columns": [
+        "match_id",
+        "company_id",
+        "left_water",
+        "market_line",
+        "right_water",
+        "change_time",
+        "Record_Type"
+      ],
+      "optional_columns": [
+        "Line_Type",
+        "Parse_QC",
+        "Source_Node_Index",
+        "Source_Row_Index",
+        "Timestamp_Source",
+        "away_team",
+        "bookmaker_key",
+        "company",
+        "company_canonical",
+        "company_display",
+        "company_raw",
+        "home_team",
+        "identity_status",
+        "is_core",
+        "league",
+        "market",
+        "raw_text",
+        "sequence",
+        "source_url"
+      ],
+      "expected_dtypes": {
+        "match_id": [
+          "string",
+          "integer"
+        ],
+        "company_id": [
+          "string",
+          "integer"
+        ],
+        "left_water": [
+          "number",
+          "numeric_string"
+        ],
+        "right_water": [
+          "number",
+          "numeric_string"
+        ],
+        "change_time": [
+          "string"
+        ]
+      },
+      "nullable_policy": {
+        "match_id": false,
+        "company_id": false,
+        "change_time": false
+      },
+      "key_fields": [
+        "match_id",
+        "company_id",
+        "change_time"
+      ],
+      "known_aliases": {}
+    },
+    "OverUnder_Ladder_Clean": {
+      "tier": "IMPORTANT",
+      "required_columns": [
+        "match_id",
+        "company_id",
+        "line_type",
+        "opening_line_raw",
+        "opening_over_raw",
+        "opening_under_raw",
+        "current_line_raw",
+        "current_over_raw",
+        "current_under_raw",
+        "opening_odds_format",
+        "current_odds_format"
+      ],
+      "optional_columns": [
+        "away_team",
+        "bookmaker_key",
+        "company",
+        "company_canonical",
+        "company_display",
+        "company_raw",
+        "current_line",
+        "current_over_decimal",
+        "current_overround",
+        "current_p_over",
+        "current_qc",
+        "current_quote_role",
+        "current_under_decimal",
+        "detail_url",
+        "display_order",
+        "home_team",
+        "identity_status",
+        "is_core",
+        "is_ou_curve_core",
+        "kickoff_at_utc",
+        "kickoff_time_source",
+        "ladder_index",
+        "league",
+        "line_label_raw",
+        "market",
+        "match_state",
+        "middle_equals_last",
+        "minutes_to_kickoff",
+        "observed_at_utc",
+        "opening_line",
+        "opening_over_decimal",
+        "opening_overround",
+        "opening_p_over",
+        "opening_qc",
+        "opening_quote_role",
+        "opening_under_decimal",
+        "ou_curve_role",
+        "parse_qc",
+        "raw_text",
+        "row_owner_qc",
+        "run_id",
+        "scraped_at_utc",
+        "snapshot_id",
+        "snapshot_semantic_status",
+        "source_url",
+        "triple_count",
+        "triple_semantic_qc"
+      ],
+      "expected_dtypes": {
+        "match_id": [
+          "string",
+          "integer"
+        ],
+        "company_id": [
+          "string",
+          "integer"
+        ],
+        "opening_over_raw": [
+          "number",
+          "numeric_string"
+        ],
+        "current_over_raw": [
+          "number",
+          "numeric_string"
+        ]
+      },
+      "nullable_policy": {
+        "match_id": false,
+        "company_id": false,
+        "line_type": false
+      },
+      "key_fields": [
+        "match_id",
+        "company_id",
+        "line_type",
+        "ladder_index"
+      ],
+      "known_aliases": {}
+    },
+    "OverUnder_Ladder_Raw": {
+      "tier": "IMPORTANT",
+      "required_columns": [
+        "match_id",
+        "line_type",
+        "raw_text"
+      ],
+      "optional_columns": [
+        "away_team",
+        "bookmaker_key",
+        "company",
+        "company_canonical",
+        "company_display",
+        "company_id",
+        "company_raw",
+        "current_line",
+        "current_line_raw",
+        "current_odds_format",
+        "current_over_decimal",
+        "current_over_raw",
+        "current_overround",
+        "current_p_over",
+        "current_qc",
+        "current_quote_role",
+        "current_under_decimal",
+        "current_under_raw",
+        "detail_url",
+        "display_order",
+        "home_team",
+        "identity_status",
+        "is_core",
+        "is_ou_curve_core",
+        "kickoff_at_utc",
+        "kickoff_time_source",
+        "ladder_index",
+        "league",
+        "line_label_raw",
+        "market",
+        "match_state",
+        "middle_equals_last",
+        "minutes_to_kickoff",
+        "observed_at_utc",
+        "opening_line",
+        "opening_line_raw",
+        "opening_odds_format",
+        "opening_over_decimal",
+        "opening_over_raw",
+        "opening_overround",
+        "opening_p_over",
+        "opening_qc",
+        "opening_quote_role",
+        "opening_under_decimal",
+        "opening_under_raw",
+        "ou_curve_role",
+        "parse_qc",
+        "row_owner_qc",
+        "run_id",
+        "scraped_at_utc",
+        "snapshot_id",
+        "snapshot_semantic_status",
+        "source_url",
+        "triple_count",
+        "triple_semantic_qc"
+      ],
+      "expected_dtypes": {
+        "match_id": [
+          "string",
+          "integer"
+        ],
+        "raw_text": [
+          "string"
+        ]
+      },
+      "nullable_policy": {
+        "match_id": false
+      },
+      "key_fields": [
+        "match_id"
+      ],
+      "known_aliases": {}
+    },
+    "Bookmaker_QC": {
+      "tier": "IMPORTANT",
+      "required_columns": [
+        "match_id",
+        "market",
+        "company_id",
+        "bookmaker_key",
+        "identity_status",
+        "qc_status"
+      ],
+      "optional_columns": [
+        "away_team",
+        "company_canonical",
+        "company_display",
+        "company_raw",
+        "history_rows",
+        "home_team",
+        "is_core",
+        "league",
+        "note",
+        "source_status"
+      ],
+      "expected_dtypes": {
+        "match_id": [
+          "string",
+          "integer"
+        ],
+        "company_id": [
+          "string",
+          "integer"
+        ]
+      },
+      "nullable_policy": {
+        "match_id": false
+      },
+      "key_fields": [
+        "match_id",
+        "market",
+        "company_id"
+      ],
+      "known_aliases": {}
+    },
+    "Data_Quality_Audit": {
+      "tier": "IMPORTANT",
+      "required_columns": [
+        "Match_ID",
+        "Market",
+        "Company_ID",
+        "Raw_Record_Count",
+        "Clean_Record_Count",
+        "QC_Status"
+      ],
+      "optional_columns": [
+        "Aggregate_Row_Count",
+        "Alternative_Line_Count",
+        "Away_Identity_QC",
+        "Away_Parsed_Count",
+        "Away_Starter_Node_Count",
+        "Away_Team",
+        "Away_Unique_Player_Count",
+        "Company",
+        "Exact_Duplicate_Count",
+        "Home_Identity_QC",
+        "Home_Parsed_Count",
+        "Home_Starter_Node_Count",
+        "Home_Team",
+        "Home_Unique_Player_Count",
+        "League",
+        "Missing_Timestamp_Count",
+        "Note",
+        "Parse_Fail_Count",
+        "Source_No_Data",
+        "Source_Status",
+        "Timestamp_Collision_Count"
+      ],
+      "expected_dtypes": {
+        "Match_ID": [
+          "string",
+          "integer"
+        ],
+        "Company_ID": [
+          "string",
+          "integer"
+        ],
+        "Raw_Record_Count": [
+          "number",
+          "numeric_string"
+        ]
+      },
+      "nullable_policy": {
+        "Match_ID": false
+      },
+      "key_fields": [
+        "Match_ID",
+        "Market",
+        "Company_ID"
+      ],
+      "known_aliases": {
+        "Match_ID": [
+          "match_id"
+        ],
+        "Company_ID": [
+          "company_id"
+        ]
+      }
+    },
+    "Lineup": {
+      "tier": "IMPORTANT",
+      "required_columns": [
+        "match_id",
+        "Lineup_Status",
+        "Home_Formation",
+        "Away_Formation"
+      ],
+      "optional_columns": [
+        "Away_Bench",
+        "Away_Captain_Name",
+        "Away_Captain_No",
+        "Away_Coach",
+        "Away_Identity_QC",
+        "Away_Parsed_Count",
+        "Away_Starter_01_Identity_Key",
+        "Away_Starter_01_Identity_QC",
+        "Away_Starter_01_Name",
+        "Away_Starter_01_No",
+        "Away_Starter_01_Player_ID",
+        "Away_Starter_01_Profile_URL",
+        "Away_Starter_02_Identity_Key",
+        "Away_Starter_02_Identity_QC",
+        "Away_Starter_02_Name",
+        "Away_Starter_02_No",
+        "Away_Starter_02_Player_ID",
+        "Away_Starter_02_Profile_URL",
+        "Away_Starter_03_Identity_Key",
+        "Away_Starter_03_Identity_QC",
+        "Away_Starter_03_Name",
+        "Away_Starter_03_No",
+        "Away_Starter_03_Player_ID",
+        "Away_Starter_03_Profile_URL",
+        "Away_Starter_04_Identity_Key",
+        "Away_Starter_04_Identity_QC",
+        "Away_Starter_04_Name",
+        "Away_Starter_04_No",
+        "Away_Starter_04_Player_ID",
+        "Away_Starter_04_Profile_URL",
+        "Away_Starter_05_Identity_Key",
+        "Away_Starter_05_Identity_QC",
+        "Away_Starter_05_Name",
+        "Away_Starter_05_No",
+        "Away_Starter_05_Player_ID",
+        "Away_Starter_05_Profile_URL",
+        "Away_Starter_06_Identity_Key",
+        "Away_Starter_06_Identity_QC",
+        "Away_Starter_06_Name",
+        "Away_Starter_06_No",
+        "Away_Starter_06_Player_ID",
+        "Away_Starter_06_Profile_URL",
+        "Away_Starter_07_Identity_Key",
+        "Away_Starter_07_Identity_QC",
+        "Away_Starter_07_Name",
+        "Away_Starter_07_No",
+        "Away_Starter_07_Player_ID",
+        "Away_Starter_07_Profile_URL",
+        "Away_Starter_08_Identity_Key",
+        "Away_Starter_08_Identity_QC",
+        "Away_Starter_08_Name",
+        "Away_Starter_08_No",
+        "Away_Starter_08_Player_ID",
+        "Away_Starter_08_Profile_URL",
+        "Away_Starter_09_Identity_Key",
+        "Away_Starter_09_Identity_QC",
+        "Away_Starter_09_Name",
+        "Away_Starter_09_No",
+        "Away_Starter_09_Player_ID",
+        "Away_Starter_09_Profile_URL",
+        "Away_Starter_10_Identity_Key",
+        "Away_Starter_10_Identity_QC",
+        "Away_Starter_10_Name",
+        "Away_Starter_10_No",
+        "Away_Starter_10_Player_ID",
+        "Away_Starter_10_Profile_URL",
+        "Away_Starter_11_Identity_Key",
+        "Away_Starter_11_Identity_QC",
+        "Away_Starter_11_Name",
+        "Away_Starter_11_No",
+        "Away_Starter_11_Player_ID",
+        "Away_Starter_11_Profile_URL",
+        "Away_Starter_Count",
+        "Away_Starter_Node_Count",
+        "Away_Unique_Player_Count",
+        "Home_Bench",
+        "Home_Captain_Name",
+        "Home_Captain_No",
+        "Home_Coach",
+        "Home_Identity_QC",
+        "Home_Parsed_Count",
+        "Home_Starter_01_Identity_Key",
+        "Home_Starter_01_Identity_QC",
+        "Home_Starter_01_Name",
+        "Home_Starter_01_No",
+        "Home_Starter_01_Player_ID",
+        "Home_Starter_01_Profile_URL",
+        "Home_Starter_02_Identity_Key",
+        "Home_Starter_02_Identity_QC",
+        "Home_Starter_02_Name",
+        "Home_Starter_02_No",
+        "Home_Starter_02_Player_ID",
+        "Home_Starter_02_Profile_URL",
+        "Home_Starter_03_Identity_Key",
+        "Home_Starter_03_Identity_QC",
+        "Home_Starter_03_Name",
+        "Home_Starter_03_No",
+        "Home_Starter_03_Player_ID",
+        "Home_Starter_03_Profile_URL",
+        "Home_Starter_04_Identity_Key",
+        "Home_Starter_04_Identity_QC",
+        "Home_Starter_04_Name",
+        "Home_Starter_04_No",
+        "Home_Starter_04_Player_ID",
+        "Home_Starter_04_Profile_URL",
+        "Home_Starter_05_Identity_Key",
+        "Home_Starter_05_Identity_QC",
+        "Home_Starter_05_Name",
+        "Home_Starter_05_No",
+        "Home_Starter_05_Player_ID",
+        "Home_Starter_05_Profile_URL",
+        "Home_Starter_06_Identity_Key",
+        "Home_Starter_06_Identity_QC",
+        "Home_Starter_06_Name",
+        "Home_Starter_06_No",
+        "Home_Starter_06_Player_ID",
+        "Home_Starter_06_Profile_URL",
+        "Home_Starter_07_Identity_Key",
+        "Home_Starter_07_Identity_QC",
+        "Home_Starter_07_Name",
+        "Home_Starter_07_No",
+        "Home_Starter_07_Player_ID",
+        "Home_Starter_07_Profile_URL",
+        "Home_Starter_08_Identity_Key",
+        "Home_Starter_08_Identity_QC",
+        "Home_Starter_08_Name",
+        "Home_Starter_08_No",
+        "Home_Starter_08_Player_ID",
+        "Home_Starter_08_Profile_URL",
+        "Home_Starter_09_Identity_Key",
+        "Home_Starter_09_Identity_QC",
+        "Home_Starter_09_Name",
+        "Home_Starter_09_No",
+        "Home_Starter_09_Player_ID",
+        "Home_Starter_09_Profile_URL",
+        "Home_Starter_10_Identity_Key",
+        "Home_Starter_10_Identity_QC",
+        "Home_Starter_10_Name",
+        "Home_Starter_10_No",
+        "Home_Starter_10_Player_ID",
+        "Home_Starter_10_Profile_URL",
+        "Home_Starter_11_Identity_Key",
+        "Home_Starter_11_Identity_QC",
+        "Home_Starter_11_Name",
+        "Home_Starter_11_No",
+        "Home_Starter_11_Player_ID",
+        "Home_Starter_11_Profile_URL",
+        "Home_Starter_Count",
+        "Home_Starter_Node_Count",
+        "Home_Unique_Player_Count",
+        "Lineup_Data_Source",
+        "Lineup_Error",
+        "Lineup_Fetched_At",
+        "Lineup_Legacy_Status",
+        "Lineup_QC",
+        "Lineup_Raw_Text",
+        "Lineup_Source_URL",
+        "away_team",
+        "home_team",
+        "league"
+      ],
+      "expected_dtypes": {
+        "match_id": [
+          "string",
+          "integer"
+        ]
+      },
+      "nullable_policy": {
+        "match_id": false
+      },
+      "key_fields": [
+        "match_id"
+      ],
+      "known_aliases": {}
+    },
+    "Analysis_Context": {
+      "tier": "OPTIONAL",
+      "required_columns": [
+        "match_id",
+        "section_type",
+        "text"
+      ],
+      "optional_columns": [
+        "analysis_url",
+        "away_team",
+        "canonical_league",
+        "home_team",
+        "keywords_found",
+        "league",
+        "match_time",
+        "row_index"
+      ],
+      "expected_dtypes": {
+        "match_id": [
+          "string",
+          "integer"
+        ],
+        "text": [
+          "string"
+        ]
+      },
+      "nullable_policy": {
+        "match_id": false
+      },
+      "key_fields": [
+        "match_id",
+        "row_index"
+      ],
+      "known_aliases": {}
+    }
+  }
+}

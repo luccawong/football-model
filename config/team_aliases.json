@@ -1,0 +1,29 @@
+{
+  "teams": [
+    ["葡萄牙体育", "里斯本竞技", "Sporting CP", "Sporting Clube de Portugal", "Sporting Lisbon"],
+    ["葡萄牙国民", "国民队", "CD Nacional", "Nacional Madeira"],
+    ["圣保罗", "São Paulo", "Sao Paulo", "São Paulo FC"],
+    ["米内罗竞技", "明尼路", "Atlético Mineiro", "Atletico Mineiro", "Atletico MG"],
+    ["国际米兰", "国米", "Inter Milan", "Inter", "Internazionale"],
+    ["那不勒斯", "Napoli", "SSC Napoli"],
+    ["曼彻斯特城", "曼城", "Manchester City", "Man City"],
+    ["考文垂", "Coventry City", "Coventry"],
+    ["毕尔巴鄂竞技", "毕尔巴鄂", "Athletic Bilbao", "Athletic Club"],
+    ["马德里竞技", "马竞", "Atletico Madrid", "Atlético Madrid"],
+    ["拜仁慕尼黑", "拜仁", "Bayern Munich", "Bayern München", "Bayern"],
+    ["多特蒙德", "多特", "Borussia Dortmund", "Dortmund"],
+    ["巴黎圣日耳曼", "巴黎", "Paris Saint-Germain", "PSG"],
+    ["阿森纳", "Arsenal"]
+  ],
+  "leagues": {
+    "意甲": ["Serie A", "意甲"],
+    "英超": ["Premier League", "英超", "EPL"],
+    "德甲": ["Bundesliga", "德甲"],
+    "葡超": ["Primeira Liga", "葡超"],
+    "巴西甲": ["Brasileirao Serie A", "巴西甲", "巴甲"],
+    "西甲": ["La Liga", "西甲"],
+    "法甲": ["Ligue 1", "法甲"],
+    "欧冠": ["UEFA Champions League", "欧冠", "UCL"]
+  },
+  "competition_types": {"意甲":"league", "英超":"league", "德甲":"league", "葡超":"league", "巴西甲":"league", "西甲":"league", "法甲":"league", "欧冠":"cup"}
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": "1.0",
+  "batches": [
+    {
+      "batch_date": "2026-09-05",
+      "crawler_timestamp": "2026-09-05T19:25:47+00:00",
+      "source_file": "football_v23_titan_only_20260905_122452.xlsx",
+      "source_content_hash": "e163d7cfb06c5fa1507e8cff2f698c0fcef533ccc5a307c44d0b3e5cde640cc1",
+      "health_status": "WARN",
+      "data_path": "validation_packets/2026-09-05/Validation_Batch_20260905_DATA.json",
+      "qc_path": "validation_packets/2026-09-05/Validation_Batch_20260905_QC.md",
+      "commit_sha": null,
+      "match_count": 2
+    }
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "batch_date": "2026-09-05",
+  "crawler_timestamp": "2026-09-05T19:25:47+00:00",
+  "source_file": "football_v23_titan_only_20260905_122452.xlsx",
+  "source_version": "23.2.8-titan-only-ou-curve-snapshot-metadata",
+  "data_path": "validation_packets/2026-09-05/Validation_Batch_20260905_DATA.json",
+  "qc_path": "validation_packets/2026-09-05/Validation_Batch_20260905_QC.md",
+  "match_count": 2,
+  "match_index": [
+    {
+      "match_id": "3023474",
+      "league": "葡超",
+      "league_normalized": "葡超",
+      "home_team": "葡萄牙体育",
+      "away_team": "葡萄牙国民",
+      "home_aliases": [
+        "Sporting CP",
+        "Sporting Clube de Portugal",
+        "Sporting Lisbon",
+        "葡萄牙体育",
+        "里斯本竞技"
+      ],
+      "away_aliases": [
+        "CD Nacional",
+        "Nacional Madeira",
+        "国民队",
+        "葡萄牙国民"
+      ],
+      "fixture_aliases": [
+        "Sporting CP vs CD Nacional",
+        "Sporting CP vs Nacional Madeira",
+        "Sporting CP vs 国民队",
+        "Sporting CP vs 葡萄牙国民",
+        "Sporting Clube de Portugal vs CD Nacional",
+        "Sporting Clube de Portugal vs Nacional Madeira",
+        "Sporting Clube de Portugal vs 国民队",
+        "Sporting Clube de Portugal vs 葡萄牙国民",
+        "Sporting Lisbon vs CD Nacional",
+        "Sporting Lisbon vs Nacional Madeira",
+        "Sporting Lisbon vs 国民队",
+        "Sporting Lisbon vs 葡萄牙国民",
+        "葡萄牙体育 vs CD Nacional",
+        "葡萄牙体育 vs Nacional Madeira",
+        "葡萄牙体育 vs 国民队",
+        "葡萄牙体育 vs 葡萄牙国民",
+        "里斯本竞技 vs CD Nacional",
+        "里斯本竞技 vs Nacional Madeira",
+        "里斯本竞技 vs 国民队",
+        "里斯本竞技 vs 葡萄牙国民"
+      ],
+      "kickoff_time": "2026-09-06T03:30:00+08:00",
+      "kickoff_date": "2026-09-06",
+      "competition_type": "league",
+      "source_file": "football_v23_titan_only_20260905_122452.xlsx",
+      "crawler_batch": "2026-09-05",
+      "status": "pre_match",
+      "unresolved_team_mapping": [],
+      "date_basis": "kickoff local Asia/Shanghai",
+      "resolved_from": {
+        "batch_file": "validation_packets/2026-09-05/Validation_Batch_20260905_DATA.json",
+        "crawler_file": "football_v23_titan_only_20260905_122452.xlsx",
+        "crawler_timestamp": "2026-09-05T19:25:47+00:00",
+        "source_version": "23.2.8-titan-only-ou-curve-snapshot-metadata"
+      }
+    },
+    {
+      "match_id": "2910885",
+      "league": "巴西甲",
+      "league_normalized": "巴西甲",
+      "home_team": "圣保罗",
+      "away_team": "米内罗竞技",
+      "home_aliases": [
+        "Sao Paulo",
+        "São Paulo",
+        "São Paulo FC",
+        "圣保罗"
+      ],
+      "away_aliases": [
+        "Atletico MG",
+        "Atletico Mineiro",
+        "Atlético Mineiro",
+        "明尼路",
+        "米内罗竞技"
+      ],
+      "fixture_aliases": [
+        "Sao Paulo vs Atletico MG",
+        "Sao Paulo vs Atletico Mineiro",
+        "Sao Paulo vs Atlético Mineiro",
+        "Sao Paulo vs 明尼路",
+        "Sao Paulo vs 米内罗竞技",
+        "São Paulo vs Atletico MG",
+        "São Paulo vs Atletico Mineiro",
+        "São Paulo vs Atlético Mineiro",
+        "São Paulo vs 明尼路",
+        "São Paulo vs 米内罗竞技",
+        "São Paulo FC vs Atletico MG",
+        "São Paulo FC vs Atletico Mineiro",
+        "São Paulo FC vs Atlético Mineiro",
+        "São Paulo FC vs 明尼路",
+        "São Paulo FC vs 米内罗竞技",
+        "圣保罗 vs Atletico MG",
+        "圣保罗 vs Atletico Mineiro",
+        "圣保罗 vs Atlético Mineiro",
+        "圣保罗 vs 明尼路",
+        "圣保罗 vs 米内罗竞技"
+      ],
+      "kickoff_time": "2026-09-06T05:30:00+08:00",
+      "kickoff_date": "2026-09-06",
+      "competition_type": "league",
+      "source_file": "football_v23_titan_only_20260905_122452.xlsx",
+      "crawler_batch": "2026-09-05",
+      "status": "pre_match",
+      "unresolved_team_mapping": [],
+      "date_basis": "kickoff local Asia/Shanghai",
+      "resolved_from": {
+        "batch_file": "validation_packets/2026-09-05/Validation_Batch_20260905_DATA.json",
+        "crawler_file": "football_v23_titan_only_20260905_122452.xlsx",
+        "crawler_timestamp": "2026-09-05T19:25:47+00:00",
+        "source_version": "23.2.8-titan-only-ou-curve-snapshot-metadata"
+      }
+    }
+  ],
+  "source_content_hash": "e163d7cfb06c5fa1507e8cff2f698c0fcef533ccc5a307c44d0b3e5cde640cc1",
+  "health": {
+    "status": "WARN",
+    "warning_count": 9,
+    "critical_error_count": 0,
+    "schema_drift": false,
+    "qc_path": "validation_packets/2026-09-05/Validation_Batch_20260905_QC.md"
+  }
+}

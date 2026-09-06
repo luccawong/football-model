@@ -1,0 +1,2012 @@
+{
+  "europe_1x2:281": {
+    "namespace": "europe_1x2",
+    "company_id": "281",
+    "raw_name": [
+      "Bet 365"
+    ],
+    "normalized_name": "Bet365",
+    "verified": true,
+    "full_names": [
+      "Bet 365",
+      "Bet365"
+    ],
+    "notes": "Inherited verified endpoint registry from supplied V23.2.8 bookmaker_identity.py COMPANY_ID_MAP; source provenance, not independent live verification."
+  },
+  "europe_1x2:986": {
+    "namespace": "europe_1x2",
+    "company_id": "986",
+    "raw_name": [
+      "PlanetWin365"
+    ],
+    "normalized_name": "PlanetWin365",
+    "verified": true,
+    "full_names": [
+      "PlanetWin365"
+    ],
+    "notes": "Inherited verified endpoint registry from supplied V23.2.8 bookmaker_identity.py COMPANY_ID_MAP; source provenance, not independent live verification."
+  },
+  "europe_1x2:82": {
+    "namespace": "europe_1x2",
+    "company_id": "82",
+    "raw_name": [
+      "Ladbrokes"
+    ],
+    "normalized_name": "Ladbrokes UK",
+    "verified": true,
+    "full_names": [
+      "Ladbrokes",
+      "Ladbrokes UK"
+    ],
+    "notes": "Inherited verified endpoint registry from supplied V23.2.8 bookmaker_identity.py COMPANY_ID_MAP; source provenance, not independent live verification."
+  },
+  "europe_1x2:1135": {
+    "namespace": "europe_1x2",
+    "company_id": "1135",
+    "raw_name": [
+      "Ladbrokes.au"
+    ],
+    "normalized_name": "Ladbrokes AU",
+    "verified": true,
+    "full_names": [
+      "Ladbrokes AU",
+      "Ladbrokes.au"
+    ],
+    "notes": "Inherited verified endpoint registry from supplied V23.2.8 bookmaker_identity.py COMPANY_ID_MAP; source provenance, not independent live verification."
+  },
+  "europe_1x2:1350": {
+    "namespace": "europe_1x2",
+    "company_id": "1350",
+    "raw_name": [
+      "Ladbrokes.be"
+    ],
+    "normalized_name": "Ladbrokes BE",
+    "verified": true,
+    "full_names": [
+      "Ladbrokes BE",
+      "Ladbrokes.be"
+    ],
+    "notes": "Inherited verified endpoint registry from supplied V23.2.8 bookmaker_identity.py COMPANY_ID_MAP; source provenance, not independent live verification."
+  },
+  "europe_1x2:115": {
+    "namespace": "europe_1x2",
+    "company_id": "115",
+    "raw_name": [
+      "William Hill"
+    ],
+    "normalized_name": "William Hill",
+    "verified": true,
+    "full_names": [
+      "William Hill"
+    ],
+    "notes": "Inherited verified endpoint registry from supplied V23.2.8 bookmaker_identity.py COMPANY_ID_MAP; source provenance, not independent live verification."
+  },
+  "europe_1x2:104": {
+    "namespace": "europe_1x2",
+    "company_id": "104",
+    "raw_name": [
+      "Interwetten"
+    ],
+    "normalized_name": "Interwetten",
+    "verified": true,
+    "full_names": [
+      "Interwetten"
+    ],
+    "notes": "Inherited verified endpoint registry from supplied V23.2.8 bookmaker_identity.py COMPANY_ID_MAP; source provenance, not independent live verification."
+  },
+  "europe_1x2:432": {
+    "namespace": "europe_1x2",
+    "company_id": "432",
+    "raw_name": [
+      "HK Jockey Club"
+    ],
+    "normalized_name": "HKJC",
+    "verified": true,
+    "full_names": [
+      "HK Jockey Club",
+      "HKJC"
+    ],
+    "notes": "Inherited verified endpoint registry from supplied V23.2.8 bookmaker_identity.py COMPANY_ID_MAP; source provenance, not independent live verification."
+  },
+  "europe_1x2:80": {
+    "namespace": "europe_1x2",
+    "company_id": "80",
+    "raw_name": [
+      "Macauslot"
+    ],
+    "normalized_name": "Macau",
+    "verified": true,
+    "full_names": [
+      "Macau",
+      "Macauslot"
+    ],
+    "notes": "Inherited verified endpoint registry from supplied V23.2.8 bookmaker_identity.py COMPANY_ID_MAP; source provenance, not independent live verification."
+  },
+  "europe_1x2:177": {
+    "namespace": "europe_1x2",
+    "company_id": "177",
+    "raw_name": [
+      "Pinnacle"
+    ],
+    "normalized_name": "Pinnacle",
+    "verified": true,
+    "full_names": [
+      "Pinnacle"
+    ],
+    "notes": "Inherited verified endpoint registry from supplied V23.2.8 bookmaker_identity.py COMPANY_ID_MAP; source provenance, not independent live verification."
+  },
+  "europe_1x2:1017": {
+    "namespace": "europe_1x2",
+    "company_id": "1017",
+    "raw_name": [
+      "BetVictor"
+    ],
+    "normalized_name": "BetVictor",
+    "verified": true,
+    "full_names": [
+      "BetVictor"
+    ],
+    "notes": "Inherited verified endpoint registry from supplied V23.2.8 bookmaker_identity.py COMPANY_ID_MAP; source provenance, not independent live verification."
+  },
+  "vip:1": {
+    "namespace": "vip",
+    "company_id": "1",
+    "raw_name": [
+      "澳*"
+    ],
+    "normalized_name": "Macau",
+    "verified": true,
+    "full_names": [
+      "Macau"
+    ],
+    "notes": "Inherited verified endpoint registry from supplied V23.2.8 bookmaker_identity.py COMPANY_ID_MAP; source provenance, not independent live verification."
+  },
+  "vip:3": {
+    "namespace": "vip",
+    "company_id": "3",
+    "raw_name": [
+      "Crow*"
+    ],
+    "normalized_name": "Crown",
+    "verified": true,
+    "full_names": [
+      "Crown"
+    ],
+    "notes": "Inherited verified endpoint registry from supplied V23.2.8 bookmaker_identity.py COMPANY_ID_MAP; source provenance, not independent live verification."
+  },
+  "vip:4": {
+    "namespace": "vip",
+    "company_id": "4",
+    "raw_name": [
+      "立*"
+    ],
+    "normalized_name": "Ladbrokes UK",
+    "verified": true,
+    "full_names": [
+      "Ladbrokes UK"
+    ],
+    "notes": "Inherited verified endpoint registry from supplied V23.2.8 bookmaker_identity.py COMPANY_ID_MAP; source provenance, not independent live verification."
+  },
+  "vip:8": {
+    "namespace": "vip",
+    "company_id": "8",
+    "raw_name": [
+      "36*"
+    ],
+    "normalized_name": "Bet365",
+    "verified": true,
+    "full_names": [
+      "Bet365"
+    ],
+    "notes": "Inherited verified endpoint registry from supplied V23.2.8 bookmaker_identity.py COMPANY_ID_MAP; source provenance, not independent live verification."
+  },
+  "vip:9": {
+    "namespace": "vip",
+    "company_id": "9",
+    "raw_name": [
+      "威*"
+    ],
+    "normalized_name": "William Hill",
+    "verified": true,
+    "full_names": [
+      "William Hill"
+    ],
+    "notes": "Inherited verified endpoint registry from supplied V23.2.8 bookmaker_identity.py COMPANY_ID_MAP; source provenance, not independent live verification."
+  },
+  "vip:12": {
+    "namespace": "vip",
+    "company_id": "12",
+    "raw_name": [
+      "易*"
+    ],
+    "normalized_name": "Easybets",
+    "verified": true,
+    "full_names": [
+      "Easybets"
+    ],
+    "notes": "Inherited verified endpoint registry from supplied V23.2.8 bookmaker_identity.py COMPANY_ID_MAP; source provenance, not independent live verification."
+  },
+  "vip:14": {
+    "namespace": "vip",
+    "company_id": "14",
+    "raw_name": [
+      "伟*"
+    ],
+    "normalized_name": "Vcbet",
+    "verified": true,
+    "full_names": [
+      "Vcbet"
+    ],
+    "notes": "Inherited verified endpoint registry from supplied V23.2.8 bookmaker_identity.py COMPANY_ID_MAP; source provenance, not independent live verification."
+  },
+  "vip:19": {
+    "namespace": "vip",
+    "company_id": "19",
+    "raw_name": [
+      "Interwet*"
+    ],
+    "normalized_name": "Interwetten",
+    "verified": true,
+    "full_names": [
+      "Interwetten"
+    ],
+    "notes": "Inherited verified endpoint registry from supplied V23.2.8 bookmaker_identity.py COMPANY_ID_MAP; source provenance, not independent live verification."
+  },
+  "vip:35": {
+    "namespace": "vip",
+    "company_id": "35",
+    "raw_name": [
+      "盈*"
+    ],
+    "normalized_name": "Wewbet",
+    "verified": true,
+    "full_names": [
+      "Wewbet"
+    ],
+    "notes": "Inherited verified endpoint registry from supplied V23.2.8 bookmaker_identity.py COMPANY_ID_MAP; source provenance, not independent live verification."
+  },
+  "vip:42": {
+    "namespace": "vip",
+    "company_id": "42",
+    "raw_name": [
+      "18*"
+    ],
+    "normalized_name": "188Bet",
+    "verified": true,
+    "full_names": [
+      "188Bet"
+    ],
+    "notes": "Inherited verified endpoint registry from supplied V23.2.8 bookmaker_identity.py COMPANY_ID_MAP; source provenance, not independent live verification."
+  },
+  "vip:47": {
+    "namespace": "vip",
+    "company_id": "47",
+    "raw_name": [
+      "平*"
+    ],
+    "normalized_name": "Pinnacle",
+    "verified": true,
+    "full_names": [
+      "Pinnacle"
+    ],
+    "notes": "Inherited verified endpoint registry from supplied V23.2.8 bookmaker_identity.py COMPANY_ID_MAP; source provenance, not independent live verification."
+  },
+  "vip:48": {
+    "namespace": "vip",
+    "company_id": "48",
+    "raw_name": [
+      "香港马*"
+    ],
+    "normalized_name": "HKJC",
+    "verified": true,
+    "full_names": [
+      "HKJC"
+    ],
+    "notes": "Inherited verified endpoint registry from supplied V23.2.8 bookmaker_identity.py COMPANY_ID_MAP; source provenance, not independent live verification."
+  },
+  "europe_1x2:173": {
+    "namespace": "europe_1x2",
+    "company_id": "173",
+    "raw_name": [
+      "Bet-at-home"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:81": {
+    "namespace": "europe_1x2",
+    "company_id": "81",
+    "raw_name": [
+      "Vcbet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:90": {
+    "namespace": "europe_1x2",
+    "company_id": "90",
+    "raw_name": [
+      "Easybets"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:16": {
+    "namespace": "europe_1x2",
+    "company_id": "16",
+    "raw_name": [
+      "10BET"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:18": {
+    "namespace": "europe_1x2",
+    "company_id": "18",
+    "raw_name": [
+      "12bet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:976": {
+    "namespace": "europe_1x2",
+    "company_id": "976",
+    "raw_name": [
+      "18Bet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:255": {
+    "namespace": "europe_1x2",
+    "company_id": "255",
+    "raw_name": [
+      "Bwin"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:88": {
+    "namespace": "europe_1x2",
+    "company_id": "88",
+    "raw_name": [
+      "Coral"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:545": {
+    "namespace": "europe_1x2",
+    "company_id": "545",
+    "raw_name": [
+      "Crown"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:649": {
+    "namespace": "europe_1x2",
+    "company_id": "649",
+    "raw_name": [
+      "IBCBET"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:422": {
+    "namespace": "europe_1x2",
+    "company_id": "422",
+    "raw_name": [
+      "Sportingbet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:474": {
+    "namespace": "europe_1x2",
+    "company_id": "474",
+    "raw_name": [
+      "Sbobet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:517": {
+    "namespace": "europe_1x2",
+    "company_id": "517",
+    "raw_name": [
+      "Mansion88"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:659": {
+    "namespace": "europe_1x2",
+    "company_id": "659",
+    "raw_name": [
+      "Wewbet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:110": {
+    "namespace": "europe_1x2",
+    "company_id": "110",
+    "raw_name": [
+      "SNAI"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:2": {
+    "namespace": "europe_1x2",
+    "company_id": "2",
+    "raw_name": [
+      "Betfair"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:665": {
+    "namespace": "europe_1x2",
+    "company_id": "665",
+    "raw_name": [
+      "Betsson"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:352": {
+    "namespace": "europe_1x2",
+    "company_id": "352",
+    "raw_name": [
+      "Matchbook"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:800": {
+    "namespace": "europe_1x2",
+    "company_id": "800",
+    "raw_name": [
+      "Marathon"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:386": {
+    "namespace": "europe_1x2",
+    "company_id": "386",
+    "raw_name": [
+      "Unibet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:777": {
+    "namespace": "europe_1x2",
+    "company_id": "777",
+    "raw_name": [
+      "1Bet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1047": {
+    "namespace": "europe_1x2",
+    "company_id": "1047",
+    "raw_name": [
+      "1xBet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1359": {
+    "namespace": "europe_1x2",
+    "company_id": "1359",
+    "raw_name": [
+      "1xBit"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1370": {
+    "namespace": "europe_1x2",
+    "company_id": "1370",
+    "raw_name": [
+      "20Bet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1229": {
+    "namespace": "europe_1x2",
+    "company_id": "1229",
+    "raw_name": [
+      "22Bet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:616": {
+    "namespace": "europe_1x2",
+    "company_id": "616",
+    "raw_name": [
+      "888Sport"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1283": {
+    "namespace": "europe_1x2",
+    "company_id": "1283",
+    "raw_name": [
+      "888sportDK"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1362": {
+    "namespace": "europe_1x2",
+    "company_id": "1362",
+    "raw_name": [
+      "888Starz"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1395": {
+    "namespace": "europe_1x2",
+    "company_id": "1395",
+    "raw_name": [
+      "Admiralbet IT"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1381": {
+    "namespace": "europe_1x2",
+    "company_id": "1381",
+    "raw_name": [
+      "All British Casino"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1427": {
+    "namespace": "europe_1x2",
+    "company_id": "1427",
+    "raw_name": [
+      "Amonbet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1378": {
+    "namespace": "europe_1x2",
+    "company_id": "1378",
+    "raw_name": [
+      "BC.Game"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1401": {
+    "namespace": "europe_1x2",
+    "company_id": "1401",
+    "raw_name": [
+      "BetUK"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1354": {
+    "namespace": "europe_1x2",
+    "company_id": "1354",
+    "raw_name": [
+      "BeOnBet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1306": {
+    "namespace": "europe_1x2",
+    "company_id": "1306",
+    "raw_name": [
+      "Bet Sensation"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1167": {
+    "namespace": "europe_1x2",
+    "company_id": "1167",
+    "raw_name": [
+      "Bet25"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:537": {
+    "namespace": "europe_1x2",
+    "company_id": "537",
+    "raw_name": [
+      "Bet3000"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1377": {
+    "namespace": "europe_1x2",
+    "company_id": "1377",
+    "raw_name": [
+      "Betano"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1403": {
+    "namespace": "europe_1x2",
+    "company_id": "1403",
+    "raw_name": [
+      "BetAndYou"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1096": {
+    "namespace": "europe_1x2",
+    "company_id": "1096",
+    "raw_name": [
+      "Betboro"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:808": {
+    "namespace": "europe_1x2",
+    "company_id": "808",
+    "raw_name": [
+      "Betcity"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:872": {
+    "namespace": "europe_1x2",
+    "company_id": "872",
+    "raw_name": [
+      "Betflag"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1036": {
+    "namespace": "europe_1x2",
+    "company_id": "1036",
+    "raw_name": [
+      "Betfair AUS"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1055": {
+    "namespace": "europe_1x2",
+    "company_id": "1055",
+    "raw_name": [
+      "Betfair Exchange"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:988": {
+    "namespace": "europe_1x2",
+    "company_id": "988",
+    "raw_name": [
+      "Betfair SB"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1355": {
+    "namespace": "europe_1x2",
+    "company_id": "1355",
+    "raw_name": [
+      "Betibet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1255": {
+    "namespace": "europe_1x2",
+    "company_id": "1255",
+    "raw_name": [
+      "BetInAsia"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1265": {
+    "namespace": "europe_1x2",
+    "company_id": "1265",
+    "raw_name": [
+      "BetKing"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1422": {
+    "namespace": "europe_1x2",
+    "company_id": "1422",
+    "raw_name": [
+      "Betlabel ES"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1383": {
+    "namespace": "europe_1x2",
+    "company_id": "1383",
+    "raw_name": [
+      "BetMGM"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:775": {
+    "namespace": "europe_1x2",
+    "company_id": "775",
+    "raw_name": [
+      "Betonline"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1411": {
+    "namespace": "europe_1x2",
+    "company_id": "1411",
+    "raw_name": [
+      "Betovo"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1346": {
+    "namespace": "europe_1x2",
+    "company_id": "1346",
+    "raw_name": [
+      "BetPlay"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:829": {
+    "namespace": "europe_1x2",
+    "company_id": "829",
+    "raw_name": [
+      "BetSonic"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:482": {
+    "namespace": "europe_1x2",
+    "company_id": "482",
+    "raw_name": [
+      "Betway"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1410": {
+    "namespace": "europe_1x2",
+    "company_id": "1410",
+    "raw_name": [
+      "Boomerang-bet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:874": {
+    "namespace": "europe_1x2",
+    "company_id": "874",
+    "raw_name": [
+      "Bovada"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:723": {
+    "namespace": "europe_1x2",
+    "company_id": "723",
+    "raw_name": [
+      "Bwin.fr"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1374": {
+    "namespace": "europe_1x2",
+    "company_id": "1374",
+    "raw_name": [
+      "Campobet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1392": {
+    "namespace": "europe_1x2",
+    "company_id": "1392",
+    "raw_name": [
+      "Casumo Sport"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1358": {
+    "namespace": "europe_1x2",
+    "company_id": "1358",
+    "raw_name": [
+      "Cloudbet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:832": {
+    "namespace": "europe_1x2",
+    "company_id": "832",
+    "raw_name": [
+      "ComeOn"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1132": {
+    "namespace": "europe_1x2",
+    "company_id": "1132",
+    "raw_name": [
+      "CoolBet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1404": {
+    "namespace": "europe_1x2",
+    "company_id": "1404",
+    "raw_name": [
+      "Cosmobet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:854": {
+    "namespace": "europe_1x2",
+    "company_id": "854",
+    "raw_name": [
+      "Denmark"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1390": {
+    "namespace": "europe_1x2",
+    "company_id": "1390",
+    "raw_name": [
+      "DraftKings"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:812": {
+    "namespace": "europe_1x2",
+    "company_id": "812",
+    "raw_name": [
+      "Efbet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:580": {
+    "namespace": "europe_1x2",
+    "company_id": "580",
+    "raw_name": [
+      "Eurobet.it"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1415": {
+    "namespace": "europe_1x2",
+    "company_id": "1415",
+    "raw_name": [
+      "Fairpari"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1249": {
+    "namespace": "europe_1x2",
+    "company_id": "1249",
+    "raw_name": [
+      "Fanduel"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:834": {
+    "namespace": "europe_1x2",
+    "company_id": "834",
+    "raw_name": [
+      "FavBet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1251": {
+    "namespace": "europe_1x2",
+    "company_id": "1251",
+    "raw_name": [
+      "FEZbet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:73": {
+    "namespace": "europe_1x2",
+    "company_id": "73",
+    "raw_name": [
+      "Fonbet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:669": {
+    "namespace": "europe_1x2",
+    "company_id": "669",
+    "raw_name": [
+      "Germania Sport"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1256": {
+    "namespace": "europe_1x2",
+    "company_id": "1256",
+    "raw_name": [
+      "GGBET"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:87": {
+    "namespace": "europe_1x2",
+    "company_id": "87",
+    "raw_name": [
+      "GoldBet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1398": {
+    "namespace": "europe_1x2",
+    "company_id": "1398",
+    "raw_name": [
+      "Goldenbet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1434": {
+    "namespace": "europe_1x2",
+    "company_id": "1434",
+    "raw_name": [
+      "Goldenplay"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1419": {
+    "namespace": "europe_1x2",
+    "company_id": "1419",
+    "raw_name": [
+      "Goldzino"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:717": {
+    "namespace": "europe_1x2",
+    "company_id": "717",
+    "raw_name": [
+      "Hrvatska Lutrija"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:657": {
+    "namespace": "europe_1x2",
+    "company_id": "657",
+    "raw_name": [
+      "iddaa"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1420": {
+    "namespace": "europe_1x2",
+    "company_id": "1420",
+    "raw_name": [
+      "Igobet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1272": {
+    "namespace": "europe_1x2",
+    "company_id": "1272",
+    "raw_name": [
+      "InkaBet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1371": {
+    "namespace": "europe_1x2",
+    "company_id": "1371",
+    "raw_name": [
+      "Ivibet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1397": {
+    "namespace": "europe_1x2",
+    "company_id": "1397",
+    "raw_name": [
+      "Jackbit"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1103": {
+    "namespace": "europe_1x2",
+    "company_id": "1103",
+    "raw_name": [
+      "Leovegas"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1104": {
+    "namespace": "europe_1x2",
+    "company_id": "1104",
+    "raw_name": [
+      "Liga Stavok"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:992": {
+    "namespace": "europe_1x2",
+    "company_id": "992",
+    "raw_name": [
+      "Luckia.es"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1409": {
+    "namespace": "europe_1x2",
+    "company_id": "1409",
+    "raw_name": [
+      "Lunubet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1258": {
+    "namespace": "europe_1x2",
+    "company_id": "1258",
+    "raw_name": [
+      "Marathonbet.ru"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:816": {
+    "namespace": "europe_1x2",
+    "company_id": "816",
+    "raw_name": [
+      "Marathonbet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1321": {
+    "namespace": "europe_1x2",
+    "company_id": "1321",
+    "raw_name": [
+      "Megapari"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1319": {
+    "namespace": "europe_1x2",
+    "company_id": "1319",
+    "raw_name": [
+      "Melbet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:520": {
+    "namespace": "europe_1x2",
+    "company_id": "520",
+    "raw_name": [
+      "MeridianBet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1384": {
+    "namespace": "europe_1x2",
+    "company_id": "1384",
+    "raw_name": [
+      "Mostbet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:886": {
+    "namespace": "europe_1x2",
+    "company_id": "886",
+    "raw_name": [
+      "Mozzart"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1387": {
+    "namespace": "europe_1x2",
+    "company_id": "1387",
+    "raw_name": [
+      "Mystake"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1324": {
+    "namespace": "europe_1x2",
+    "company_id": "1324",
+    "raw_name": [
+      "N1 BET"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1364": {
+    "namespace": "europe_1x2",
+    "company_id": "1364",
+    "raw_name": [
+      "N1BET.de"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1363": {
+    "namespace": "europe_1x2",
+    "company_id": "1363",
+    "raw_name": [
+      "N1BET.it"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1365": {
+    "namespace": "europe_1x2",
+    "company_id": "1365",
+    "raw_name": [
+      "N1BET.se"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1154": {
+    "namespace": "europe_1x2",
+    "company_id": "1154",
+    "raw_name": [
+      "Netbet.it"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1389": {
+    "namespace": "europe_1x2",
+    "company_id": "1389",
+    "raw_name": [
+      "Nine Casino"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:180": {
+    "namespace": "europe_1x2",
+    "company_id": "180",
+    "raw_name": [
+      "Norway"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:733": {
+    "namespace": "europe_1x2",
+    "company_id": "733",
+    "raw_name": [
+      "novibet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:934": {
+    "namespace": "europe_1x2",
+    "company_id": "934",
+    "raw_name": [
+      "PAF.es"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:826": {
+    "namespace": "europe_1x2",
+    "company_id": "826",
+    "raw_name": [
+      "Paddy Power"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1438": {
+    "namespace": "europe_1x2",
+    "company_id": "1438",
+    "raw_name": [
+      "Paribet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:646": {
+    "namespace": "europe_1x2",
+    "company_id": "646",
+    "raw_name": [
+      "PariMatch"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:750": {
+    "namespace": "europe_1x2",
+    "company_id": "750",
+    "raw_name": [
+      "Parionsweb"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1318": {
+    "namespace": "europe_1x2",
+    "company_id": "1318",
+    "raw_name": [
+      "Paripesa"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1423": {
+    "namespace": "europe_1x2",
+    "company_id": "1423",
+    "raw_name": [
+      "Paripesa Europe"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1353": {
+    "namespace": "europe_1x2",
+    "company_id": "1353",
+    "raw_name": [
+      "Pin-Up"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1426": {
+    "namespace": "europe_1x2",
+    "company_id": "1426",
+    "raw_name": [
+      "Rainbe*"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1416": {
+    "namespace": "europe_1x2",
+    "company_id": "1416",
+    "raw_name": [
+      "Rocketplay"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1432": {
+    "namespace": "europe_1x2",
+    "company_id": "1432",
+    "raw_name": [
+      "Rodeoslot"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1407": {
+    "namespace": "europe_1x2",
+    "company_id": "1407",
+    "raw_name": [
+      "Roobet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1357": {
+    "namespace": "europe_1x2",
+    "company_id": "1357",
+    "raw_name": [
+      "Roosterbet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:791": {
+    "namespace": "europe_1x2",
+    "company_id": "791",
+    "raw_name": [
+      "Sisal"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:167": {
+    "namespace": "europe_1x2",
+    "company_id": "167",
+    "raw_name": [
+      "skybet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1360": {
+    "namespace": "europe_1x2",
+    "company_id": "1360",
+    "raw_name": [
+      "spinbetter"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:706": {
+    "namespace": "europe_1x2",
+    "company_id": "706",
+    "raw_name": [
+      "Sportsbet.com.au"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1264": {
+    "namespace": "europe_1x2",
+    "company_id": "1264",
+    "raw_name": [
+      "SportyBet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1367": {
+    "namespace": "europe_1x2",
+    "company_id": "1367",
+    "raw_name": [
+      "Stake"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:903": {
+    "namespace": "europe_1x2",
+    "company_id": "903",
+    "raw_name": [
+      "Stoiximan"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1269": {
+    "namespace": "europe_1x2",
+    "company_id": "1269",
+    "raw_name": [
+      "Tab.co.nz"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:527": {
+    "namespace": "europe_1x2",
+    "company_id": "527",
+    "raw_name": [
+      "Tipico"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:38": {
+    "namespace": "europe_1x2",
+    "company_id": "38",
+    "raw_name": [
+      "Tipsport-Sk"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:843": {
+    "namespace": "europe_1x2",
+    "company_id": "843",
+    "raw_name": [
+      "TonyBet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1376": {
+    "namespace": "europe_1x2",
+    "company_id": "1376",
+    "raw_name": [
+      "ToonieBet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1349": {
+    "namespace": "europe_1x2",
+    "company_id": "1349",
+    "raw_name": [
+      "Unibet.se"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1425": {
+    "namespace": "europe_1x2",
+    "company_id": "1425",
+    "raw_name": [
+      "Vavad*"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1308": {
+    "namespace": "europe_1x2",
+    "company_id": "1308",
+    "raw_name": [
+      "Vbet.fr"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1352": {
+    "namespace": "europe_1x2",
+    "company_id": "1352",
+    "raw_name": [
+      "Vbet.CAN"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:974": {
+    "namespace": "europe_1x2",
+    "company_id": "974",
+    "raw_name": [
+      "VBet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1309": {
+    "namespace": "europe_1x2",
+    "company_id": "1309",
+    "raw_name": [
+      "Vbet.UKR"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:113": {
+    "namespace": "europe_1x2",
+    "company_id": "113",
+    "raw_name": [
+      "Veikkaus"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1405": {
+    "namespace": "europe_1x2",
+    "company_id": "1405",
+    "raw_name": [
+      "Velobet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1069": {
+    "namespace": "europe_1x2",
+    "company_id": "1069",
+    "raw_name": [
+      "Winamax.fr"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1421": {
+    "namespace": "europe_1x2",
+    "company_id": "1421",
+    "raw_name": [
+      "Winbay"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1301": {
+    "namespace": "europe_1x2",
+    "company_id": "1301",
+    "raw_name": [
+      "Winline.ru"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1070": {
+    "namespace": "europe_1x2",
+    "company_id": "1070",
+    "raw_name": [
+      "WinlineBet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1435": {
+    "namespace": "europe_1x2",
+    "company_id": "1435",
+    "raw_name": [
+      "Winnerz"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1417": {
+    "namespace": "europe_1x2",
+    "company_id": "1417",
+    "raw_name": [
+      "Winspirit"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1436": {
+    "namespace": "europe_1x2",
+    "company_id": "1436",
+    "raw_name": [
+      "WinWin"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1430": {
+    "namespace": "europe_1x2",
+    "company_id": "1430",
+    "raw_name": [
+      "Wonaco"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1262": {
+    "namespace": "europe_1x2",
+    "company_id": "1262",
+    "raw_name": [
+      "WPlay"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1399": {
+    "namespace": "europe_1x2",
+    "company_id": "1399",
+    "raw_name": [
+      "4rabet"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1210": {
+    "namespace": "europe_1x2",
+    "company_id": "1210",
+    "raw_name": [
+      "Bet9ja"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "europe_1x2:1439": {
+    "namespace": "europe_1x2",
+    "company_id": "1439",
+    "raw_name": [
+      "RedRacer"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "vip:17": {
+    "namespace": "vip",
+    "company_id": "17",
+    "raw_name": [
+      "明*"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "vip:24": {
+    "namespace": "vip",
+    "company_id": "24",
+    "raw_name": [
+      "12*"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "vip:31": {
+    "namespace": "vip",
+    "company_id": "31",
+    "raw_name": [
+      "利*"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "vip:50": {
+    "namespace": "vip",
+    "company_id": "50",
+    "raw_name": [
+      "1x*"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  },
+  "vip:22": {
+    "namespace": "vip",
+    "company_id": "22",
+    "raw_name": [
+      "10*"
+    ],
+    "normalized_name": null,
+    "verified": false,
+    "full_names": [],
+    "notes": "Observed in supplied Excel; identity not verified. Never infer from masked name."
+  }
+}
