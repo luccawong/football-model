@@ -9,7 +9,7 @@
       "health_status": "WARN",
       "data_path": "validation_packets/2026-09-05/Validation_Batch_20260905_DATA.json",
       "qc_path": "validation_packets/2026-09-05/Validation_Batch_20260905_QC.md",
-      "commit_sha": null,
+      "commit_sha": "5d55b1e6b60ba0272451054b2d703ccb68bd81c7",
       "match_count": 2
     }
   ]
