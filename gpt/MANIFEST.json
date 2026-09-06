@@ -1,0 +1,16 @@
+{
+  "model": "GPT Football Model",
+  "quant_engine": {
+    "version": "GPT-QUANT-0.1.0",
+    "entrypoint": "gpt/quant_core.py",
+    "config": "config/quant_config.json",
+    "protocol": "gpt/QUANT_PROTOCOL.md",
+    "tests": "tests/test_quant_core.py",
+    "status": "candidate"
+  },
+  "decision_policy": {
+    "quant_is_evidence_not_ticket": true,
+    "red_team_required_for_full_sop": true,
+    "ticket_lock_rule": true
+  }
+}
