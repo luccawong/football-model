@@ -1,23 +1,20 @@
 import unittest
-from exchange_bridge.the_odds_api import match_event, normalize_event, OddsApiError
+from exchange_bridge.oddspapi import OddsPapiError, build_1x2_outcome_map, match_fixture, normalize_fixture_odds
 
-EVENT = {
-    "id":"evt1","sport_key":"soccer_italy_serie_a","sport_title":"Serie A","commence_time":"2026-09-07T16:30:00Z",
-    "home_team":"Cagliari","away_team":"Lecce","bookmakers":[{"key":"betfair_ex_uk","title":"Betfair","last_update":"2026-09-07T12:00:00Z","markets":[
-        {"key":"h2h","last_update":"2026-09-07T12:00:00Z","outcomes":[{"name":"Cagliari","price":2.12,"bet_limit":100},{"name":"Draw","price":3.20,"bet_limit":80},{"name":"Lecce","price":3.90,"bet_limit":60}]},
-        {"key":"h2h_lay","last_update":"2026-09-07T12:00:00Z","outcomes":[{"name":"Cagliari","price":2.16,"bet_limit":90},{"name":"Draw","price":3.25,"bet_limit":70},{"name":"Lecce","price":4.00,"bet_limit":50}]}
-    ]}]
-}
+MARKETS = [{"marketId":101,"marketLength":3,"sportId":10,"playerProp":False,"handicap":0,"period":"fulltime","marketType":"1x2","outcomes":[{"outcomeId":141,"outcomeName":"1"},{"outcomeId":143,"outcomeName":"X"},{"outcomeId":142,"outcomeName":"2"}]}]
+FIXTURE = {"fixtureId":"id100001","startTime":1788798600,"participants":{"participant1Name":"Cagliari","participant2Name":"Lecce"}}
+ODDS = {**FIXTURE,"sport":{"sportId":10,"sportName":"Soccer"},"tournament":{"tournamentName":"Serie A"},"bookmakers":{"betfair":{"hasOdds":True,"staleOdds":False,"suspended":False,"updatedAt":"2026-09-07T12:00:00Z"}},"odds":{"betfair":{"a":{"bookmaker":"betfair","outcomeId":141,"price":2.12,"active":True,"marketActive":True,"mainLine":True,"marketId":101,"changedAt":1002,"bookmakerChangedAt":1000,"limit":100,"meta":{"back":[{"price":2.12,"size":50},{"price":2.10,"size":80}],"lay":[{"price":2.16,"size":40},{"price":2.18,"size":70}]}},"b":{"bookmaker":"betfair","outcomeId":143,"price":3.20,"active":True,"marketActive":True,"mainLine":True,"marketId":101,"changedAt":1002,"meta":{"back":[{"price":3.20,"size":30}],"lay":[{"price":3.25,"size":25}]}},"c":{"bookmaker":"betfair","outcomeId":142,"price":3.90,"active":True,"marketActive":True,"mainLine":True,"marketId":101,"changedAt":1002,"meta":{"back":[{"price":3.90,"size":20}],"lay":[{"price":4.00,"size":15}]}}}}}
 
-class TestExchangeBridge(unittest.TestCase):
-    def test_match_event(self): self.assertEqual(match_event([EVENT],"Cagliari","Lecce","2026-09-07T16:30:00Z")["id"],"evt1")
-    def test_provider_id(self): self.assertEqual(match_event([EVENT],"x","y",provider_event_id="evt1")["id"],"evt1")
-    def test_normalize(self):
-        p=normalize_event(EVENT,"2993777",observed_at="2026-09-07T12:00:01Z"); s=p["selected_bookmaker"]["selections"]
-        self.assertEqual(s["home"]["back"]["price"],2.12); self.assertEqual(s["home"]["lay"]["price"],2.16); self.assertEqual(s["draw"]["back"]["bet_limit"],80)
-    def test_no_fake_volume(self):
-        p=normalize_event(EVENT,"2993777"); self.assertIn("total_matched",p["unavailable_fields"]); self.assertTrue(p["qc"]["bet_limit_is_not_matched_volume"])
+class TestOddsPapiBridge(unittest.TestCase):
+    def test_market_map(self): self.assertEqual(build_1x2_outcome_map(MARKETS), {141:"home",143:"draw",142:"away"})
+    def test_match_fixture(self): self.assertEqual(match_fixture([FIXTURE],"Cagliari","Lecce",1788798600)["fixtureId"],"id100001")
+    def test_pinned_fixture(self): self.assertEqual(match_fixture([FIXTURE],"x","y",provider_fixture_id="id100001")["fixtureId"],"id100001")
+    def test_normalize_orderbook(self):
+        p=normalize_fixture_odds(ODDS,"2993777",build_1x2_outcome_map(MARKETS)); s=p["selected_bookmaker"]["selections"]
+        self.assertEqual(s["home"]["back"]["price"],2.12); self.assertEqual(s["home"]["lay"]["price"],2.16); self.assertEqual(s["home"]["back"]["size"],50.0); self.assertEqual(s["home"]["limit"],100); self.assertTrue(p["qc"]["order_book_meta_preserved"])
+    def test_no_total_matched_fabrication(self):
+        p=normalize_fixture_odds(ODDS,"2993777",build_1x2_outcome_map(MARKETS)); self.assertIn("total_matched",p["unavailable_fields"])
     def test_bad_match(self):
-        with self.assertRaises(OddsApiError): match_event([EVENT],"Roma","Milan","2026-09-07T16:30:00Z")
+        with self.assertRaises(OddsPapiError): match_fixture([FIXTURE],"Roma","Milan",1788798600)
 
-if __name__ == "__main__": unittest.main()
+if __name__ == '__main__': unittest.main()
