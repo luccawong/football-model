@@ -1,8 +1,39 @@
 {
   "model": "GPT Football Model",
-  "model_version": "GPT-FOOTBALL-FULLSTACK-1.0.0",
-  "quant_engine": {"version":"GPT-QUANT-0.1.0","entrypoint":"gpt/quant_core.py","config":"config/quant_config.json","protocol":"gpt/QUANT_PROTOCOL.md","tests":"tests/test_quant_core.py","status":"active"},
-  "feature_engine": {"version":"GPT-FEATURE-1.0.0","entrypoint":"gpt/feature_engine.py","config":"config/full_stack_config.json","registry":"config/module_registry.json","protocol":"gpt/FULL_STACK_PROTOCOL.md","tests":"tests/test_feature_engine.py","status":"active"},
+  "model_version": "GPT-FOOTBALL-FULLSTACK-1.1.0",
+  "quant_engine": {
+    "version": "GPT-QUANT-0.1.0",
+    "entrypoint": "gpt/quant_core.py",
+    "config": "config/quant_config.json",
+    "protocol": "gpt/QUANT_PROTOCOL.md",
+    "tests": "tests/test_quant_core.py",
+    "status": "active"
+  },
+  "feature_engine": {
+    "version": "GPT-FEATURE-1.0.0",
+    "entrypoint": "gpt/feature_engine.py",
+    "config": "config/full_stack_config.json",
+    "registry": "config/module_registry.json",
+    "protocol": "gpt/FULL_STACK_PROTOCOL.md",
+    "tests": "tests/test_feature_engine.py",
+    "status": "active"
+  },
+  "exchange_engine": {
+    "version": "GPT-EXCHANGE-1.0.0",
+    "entrypoint": "gpt/exchange_engine.py",
+    "config": "config/exchange_config.json",
+    "protocol": "gpt/EXCHANGE_PROTOCOL.md",
+    "tests": "tests/test_exchange_engine.py",
+    "status": "conditional_requires_feed"
+  },
   "open_source_registry": "docs/OPEN_SOURCE_INTEGRATIONS.md",
-  "decision_policy": {"quant_is_evidence_not_ticket":true,"feature_engine_is_evidence_not_ticket":true,"red_team_required_for_full_sop":true,"anti_double_counting":true,"no_unvalidated_probability_adjustments":true,"ticket_lock_rule":true}
+  "decision_policy": {
+    "quant_is_evidence_not_ticket": true,
+    "feature_engine_is_evidence_not_ticket": true,
+    "exchange_is_evidence_not_smart_money": true,
+    "red_team_required_for_full_sop": true,
+    "anti_double_counting": true,
+    "no_unvalidated_probability_adjustments": true,
+    "ticket_lock_rule": true
+  }
 }
