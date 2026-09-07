@@ -15,6 +15,14 @@ When the user requests a football match analysis under the full SOP (including t
 7. Run the qualitative football SOP and independent Red Team review.
 8. Treat `status=FAIL` as a hard block on Quant evidence; `PARTIAL` permits only validated components.
 
+## Cross-chat continuity
+
+This trigger and execution order apply across separate ChatGPT conversations. A new chat must not treat the Quant Layer as optional merely because the repository was initialized in another conversation. When the user supplies football match data and requests the full SOP with independent Red Team review, use this repository as the persistent source of truth and execute the same ordered workflow unless the user explicitly overrides it.
+
+The fixed order is:
+
+`Manifest/config -> Titan parse & QC -> Quant Engine -> freeze Quant Packet -> qualitative full SOP -> freeze H1 -> independent Red Team H2 -> CONFIRM/DOWNGRADE/OVERTURN -> final ticket.`
+
 ## User interaction
 
 The user does not need to say “run penaltyblog” or “run quant engine”. The full-SOP request is sufficient. The Quant Layer is an internal step and should not delay the fast-ticket-first rule when kickoff is close.
