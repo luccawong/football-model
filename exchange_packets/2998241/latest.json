@@ -1,0 +1,177 @@
+{
+  "away_team": "FC Nordsjaelland",
+  "bridge_version": "EXCHANGE-BRIDGE-1.2.0",
+  "engine_version": "GPT-EXCHANGE-1.0.0",
+  "home_team": "FC Midtjylland",
+  "match_id": "2998241",
+  "observed_at": "2026-09-07T16:58:50Z",
+  "provider": "ODDSPAPI_V4",
+  "provider_fixture_id": "id1000003971925010",
+  "provider_mode": "BETFAIR_EXCHANGE_META",
+  "qc": {
+    "away_price_present": true,
+    "betfair_bookmaker_present": true,
+    "draw_price_present": true,
+    "exchange_meta_present": true,
+    "exchange_meta_preserved_raw": true,
+    "fixture_present": true,
+    "home_price_present": true,
+    "market_not_suspended": true,
+    "total_matched_available": false
+  },
+  "rate_limit": {
+    "limit": null,
+    "remaining": null,
+    "reset": null
+  },
+  "schema_version": "exchange-packet-1.2",
+  "selected_bookmaker": {
+    "bookmakerFixtureId": "36016361",
+    "bookmakerIsActive": true,
+    "bookmaker_slug": "betfair-ex",
+    "fixturePath": "https://www.betfair.com/exchange/plus/en/e/e/e-e-36016361",
+    "selections": {
+      "away": {
+        "bookmakerChangedAt": "2026-09-07T16:58:43.967Z",
+        "bookmakerOutcomeId": "466299",
+        "changedAt": "2026-09-07T16:58:44.062Z",
+        "exchangeMeta": {
+          "availableToBack": [
+            {
+              "price": 3.5,
+              "size": 284.81
+            },
+            {
+              "price": 3.45,
+              "size": 113.95
+            },
+            {
+              "price": 3.4,
+              "size": 349.77
+            }
+          ],
+          "availableToLay": [
+            {
+              "price": 3.6,
+              "size": 246.08
+            },
+            {
+              "price": 3.65,
+              "size": 325.82
+            },
+            {
+              "price": 3.7,
+              "size": 488.75
+            }
+          ],
+          "betDelay": 0,
+          "tradedVolume": 8960.0
+        },
+        "limit": 284.81,
+        "marketId": 101,
+        "outcomeId": 103,
+        "price": 3.5
+      },
+      "draw": {
+        "bookmakerChangedAt": "2026-09-07T16:58:43.967Z",
+        "bookmakerOutcomeId": "58805",
+        "changedAt": "2026-09-07T16:58:44.062Z",
+        "exchangeMeta": {
+          "availableToBack": [
+            {
+              "price": 4.2,
+              "size": 432.86
+            },
+            {
+              "price": 4.1,
+              "size": 800.01
+            },
+            {
+              "price": 4,
+              "size": 665.67
+            }
+          ],
+          "availableToLay": [
+            {
+              "price": 4.4,
+              "size": 268.41
+            },
+            {
+              "price": 4.5,
+              "size": 1534.39
+            },
+            {
+              "price": 4.6,
+              "size": 96.41
+            }
+          ],
+          "betDelay": 0,
+          "tradedVolume": 24400.0
+        },
+        "limit": 432.86,
+        "marketId": 101,
+        "outcomeId": 102,
+        "price": 4.2
+      },
+      "home": {
+        "bookmakerChangedAt": "2026-09-07T16:58:43.967Z",
+        "bookmakerOutcomeId": "28220",
+        "changedAt": "2026-09-07T16:58:44.062Z",
+        "exchangeMeta": {
+          "availableToBack": [
+            {
+              "price": 2.04,
+              "size": 630.16
+            },
+            {
+              "price": 2.02,
+              "size": 1381.03
+            },
+            {
+              "price": 2,
+              "size": 140.44
+            }
+          ],
+          "availableToLay": [
+            {
+              "price": 2.06,
+              "size": 185.48
+            },
+            {
+              "price": 2.08,
+              "size": 107.44
+            },
+            {
+              "price": 2.1,
+              "size": 735.74
+            }
+          ],
+          "betDelay": 0,
+          "tradedVolume": 18300.0
+        },
+        "limit": 630.16,
+        "marketId": 101,
+        "outcomeId": 101,
+        "price": 2.04
+      }
+    },
+    "suspended": false
+  },
+  "sport_id": 10,
+  "start_time": "2026-09-07T17:00:00.000Z",
+  "status_id": 0,
+  "target": {
+    "api_away_team": "Nordsjaelland",
+    "api_home_team": "Midtjylland",
+    "titan_away_team": "北西兰",
+    "titan_home_team": "中日德兰"
+  },
+  "tournament_id": 39,
+  "unavailable_fields": [
+    "total_matched",
+    "traded_ladder",
+    "traded_volume_velocity",
+    "guaranteed_multi_level_back_lay_depth"
+  ],
+  "venue": "Betfair Exchange"
+}

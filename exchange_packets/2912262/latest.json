@@ -1,0 +1,177 @@
+{
+  "away_team": "Djurgardens IF",
+  "bridge_version": "EXCHANGE-BRIDGE-1.2.0",
+  "engine_version": "GPT-EXCHANGE-1.0.0",
+  "home_team": "Kalmar FF",
+  "match_id": "2912262",
+  "observed_at": "2026-09-07T16:58:53Z",
+  "provider": "ODDSPAPI_V4",
+  "provider_fixture_id": "id1000004067126756",
+  "provider_mode": "BETFAIR_EXCHANGE_META",
+  "qc": {
+    "away_price_present": true,
+    "betfair_bookmaker_present": true,
+    "draw_price_present": true,
+    "exchange_meta_present": true,
+    "exchange_meta_preserved_raw": true,
+    "fixture_present": true,
+    "home_price_present": true,
+    "market_not_suspended": true,
+    "total_matched_available": false
+  },
+  "rate_limit": {
+    "limit": null,
+    "remaining": null,
+    "reset": null
+  },
+  "schema_version": "exchange-packet-1.2",
+  "selected_bookmaker": {
+    "bookmakerFixtureId": "36016193",
+    "bookmakerIsActive": true,
+    "bookmaker_slug": "betfair-ex",
+    "fixturePath": "https://www.betfair.com/exchange/plus/en/e/e/e-e-36016193",
+    "selections": {
+      "away": {
+        "bookmakerChangedAt": "2026-09-07T16:58:51.769Z",
+        "bookmakerOutcomeId": "232104",
+        "changedAt": "2026-09-07T16:58:51.841Z",
+        "exchangeMeta": {
+          "availableToBack": [
+            {
+              "price": 1.72,
+              "size": 411.07
+            },
+            {
+              "price": 1.71,
+              "size": 857.78
+            },
+            {
+              "price": 1.7,
+              "size": 861.32
+            }
+          ],
+          "availableToLay": [
+            {
+              "price": 1.74,
+              "size": 997.3
+            },
+            {
+              "price": 1.75,
+              "size": 624.29
+            },
+            {
+              "price": 1.76,
+              "size": 1012.67
+            }
+          ],
+          "betDelay": 0,
+          "tradedVolume": 10300.0
+        },
+        "limit": 411.07,
+        "marketId": 101,
+        "outcomeId": 103,
+        "price": 1.72
+      },
+      "draw": {
+        "bookmakerChangedAt": "2026-09-07T16:58:51.769Z",
+        "bookmakerOutcomeId": "58805",
+        "changedAt": "2026-09-07T16:58:51.841Z",
+        "exchangeMeta": {
+          "availableToBack": [
+            {
+              "price": 4.3,
+              "size": 287.6
+            },
+            {
+              "price": 4.2,
+              "size": 1021.81
+            },
+            {
+              "price": 4.1,
+              "size": 510.04
+            }
+          ],
+          "availableToLay": [
+            {
+              "price": 4.4,
+              "size": 287.9
+            },
+            {
+              "price": 4.5,
+              "size": 956.21
+            },
+            {
+              "price": 4.6,
+              "size": 210.77
+            }
+          ],
+          "betDelay": 0,
+          "tradedVolume": 4540.0
+        },
+        "limit": 287.6,
+        "marketId": 101,
+        "outcomeId": 102,
+        "price": 4.3
+      },
+      "home": {
+        "bookmakerChangedAt": "2026-09-07T16:58:51.298Z",
+        "bookmakerOutcomeId": "130433",
+        "changedAt": "2026-09-07T16:58:51.447Z",
+        "exchangeMeta": {
+          "availableToBack": [
+            {
+              "price": 5.2,
+              "size": 86.84
+            },
+            {
+              "price": 5.1,
+              "size": 702.19
+            },
+            {
+              "price": 5,
+              "size": 346.6
+            }
+          ],
+          "availableToLay": [
+            {
+              "price": 5.3,
+              "size": 227.38
+            },
+            {
+              "price": 5.4,
+              "size": 751.88
+            },
+            {
+              "price": 5.5,
+              "size": 377.41
+            }
+          ],
+          "betDelay": 0,
+          "tradedVolume": 3160.0
+        },
+        "limit": 86.84,
+        "marketId": 101,
+        "outcomeId": 101,
+        "price": 5.2
+      }
+    },
+    "suspended": false
+  },
+  "sport_id": 10,
+  "start_time": "2026-09-07T17:00:00.000Z",
+  "status_id": 0,
+  "target": {
+    "api_away_team": "Djurgarden",
+    "api_home_team": "Kalmar FF",
+    "titan_away_team": "尤尔加登",
+    "titan_home_team": "卡尔马"
+  },
+  "tournament_id": 40,
+  "unavailable_fields": [
+    "total_matched",
+    "traded_ladder",
+    "traded_volume_velocity",
+    "guaranteed_multi_level_back_lay_depth"
+  ],
+  "venue": "Betfair Exchange"
+}
