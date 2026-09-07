@@ -1,7 +1,8 @@
-"""OddsPapi credential smoke test using GET /sports."""
+"""OddsPapi v4 credential smoke test using unmetered GET /account."""
 from __future__ import annotations
 import os
-from .oddspapi import OddsPapiError, fetch_sports
+from .oddspapi import OddsPapiError, fetch_account
+
 
 def main() -> int:
     key = (os.environ.get("ODDSPAPI_API_KEY") or os.environ.get("THE_ODDS_API_KEY") or "").strip()
@@ -9,17 +10,34 @@ def main() -> int:
         print("FAIL: ODDSPAPI_API_KEY/THE_ODDS_API_KEY secret is not available.")
         return 2
     try:
-        sports, rate = fetch_sports(key)
+        account, _ = fetch_account(key)
     except OddsPapiError as exc:
         print(f"FAIL: {exc}")
         return 1
-    soccer = [s for s in sports if int(s.get("sportId", -1)) == 10]
-    if not soccer:
-        print("FAIL: authenticated but soccer sportId=10 was not returned.")
-        return 1
-    print("OK: OddsPapi API key authenticated; soccer sportId=10 is available.")
-    print(f"RateLimit remaining={rate.get('remaining')} limit={rate.get('limit')}.")
+
+    subscriptions = account.get("subscriptions", []) or []
+    active = [s for s in subscriptions if s.get("is_active") is True]
+    current_id = account.get("current_subscription_id")
+    current = next((s for s in subscriptions if s.get("subscription_id") == current_id), None)
+    if current is None and active:
+        current = active[0]
+
+    # Never print account.api_key or the secret.
+    if current:
+        sport_ids = current.get("sport_ids", []) or []
+        bookmakers = current.get("bookmakers", {}) or {}
+        print("OK: OddsPapi v4 API key authenticated.")
+        print(
+            f"Subscription active={bool(current.get('is_active'))} "
+            f"request_count={current.get('request_count')} "
+            f"request_limit={current.get('request_limit')} "
+            f"soccer_access={10 in sport_ids} "
+            f"betfair_ex_declared={'betfair-ex' in bookmakers}."
+        )
+    else:
+        print("OK: OddsPapi v4 API key authenticated; no active subscription object was identified.")
     return 0
+
 
 if __name__ == "__main__":
     raise SystemExit(main())
