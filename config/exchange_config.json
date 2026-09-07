@@ -1,0 +1,27 @@
+{
+  "engine_version": "GPT-EXCHANGE-1.0.0",
+  "venue": "Betfair Exchange",
+  "market_scope": ["MATCH_ODDS"],
+  "stream_fields": ["EX_ALL_OFFERS", "EX_MARKET_DEF"],
+  "optional_fields": ["EX_TRADED"],
+  "ladder_levels_default": 3,
+  "features": [
+    "back_lay_spread_ticks",
+    "order_book_depth",
+    "order_book_imbalance",
+    "total_matched",
+    "traded_volume_velocity",
+    "price_velocity",
+    "book_percentage",
+    "exchange_vs_bookmaker_divergence_pp"
+  ],
+  "rules": {
+    "prematch_only_for_prematch_sop": true,
+    "market_mapping_required": true,
+    "same_time_slice_required_for_cross_venue_comparison": true,
+    "exchange_flow_not_smart_money_by_default": true,
+    "imbalance_is_descriptive_not_ticket": true,
+    "missing_feed_is_not_negative_evidence": true,
+    "order_execution_is_research_only": true
+  }
+}
