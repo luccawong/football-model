@@ -1,16 +1,52 @@
 {
-  "model_version": "GPT-FOOTBALL-FULLSTACK-1.0.0",
+  "model_version": "GPT-FOOTBALL-FULLSTACK-1.1.0",
   "feature_engine_version": "GPT-FEATURE-1.0.0",
   "quant_engine_version": "GPT-QUANT-0.1.0",
-  "principles": {"facts_inference_assumption_conclusion_separated": true,"same_time_slice_required": true,"no_silent_missing_data": true,"no_unvalidated_probability_adjustments": true,"anti_double_counting": true,"market_is_data_not_ground_truth": true,"red_team_required": true,"ticket_lock_rule": true},
+  "exchange_engine_version": "GPT-EXCHANGE-1.0.0",
+  "principles": {
+    "facts_inference_assumption_conclusion_separated": true,
+    "same_time_slice_required": true,
+    "no_silent_missing_data": true,
+    "no_unvalidated_probability_adjustments": true,
+    "anti_double_counting": true,
+    "market_is_data_not_ground_truth": true,
+    "exchange_is_data_not_smart_money": true,
+    "red_team_required": true,
+    "ticket_lock_rule": true
+  },
   "dedupe_groups": {
     "team_strength": ["elo", "pi_rating", "clubelo", "xg_strength", "recent_results"],
     "squad_strength": ["market_value", "expected_minutes", "lineup_delta", "injury_delta"],
-    "market_direction": ["one_x_two", "asian_handicap", "totals"],
+    "market_direction": ["one_x_two", "asian_handicap", "totals", "betfair_vs_bookmaker"],
+    "exchange_microstructure": ["spread", "depth", "imbalance", "price_velocity", "book_percentage"],
+    "exchange_liquidity": ["total_matched", "traded_volume_velocity", "near_kickoff_liquidity"],
     "chance_creation": ["xg", "shots", "big_chances", "xT", "VAEP"],
     "schedule": ["rest_days", "travel", "future_priority", "rotation"],
     "narrative": ["motivation", "club_relationship", "media_reports", "public_attraction"]
   },
-  "source_freshness_policy": {"official_lineup_hours": 1,"injury_news_hours": 48,"market_snapshot_hours": 1,"weather_hours": 12,"team_rating_days": 7,"transfermarkt_dataset_mode": "HISTORICAL_ONLY_UNTIL_FRESHNESS_RECOVERS"},
-  "uncertainty": {"high_model_range_pp": 8.0,"high_market_company_range_pp": 5.0,"late_reversal_warning_pp": 3.0,"failed_ah_upgrade_goals": 0.25}
+  "source_freshness_policy": {
+    "official_lineup_hours": 1,
+    "injury_news_hours": 48,
+    "market_snapshot_hours": 1,
+    "betfair_stream_snapshot_minutes": 5,
+    "weather_hours": 12,
+    "team_rating_days": 7,
+    "transfermarkt_dataset_mode": "HISTORICAL_ONLY_UNTIL_FRESHNESS_RECOVERS"
+  },
+  "uncertainty": {
+    "high_model_range_pp": 8.0,
+    "high_market_company_range_pp": 5.0,
+    "late_reversal_warning_pp": 3.0,
+    "failed_ah_upgrade_goals": 0.25
+  },
+  "exchange_policy": {
+    "status_without_feed": "MISSING",
+    "require_market_mapping": true,
+    "require_prematch_state": true,
+    "do_not_treat_flow_as_informed_by_default": true,
+    "no_direction_from_imbalance_alone": true,
+    "no_direction_from_total_matched_alone": true,
+    "same_time_compare_with_bookmakers": true,
+    "execution_layer": "RESEARCH_ONLY"
+  }
 }
