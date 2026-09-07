@@ -63,6 +63,32 @@
       "kickoff_tolerance_minutes": 180,
       "refresh_requested_at": "2026-09-07T16:51:00Z",
       "enabled": true
+    },
+    {
+      "match_id": "2912264",
+      "home_team": "米亚尔比",
+      "away_team": "哥德堡",
+      "api_home_team": "Mjallby AIF",
+      "api_away_team": "IFK Gothenburg",
+      "commence_time": "2026-09-07T17:00:00Z",
+      "start_hours_before_kickoff": 6,
+      "stop_minutes_before_kickoff": 0,
+      "kickoff_tolerance_minutes": 180,
+      "refresh_requested_at": "2026-09-07T17:00:00Z",
+      "enabled": true
+    },
+    {
+      "match_id": "3013677",
+      "home_team": "赫塔菲",
+      "away_team": "塞尔塔",
+      "api_home_team": "Getafe CF",
+      "api_away_team": "Celta Vigo",
+      "commence_time": "2026-09-07T17:00:00Z",
+      "start_hours_before_kickoff": 6,
+      "stop_minutes_before_kickoff": 0,
+      "kickoff_tolerance_minutes": 180,
+      "refresh_requested_at": "2026-09-07T17:00:00Z",
+      "enabled": true
     }
   ]
 }
