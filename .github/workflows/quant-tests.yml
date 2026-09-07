@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'gpt/**'
+      - 'exchange_bridge/**'
       - 'config/**'
       - 'tests/**'
       - 'requirements.txt'
@@ -11,6 +12,7 @@ on:
   pull_request:
     paths:
       - 'gpt/**'
+      - 'exchange_bridge/**'
       - 'config/**'
       - 'tests/**'
       - 'requirements.txt'
