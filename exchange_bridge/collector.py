@@ -38,7 +38,7 @@ def main() -> int:
     default_start = float(cfg.get("default_start_hours_before_kickoff", 6))
     targets = [t for t in cfg.get("matches", []) if _active_target(t, now, default_start)]
     if not targets: print("SKIP: no active exchange targets; no odds API credits used."); return 0
-    key = os.environ.get("THE_ODDS_API_KEY", "")
+    key = os.environ.get("THE_ODDS_API_KEY", "").strip()
     if not key: print("FAIL: THE_ODDS_API_KEY secret is not available."); return 2
     by_sport: Dict[str, List[Mapping[str, Any]]] = {}
     for target in targets:
