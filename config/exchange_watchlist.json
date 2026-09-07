@@ -1,16 +1,15 @@
 {
-  "schema_version": "exchange-watchlist-1.0",
+  "schema_version": "exchange-watchlist-1.1",
   "enabled": true,
+  "provider": "ODDSPAPI",
+  "sport_id": 10,
   "default_start_hours_before_kickoff": 6,
-  "bookmaker_keys": [
-    "betfair_ex_uk",
-    "betfair_ex_eu",
-    "betfair_ex_au"
-  ],
   "notes": [
-    "Only active targets inside their pre-kickoff collection window consume odds credits.",
-    "Use api_home_team/api_away_team when Titan names differ from The Odds API English team names.",
-    "provider_event_id may be pinned after first successful mapping."
+    "Only active targets inside their pre-kickoff collection window trigger OddsPapi requests.",
+    "Use api_home_team/api_away_team when Titan names differ from OddsPapi English participant names.",
+    "provider_fixture_id may be pinned after first successful mapping.",
+    "OddsPapi fixture matching uses sportId=10 and kickoff-time proximity.",
+    "Betfair bookmaker slugs are discovered from returned OddsPapi bookmaker/odds keys containing betfair; they are not hard-coded."
   ],
   "matches": []
 }
