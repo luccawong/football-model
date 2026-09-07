@@ -24,6 +24,45 @@
       "kickoff_tolerance_minutes": 180,
       "refresh_requested_at": "2026-09-07T16:15:00Z",
       "enabled": true
+    },
+    {
+      "match_id": "2998241",
+      "home_team": "中日德兰",
+      "away_team": "北西兰",
+      "api_home_team": "Midtjylland",
+      "api_away_team": "Nordsjaelland",
+      "commence_time": "2026-09-07T17:00:00Z",
+      "start_hours_before_kickoff": 6,
+      "stop_minutes_before_kickoff": 0,
+      "kickoff_tolerance_minutes": 180,
+      "refresh_requested_at": "2026-09-07T16:51:00Z",
+      "enabled": true
+    },
+    {
+      "match_id": "2912262",
+      "home_team": "卡尔马",
+      "away_team": "尤尔加登",
+      "api_home_team": "Kalmar FF",
+      "api_away_team": "Djurgarden",
+      "commence_time": "2026-09-07T17:00:00Z",
+      "start_hours_before_kickoff": 6,
+      "stop_minutes_before_kickoff": 0,
+      "kickoff_tolerance_minutes": 180,
+      "refresh_requested_at": "2026-09-07T16:51:00Z",
+      "enabled": true
+    },
+    {
+      "match_id": "2912263",
+      "home_team": "马尔默",
+      "away_team": "索尔纳",
+      "api_home_team": "Malmo FF",
+      "api_away_team": "AIK",
+      "commence_time": "2026-09-07T17:00:00Z",
+      "start_hours_before_kickoff": 6,
+      "stop_minutes_before_kickoff": 0,
+      "kickoff_tolerance_minutes": 180,
+      "refresh_requested_at": "2026-09-07T16:51:00Z",
+      "enabled": true
     }
   ]
 }
