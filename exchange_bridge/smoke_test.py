@@ -4,7 +4,7 @@ import os
 from .the_odds_api import fetch_sports, OddsApiError
 
 def main() -> int:
-    key = os.environ.get("THE_ODDS_API_KEY", "")
+    key = os.environ.get("THE_ODDS_API_KEY", "").strip()
     if not key:
         print("FAIL: THE_ODDS_API_KEY secret is not available to this workflow.")
         return 2
