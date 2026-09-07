@@ -12,83 +12,14 @@
     "Betfair bookmaker slugs are discovered from returned OddsPapi bookmaker/odds keys containing betfair; they are not hard-coded."
   ],
   "matches": [
-    {
-      "match_id": "2993777",
-      "home_team": "卡利亚里",
-      "away_team": "莱切",
-      "api_home_team": "Cagliari",
-      "api_away_team": "Lecce",
-      "commence_time": "2026-09-07T16:30:00Z",
-      "start_hours_before_kickoff": 6,
-      "stop_minutes_before_kickoff": 0,
-      "kickoff_tolerance_minutes": 180,
-      "refresh_requested_at": "2026-09-07T16:15:00Z",
-      "enabled": true
-    },
-    {
-      "match_id": "2998241",
-      "home_team": "中日德兰",
-      "away_team": "北西兰",
-      "api_home_team": "Midtjylland",
-      "api_away_team": "Nordsjaelland",
-      "commence_time": "2026-09-07T17:00:00Z",
-      "start_hours_before_kickoff": 6,
-      "stop_minutes_before_kickoff": 0,
-      "kickoff_tolerance_minutes": 180,
-      "refresh_requested_at": "2026-09-07T16:51:00Z",
-      "enabled": true
-    },
-    {
-      "match_id": "2912262",
-      "home_team": "卡尔马",
-      "away_team": "尤尔加登",
-      "api_home_team": "Kalmar FF",
-      "api_away_team": "Djurgarden",
-      "commence_time": "2026-09-07T17:00:00Z",
-      "start_hours_before_kickoff": 6,
-      "stop_minutes_before_kickoff": 0,
-      "kickoff_tolerance_minutes": 180,
-      "refresh_requested_at": "2026-09-07T16:51:00Z",
-      "enabled": true
-    },
-    {
-      "match_id": "2912263",
-      "home_team": "马尔默",
-      "away_team": "索尔纳",
-      "api_home_team": "Malmo FF",
-      "api_away_team": "AIK",
-      "commence_time": "2026-09-07T17:00:00Z",
-      "start_hours_before_kickoff": 6,
-      "stop_minutes_before_kickoff": 0,
-      "kickoff_tolerance_minutes": 180,
-      "refresh_requested_at": "2026-09-07T16:51:00Z",
-      "enabled": true
-    },
-    {
-      "match_id": "2912264",
-      "home_team": "米亚尔比",
-      "away_team": "哥德堡",
-      "api_home_team": "Mjallby AIF",
-      "api_away_team": "IFK Gothenburg",
-      "commence_time": "2026-09-07T17:00:00Z",
-      "start_hours_before_kickoff": 6,
-      "stop_minutes_before_kickoff": 0,
-      "kickoff_tolerance_minutes": 180,
-      "refresh_requested_at": "2026-09-07T17:00:00Z",
-      "enabled": true
-    },
-    {
-      "match_id": "3013677",
-      "home_team": "赫塔菲",
-      "away_team": "塞尔塔",
-      "api_home_team": "Getafe CF",
-      "api_away_team": "Celta Vigo",
-      "commence_time": "2026-09-07T17:00:00Z",
-      "start_hours_before_kickoff": 6,
-      "stop_minutes_before_kickoff": 0,
-      "kickoff_tolerance_minutes": 180,
-      "refresh_requested_at": "2026-09-07T17:00:00Z",
-      "enabled": true
-    }
+    {"match_id":"2993777","home_team":"卡利亚里","away_team":"莱切","api_home_team":"Cagliari","api_away_team":"Lecce","commence_time":"2026-09-07T16:30:00Z","start_hours_before_kickoff":6,"stop_minutes_before_kickoff":0,"kickoff_tolerance_minutes":180,"refresh_requested_at":"2026-09-07T16:15:00Z","enabled":true},
+    {"match_id":"2998241","home_team":"中日德兰","away_team":"北西兰","api_home_team":"Midtjylland","api_away_team":"Nordsjaelland","commence_time":"2026-09-07T17:00:00Z","start_hours_before_kickoff":6,"stop_minutes_before_kickoff":0,"kickoff_tolerance_minutes":180,"refresh_requested_at":"2026-09-07T16:51:00Z","enabled":true},
+    {"match_id":"2912262","home_team":"卡尔马","away_team":"尤尔加登","api_home_team":"Kalmar FF","api_away_team":"Djurgarden","commence_time":"2026-09-07T17:00:00Z","start_hours_before_kickoff":6,"stop_minutes_before_kickoff":0,"kickoff_tolerance_minutes":180,"refresh_requested_at":"2026-09-07T16:51:00Z","enabled":true},
+    {"match_id":"2912263","home_team":"马尔默","away_team":"索尔纳","api_home_team":"Malmo FF","api_away_team":"AIK","commence_time":"2026-09-07T17:00:00Z","start_hours_before_kickoff":6,"stop_minutes_before_kickoff":0,"kickoff_tolerance_minutes":180,"refresh_requested_at":"2026-09-07T16:51:00Z","enabled":true},
+    {"match_id":"2912264","home_team":"米亚尔比","away_team":"哥德堡","api_home_team":"Mjallby AIF","api_away_team":"IFK Gothenburg","commence_time":"2026-09-07T17:00:00Z","start_hours_before_kickoff":6,"stop_minutes_before_kickoff":0,"kickoff_tolerance_minutes":180,"refresh_requested_at":"2026-09-07T17:00:00Z","enabled":true},
+    {"match_id":"3013677","home_team":"赫塔菲","away_team":"塞尔塔","api_home_team":"Getafe CF","api_away_team":"Celta Vigo","commence_time":"2026-09-07T17:00:00Z","start_hours_before_kickoff":6,"stop_minutes_before_kickoff":0,"kickoff_tolerance_minutes":180,"refresh_requested_at":"2026-09-07T17:00:00Z","enabled":true},
+    {"match_id":"2993784","home_team":"乌迪内斯","away_team":"拉齐奥","api_home_team":"Udinese","api_away_team":"Lazio","commence_time":"2026-09-07T18:45:00Z","start_hours_before_kickoff":6,"stop_minutes_before_kickoff":0,"kickoff_tolerance_minutes":180,"refresh_requested_at":"2026-09-07T17:43:00Z","enabled":true},
+    {"match_id":"3023468","home_team":"埃斯托里尔","away_team":"阿罗卡","api_home_team":"Estoril","api_away_team":"Arouca","commence_time":"2026-09-07T19:15:00Z","start_hours_before_kickoff":6,"stop_minutes_before_kickoff":0,"kickoff_tolerance_minutes":180,"refresh_requested_at":"2026-09-07T17:43:00Z","enabled":true},
+    {"match_id":"3013675","home_team":"埃尔切","away_team":"皇家社会","api_home_team":"Elche","api_away_team":"Real Sociedad","commence_time":"2026-09-07T19:30:00Z","start_hours_before_kickoff":6,"stop_minutes_before_kickoff":0,"kickoff_tolerance_minutes":180,"refresh_requested_at":"2026-09-07T17:43:00Z","enabled":true}
   ]
 }
