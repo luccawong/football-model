@@ -1,27 +1,46 @@
 {
   "engine_version": "GPT-EXCHANGE-1.0.0",
+  "provider_mode": "EXCHANGE_LITE",
+  "primary_provider": "THE_ODDS_API",
   "venue": "Betfair Exchange",
   "market_scope": ["MATCH_ODDS"],
-  "stream_fields": ["EX_ALL_OFFERS", "EX_MARKET_DEF"],
-  "optional_fields": ["EX_TRADED"],
-  "ladder_levels_default": 3,
-  "features": [
+  "bookmaker_keys": ["betfair_ex_uk", "betfair_ex_eu", "betfair_ex_au"],
+  "provider_markets": ["h2h", "h2h_lay"],
+  "include_bet_limits": true,
+  "available_fields": [
+    "best_back_price",
+    "best_lay_price",
+    "back_bet_limit",
+    "lay_bet_limit",
+    "bookmaker_last_update",
+    "market_last_update"
+  ],
+  "derived_features": [
+    "back_lay_spread_raw",
     "back_lay_spread_ticks",
-    "order_book_depth",
-    "order_book_imbalance",
+    "back_implied_probability",
+    "lay_implied_probability",
+    "exchange_mid_probability",
+    "exchange_normalized_probability",
+    "bet_limit_asymmetry",
+    "exchange_vs_bookmaker_divergence_pp",
+    "price_velocity_from_saved_snapshots"
+  ],
+  "unavailable_until_deeper_feed": [
+    "full_order_book_depth",
+    "order_book_imbalance_multi_level",
     "total_matched",
-    "traded_volume_velocity",
-    "price_velocity",
-    "book_percentage",
-    "exchange_vs_bookmaker_divergence_pp"
+    "traded_ladder",
+    "traded_volume_velocity"
   ],
   "rules": {
     "prematch_only_for_prematch_sop": true,
     "market_mapping_required": true,
     "same_time_slice_required_for_cross_venue_comparison": true,
     "exchange_flow_not_smart_money_by_default": true,
-    "imbalance_is_descriptive_not_ticket": true,
+    "bet_limit_is_liquidity_context_not_direction": true,
     "missing_feed_is_not_negative_evidence": true,
+    "missing_deep_fields_must_remain_missing": true,
     "order_execution_is_research_only": true
   }
 }
