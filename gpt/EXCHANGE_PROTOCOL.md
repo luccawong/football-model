@@ -3,57 +3,62 @@
 ## Purpose
 Use Betfair Exchange as a conditional microstructure/price-discovery evidence layer. It is not an automatic smart-money oracle and cannot issue a ticket.
 
-## Production provider now
-Primary live provider: **The Odds API** in `EXCHANGE_LITE` mode.
+## Production provider
+Primary provider: **OddsPapi v5**.
 
-Current Betfair exchange bookmaker keys:
-- `betfair_ex_uk`
-- `betfair_ex_eu`
-- `betfair_ex_au`
+OddsPapi is used in two complementary modes:
+1. REST snapshots for on-demand pre-match collection (`/fixtures`, `/markets`, `/fixtures/odds`).
+2. WebSocket streaming as an optional later enhancement for lower-latency continuous updates.
 
-Current provider markets:
-- `h2h` = Back side
-- `h2h_lay` = Lay side
+Football uses `sportId=10`. Fixture matching is based on team names + kickoff time, with optional pinned `provider_fixture_id` after a successful mapping.
 
-Request bet limits when available with `includeBetLimits=true`.
+## Betfair data carried from OddsPapi
+For exchange/prediction-market bookmakers, OddsPapi may expose in each odds outcome:
+- `price`;
+- `limit`;
+- `bookmakerChangedAt`;
+- `changedAt`;
+- `meta.back[]` price/size ladder;
+- `meta.lay[]` price/size ladder.
+Bookmaker metadata such as `staleOdds`, `suspended`, `hasOdds`, and `updatedAt` must also be preserved when returned.
 
-## Available production inputs
-1. Exact event mapping to the Titan football match.
-2. Prematch event and bookmaker timestamps.
-3. Match Odds Back prices for home/draw/away.
-4. Match Odds Lay prices for home/draw/away.
-5. Bet limits where returned by the provider.
-6. Same-time bookmaker snapshot for cross-venue divergence.
-
-## Exchange Lite derived evidence
-- Best Back and Lay prices.
-- Raw and Betfair-tick Back/Lay spread.
-- Back/Lay implied probability interval and midpoint.
+## Derived evidence
+- Best Back and best Lay.
+- Back/Lay spread in raw odds and Betfair ticks.
+- Multi-level order-book depth when present.
+- Descriptive order-book imbalance when present.
+- Back/Lay implied-probability interval and midpoint.
 - Exchange normalized 1X2 probability estimate.
-- Bet-limit asymmetry as liquidity context only.
-- Price velocity from our own saved chronological snapshots.
-- Exchange-vs-bookmaker percentage-point divergence.
+- Price and liquidity changes from saved chronological snapshots.
+- Exchange-vs-bookmaker percentage-point divergence at the closest same-time slice.
 
-## Explicitly unavailable in Exchange Lite
-Do not fabricate or infer these from bet limits:
-- full multi-level order-book depth;
-- multi-level order-book imbalance;
-- market total matched;
-- traded ladder / individual traded-volume buckets;
+## Fields that must not be fabricated
+Unless OddsPapi explicitly returns them, keep the following `MISSING`:
+- market `total_matched`;
+- traded ladder / traded-volume buckets;
 - traded-volume velocity.
-These remain `MISSING` until a deeper Betfair feed is connected.
+`limit` and available size-at-price are liquidity context, not matched volume.
 
-## Optional deeper stack later
-- `betcode-org/betfair` (`betfairlightweight`): API-NG, market streaming, historical stream parsing.
-- `mberk/betfairutil`: historical prices-file analytics and book percentage.
-- `betcode-org/flumine`: replay/simulation/execution framework. Execution remains RESEARCH_ONLY.
+## Timestamp discipline
+Preserve all three when available:
+1. `bookmakerChangedAt` — bookmaker/exchange source timestamp;
+2. `changedAt` — OddsPapi gateway timestamp;
+3. our ingestion timestamp.
+Do not claim second-level Exchange lead/lag versus another bookmaker if provider latency is not accounted for.
 
 ## Hard interpretation rules
-- Exchange flow is not labelled informed/smart money without validated evidence.
-- A lower Back price alone is not a direction.
-- Bet limit alone is not a direction and is not equivalent to matched volume.
+- Exchange activity is not labelled informed/smart money without validated evidence.
+- High available size alone is not a direction.
+- Back/Lay imbalance alone is not a direction.
+- A price move without liquidity context is weaker evidence.
+- `staleOdds=true` is a QC warning/gate, not usable directional evidence.
 - Bookmaker-vs-exchange comparisons require the closest same-time slice.
-- Provider `last_update` must be preserved; our ingestion timestamp must be recorded separately.
 - Missing Betfair data is `MISSING`, not evidence against either side.
-- In-play data must not contaminate pre-match analysis.
-- Order placement, staking and execution remain RESEARCH_ONLY and separate from direction modelling.
+- In-play data must not contaminate pre-match opening/closing analysis.
+- Order placement, staking and execution remain RESEARCH_ONLY.
+
+## Reference/deeper tooling
+Direct Betfair tooling remains optional rather than required:
+- `betcode-org/betfair` (`betfairlightweight`);
+- `mberk/betfairutil`;
+- `betcode-org/flumine` for replay/simulation/execution research.
