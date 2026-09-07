@@ -1,20 +1,107 @@
 import unittest
 from exchange_bridge.oddspapi import OddsPapiError, build_1x2_outcome_map, match_fixture, normalize_fixture_odds
 
-MARKETS = [{"marketId":101,"marketLength":3,"sportId":10,"playerProp":False,"handicap":0,"period":"fulltime","marketType":"1x2","outcomes":[{"outcomeId":141,"outcomeName":"1"},{"outcomeId":143,"outcomeName":"X"},{"outcomeId":142,"outcomeName":"2"}]}]
-FIXTURE = {"fixtureId":"id100001","startTime":1788798600,"participants":{"participant1Name":"Cagliari","participant2Name":"Lecce"}}
-ODDS = {**FIXTURE,"sport":{"sportId":10,"sportName":"Soccer"},"tournament":{"tournamentName":"Serie A"},"bookmakers":{"betfair":{"hasOdds":True,"staleOdds":False,"suspended":False,"updatedAt":"2026-09-07T12:00:00Z"}},"odds":{"betfair":{"a":{"bookmaker":"betfair","outcomeId":141,"price":2.12,"active":True,"marketActive":True,"mainLine":True,"marketId":101,"changedAt":1002,"bookmakerChangedAt":1000,"limit":100,"meta":{"back":[{"price":2.12,"size":50},{"price":2.10,"size":80}],"lay":[{"price":2.16,"size":40},{"price":2.18,"size":70}]}},"b":{"bookmaker":"betfair","outcomeId":143,"price":3.20,"active":True,"marketActive":True,"mainLine":True,"marketId":101,"changedAt":1002,"meta":{"back":[{"price":3.20,"size":30}],"lay":[{"price":3.25,"size":25}]}},"c":{"bookmaker":"betfair","outcomeId":142,"price":3.90,"active":True,"marketActive":True,"mainLine":True,"marketId":101,"changedAt":1002,"meta":{"back":[{"price":3.90,"size":20}],"lay":[{"price":4.00,"size":15}]}}}}}
+MARKETS = [{
+    "marketId": 101,
+    "marketLength": 3,
+    "marketName": "Full Time Result",
+    "sportId": 10,
+    "playerProp": False,
+    "handicap": 0,
+    "period": "fulltime",
+    "marketType": "1x2",
+    "outcomes": [
+        {"outcomeId": 101, "outcomeName": "1"},
+        {"outcomeId": 102, "outcomeName": "X"},
+        {"outcomeId": 103, "outcomeName": "2"},
+    ],
+}]
 
-class TestOddsPapiBridge(unittest.TestCase):
-    def test_market_map(self): self.assertEqual(build_1x2_outcome_map(MARKETS), {141:"home",143:"draw",142:"away"})
-    def test_match_fixture(self): self.assertEqual(match_fixture([FIXTURE],"Cagliari","Lecce",1788798600)["fixtureId"],"id100001")
-    def test_pinned_fixture(self): self.assertEqual(match_fixture([FIXTURE],"x","y",provider_fixture_id="id100001")["fixtureId"],"id100001")
-    def test_normalize_orderbook(self):
-        p=normalize_fixture_odds(ODDS,"2993777",build_1x2_outcome_map(MARKETS)); s=p["selected_bookmaker"]["selections"]
-        self.assertEqual(s["home"]["back"]["price"],2.12); self.assertEqual(s["home"]["lay"]["price"],2.16); self.assertEqual(s["home"]["back"]["size"],50.0); self.assertEqual(s["home"]["limit"],100); self.assertTrue(p["qc"]["order_book_meta_preserved"])
-    def test_no_total_matched_fabrication(self):
-        p=normalize_fixture_odds(ODDS,"2993777",build_1x2_outcome_map(MARKETS)); self.assertIn("total_matched",p["unavailable_fields"])
+FIXTURE = {
+    "fixtureId": "id100001",
+    "participant1Name": "Cagliari",
+    "participant2Name": "Lecce",
+    "sportId": 10,
+    "statusId": 0,
+    "startTime": "2026-09-07T16:30:00.000Z",
+}
+
+ODDS = {
+    **FIXTURE,
+    "tournamentId": 31,
+    "hasOdds": True,
+    "bookmakerOdds": {
+        "betfair-ex": {
+            "bookmakerIsActive": True,
+            "bookmakerFixtureId": "bf123",
+            "fixturePath": "https://example.invalid/bf123",
+            "suspended": False,
+            "markets": {
+                "101": {
+                    "bookmakerMarketId": "1.12345",
+                    "marketActive": True,
+                    "outcomes": {
+                        "101": {"players": {"0": {
+                            "active": True, "bookmakerOutcomeId": "home",
+                            "bookmakerChangedAt": "2026-09-07T12:00:00Z",
+                            "changedAt": "2026-09-07T12:00:01Z",
+                            "limit": 100, "price": 2.12, "mainLine": True,
+                            "exchangeMeta": {"layPrice": 2.16, "liquidity": 50},
+                        }}},
+                        "102": {"players": {"0": {
+                            "active": True, "bookmakerOutcomeId": "draw",
+                            "bookmakerChangedAt": None,
+                            "changedAt": "2026-09-07T12:00:01Z",
+                            "limit": 80, "price": 3.20, "mainLine": True,
+                            "exchangeMeta": {"layPrice": 3.25},
+                        }}},
+                        "103": {"players": {"0": {
+                            "active": True, "bookmakerOutcomeId": "away",
+                            "bookmakerChangedAt": "2026-09-07T12:00:00Z",
+                            "changedAt": "2026-09-07T12:00:01Z",
+                            "limit": 60, "price": 3.90, "mainLine": True,
+                            "exchangeMeta": None,
+                        }}},
+                    },
+                }
+            },
+        }
+    },
+}
+
+
+class TestOddsPapiV4Bridge(unittest.TestCase):
+    def test_market_map(self):
+        self.assertEqual(build_1x2_outcome_map(MARKETS), {101: "home", 102: "draw", 103: "away"})
+
+    def test_match_fixture(self):
+        self.assertEqual(
+            match_fixture([FIXTURE], "Cagliari", "Lecce", "2026-09-07T16:30:00Z")["fixtureId"],
+            "id100001",
+        )
+
+    def test_pinned_fixture(self):
+        self.assertEqual(match_fixture([FIXTURE], "x", "y", provider_fixture_id="id100001")["fixtureId"], "id100001")
+
+    def test_normalize_preserves_exchange_meta(self):
+        packet = normalize_fixture_odds(ODDS, "2993777", build_1x2_outcome_map(MARKETS))
+        selections = packet["selected_bookmaker"]["selections"]
+        self.assertEqual(selections["home"]["price"], 2.12)
+        self.assertEqual(selections["home"]["limit"], 100)
+        self.assertEqual(selections["home"]["exchangeMeta"]["layPrice"], 2.16)
+        self.assertEqual(selections["home"]["bookmakerChangedAt"], "2026-09-07T12:00:00Z")
+        self.assertTrue(packet["qc"]["exchange_meta_preserved_raw"])
+
+    def test_no_fake_total_matched_or_depth(self):
+        packet = normalize_fixture_odds(ODDS, "2993777", build_1x2_outcome_map(MARKETS))
+        self.assertIn("total_matched", packet["unavailable_fields"])
+        self.assertIn("guaranteed_multi_level_back_lay_depth", packet["unavailable_fields"])
+        self.assertFalse(packet["qc"]["total_matched_available"])
+
     def test_bad_match(self):
-        with self.assertRaises(OddsPapiError): match_fixture([FIXTURE],"Roma","Milan",1788798600)
+        with self.assertRaises(OddsPapiError):
+            match_fixture([FIXTURE], "Roma", "Milan", "2026-09-07T16:30:00Z")
 
-if __name__ == '__main__': unittest.main()
+
+if __name__ == "__main__":
+    unittest.main()
