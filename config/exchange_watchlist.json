@@ -22,6 +22,7 @@
       "start_hours_before_kickoff": 6,
       "stop_minutes_before_kickoff": 0,
       "kickoff_tolerance_minutes": 180,
+      "refresh_requested_at": "2026-09-07T16:15:00Z",
       "enabled": true
     }
   ]
