@@ -1,16 +1,13 @@
 # football-model
 
-Private, versioned quantitative core and SOP for GPT-assisted football analysis.
+Private, versioned persistent source of truth for the GPT-assisted football model. It is not the Codex web application.
 
-## Purpose
-
-This repository is the persistent source of truth for the GPT football model's mathematical layer, protocol, configuration, and validation tests. It is not the Codex web application and it does not replace the existing market-interpretation SOP.
-
-## Current version
-
+## Current stack
+- Model: `GPT-FOOTBALL-FULLSTACK-1.0.0`
 - Quant engine: `GPT-QUANT-0.1.0`
-- Scope: de-vig, Dixon-Coles score grid, market-implied goal reconstruction, Asian handicap settlement, totals settlement, quant packet validation.
+- Feature/QC engine: `GPT-FEATURE-1.0.0`
 
-## Design rule
+The stack covers deterministic market maths, lifecycle/reversal detection, source freshness/gating, uncertainty/disagreement, independent strength/squad/context modules, open-source adapters, anti-double-counting, calibration/walk-forward validation and independent Red Team adjudication.
 
-Quantitative output is evidence, not the final betting decision. Final analysis must still pass opening-rationality, odds-lifecycle, same-time-slice, company-divergence, attraction, cross-market coherence, context and independent Red Team review.
+## Core rule
+More modules do not mean more forced confidence. Missing/stale/conflicting evidence is surfaced; correlated signals are not counted repeatedly; unvalidated context is never converted into arbitrary goal/probability adjustments. Final tickets remain a structured decision after the full evidence stack and Red Team.
