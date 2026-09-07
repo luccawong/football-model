@@ -1,0 +1,16 @@
+{
+  "schema_version": "exchange-watchlist-1.0",
+  "enabled": true,
+  "default_start_hours_before_kickoff": 6,
+  "bookmaker_keys": [
+    "betfair_ex_uk",
+    "betfair_ex_eu",
+    "betfair_ex_au"
+  ],
+  "notes": [
+    "Only active targets inside their pre-kickoff collection window consume odds credits.",
+    "Use api_home_team/api_away_team when Titan names differ from The Odds API English team names.",
+    "provider_event_id may be pinned after first successful mapping."
+  ],
+  "matches": []
+}
