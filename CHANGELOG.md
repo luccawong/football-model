@@ -1,5 +1,18 @@
 # Changelog
 
+## GPT-EXCHANGE-1.1.0 / BETFAIR-SHADOW-RULES-1.0.0 — 2026-09-08
+- Switched the current Betfair integration into SHADOW_RESEARCH mode for a multi-day isolated test; Shadow results are excluded from formal football-system statistics.
+- Added `config/exchange_rulebook.json` from the user-supplied Betfair/depth and market-game screenshots.
+- Added executable evaluator `gpt/exchange_shadow_rules.py` and CI tests in `tests/test_exchange_shadow_rules.py`.
+- Added R61 `盈亏比均衡=市场成熟` and R62 `高概率低凯利=核心` from the supplementary screenshot.
+- Preserved all visible section 3.2 rules. The merged screenshots show 11 visible rules (R61,R62,R63,R64,R65,R66,R67,R74,R75,R76,R77) although the source header says 10; this is stored as a source-count QC conflict rather than deleting a rule.
+- R61 remains UNRESOLVED for automatic triggering because the source says the three profit/loss ratios should be “close” without defining a numeric tolerance.
+- R96/R99 remain UNRESOLVED because their referenced three validation conditions are not shown in the supplied screenshots.
+- Added deterministic states TRIGGERED / NOT_TRIGGERED / MISSING / UNRESOLVED / CONFLICT so absent inputs and undefined thresholds cannot be silently treated as negative signals.
+- Added measurable implementations for R62, R63, R66, R74, R76, R36, R38, R39 and R58 where the source provides enough structure; subjective/undefined rules remain guarded.
+- Updated Runtime to freeze the non-Exchange Baseline first, then run Exchange Shadow and classify its incremental effect separately.
+- Updated OddsPapi v4 contract to recognize validated `availableToBack`, `availableToLay`, runner `tradedVolume` and `betDelay` when actually returned, while still forbidding fabrication of matched-side flow or market total matched.
+
 ## Exchange Bridge 1.2.0 — 2026-09-07
 - Corrected production provider to OddsPapi v4 for the user's existing account/API key.
 - Pinned REST base to `https://api.oddspapi.io/v4` and Betfair Exchange slug to `betfair-ex`.
