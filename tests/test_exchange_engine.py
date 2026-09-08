@@ -17,6 +17,6 @@ class TestExchangeEngine(unittest.TestCase):
     def test_packet(self):
         x=market_microstructure_snapshot({'h':{'best_back':2.0,'best_lay':2.04,'back_sizes':[100,50],'lay_sizes':[60,40]},'d':{'best_back':4.0,'best_lay':4.1,'back_sizes':[40],'lay_sizes':[40]},'a':{'best_back':4.0,'best_lay':4.1,'back_sizes':[50],'lay_sizes':[60]}},10000)
         self.assertAlmostEqual(sum(x['mid_probabilities'].values()),1.0,places=12)
-        self.assertEqual(x['engine_version'],'GPT-EXCHANGE-1.0.0')
+        self.assertEqual(x['engine_version'],'GPT-EXCHANGE-1.1.0')
 
 if __name__=='__main__': unittest.main()
