@@ -1,0 +1,177 @@
+{
+  "away_team": "Aston Villa",
+  "bridge_version": "EXCHANGE-BRIDGE-1.2.0",
+  "engine_version": "GPT-EXCHANGE-1.0.0",
+  "home_team": "Club Brugge",
+  "match_id": "3073135",
+  "observed_at": "2026-09-08T15:53:17Z",
+  "provider": "ODDSPAPI_V4",
+  "provider_fixture_id": "id1000000774165870",
+  "provider_mode": "BETFAIR_EXCHANGE_META",
+  "qc": {
+    "away_price_present": true,
+    "betfair_bookmaker_present": true,
+    "draw_price_present": true,
+    "exchange_meta_present": true,
+    "exchange_meta_preserved_raw": true,
+    "fixture_present": true,
+    "home_price_present": true,
+    "market_not_suspended": true,
+    "total_matched_available": false
+  },
+  "rate_limit": {
+    "limit": null,
+    "remaining": null,
+    "reset": null
+  },
+  "schema_version": "exchange-packet-1.2",
+  "selected_bookmaker": {
+    "bookmakerFixtureId": "35998660",
+    "bookmakerIsActive": true,
+    "bookmaker_slug": "betfair-ex",
+    "fixturePath": "https://www.betfair.com/exchange/plus/en/e/e/e-e-35998660",
+    "selections": {
+      "away": {
+        "bookmakerChangedAt": "2026-09-08T15:53:03.848Z",
+        "bookmakerOutcomeId": "63908",
+        "changedAt": "2026-09-08T15:53:04.532Z",
+        "exchangeMeta": {
+          "availableToBack": [
+            {
+              "price": 2.72,
+              "size": 2822.12
+            },
+            {
+              "price": 2.7,
+              "size": 5368.65
+            },
+            {
+              "price": 2.68,
+              "size": 5559.53
+            }
+          ],
+          "availableToLay": [
+            {
+              "price": 2.74,
+              "size": 283.18
+            },
+            {
+              "price": 2.76,
+              "size": 581.51
+            },
+            {
+              "price": 2.78,
+              "size": 2537.79
+            }
+          ],
+          "betDelay": 0,
+          "tradedVolume": 133000.0
+        },
+        "limit": 2822.12,
+        "marketId": 101,
+        "outcomeId": 103,
+        "price": 2.72
+      },
+      "draw": {
+        "bookmakerChangedAt": "2026-09-08T15:53:02.516Z",
+        "bookmakerOutcomeId": "58805",
+        "changedAt": "2026-09-08T15:53:02.855Z",
+        "exchangeMeta": {
+          "availableToBack": [
+            {
+              "price": 3.7,
+              "size": 9897.95
+            },
+            {
+              "price": 3.65,
+              "size": 11247.55
+            },
+            {
+              "price": 3.6,
+              "size": 8444.88
+            }
+          ],
+          "availableToLay": [
+            {
+              "price": 3.75,
+              "size": 5823.27
+            },
+            {
+              "price": 3.8,
+              "size": 15094.74
+            },
+            {
+              "price": 3.85,
+              "size": 11069.34
+            }
+          ],
+          "betDelay": 0,
+          "tradedVolume": 57900.0
+        },
+        "limit": 9897.95,
+        "marketId": 101,
+        "outcomeId": 102,
+        "price": 3.7
+      },
+      "home": {
+        "bookmakerChangedAt": "2026-09-08T15:53:02.516Z",
+        "bookmakerOutcomeId": "10762",
+        "changedAt": "2026-09-08T15:53:02.855Z",
+        "exchangeMeta": {
+          "availableToBack": [
+            {
+              "price": 2.7,
+              "size": 948.2
+            },
+            {
+              "price": 2.68,
+              "size": 3607.86
+            },
+            {
+              "price": 2.66,
+              "size": 9781.6
+            }
+          ],
+          "availableToLay": [
+            {
+              "price": 2.72,
+              "size": 665.68
+            },
+            {
+              "price": 2.74,
+              "size": 1758.55
+            },
+            {
+              "price": 2.76,
+              "size": 4469.09
+            }
+          ],
+          "betDelay": 0,
+          "tradedVolume": 107000.0
+        },
+        "limit": 948.2,
+        "marketId": 101,
+        "outcomeId": 101,
+        "price": 2.7
+      }
+    },
+    "suspended": false
+  },
+  "sport_id": 10,
+  "start_time": "2026-09-08T16:45:00.000Z",
+  "status_id": 0,
+  "target": {
+    "api_away_team": "Aston Villa",
+    "api_home_team": "Club Brugge",
+    "titan_away_team": "阿斯顿维拉",
+    "titan_home_team": "布鲁日"
+  },
+  "tournament_id": 7,
+  "unavailable_fields": [
+    "total_matched",
+    "traded_ladder",
+    "traded_volume_velocity",
+    "guaranteed_multi_level_back_lay_depth"
+  ],
+  "venue": "Betfair Exchange"
+}
