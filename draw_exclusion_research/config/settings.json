@@ -1,0 +1,18 @@
+{
+  "source_url": "https://5735d98555ad43a39ce62a3c9eb535ee.app.workbuddy.link/",
+  "http_timeout_seconds": 30,
+  "database_path": "database/draw_exclusion.db",
+  "site_timezone": "Asia/Shanghai",
+  "same_time_slice_windows_minutes": [5, 10],
+  "odds_collection_targets_before_kickoff_minutes": [1440, 720, 360, 180, 60, 30],
+  "core_1x2_companies": [
+    "William Hill",
+    "Ladbrokes UK",
+    "Macau",
+    "Pinnacle",
+    "Bet365",
+    "Interwetten",
+    "HKJC"
+  ],
+  "core_ou_companies": ["Macau", "Pinnacle", "Bet365"]
+}

@@ -2,6 +2,16 @@
 
 纯 Python 的 Titan/V23 Excel 验证流水线。日常运行不依赖 Codex、不调用 LLM、不生成比赛判断或 CODEX 报告。原始 Excel 只读。
 
+## Draw Exclusion Research
+
+第二阶段的排平 Teacher 数据采集、SQLite、Titan 对齐和日报位于 `draw_exclusion_research/`。从仓库根目录运行：
+
+```powershell
+python scripts/run_draw_exclusion_daily.py
+```
+
+该入口只采集、匹配和 QC，不输出比赛预测。原始 HTML 与本地 SQLite 不进入 Git；每日 Markdown 报告、schema 和代码进入版本控制。
+
 ## 安装与运行
 
 Python 3.10 或更新版本：
