@@ -1,11 +1,12 @@
 {
-  "rulebook_version": "BETFAIR-SHADOW-RULEBOOK-1.0.0",
+  "rulebook_version": "BETFAIR-SHADOW-RULEBOOK-1.0.1",
   "integration_mode": "shadow_research",
   "formal_system_impact": false,
   "source_date": "2026-09-08",
   "source_notes": [
-    "Rules transcribed from two user-supplied screenshots.",
-    "Section 3.2 header declares 10 rules, but only 9 rule rows are visible in the screenshot. The missing rule is intentionally not invented.",
+    "Rules transcribed from three user-supplied screenshots.",
+    "Supplementary screenshot adds R61 and R62 to section 3.2.",
+    "After merging the screenshots, section 3.2 contains 11 visible rules (R61,R62,R63,R64,R65,R66,R67,R74,R75,R76,R77) while the source header still declares 10. All visible rules are preserved; none is deleted to force the count to 10.",
     "R96 and R99 reference three validation conditions, but the screenshot does not enumerate those three conditions; they remain unresolved until the user supplies them.",
     "Red marker/highlight is preserved for R36, R37, R76 and R96.",
     "All rules are research heuristics during the current multi-day Betfair shadow test and cannot alter formal-system statistics by themselves."
@@ -15,8 +16,27 @@
       "section_id": "3.2",
       "title": "必发/市场深度数据",
       "source_declared_count": 10,
-      "visible_rule_count": 9,
+      "visible_rule_count": 11,
+      "count_qc": "SOURCE_HEADER_COUNT_CONFLICT",
       "rules": [
+        {
+          "id": "R61",
+          "name": "盈亏比均衡=市场成熟",
+          "core_point": "三项盈亏比接近=市场交易充分",
+          "red_marker": false,
+          "required_inputs": ["home_profit_loss_ratio", "draw_profit_loss_ratio", "away_profit_loss_ratio"],
+          "status": "RESEARCH_ONLY",
+          "unresolved": ["三项盈亏比接近的客观容差阈值未在截图定义"]
+        },
+        {
+          "id": "R62",
+          "name": "高概率低凯利=核心",
+          "core_point": "概率>60%+凯利指数最低=真热",
+          "red_marker": false,
+          "required_inputs": ["selection_probability", "kelly_index", "all_selection_kelly_indices"],
+          "thresholds": {"selection_probability_gt": 0.60, "kelly_rank_required": 1},
+          "status": "RESEARCH_ONLY"
+        },
         {
           "id": "R63",
           "name": "换手平稳=市场共识",
