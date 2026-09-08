@@ -1,5 +1,5 @@
 {
-  "engine_version": "GPT-EXCHANGE-1.0.0",
+  "engine_version": "GPT-EXCHANGE-1.1.0",
   "bridge_version": "EXCHANGE-BRIDGE-1.2.0",
   "primary_provider": "ODDSPAPI_V4",
   "api_base": "https://api.oddspapi.io/v4",
@@ -8,6 +8,9 @@
   "venue": "Betfair Exchange",
   "market_scope": ["MATCH_ODDS_1X2"],
   "sport_id": 10,
+  "rulebook": "config/exchange_rulebook.json",
+  "integration_mode": "shadow_research",
+  "formal_system_impact": false,
   "canonical_market": {
     "market_id": 101,
     "outcomes": {"101": "home", "102": "draw", "103": "away"}
@@ -24,7 +27,8 @@
     "liquidity",
     "available_size",
     "back_ladder",
-    "lay_ladder"
+    "lay_ladder",
+    "tradedVolume"
   ],
   "derived_features_when_supported": [
     "back_lay_spread_raw",
@@ -34,12 +38,13 @@
     "exchange_mid_probability",
     "exchange_normalized_probability",
     "price_velocity_from_saved_snapshots",
-    "exchange_vs_bookmaker_divergence_pp"
+    "exchange_vs_bookmaker_divergence_pp",
+    "runner_traded_volume_change_from_saved_snapshots"
   ],
   "unavailable_unless_explicitly_returned": [
     "total_matched",
     "traded_ladder",
-    "traded_volume_velocity",
+    "matched_trade_side_direction",
     "guaranteed_multi_level_back_lay_depth"
   ],
   "rules": {
@@ -52,6 +57,10 @@
     "bookmakerChangedAt_and_changedAt_must_both_be_preserved": true,
     "missing_feed_is_not_negative_evidence": true,
     "missing_deep_fields_must_remain_missing": true,
-    "order_execution_is_research_only": true
+    "order_execution_is_research_only": true,
+    "baseline_must_be_frozen_before_shadow_exchange": true,
+    "shadow_results_excluded_from_formal_statistics": true,
+    "unresolved_rule_thresholds_cannot_auto_trigger": true,
+    "single_exchange_rule_cannot_create_or_overturn_formal_ticket": true
   }
 }
