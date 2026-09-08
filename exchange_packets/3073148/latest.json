@@ -4,7 +4,7 @@
   "engine_version": "GPT-EXCHANGE-1.0.0",
   "home_team": "Borussia Dortmund",
   "match_id": "3073148",
-  "observed_at": "2026-09-08T16:13:50Z",
+  "observed_at": "2026-09-08T16:42:35Z",
   "provider": "ODDSPAPI_V4",
   "provider_fixture_id": "id1000000774165872",
   "provider_mode": "BETFAIR_EXCHANGE_META",
@@ -32,124 +32,124 @@
     "fixturePath": "https://www.betfair.com/exchange/plus/en/e/e/e-e-35998661",
     "selections": {
       "away": {
-        "bookmakerChangedAt": "2026-09-08T16:13:47.677Z",
+        "bookmakerChangedAt": "2026-09-08T16:42:31.248Z",
         "bookmakerOutcomeId": "28191",
-        "changedAt": "2026-09-08T16:13:47.903Z",
+        "changedAt": "2026-09-08T16:42:31.364Z",
         "exchangeMeta": {
           "availableToBack": [
             {
-              "price": 4.5,
-              "size": 179.34
-            },
-            {
               "price": 4.4,
-              "size": 2392.38
+              "size": 2698.69
             },
             {
               "price": 4.3,
-              "size": 2876.25
+              "size": 3239.26
+            },
+            {
+              "price": 4.2,
+              "size": 5022.98
             }
           ],
           "availableToLay": [
             {
+              "price": 4.5,
+              "size": 1978.64
+            },
+            {
               "price": 4.6,
-              "size": 4536.66
+              "size": 2870.81
             },
             {
               "price": 4.7,
-              "size": 4726.15
-            },
-            {
-              "price": 4.8,
-              "size": 2894.41
+              "size": 4513.04
             }
           ],
           "betDelay": 0,
-          "tradedVolume": 55900.0
+          "tradedVolume": 57800.0
         },
-        "limit": 179.34,
+        "limit": 2698.69,
         "marketId": 101,
         "outcomeId": 103,
-        "price": 4.5
+        "price": 4.4
       },
       "draw": {
-        "bookmakerChangedAt": "2026-09-08T16:13:42.000Z",
+        "bookmakerChangedAt": "2026-09-08T16:42:31.248Z",
         "bookmakerOutcomeId": "58805",
-        "changedAt": "2026-09-08T16:13:43.720Z",
+        "changedAt": "2026-09-08T16:42:31.364Z",
         "exchangeMeta": {
           "availableToBack": [
             {
               "price": 4.1,
-              "size": 4429.76
+              "size": 5062.69
             },
             {
               "price": 4,
-              "size": 3587.1
+              "size": 3985.94
             },
             {
               "price": 3.95,
-              "size": 2425.99
+              "size": 984.47
             }
           ],
           "availableToLay": [
             {
               "price": 4.2,
-              "size": 89.37
+              "size": 199.01
             },
             {
               "price": 4.3,
-              "size": 3534.13
+              "size": 3226.64
             },
             {
               "price": 4.4,
-              "size": 11986.08
+              "size": 12418.42
             }
           ],
           "betDelay": 0,
-          "tradedVolume": 27600.0
+          "tradedVolume": 28700.0
         },
-        "limit": 4429.76,
+        "limit": 5062.69,
         "marketId": 101,
         "outcomeId": 102,
         "price": 4.1
       },
       "home": {
-        "bookmakerChangedAt": "2026-09-08T16:13:39.969Z",
+        "bookmakerChangedAt": "2026-09-08T16:42:31.248Z",
         "bookmakerOutcomeId": "44785",
-        "changedAt": "2026-09-08T16:13:40.069Z",
+        "changedAt": "2026-09-08T16:42:31.364Z",
         "exchangeMeta": {
           "availableToBack": [
             {
               "price": 1.85,
-              "size": 1473.09
+              "size": 2014.79
             },
             {
               "price": 1.84,
-              "size": 15549.98
+              "size": 15348.7
             },
             {
               "price": 1.83,
-              "size": 11153.05
+              "size": 18305.49
             }
           ],
           "availableToLay": [
             {
               "price": 1.86,
-              "size": 1112.8
+              "size": 847.79
             },
             {
               "price": 1.87,
-              "size": 1462.51
+              "size": 1301.21
             },
             {
               "price": 1.88,
-              "size": 3925.7
+              "size": 3590.51
             }
           ],
           "betDelay": 0,
-          "tradedVolume": 221000.0
+          "tradedVolume": 227000.0
         },
-        "limit": 1473.09,
+        "limit": 2014.79,
         "marketId": 101,
         "outcomeId": 101,
         "price": 1.85

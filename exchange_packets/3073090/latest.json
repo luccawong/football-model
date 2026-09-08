@@ -4,7 +4,7 @@
   "engine_version": "GPT-EXCHANGE-1.0.0",
   "home_team": "FC Porto",
   "match_id": "3073090",
-  "observed_at": "2026-09-08T16:13:47Z",
+  "observed_at": "2026-09-08T16:42:32Z",
   "provider": "ODDSPAPI_V4",
   "provider_fixture_id": "id1000000774165874",
   "provider_mode": "BETFAIR_EXCHANGE_META",
@@ -32,127 +32,127 @@
     "fixturePath": "https://www.betfair.com/exchange/plus/en/e/e/e-e-35998658",
     "selections": {
       "away": {
-        "bookmakerChangedAt": "2026-09-08T16:13:10.658Z",
+        "bookmakerChangedAt": "2026-09-08T16:42:18.130Z",
         "bookmakerOutcomeId": "47999",
-        "changedAt": "2026-09-08T16:13:10.733Z",
+        "changedAt": "2026-09-08T16:42:18.359Z",
         "exchangeMeta": {
           "availableToBack": [
             {
               "price": 1.69,
-              "size": 6556.37
+              "size": 1920.5
             },
             {
               "price": 1.68,
-              "size": 13182.1
+              "size": 17746.78
             },
             {
               "price": 1.67,
-              "size": 9472.16
+              "size": 8049.22
             }
           ],
           "availableToLay": [
             {
               "price": 1.7,
-              "size": 14727.96
+              "size": 18249.48
             },
             {
               "price": 1.71,
-              "size": 9519.94
+              "size": 3979.4
             },
             {
               "price": 1.72,
-              "size": 9906.96
+              "size": 9688.81
             }
           ],
           "betDelay": 0,
-          "tradedVolume": 342000.0
+          "tradedVolume": 428000.0
         },
-        "limit": 6556.37,
+        "limit": 1920.5,
         "marketId": 101,
         "outcomeId": 103,
         "price": 1.69
       },
       "draw": {
-        "bookmakerChangedAt": "2026-09-08T16:12:54.318Z",
+        "bookmakerChangedAt": "2026-09-08T16:42:18.223Z",
         "bookmakerOutcomeId": "58805",
-        "changedAt": "2026-09-08T16:12:54.394Z",
+        "changedAt": "2026-09-08T16:42:18.359Z",
         "exchangeMeta": {
           "availableToBack": [
             {
               "price": 4.3,
-              "size": 2761.89
+              "size": 1748.69
             },
             {
               "price": 4.2,
-              "size": 7137.38
+              "size": 3297.72
             },
             {
               "price": 4.1,
-              "size": 5306.33
+              "size": 8285.99
             }
           ],
           "availableToLay": [
             {
               "price": 4.4,
-              "size": 2469.85
+              "size": 4342.32
             },
             {
               "price": 4.5,
-              "size": 7138.3
+              "size": 9827.06
             },
             {
               "price": 4.6,
-              "size": 6388.16
+              "size": 6677.18
             }
           ],
           "betDelay": 0,
-          "tradedVolume": 18000.0
+          "tradedVolume": 19900.0
         },
-        "limit": 2761.89,
+        "limit": 1748.69,
         "marketId": 101,
         "outcomeId": 102,
         "price": 4.3
       },
       "home": {
-        "bookmakerChangedAt": "2026-09-08T16:12:54.318Z",
+        "bookmakerChangedAt": "2026-09-08T16:42:18.130Z",
         "bookmakerOutcomeId": "48785",
-        "changedAt": "2026-09-08T16:12:54.394Z",
+        "changedAt": "2026-09-08T16:42:18.359Z",
         "exchangeMeta": {
           "availableToBack": [
             {
+              "price": 5.6,
+              "size": 1067.39
+            },
+            {
               "price": 5.5,
-              "size": 2344.29
+              "size": 3868.19
             },
             {
               "price": 5.4,
-              "size": 3125.0
-            },
-            {
-              "price": 5.3,
-              "size": 2793.34
+              "size": 4796.76
             }
           ],
           "availableToLay": [
             {
-              "price": 5.6,
-              "size": 1112.49
-            },
-            {
               "price": 5.7,
-              "size": 4349.04
+              "size": 1310.16
             },
             {
               "price": 5.8,
-              "size": 1166.7
+              "size": 869.15
+            },
+            {
+              "price": 5.9,
+              "size": 2801.3
             }
           ],
           "betDelay": 0,
-          "tradedVolume": 33300.0
+          "tradedVolume": 34800.0
         },
-        "limit": 2344.29,
+        "limit": 1067.39,
         "marketId": 101,
         "outcomeId": 101,
-        "price": 5.5
+        "price": 5.6
       }
     },
     "suspended": false
