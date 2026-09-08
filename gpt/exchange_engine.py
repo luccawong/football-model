@@ -1,4 +1,4 @@
-"""GPT Football Betfair Exchange evidence engine v1.0.0.
+"""GPT Football Betfair Exchange evidence engine v1.1.0.
 
 Deterministic microstructure helpers for Betfair Exchange market data.
 This layer is descriptive evidence only. It never treats exchange flow as
@@ -8,7 +8,7 @@ from __future__ import annotations
 from typing import Any, Dict, Mapping, Sequence
 import math
 
-EXCHANGE_ENGINE_VERSION = "GPT-EXCHANGE-1.0.0"
+EXCHANGE_ENGINE_VERSION = "GPT-EXCHANGE-1.1.0"
 
 class ExchangeInputError(ValueError):
     pass
