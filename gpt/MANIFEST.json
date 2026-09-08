@@ -18,6 +18,23 @@
     "tests": "tests/test_feature_engine.py",
     "status": "active"
   },
+  "divergence_engine": {
+    "version": "DDS-FOOTBALL-1.0.0",
+    "entrypoint": "gpt/divergence_engine.py",
+    "protocol": "gpt/FOOTBALL_SOP.md",
+    "tests": "tests/test_divergence_engine.py",
+    "status": "research_only_prospective",
+    "rules": [
+      "same_time_slice_required",
+      "devig_required",
+      "attraction_adjusted",
+      "independent_feed_clusters",
+      "lead_lag_tracking",
+      "cross_market_confirmation",
+      "pre_match_freeze_required",
+      "no_probability_adjustment_until_validated"
+    ]
+  },
   "exchange_engine": {
     "version": "GPT-EXCHANGE-1.1.0",
     "entrypoint": "gpt/exchange_engine.py",
@@ -37,6 +54,7 @@
   "decision_policy": {
     "quant_is_evidence_not_ticket": true,
     "feature_engine_is_evidence_not_ticket": true,
+    "divergence_information_grade_is_not_ticket_grade": true,
     "exchange_is_evidence_not_smart_money": true,
     "exchange_shadow_excluded_from_formal_statistics": true,
     "baseline_frozen_before_exchange_shadow": true,

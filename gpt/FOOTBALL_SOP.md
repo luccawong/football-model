@@ -1,4 +1,4 @@
-# GPT Football Analysis SOP — Full Stack v1.0
+# GPT Football Analysis SOP — Full Stack v1.1
 
 1. Market snapshot + Data Gate: state, timestamp, identity, MAIN/ALT, freshness, conflicts, missing core timelines.
 2. Opening-only first impression: no later results/injuries/movements contaminate opening interpretation.
@@ -14,15 +14,38 @@
 12. Independent totals: Macau/Pinnacle/Bet365 dynamic structure + OU ladder latent mean + WH/Lad Base-2.5; JCB auxiliary only when supplied.
 13. Cross-market coherence: linked structure, not three independent votes.
 14. Market attraction + favourite-failure paths.
-15. Draw Exclusion: default KEEP; exclusion needs hard evidence and score-distribution support.
-16. Context extensions when fresh: weather/pitch, referee, ownership/agent/transfer network, club reciprocity, motivation.
-17. Advanced event layer when available: xT/VAEP, set pieces, goalkeeper, pressing/possession; otherwise MISSING.
-18. Correct-score layer: joint distribution and final Top3 direction-consistency gate.
-19. Uncertainty audit: model/company disagreement, OOD/missingness, stale/conflicting sources.
-20. Freeze H1.
-21. Independent strongest coherent Red Team H2.
-22. CONFIRM/DOWNGRADE/OVERTURN.
-23. Formal main or unique non-main/PASS under standing execution rules.
+15. Defensive / Lead-Lag / Attraction-Adjusted Divergence Stack:
+    - keep ordinary company disagreement as the level-1 summary;
+    - compare only de-vigged probabilities from the same time slice;
+    - measure target-side defensive divergence in percentage points;
+    - separate HOME / DRAW / AWAY and FAVORITE_NONWIN, never equate weak-side protection with weak-side outright win;
+    - record persistence, independent feed clusters, lead-lag, copied-feed risk and cross-market confirmation;
+    - UDS (Unnatural Defensive Signal) requires a low-attraction target that is nevertheless persistently protected by at least two independent clusters;
+    - information grade A/B/C/NOISE is a signal-quality label only, not a ticket grade or probability adjustment;
+    - all fields must be frozen pre-match. Post-result reconstruction is forbidden.
+16. Draw Exclusion: default KEEP; exclusion needs hard evidence and score-distribution support.
+17. Context extensions when fresh: weather/pitch, referee, ownership/agent/transfer network, club reciprocity, motivation.
+18. Advanced event layer when available: xT/VAEP, set pieces, goalkeeper, pressing/possession; otherwise MISSING.
+19. Correct-score layer: joint distribution and final Top3 direction-consistency gate.
+20. Uncertainty audit: model/company disagreement, OOD/missingness, stale/conflicting sources.
+21. Freeze H1.
+22. Independent strongest coherent Red Team H2.
+23. CONFIRM/DOWNGRADE/OVERTURN.
+24. Formal main or unique non-main/PASS under standing execution rules.
+
+## Divergence validation protocol
+
+The Defensive Divergence Stack is `RESEARCH_ONLY_UNCALIBRATED` until prospective validation is adequate. Store the full pre-match snapshot first, then settle outcomes later. At minimum validate by league/market/handicap bucket:
+
+- target-side divergence magnitude (pp);
+- attraction score and low-attraction subset;
+- persistence duration;
+- independent cluster count versus copied-feed clusters;
+- lead-lag and whether mainstream books subsequently followed;
+- cross-market confirmation;
+- football path split: favourite win / draw / underdog win / favourite non-win.
+
+Do not select companies or thresholds after seeing results. Do not promote information grade into probability or ticket weight until walk-forward evidence supports it.
 
 ## Validation
 Use chronological walk-forward Brier/RPS/log-loss/reliability. Do not change core logic from a few outcomes. Prefer league-specific calibration; Chinese football stays separate for research/calibration. Black-box ML, Kelly and live-inplay Bayesian remain RESEARCH_ONLY until promoted after validation.
