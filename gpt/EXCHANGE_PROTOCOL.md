@@ -1,7 +1,9 @@
-# Betfair Exchange Layer Protocol — GPT-EXCHANGE-1.0.0
+# Betfair Exchange Layer Protocol — GPT-EXCHANGE-1.1.0
 
 ## Purpose
-Use Betfair Exchange as a conditional microstructure/price-discovery evidence layer. It is not an automatic smart-money oracle and cannot issue a ticket.
+Use Betfair Exchange as a conditional microstructure/price-discovery evidence layer. It is not an automatic smart-money oracle and cannot issue a formal ticket by itself.
+
+Current integration mode: **SHADOW_RESEARCH**. Exchange outputs are tested separately from the formal football system and are excluded from formal-system win-rate statistics until validated.
 
 ## Production provider
 Primary provider: **OddsPapi v4** at `https://api.oddspapi.io/v4`.
@@ -23,7 +25,13 @@ For each standard selection, preserve exactly what OddsPapi returns:
 - `exchangeMeta` raw;
 - bookmaker/market suspended-active state when available.
 
-`exchangeMeta` is provider-specific (`any|null`) and may contain exchange information such as liquidity or lay price. Its internal structure must be inspected from real Betfair responses before fields are promoted to stable model features. Do not assume the richer v5 `meta.back[]/meta.lay[]` schema exists in v4.
+Validated live OddsPapi v4 `exchangeMeta` responses may include:
+- `availableToBack[]` with price/size;
+- `availableToLay[]` with price/size;
+- runner-level `tradedVolume`;
+- `betDelay`.
+
+Preserve the raw payload before promotion. A field is only promoted after it has been observed and validated in real `betfair-ex` responses.
 
 ## Derived evidence
 Always available when prices exist:
@@ -34,16 +42,40 @@ Always available when prices exist:
 Conditional on verified `exchangeMeta` fields:
 - Back/Lay spread;
 - available liquidity/size;
-- order-book depth;
-- order-book imbalance.
+- multi-level Back/Lay depth when actually returned;
+- order-book imbalance;
+- runner traded-volume change across our own saved snapshots.
 
 ## Fields that must not be fabricated
-Unless the actual v4 payload explicitly provides them, keep these `MISSING`:
+Unless the actual payload explicitly provides them, keep these `MISSING`:
 - market `total_matched`;
 - traded ladder / matched-volume buckets;
-- traded-volume velocity;
-- guaranteed multi-level Back/Lay ladders.
-`limit` is not matched volume.
+- matched-trade side direction;
+- any field inferred only from a screenshot rule but not supported by current feed.
+
+`limit` is not matched volume. Runner `tradedVolume` is not the same thing as side-specific matched flow.
+
+## Shadow rulebook
+Canonical rulebook: `config/exchange_rulebook.json`.
+
+The current user-supplied rulebook contains two source sections:
+- `3.2 必发/市场深度数据`;
+- `3.3 庄家操纵/市场博弈`.
+
+Runtime discipline:
+1. Freeze the non-Exchange Baseline first.
+2. Load and evaluate every rule in `exchange_rulebook.json`.
+3. Each rule must be emitted as `TRIGGERED`, `NOT_TRIGGERED`, `MISSING`, `UNRESOLVED`, or `CONFLICT` with the exact inputs used.
+4. Missing required input means `MISSING`, never `false`.
+5. A threshold/definition not present in the source screenshot means `UNRESOLVED`; do not invent it.
+6. Red-marker source rules are priority review flags, not automatic overrides.
+7. Exchange Shadow output is compared against the frozen Baseline and settled separately after the match.
+8. Shadow results do not enter formal main/non-main statistics.
+
+### Rule-source fidelity safeguards
+- Section 3.2 declares 10 rules but the supplied screenshot exposes only 9 rows. The absent rule remains absent until supplied.
+- R96 and R99 mention “三条件” but the screenshots do not enumerate those conditions. They remain `UNRESOLVED`.
+- Terms such as `诱盘`, `庄家控盘`, `操纵`, `隐藏力`, and `大资金看好` are preserved as source-rule labels. They must be treated as hypotheses/heuristic labels, not verified factual claims without independent evidence.
 
 ## Timestamp discipline
 Preserve separately:
@@ -67,7 +99,17 @@ Do not claim second-level exchange lead/lag if provider latency is not accounted
 - Bookmaker-vs-exchange comparisons require the closest same-time slice.
 - Missing Betfair data is `MISSING`, not evidence against either side.
 - In-play data must not contaminate pre-match opening/closing analysis.
+- A single Exchange rule cannot create or overturn a formal-system ticket during shadow testing.
 - Order placement, staking and execution remain RESEARCH_ONLY.
+
+## Future promotion gate
+Do not promote Exchange Shadow into the formal decision stack until the separate test sample shows reproducible incremental value, including at minimum:
+- Baseline wrong → Exchange corrected;
+- Baseline right → Exchange led wrong;
+- Baseline wrong → Exchange reinforced wrong;
+- Baseline right → Exchange reinforced right;
+- performance by Exchange-vs-bookmaker divergence bands;
+- performance by rule family and competition/market regime.
 
 ## Future upgrade path
 OddsPapi v5 B2B/WebSocket can be added later if the account is upgraded and richer guaranteed exchange ladders are required. Direct Betfair tooling (`betfairlightweight`, `betfairutil`, `flumine`) remains optional research/infrastructure rather than a requirement for the pre-match GPT model.
