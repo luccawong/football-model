@@ -1,12 +1,12 @@
 {
-  "away_team": "Aston Villa",
+  "away_team": "Manchester City",
   "bridge_version": "EXCHANGE-BRIDGE-1.2.0",
   "engine_version": "GPT-EXCHANGE-1.0.0",
-  "home_team": "Club Brugge",
-  "match_id": "3073135",
-  "observed_at": "2026-09-08T16:13:38Z",
+  "home_team": "FC Porto",
+  "match_id": "3073090",
+  "observed_at": "2026-09-08T16:13:47Z",
   "provider": "ODDSPAPI_V4",
-  "provider_fixture_id": "id1000000774165870",
+  "provider_fixture_id": "id1000000774165874",
   "provider_mode": "BETFAIR_EXCHANGE_META",
   "qc": {
     "away_price_present": true,
@@ -26,145 +26,145 @@
   },
   "schema_version": "exchange-packet-1.2",
   "selected_bookmaker": {
-    "bookmakerFixtureId": "35998660",
+    "bookmakerFixtureId": "35998658",
     "bookmakerIsActive": true,
     "bookmaker_slug": "betfair-ex",
-    "fixturePath": "https://www.betfair.com/exchange/plus/en/e/e/e-e-35998660",
+    "fixturePath": "https://www.betfair.com/exchange/plus/en/e/e/e-e-35998658",
     "selections": {
       "away": {
-        "bookmakerChangedAt": "2026-09-08T16:13:35.818Z",
-        "bookmakerOutcomeId": "63908",
-        "changedAt": "2026-09-08T16:13:35.969Z",
+        "bookmakerChangedAt": "2026-09-08T16:13:10.658Z",
+        "bookmakerOutcomeId": "47999",
+        "changedAt": "2026-09-08T16:13:10.733Z",
         "exchangeMeta": {
           "availableToBack": [
             {
-              "price": 2.86,
-              "size": 1574.76
+              "price": 1.69,
+              "size": 6556.37
             },
             {
-              "price": 2.84,
-              "size": 1428.42
+              "price": 1.68,
+              "size": 13182.1
             },
             {
-              "price": 2.82,
-              "size": 4362.44
+              "price": 1.67,
+              "size": 9472.16
             }
           ],
           "availableToLay": [
             {
-              "price": 2.88,
-              "size": 1092.63
+              "price": 1.7,
+              "size": 14727.96
             },
             {
-              "price": 2.9,
-              "size": 3417.6
+              "price": 1.71,
+              "size": 9519.94
             },
             {
-              "price": 2.92,
-              "size": 4735.53
+              "price": 1.72,
+              "size": 9906.96
             }
           ],
           "betDelay": 0,
-          "tradedVolume": 159000.0
+          "tradedVolume": 342000.0
         },
-        "limit": 1574.76,
+        "limit": 6556.37,
         "marketId": 101,
         "outcomeId": 103,
-        "price": 2.86
+        "price": 1.69
       },
       "draw": {
-        "bookmakerChangedAt": "2026-09-08T16:13:36.435Z",
+        "bookmakerChangedAt": "2026-09-08T16:12:54.318Z",
         "bookmakerOutcomeId": "58805",
-        "changedAt": "2026-09-08T16:13:36.615Z",
+        "changedAt": "2026-09-08T16:12:54.394Z",
         "exchangeMeta": {
           "availableToBack": [
             {
-              "price": 3.75,
-              "size": 38.83
+              "price": 4.3,
+              "size": 2761.89
             },
             {
-              "price": 3.7,
-              "size": 11550.01
+              "price": 4.2,
+              "size": 7137.38
             },
             {
-              "price": 3.65,
-              "size": 14146.17
+              "price": 4.1,
+              "size": 5306.33
             }
           ],
           "availableToLay": [
             {
-              "price": 3.8,
-              "size": 11091.19
+              "price": 4.4,
+              "size": 2469.85
             },
             {
-              "price": 3.85,
-              "size": 11479.67
+              "price": 4.5,
+              "size": 7138.3
             },
             {
-              "price": 3.9,
-              "size": 10777.17
+              "price": 4.6,
+              "size": 6388.16
             }
           ],
           "betDelay": 0,
-          "tradedVolume": 74800.0
+          "tradedVolume": 18000.0
         },
-        "limit": 38.83,
+        "limit": 2761.89,
         "marketId": 101,
         "outcomeId": 102,
-        "price": 3.75
+        "price": 4.3
       },
       "home": {
-        "bookmakerChangedAt": "2026-09-08T16:13:36.332Z",
-        "bookmakerOutcomeId": "10762",
-        "changedAt": "2026-09-08T16:13:36.454Z",
+        "bookmakerChangedAt": "2026-09-08T16:12:54.318Z",
+        "bookmakerOutcomeId": "48785",
+        "changedAt": "2026-09-08T16:12:54.394Z",
         "exchangeMeta": {
           "availableToBack": [
             {
-              "price": 2.58,
-              "size": 1061.32
+              "price": 5.5,
+              "size": 2344.29
             },
             {
-              "price": 2.56,
-              "size": 8344.74
+              "price": 5.4,
+              "size": 3125.0
             },
             {
-              "price": 2.54,
-              "size": 9652.35
+              "price": 5.3,
+              "size": 2793.34
             }
           ],
           "availableToLay": [
             {
-              "price": 2.6,
-              "size": 785.34
+              "price": 5.6,
+              "size": 1112.49
             },
             {
-              "price": 2.62,
-              "size": 4753.67
+              "price": 5.7,
+              "size": 4349.04
             },
             {
-              "price": 2.64,
-              "size": 6054.34
+              "price": 5.8,
+              "size": 1166.7
             }
           ],
           "betDelay": 0,
-          "tradedVolume": 178000.0
+          "tradedVolume": 33300.0
         },
-        "limit": 1061.32,
+        "limit": 2344.29,
         "marketId": 101,
         "outcomeId": 101,
-        "price": 2.58
+        "price": 5.5
       }
     },
     "suspended": false
   },
   "sport_id": 10,
-  "start_time": "2026-09-08T16:45:00.000Z",
+  "start_time": "2026-09-08T19:00:00.000Z",
   "status_id": 0,
   "target": {
-    "api_away_team": "Aston Villa",
-    "api_home_team": "Club Brugge",
-    "titan_away_team": "阿斯顿维拉",
-    "titan_home_team": "布鲁日"
+    "api_away_team": "Manchester City",
+    "api_home_team": "FC Porto",
+    "titan_away_team": "曼彻斯特城",
+    "titan_home_team": "波尔图"
   },
   "tournament_id": 7,
   "unavailable_fields": [
