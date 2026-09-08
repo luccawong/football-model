@@ -57,6 +57,7 @@ Unless the actual payload explicitly provides them, keep these `MISSING`:
 
 ## Shadow rulebook
 Canonical rulebook: `config/exchange_rulebook.json`.
+Executable evaluator: `gpt/exchange_shadow_rules.py`.
 
 The current user-supplied rulebook contains two source sections:
 - `3.2 必发/市场深度数据`;
@@ -64,7 +65,7 @@ The current user-supplied rulebook contains two source sections:
 
 Runtime discipline:
 1. Freeze the non-Exchange Baseline first.
-2. Load and evaluate every rule in `exchange_rulebook.json`.
+2. Load and evaluate every rule in `exchange_rulebook.json` through the shadow-rule evaluator.
 3. Each rule must be emitted as `TRIGGERED`, `NOT_TRIGGERED`, `MISSING`, `UNRESOLVED`, or `CONFLICT` with the exact inputs used.
 4. Missing required input means `MISSING`, never `false`.
 5. A threshold/definition not present in the source screenshot means `UNRESOLVED`; do not invent it.
@@ -73,7 +74,8 @@ Runtime discipline:
 8. Shadow results do not enter formal main/non-main statistics.
 
 ### Rule-source fidelity safeguards
-- Section 3.2 declares 10 rules but the supplied screenshot exposes only 9 rows. The absent rule remains absent until supplied.
+- After the supplementary screenshot, section 3.2 visibly contains **11** rules: R61, R62, R63, R64, R65, R66, R67, R74, R75, R76 and R77, although the source header still says “10条”. Preserve all 11 visible rules and flag the count conflict; do not delete a rule just to make the header count fit.
+- R61 says the three profit/loss ratios should be “close” but gives no numeric tolerance, so automatic triggering remains `UNRESOLVED` until a threshold is supplied.
 - R96 and R99 mention “三条件” but the screenshots do not enumerate those conditions. They remain `UNRESOLVED`.
 - Terms such as `诱盘`, `庄家控盘`, `操纵`, `隐藏力`, and `大资金看好` are preserved as source-rule labels. They must be treated as hypotheses/heuristic labels, not verified factual claims without independent evidence.
 
