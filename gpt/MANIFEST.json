@@ -19,18 +19,27 @@
     "status": "active"
   },
   "exchange_engine": {
-    "version": "GPT-EXCHANGE-1.0.0",
+    "version": "GPT-EXCHANGE-1.1.0",
     "entrypoint": "gpt/exchange_engine.py",
     "config": "config/exchange_config.json",
     "protocol": "gpt/EXCHANGE_PROTOCOL.md",
     "tests": "tests/test_exchange_engine.py",
     "status": "conditional_requires_feed"
   },
+  "exchange_shadow_rule_engine": {
+    "version": "BETFAIR-SHADOW-RULES-1.0.0",
+    "entrypoint": "gpt/exchange_shadow_rules.py",
+    "rulebook": "config/exchange_rulebook.json",
+    "tests": "tests/test_exchange_shadow_rules.py",
+    "status": "research_only_shadow"
+  },
   "open_source_registry": "docs/OPEN_SOURCE_INTEGRATIONS.md",
   "decision_policy": {
     "quant_is_evidence_not_ticket": true,
     "feature_engine_is_evidence_not_ticket": true,
     "exchange_is_evidence_not_smart_money": true,
+    "exchange_shadow_excluded_from_formal_statistics": true,
+    "baseline_frozen_before_exchange_shadow": true,
     "red_team_required_for_full_sop": true,
     "anti_double_counting": true,
     "no_unvalidated_probability_adjustments": true,
