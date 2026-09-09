@@ -1,11 +1,63 @@
 {
-  "policy_version": "FOOTBALL-ACTIVE-DECISION-POLICY-2026-09-09.1",
+  "policy_version": "FOOTBALL-ACTIVE-DECISION-POLICY-2026-09-09.2",
   "effective_date": "2026-09-09",
+  "model_selection": {
+    "registry": "config/model_registry.json",
+    "default_model_id": "MODEL_1",
+    "use_default_unless_user_explicitly_selects_another_model": true,
+    "future_rebuild_creates_new_model_id_instead_of_overwriting_model_1": true
+  },
   "authority": {
     "canonical_memory": "gpt/FOOTBALL_CANONICAL_MEMORY.md",
     "formal_sop": "gpt/FOOTBALL_SOP.md",
     "github_over_chat_memory_on_conflict": true,
     "user_explicit_new_instruction_overrides_repository_until_repository_is_updated": true
+  },
+  "analysis_order": [
+    "fundamentals",
+    "market_snapshot",
+    "opening_first_impression",
+    "opening_rationality_lifecycle",
+    "off_field_weather",
+    "lineup_tactics",
+    "one_x_two_with_real_vs_camouflage_open_audit",
+    "asian_handicap_with_europe_asia_conversion_audit",
+    "totals",
+    "cross_market_coherence",
+    "market_attraction",
+    "external_draw_exclusion_and_winner_audit",
+    "underdog_outright_audit",
+    "correct_score_poisson_bayesian",
+    "uncertainty_audit",
+    "freeze_h1",
+    "independent_red_team_h2",
+    "formal_main_ticket"
+  ],
+  "fundamentals": {
+    "must_run_before_market_interpretation": true,
+    "recent_match_by_match_review": true,
+    "recent_head_to_head_with_context": true,
+    "future_schedule_required": true,
+    "opponent_quality_weighting_required": true,
+    "wins_must_record_how_and_against_whom": true,
+    "losses_must_record_how_and_against_whom": true,
+    "home_away_context_required": true,
+    "shot_xg_chance_quality_when_available": true,
+    "no_arbitrary_numeric_weight_without_calibration": true
+  },
+  "real_vs_camouflage_open": {
+    "enabled": true,
+    "stage": "ONE_X_TWO_AFTER_FUNDAMENTALS",
+    "role": "PRIOR_AND_DIAGNOSTIC_NOT_MECHANICAL_RESULT_RULE",
+    "must_use_fundamental_strength_before_classification": true,
+    "must_cross_check_company_divergence_and_lifecycle": true
+  },
+  "europe_asia_conversion": {
+    "enabled": true,
+    "stage": "ASIAN_HANDICAP_AFTER_ONE_X_TWO",
+    "require_1x2_to_ah_consistency_check": true,
+    "conflict_must_be_explained_not_averaged_away": true,
+    "favourite_win_probability_is_not_cover_probability": true
   },
   "ticket_policy": {
     "formal_main_per_full_analysis": 1,
@@ -26,6 +78,7 @@
     "legacy_research_labels_are_not_execution_source": true,
     "excluded_1_is_hard_constraint": true,
     "excluded_1_remove_draw_from_execution_branch": true,
+    "excluded_1_immediately_open_home_vs_away_winner_audit": true,
     "excluded_1_no_independent_veto_during_test": true,
     "not_excluded_0_requires_enhanced_draw_audit": true,
     "not_excluded_0_does_not_mean_draw_prediction": true,
@@ -45,6 +98,7 @@
   "underdog_outright_audit": {
     "enabled": true,
     "mandatory_trigger_favourite_handicap": "<=-0.75",
+    "also_required_in_draw_excluded_winner_audit": true,
     "companies": [
       "William Hill",
       "Ladbrokes UK",
@@ -85,6 +139,13 @@
     "jcb_sporttery_goal_count_primary": false,
     "jcb_sporttery_auxiliary_only_when_explicitly_supplied": true
   },
+  "correct_score": {
+    "repository_quant_framework_required": true,
+    "poisson_dixon_coles_required": true,
+    "bayesian_context_update_required": true,
+    "max_final_scores": 3,
+    "direction_consistency_gate_required": true
+  },
   "exchange": {
     "provider": "OddsPapi v4 / Betfair Exchange",
     "mode": "SHADOW_RESEARCH",
@@ -118,10 +179,5 @@
     "record_or_archive_means_freeze_prematch_only": true,
     "central_write_requires_explicit_unified_update_command": true,
     "database_is_fact_source_excel_is_report_output": true
-  },
-  "known_open_conflicts_for_user_review": [
-    "JCB/Sporttery chat-analysis auxiliary use vs older V2 product removal",
-    "Whether corrupt/identity-failed data should be the sole emergency exception to no-PASS",
-    "Whether exactly-one-main applies only to full deep analysis or also every raw quick-scan candidate"
-  ]
+  }
 }
