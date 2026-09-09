@@ -1,73 +1,105 @@
-# GPT Football Analysis SOP — Full Stack v1.3
+# GPT Football Analysis SOP — MODEL_1 Full Stack v1.4
 
-1. Market snapshot + Data Gate: state, timestamp, identity, MAIN/ALT, freshness, conflicts, missing core timelines.
-2. Opening-only first impression: no later results/injuries/movements contaminate opening interpretation.
-3. Opening validity/lifecycle: true opening vs information re-opening vs ordinary movement.
-4. Off-field/source scan: official club/league first, then major media/beat reporting; label rumours.
-5. Independent strength prior: league baseline/HFA + fresh rating/xG/fundamental evidence with anti-double-counting.
-6. Squad/tactical: official/predicted XI distinction, injuries/suspensions, expected-minutes relevance, formation/matchup.
-7. Schedule/Priority: past rest plus future 7–10 days, rotation/travel; no arbitrary probability penalty.
-8. Quant Packet freeze: de-vig, company pp divergence, market-implied lambda, Dixon-Coles, AH/OU settlement, score grid.
-9. Feature Packet freeze: reversals/failed upgrades, freshness, disagreement, entropy/uncertainty, module gates.
-10. 1X2 pricing: WH/Lad primary pair; Interwetten cold-side; Pinnacle anchor; Macau signal; Bet365 comparator; same-time slices.
-11. Asian handicap: line+water lifecycle, failed upgrade/downgrade, adjacent counterfactual lines.
-12. Independent totals: Macau/Pinnacle/Bet365 dynamic structure + OU ladder latent mean + WH/Lad Base-2.5; JCB auxiliary only when explicitly supplied as external analysis context.
-13. Cross-market coherence: linked structure, not three independent votes.
-14. Market attraction + favourite-failure paths.
-15. Mandatory Underdog Outright Audit for favourite handicap deeper than -0.5 (i.e. -0.75 and beyond):
-    - begin from an independent fundamental baseline; low absolute underdog win probability is normal and is not itself evidence against an upset;
-    - compare WH, Ladbrokes, Bet365, Pinnacle, Interwetten, Macau and HKJC weak-side outright 1X2 prices after de-vigging;
-    - compare closest same-time slices; separate structural opening divergence from later divergence expansion;
-    - measure company residual versus the same-match company median and, where historical calibration exists, abnormal residual versus that company's normal handicap/league bias;
-    - inspect whether AH deepens while weak-side outright probability refuses to fall or rises, whether AH retreats while weak-side outright probability rises, and whether favourite and underdog win tails strengthen while draw is compressed;
-    - distinguish 'underdog covers' from 'underdog wins outright'; never convert +AH support into an outright-upset claim without 1X2 evidence;
-    - assign U0/U1/U2/U3 as an outright-upset evidence grade based on cross-company divergence, lifecycle and AH confirmation, never on the underdog's absolute probability alone;
-    - Red Team must explicitly ask whether the analysis is inventing reasons for the favourite while ignoring weak-side outright pricing evidence.
-16. Defensive / Lead-Lag / Attraction-Adjusted Divergence Stack:
-    - keep ordinary company disagreement as the level-1 summary;
-    - compare only de-vigged probabilities from the same time slice;
-    - measure target-side defensive divergence in percentage points;
-    - separate HOME / DRAW / AWAY and FAVORITE_NONWIN, never equate weak-side protection with weak-side outright win;
-    - record persistence, independent feed clusters, lead-lag, copied-feed risk and cross-market confirmation;
-    - UDS (Unnatural Defensive Signal) requires a low-attraction target that is nevertheless persistently protected by at least two independent clusters;
-    - information grade A/B/C/NOISE is a signal-quality label only, not a ticket grade or probability adjustment;
-    - all fields must be frozen pre-match. Post-result reconstruction is forbidden.
-17. External Draw-Exclusion Forward-Test Override — hard execution rule during the current one-month test beginning 2026-09-09:
-    - authoritative source is `draw_exclusion/latest.json` -> the referenced `draw_exclusion/daily/YYYY-MM-DD.json`; do not substitute the legacy research label file;
-    - `EXCLUDED=1`: treat draw exclusion as a hard execution constraint. Do not independently re-open or veto the website's draw decision during the test. Remove draw from the execution branch and analyze HOME WIN vs AWAY WIN, then favourite cover / favourite win-no-cover / underdog outright upset;
-    - `NOT_EXCLUDED=0`: this does NOT predict a draw, but draw must remain an active path and receive an enhanced mandatory audit before any final ticket. Review WH/Lad draw position, all core-company de-vig draw probabilities, opening-to-current draw lifecycle, closest same-time-slice divergence, AH/1X2/OU consistency, score-grid draw mass and 0-0/1-1/2-2 compatibility where relevant;
-    - for `NOT_EXCLUDED=0`, Red Team must explicitly test whether draw is the leading favourite-failure path and whether the proposed AH ticket survives that draw path. A deep favourite ticket cannot be justified only by high favourite win probability;
-    - `NULL/UNKNOWN` or a match absent from the verified daily pool stays UNKNOWN; never coerce missing into NOT_EXCLUDED;
-    - research records still preserve actual draw outcomes so the external website can be evaluated prospectively after results.
-18. Context extensions when fresh: weather/pitch, referee, ownership/agent/transfer network, club reciprocity, motivation.
-19. Advanced event layer when available: xT/VAEP, set pieces, goalkeeper, pressing/possession; otherwise MISSING.
-20. Correct-score layer: joint distribution and final Top3 direction-consistency gate.
-21. Uncertainty audit: model/company disagreement, OOD/missingness, stale/conflicting sources.
-22. Freeze H1.
-23. Independent strongest coherent Red Team H2.
-24. CONFIRM/DOWNGRADE/UPGRADE/OVERTURN.
-25. Final output: exactly ONE formal main ticket per fully analysed match. Non-main tickets are abolished. Final PASS is not allowed under the current ticket policy; uncertainty must be expressed through grade and execution conditions instead.
+Default model: `MODEL_1` from `config/model_registry.json`.
 
-## Canonical memory reference
+This is the mandatory full-analysis order. Do not reorder or compress these stages unless the user explicitly changes MODEL_1.
 
-Runtime should load `gpt/FOOTBALL_CANONICAL_MEMORY.md` and `config/active_decision_policy.json` before applying lower-level modules. If a lower-level rule conflicts with the newest explicit policy, flag and update the repository rather than silently executing the older rule.
+1. **Fundamentals first**
+   - review recent matches one by one, not only aggregate W-D-L;
+   - record who each win came against and who each loss came against;
+   - weight opponent quality conceptually: beating a weak side is not equal to beating a strong side, and losing narrowly to an elite side is not equal to losing to a weak side;
+   - inspect how the team won/lost: score margin, match state, home/away context, shots/xG/chance quality where available, repeatability and whether the result was flattering/misleading;
+   - include recent head-to-head with recency/context only, never as a standalone causal rule;
+   - include future schedule and priority pressure, not only past rest;
+   - do not invent arbitrary numeric weights before historical calibration.
+2. **Market snapshot + Data Gate**: state, timestamp, identity, MAIN/ALT, freshness, conflicts, missing core timelines.
+3. **Opening-only first impression**: judge the opening structure without later injuries, lineups, schedule, weather or movement contaminating the first impression.
+4. **Opening rationality / lifecycle**: true opening vs information re-opening vs ordinary movement; assess whether an old opening remains valid after intervening matches/news.
+5. **Off-field impact / weather**: official club/league information first, then major media/beat reporting; include motivation, relationship/reciprocity, travel, weather/pitch/referee when relevant; label rumours.
+6. **Lineup / tactics**: official vs predicted XI distinction, injuries/suspensions, expected-minutes relevance, formation, tactical matchup, set pieces/pressing/goalkeeper when adequate data exist.
+7. **1X2 pricing + Real-Open / Camouflage-Open Audit（实开 / 韬开）**
+   - this audit occurs only after fundamentals are established;
+   - use the fundamentals baseline to judge whether the opening/1X2 structure is broadly pricing the real strength gap or contains a camouflage/hidden-pricing structure;
+   - real-open/camouflage-open is a prior/diagnostic classification, never a mechanical result rule;
+   - WH/Lad primary pair; Interwetten cold-side; Pinnacle capital anchor, not automatic smart money; Macau Asian signal; Bet365 comparator; HKJC Asian/local comparator;
+   - use de-vigged closest same-time slices; preserve real European odds separately from probabilities;
+   - compare structural opening divergence and later divergence expansion.
+8. **Asian handicap + European-to-Asian Conversion Audit（欧亚转换）**
+   - run only after the 1X2 conclusion is formed;
+   - test whether 1X2 strength, draw structure and AH line/water translate coherently;
+   - inspect failed upgrades, reversals, adjacent counterfactual lines and company-specific conflicts;
+   - any 1X2-AH inconsistency must be explained, not averaged away;
+   - favourite win probability is not the same as deep-handicap cover probability.
+9. **Independent totals / OU**
+   - Macau/Pinnacle/Bet365 dynamic structure + OU ladder latent mean;
+   - WH/Lad Base-2.5 probability anchor only;
+   - totals must be determined independently from AH;
+   - JCB/Sporttery, when explicitly supplied, is auxiliary only.
+10. **Cross-market coherence**: connect 1X2, AH and OU as linked prices; test whether the implied match paths agree or conflict.
+11. **Market attraction**
+   - assess favourite heat and weak-side betting story/public attraction;
+   - use attraction as context for interpreting protection/rejection, never as standalone proof.
+12. **External Draw-Exclusion Website + Winner Audit**
+   - authoritative source: `draw_exclusion/latest.json` -> referenced daily file;
+   - during the one-month test beginning 2026-09-09, `EXCLUDED=1` is a hard execution constraint: remove draw immediately and open HOME WIN vs AWAY WIN audit;
+   - do not independently veto the website's draw exclusion during the test;
+   - `NOT_EXCLUDED=0` is not a draw prediction, but requires enhanced draw audit: WH/Lad draw position, all core-company de-vig draw probabilities, draw lifecycle, same-time divergence, AH/1X2/OU coherence and draw score mass;
+   - UNKNOWN/absent remains UNKNOWN.
+13. **Underdog Outright Audit（下盘独赢）**
+   - mandatory for favourite handicap -0.75 and deeper and central in draw-excluded winner-only review;
+   - compare WH, Ladbrokes, Bet365, Pinnacle, Interwetten, Macau and HKJC weak-side outright prices after de-vigging;
+   - distinguish structural opening divergence from dynamic divergence expansion;
+   - compare company residual versus match median and historical normal bias when calibrated;
+   - inspect AH deepening with weak-side outright protection, AH retreat with weak-side strengthening, two-ended win-tail strengthening and cross-company independent clusters;
+   - never convert +AH support into outright-upset evidence without 1X2 support;
+   - U0/U1/U2/U3 describe quality of upset evidence, not absolute underdog probability;
+   - Red Team must later ask whether the analysis invented reasons for the favourite while ignoring weak-side outright pricing evidence.
+14. **Correct score — repository Poisson / Dixon-Coles / Bayesian framework**
+   - use joint score distribution plus context/Bayesian update;
+   - maximum Top3 final scorelines;
+   - enforce direction consistency with final 1X2/AH/OU path;
+   - account for 5+ team-goal tail in deep handicap/high-total matches.
+15. **Uncertainty audit**: company/model disagreement, OOD/missingness, stale/conflicting sources, unresolved modules and execution sensitivity.
+16. **Freeze H1**: freeze first-pass direction, grade, line and key evidence before Red Team.
+17. **Independent Red Team H2**
+   - construct the strongest coherent alternative, not a cosmetic objection;
+   - may CONFIRM / DOWNGRADE / UPGRADE / OVERTURN;
+   - for NOT_EXCLUDED matches, explicitly test draw as leading favourite-failure path;
+   - for deep favourites, explicitly test favourite win-no-cover and underdog outright;
+   - explicitly test whether 1X2 win strength has been incorrectly converted into AH cover confidence.
+18. **Final formal main ticket**
+   - exactly ONE formal main ticket per fully analysed match;
+   - non-main tickets are abolished;
+   - final PASS is not allowed under current MODEL_1 policy; uncertainty is expressed by grade and execution conditions;
+   - near kickoff, send ticket first: market/line + grade + actionable reference price + one-sentence core logic;
+   - once actionable, ticket is LOCKED; any later change requires explicit correction `old -> new`.
+
+## Favourite-failure decomposition
+
+For strong favourites / hot sides, always separate:
+
+1. favourite wins and covers;
+2. favourite wins but does not cover;
+3. draw;
+4. underdog wins outright.
+
+When draw is hard-excluded by the website during the current test, remove path 3 from execution and immediately compare favourite win versus underdog outright win before judging cover depth.
+
+## Canonical loading order
+
+1. `config/model_registry.json`
+2. `models/MODEL_1_DEFAULT.md` for MODEL_1
+3. `gpt/FOOTBALL_CANONICAL_MEMORY.md`
+4. `config/active_decision_policy.json`
+5. `gpt/FOOTBALL_SOP.md`
+6. `config/module_registry.json`
+7. `config/full_stack_config.json`
+8. dedicated Exchange/draw-exclusion research files
 
 ## Divergence validation protocol
 
-The Defensive Divergence Stack is `RESEARCH_ONLY_UNCALIBRATED` until prospective validation is adequate. Store the full pre-match snapshot first, then settle outcomes later. At minimum validate by league/market/handicap bucket:
-
-- target-side divergence magnitude (pp);
-- attraction score and low-attraction subset;
-- persistence duration;
-- independent cluster count versus copied-feed clusters;
-- lead-lag and whether mainstream books subsequently followed;
-- cross-market confirmation;
-- football path split: favourite win / draw / underdog win / favourite non-win.
-
-Do not select companies or thresholds after seeing results. Do not promote information grade into probability or ticket weight until walk-forward evidence supports it.
+The Defensive Divergence Stack remains `RESEARCH_ONLY_UNCALIBRATED` until prospective validation is adequate. Store the full pre-match snapshot first, then settle outcomes later. Validate by league/market/handicap bucket: target-side divergence magnitude, attraction, persistence, independent clusters, lead-lag, cross-market confirmation and actual path split. Do not select thresholds after results.
 
 ## Validation
-Use chronological walk-forward Brier/RPS/log-loss/reliability. Do not change core logic from a few outcomes. Prefer league-specific calibration; Chinese football stays separate for research/calibration. Black-box ML, Kelly and live-inplay Bayesian remain RESEARCH_ONLY until promoted after validation.
 
-## Ticket lock
-Once a formal actionable ticket is issued it is locked. Later changes are explicit corrections with old -> new; silent replacement is forbidden.
+Use chronological walk-forward Brier/RPS/log-loss/reliability. Do not change MODEL_1 from a few outcomes. Prefer league-specific calibration; Chinese football stays separate for research/calibration. Black-box ML, Kelly and live-inplay Bayesian remain RESEARCH_ONLY until promoted after validation.
