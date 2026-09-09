@@ -1,0 +1,34 @@
+{
+  "registry_version": "FOOTBALL-MODEL-REGISTRY-1.0.0",
+  "default_model_id": "MODEL_1",
+  "selection_policy": "USE_DEFAULT_UNLESS_USER_EXPLICITLY_SELECTS_OR_CREATES_ANOTHER_MODEL",
+  "models": [
+    {
+      "model_id": "MODEL_1",
+      "name": "Current Full SOP Model",
+      "status": "ACTIVE_DEFAULT",
+      "effective_date": "2026-09-09",
+      "description": "Current user-approved full football SOP with hard draw-exclusion forward test, enhanced draw audit, underdog outright audit, independent Red Team and exactly one formal main ticket.",
+      "canonical_memory": "gpt/FOOTBALL_CANONICAL_MEMORY.md",
+      "sop": "gpt/FOOTBALL_SOP.md",
+      "decision_policy": "config/active_decision_policy.json",
+      "module_registry": "config/module_registry.json",
+      "runtime": "gpt/GPT_RUNTIME.md",
+      "decision_engine": "gpt/decision_engine.py",
+      "profile_document": "models/MODEL_1_DEFAULT.md",
+      "performance_policy": {
+        "formal_main_accuracy_is_primary": true,
+        "do_not_rebuild_from_small_sample": true,
+        "if_performance_is_below_user_expectation": "FREEZE_MODEL_1_AND_CREATE_NEW_MODEL_ID_WITH_SEPARATE_RULES_AND_VALIDATION",
+        "historical_model_1_records_must_not_be_rewritten_by_future_models": true
+      }
+    }
+  ],
+  "future_model_policy": {
+    "never_overwrite_model_1_identity": true,
+    "new_model_ids": "MODEL_2, MODEL_3, ...",
+    "new_model_must_have_separate_effective_date": true,
+    "new_model_must_have_separate_changelog_entry": true,
+    "compare_models_on_same_or_clearly_defined_samples": true
+  }
+}
