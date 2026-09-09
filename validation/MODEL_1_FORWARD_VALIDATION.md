@@ -61,6 +61,10 @@ Before kickoff freeze:
 
 No post-result feature reconstruction is allowed.
 
+If an original frozen ticket/grade/score candidate cannot be recovered, leave the field missing. Never reconstruct it from the final score or later narrative.
+
+If fixture identity is materially conflicted or the original frozen record cannot be safely bound to the correct match, keep that sample out of formal hit-rate statistics until identity/freeze evidence is recovered.
+
 ## Result confirmation
 
 Do not infer completion from elapsed time alone.
