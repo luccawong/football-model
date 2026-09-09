@@ -1,0 +1,127 @@
+{
+  "policy_version": "FOOTBALL-ACTIVE-DECISION-POLICY-2026-09-09.1",
+  "effective_date": "2026-09-09",
+  "authority": {
+    "canonical_memory": "gpt/FOOTBALL_CANONICAL_MEMORY.md",
+    "formal_sop": "gpt/FOOTBALL_SOP.md",
+    "github_over_chat_memory_on_conflict": true,
+    "user_explicit_new_instruction_overrides_repository_until_repository_is_updated": true
+  },
+  "ticket_policy": {
+    "formal_main_per_full_analysis": 1,
+    "exactly_one_formal_main": true,
+    "allow_non_main_ticket": false,
+    "allow_final_pass": false,
+    "low_confidence_must_be_expressed_by_grade_not_pass": true,
+    "ticket_lock_enabled": true,
+    "later_change_requires_explicit_correction_old_to_new": true,
+    "near_kickoff_ticket_first": true
+  },
+  "draw_exclusion_forward_test": {
+    "enabled": true,
+    "start_date": "2026-09-09",
+    "planned_duration": "ONE_MONTH",
+    "authoritative_pointer": "draw_exclusion/latest.json",
+    "authoritative_daily_pattern": "draw_exclusion/daily/YYYY-MM-DD.json",
+    "legacy_research_labels_are_not_execution_source": true,
+    "excluded_1_is_hard_constraint": true,
+    "excluded_1_remove_draw_from_execution_branch": true,
+    "excluded_1_no_independent_veto_during_test": true,
+    "not_excluded_0_requires_enhanced_draw_audit": true,
+    "not_excluded_0_does_not_mean_draw_prediction": true,
+    "unknown_or_absent_stays_unknown": true
+  },
+  "enhanced_draw_audit": {
+    "required_when_not_excluded": true,
+    "check_wh_lad_draw_position": true,
+    "check_all_core_company_devig_draw_probabilities": true,
+    "check_opening_to_current_draw_lifecycle": true,
+    "check_same_time_slice_draw_divergence": true,
+    "check_ah_1x2_ou_coherence": true,
+    "check_draw_score_mass": true,
+    "red_team_test_draw_as_leading_favourite_failure_path": true,
+    "deep_favourite_cannot_be_justified_by_win_probability_alone": true
+  },
+  "underdog_outright_audit": {
+    "enabled": true,
+    "mandatory_trigger_favourite_handicap": "<=-0.75",
+    "companies": [
+      "William Hill",
+      "Ladbrokes UK",
+      "Bet365",
+      "Pinnacle",
+      "Interwetten",
+      "Macau",
+      "HKJC"
+    ],
+    "same_time_slice_required": true,
+    "absolute_underdog_probability_is_not_a_rejection_rule": true,
+    "separate_ah_cover_from_outright_win": true,
+    "compare_structural_opening_divergence": true,
+    "compare_later_divergence_expansion": true,
+    "compare_company_residual_vs_match_median": true,
+    "compare_abnormal_residual_vs_historical_company_bias_when_calibrated": true,
+    "u_grade": ["U0", "U1", "U2", "U3"],
+    "u_grade_is_evidence_quality_not_absolute_probability": true,
+    "red_team_anti_favourite_rationalization_check": true
+  },
+  "one_x_two": {
+    "devig_required": true,
+    "real_odds_and_devig_probabilities_must_be_labeled_separately": true,
+    "same_time_slice_required": true,
+    "primary_pair": ["William Hill", "Ladbrokes UK"],
+    "interwetten_role": "COLD_SIDE_UPSET_CHECK",
+    "pinnacle_role": "CAPITAL_ANCHOR_NOT_AUTOMATIC_SMART_MONEY",
+    "macau_role": "ASIAN_SIGNAL",
+    "bet365_role": "KEY_COMPARATOR",
+    "hkjc_role": "ASIAN_LOCAL_COMPARATOR",
+    "favourite_failure_split_required": true
+  },
+  "totals": {
+    "independent_from_ah": true,
+    "dynamic_core": ["Macau", "Pinnacle", "Bet365"],
+    "wh_lad_2_5_role": "BASE_2_5_PROBABILITY_ANCHOR",
+    "ou_ladder_normalization_required_for_line_level_comparison": true,
+    "jcb_sporttery_goal_count_primary": false,
+    "jcb_sporttery_auxiliary_only_when_explicitly_supplied": true
+  },
+  "exchange": {
+    "provider": "OddsPapi v4 / Betfair Exchange",
+    "mode": "SHADOW_RESEARCH",
+    "formal_system_impact": false,
+    "freeze_baseline_before_exchange": true,
+    "titan_betfair_rows_are_not_true_oddspapi_exchange": true,
+    "single_snapshot_is_not_smart_money": true,
+    "runner_traded_volume_is_unsigned_cumulative": true,
+    "do_not_sum_runner_traded_volume_as_market_total_matched": true,
+    "missing_exchange_is_not_negative_evidence": true,
+    "shadow_excluded_from_formal_statistics": true
+  },
+  "macau_regime_research": {
+    "enabled": true,
+    "candidate_new_regime_start": "2026-09-01",
+    "formal_ticket_impact": false,
+    "preserve_all_post_start_crawler_files": true,
+    "no_post_result_reconstruction": true
+  },
+  "red_team": {
+    "required": true,
+    "independent_h2_required": true,
+    "allowed_verdicts": ["CONFIRM", "DOWNGRADE", "UPGRADE", "OVERTURN"],
+    "may_overturn_h1": true,
+    "must_test_draw_when_not_excluded": true,
+    "must_test_underdog_outright_for_deep_favourites": true,
+    "must_test_win_probability_vs_cover_probability_confusion": true
+  },
+  "recording_workflow": {
+    "analysis_chat_does_not_update_central_stats": true,
+    "record_or_archive_means_freeze_prematch_only": true,
+    "central_write_requires_explicit_unified_update_command": true,
+    "database_is_fact_source_excel_is_report_output": true
+  },
+  "known_open_conflicts_for_user_review": [
+    "JCB/Sporttery chat-analysis auxiliary use vs older V2 product removal",
+    "Whether corrupt/identity-failed data should be the sole emergency exception to no-PASS",
+    "Whether exactly-one-main applies only to full deep analysis or also every raw quick-scan candidate"
+  ]
+}
