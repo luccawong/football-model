@@ -1,5 +1,15 @@
 # Changelog
 
+## MODEL_1 TRACE / MEMORY-GAP / FORWARD-VALIDATION — 2026-09-09
+- Added `config/model_1_trace_contract.json` and `gpt/formal_trace.py` so every full MODEL_1 analysis can be serialized and validated as an 18-stage pre-match trace.
+- Added `gpt/model_1_packet_bridge.py` to map existing Quant/Feature outputs into MODEL_1 stage evidence without modifying validated mathematical formulas merely for orchestration.
+- Added tests for the trace engine and packet bridge.
+- Added `gpt/MEMORY_GAP_AUDIT_2026-09-09.md` after a cross-chat memory review; captured missing surrounding controls such as depth-over-batch-size, market-intent/counterfactual opening interpretation, price-vs-direction separation, missing-timeline disclosure, prospective sampling nodes, candidate provenance, result-confirmation/settlement discipline, JC-vs-BD draw-model-family separation, model-stability freeze discipline and legacy provider/JCB conflicts.
+- Added `research/underdog_outright/RESEARCH_PROTOCOL.md` for historical weak-side outright residual/divergence research with no formal ticket authority until validated.
+- Added `draw_exclusion_research/MODEL_FAMILY_PROTOCOL.md` separating `JC_DRAW_MODEL` and `BD_DRAW_MODEL` research families.
+- Added `validation/MODEL_1_FORWARD_VALIDATION.md` with candidate provenance, T-5h/T-2h/T-1h/T-30m/T-10m intended collection nodes, pre-match freeze, real result confirmation and objective quarter-line settlement rules.
+- Added `config/model_1_supporting_contracts.json`; updated MODEL_1 profile, Runtime and Manifest to load the new contracts while keeping research/legacy material outside formal decision authority.
+
 ## MODEL_1 DEFAULT / GPT-FOOTBALL-SOP-1.4 / DECISION-ENGINE-1.0.0 — 2026-09-09
 - Registered the current football stack as `MODEL_1`, the repository default model, via `config/model_registry.json` and `models/MODEL_1_DEFAULT.md`.
 - Added future-model isolation: if MODEL_1 performance is later unsatisfactory, freeze it and create MODEL_2/3/etc rather than overwriting MODEL_1 history.
