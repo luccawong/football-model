@@ -27,7 +27,7 @@ jobs:
       - name: Freeze, parse, index, and QC
         run: python scripts/run_draw_exclusion_daily.py
       - name: Test label contract
-        run: python -m unittest discover -s tests -p "test*.py"
+        run: python -m unittest tests.test_external_draw_label tests.test_draw_exclusion -v
       - name: Preserve sensitive raw evidence outside Git history
         uses: actions/upload-artifact@v4
         with:
@@ -48,4 +48,3 @@ jobs:
           fi
           git commit -m "data: freeze external draw labels $(date -u +%F)"
           git push
-

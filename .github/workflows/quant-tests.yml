@@ -1,6 +1,7 @@
 name: GPT Quant Tests
 
 on:
+  workflow_dispatch:
   push:
     paths:
       - 'gpt/**'
@@ -8,6 +9,7 @@ on:
       - 'config/**'
       - 'tests/**'
       - 'requirements.txt'
+      - 'requirements-dev.txt'
       - '.github/workflows/quant-tests.yml'
   pull_request:
     paths:
@@ -16,6 +18,7 @@ on:
       - 'config/**'
       - 'tests/**'
       - 'requirements.txt'
+      - 'requirements-dev.txt'
 
 jobs:
   test:
@@ -30,6 +33,6 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -r requirements.txt
+          pip install -r requirements-dev.txt
       - name: Run quant integrity tests
-        run: python -m unittest discover -s tests -v
+        run: python -m pytest tests -v
