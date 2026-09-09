@@ -110,3 +110,19 @@ python scripts/export_ledger.py "football_ledger.db"
 ```
 
 导出使用 SQLite 只读事务获得一致快照，生成 `database/exports/ledger_snapshot.json` 和 `ledger_snapshot.csv`。CSV 使用 table + record_json 的通用可逆结构，适应尚未提供的数据库 schema。没有数据库时不伪造快照。
+## Existing full-stack model
+
+# football-model
+
+Private, versioned persistent source of truth for the GPT-assisted football model. It is not the Codex web application.
+
+## Current stack
+- Model: `GPT-FOOTBALL-FULLSTACK-1.1.0`
+- Quant engine: `GPT-QUANT-0.1.0`
+- Feature/QC engine: `GPT-FEATURE-1.0.0`
+- Betfair Exchange engine: `GPT-EXCHANGE-1.0.0` (conditional; requires real live/historical feed)
+
+The stack covers deterministic market maths, lifecycle/reversal detection, source freshness/gating, uncertainty/disagreement, independent strength/squad/context modules, exchange microstructure, open-source adapters, anti-double-counting, calibration/walk-forward validation and independent Red Team adjudication.
+
+## Core rule
+More modules do not mean more forced confidence. Missing/stale/conflicting evidence is surfaced; correlated signals are not counted repeatedly; unvalidated context is never converted into arbitrary goal/probability adjustments. Betfair Exchange is market microstructure evidence, not an automatic smart-money oracle. Final tickets remain a structured decision after the full evidence stack and Red Team.

@@ -1,0 +1,177 @@
+{
+  "away_team": "Real Sociedad San Sebastian",
+  "bridge_version": "EXCHANGE-BRIDGE-1.2.0",
+  "engine_version": "GPT-EXCHANGE-1.0.0",
+  "home_team": "Elche CF",
+  "match_id": "3013675",
+  "observed_at": "2026-09-07T19:13:19Z",
+  "provider": "ODDSPAPI_V4",
+  "provider_fixture_id": "id1000000872478532",
+  "provider_mode": "BETFAIR_EXCHANGE_META",
+  "qc": {
+    "away_price_present": true,
+    "betfair_bookmaker_present": true,
+    "draw_price_present": true,
+    "exchange_meta_present": true,
+    "exchange_meta_preserved_raw": true,
+    "fixture_present": true,
+    "home_price_present": true,
+    "market_not_suspended": true,
+    "total_matched_available": false
+  },
+  "rate_limit": {
+    "limit": null,
+    "remaining": null,
+    "reset": null
+  },
+  "schema_version": "exchange-packet-1.2",
+  "selected_bookmaker": {
+    "bookmakerFixtureId": "35999583",
+    "bookmakerIsActive": true,
+    "bookmaker_slug": "betfair-ex",
+    "fixturePath": "https://www.betfair.com/exchange/plus/en/e/e/e-e-35999583",
+    "selections": {
+      "away": {
+        "bookmakerChangedAt": "2026-09-07T19:13:14.094Z",
+        "bookmakerOutcomeId": "18573",
+        "changedAt": "2026-09-07T19:13:14.834Z",
+        "exchangeMeta": {
+          "availableToBack": [
+            {
+              "price": 2.38,
+              "size": 3387.11
+            },
+            {
+              "price": 2.36,
+              "size": 4700.68
+            },
+            {
+              "price": 2.34,
+              "size": 6053.34
+            }
+          ],
+          "availableToLay": [
+            {
+              "price": 2.4,
+              "size": 6506.14
+            },
+            {
+              "price": 2.42,
+              "size": 12421.46
+            },
+            {
+              "price": 2.44,
+              "size": 8269.18
+            }
+          ],
+          "betDelay": 0,
+          "tradedVolume": 367000.0
+        },
+        "limit": 3387.11,
+        "marketId": 101,
+        "outcomeId": 103,
+        "price": 2.38
+      },
+      "draw": {
+        "bookmakerChangedAt": "2026-09-07T19:13:15.762Z",
+        "bookmakerOutcomeId": "58805",
+        "changedAt": "2026-09-07T19:13:17.515Z",
+        "exchangeMeta": {
+          "availableToBack": [
+            {
+              "price": 3.5,
+              "size": 2450.55
+            },
+            {
+              "price": 3.45,
+              "size": 4522.13
+            },
+            {
+              "price": 3.4,
+              "size": 4056.47
+            }
+          ],
+          "availableToLay": [
+            {
+              "price": 3.55,
+              "size": 4103.52
+            },
+            {
+              "price": 3.6,
+              "size": 6633.82
+            },
+            {
+              "price": 3.65,
+              "size": 2355.95
+            }
+          ],
+          "betDelay": 0,
+          "tradedVolume": 101000.0
+        },
+        "limit": 2450.55,
+        "marketId": 101,
+        "outcomeId": 102,
+        "price": 3.5
+      },
+      "home": {
+        "bookmakerChangedAt": "2026-09-07T19:13:18.286Z",
+        "bookmakerOutcomeId": "309111",
+        "changedAt": "2026-09-07T19:13:18.727Z",
+        "exchangeMeta": {
+          "availableToBack": [
+            {
+              "price": 3.35,
+              "size": 2834.34
+            },
+            {
+              "price": 3.3,
+              "size": 7473.18
+            },
+            {
+              "price": 3.25,
+              "size": 5354.95
+            }
+          ],
+          "availableToLay": [
+            {
+              "price": 3.4,
+              "size": 3262.98
+            },
+            {
+              "price": 3.45,
+              "size": 1960.92
+            },
+            {
+              "price": 3.5,
+              "size": 7789.02
+            }
+          ],
+          "betDelay": 0,
+          "tradedVolume": 69900.0
+        },
+        "limit": 2834.34,
+        "marketId": 101,
+        "outcomeId": 101,
+        "price": 3.35
+      }
+    },
+    "suspended": false
+  },
+  "sport_id": 10,
+  "start_time": "2026-09-07T19:30:00.000Z",
+  "status_id": 0,
+  "target": {
+    "api_away_team": "Real Sociedad",
+    "api_home_team": "Elche",
+    "titan_away_team": "皇家社会",
+    "titan_home_team": "埃尔切"
+  },
+  "tournament_id": 8,
+  "unavailable_fields": [
+    "total_matched",
+    "traded_ladder",
+    "traded_volume_velocity",
+    "guaranteed_multi_level_back_lay_depth"
+  ],
+  "venue": "Betfair Exchange"
+}

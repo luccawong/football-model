@@ -1,0 +1,177 @@
+{
+  "away_team": "Real Betis Seville",
+  "bridge_version": "EXCHANGE-BRIDGE-1.2.0",
+  "engine_version": "GPT-EXCHANGE-1.0.0",
+  "home_team": "Lille OSC",
+  "match_id": "3073162",
+  "observed_at": "2026-09-08T16:42:38Z",
+  "provider": "ODDSPAPI_V4",
+  "provider_fixture_id": "id1000000774165876",
+  "provider_mode": "BETFAIR_EXCHANGE_META",
+  "qc": {
+    "away_price_present": true,
+    "betfair_bookmaker_present": true,
+    "draw_price_present": true,
+    "exchange_meta_present": true,
+    "exchange_meta_preserved_raw": true,
+    "fixture_present": true,
+    "home_price_present": true,
+    "market_not_suspended": true,
+    "total_matched_available": false
+  },
+  "rate_limit": {
+    "limit": null,
+    "remaining": null,
+    "reset": null
+  },
+  "schema_version": "exchange-packet-1.2",
+  "selected_bookmaker": {
+    "bookmakerFixtureId": "35998664",
+    "bookmakerIsActive": true,
+    "bookmaker_slug": "betfair-ex",
+    "fixturePath": "https://www.betfair.com/exchange/plus/en/e/e/e-e-35998664",
+    "selections": {
+      "away": {
+        "bookmakerChangedAt": "2026-09-08T16:42:31.353Z",
+        "bookmakerOutcomeId": "44507",
+        "changedAt": "2026-09-08T16:42:31.506Z",
+        "exchangeMeta": {
+          "availableToBack": [
+            {
+              "price": 3.35,
+              "size": 1242.5
+            },
+            {
+              "price": 3.3,
+              "size": 5838.99
+            },
+            {
+              "price": 3.25,
+              "size": 2503.93
+            }
+          ],
+          "availableToLay": [
+            {
+              "price": 3.4,
+              "size": 697.95
+            },
+            {
+              "price": 3.45,
+              "size": 2456.01
+            },
+            {
+              "price": 3.5,
+              "size": 3592.2
+            }
+          ],
+          "betDelay": 0,
+          "tradedVolume": 15700.0
+        },
+        "limit": 1242.5,
+        "marketId": 101,
+        "outcomeId": 103,
+        "price": 3.35
+      },
+      "draw": {
+        "bookmakerChangedAt": "2026-09-08T16:42:31.353Z",
+        "bookmakerOutcomeId": "58805",
+        "changedAt": "2026-09-08T16:42:31.506Z",
+        "exchangeMeta": {
+          "availableToBack": [
+            {
+              "price": 3.65,
+              "size": 1064.48
+            },
+            {
+              "price": 3.6,
+              "size": 3714.09
+            },
+            {
+              "price": 3.55,
+              "size": 3980.4
+            }
+          ],
+          "availableToLay": [
+            {
+              "price": 3.7,
+              "size": 2104.07
+            },
+            {
+              "price": 3.75,
+              "size": 3613.82
+            },
+            {
+              "price": 3.8,
+              "size": 3077.46
+            }
+          ],
+          "betDelay": 0,
+          "tradedVolume": 18200.0
+        },
+        "limit": 1064.48,
+        "marketId": 101,
+        "outcomeId": 102,
+        "price": 3.65
+      },
+      "home": {
+        "bookmakerChangedAt": "2026-09-08T16:42:31.353Z",
+        "bookmakerOutcomeId": "44790",
+        "changedAt": "2026-09-08T16:42:31.506Z",
+        "exchangeMeta": {
+          "availableToBack": [
+            {
+              "price": 2.3,
+              "size": 608.73
+            },
+            {
+              "price": 2.28,
+              "size": 5630.57
+            },
+            {
+              "price": 2.26,
+              "size": 4710.33
+            }
+          ],
+          "availableToLay": [
+            {
+              "price": 2.32,
+              "size": 44.54
+            },
+            {
+              "price": 2.34,
+              "size": 3026.29
+            },
+            {
+              "price": 2.36,
+              "size": 7173.29
+            }
+          ],
+          "betDelay": 0,
+          "tradedVolume": 46000.0
+        },
+        "limit": 608.73,
+        "marketId": 101,
+        "outcomeId": 101,
+        "price": 2.3
+      }
+    },
+    "suspended": false
+  },
+  "sport_id": 10,
+  "start_time": "2026-09-08T19:00:00.000Z",
+  "status_id": 0,
+  "target": {
+    "api_away_team": "Real Betis",
+    "api_home_team": "Lille",
+    "titan_away_team": "皇家贝蒂斯",
+    "titan_home_team": "里尔"
+  },
+  "tournament_id": 7,
+  "unavailable_fields": [
+    "total_matched",
+    "traded_ladder",
+    "traded_volume_velocity",
+    "guaranteed_multi_level_back_lay_depth"
+  ],
+  "venue": "Betfair Exchange"
+}

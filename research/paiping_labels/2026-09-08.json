@@ -1,0 +1,35 @@
+{
+  "schema_version": "external-paiping-labels-1.0",
+  "date": "2026-09-08",
+  "mode": "FORWARD_SHADOW_RESEARCH",
+  "source": "user-supplied screenshot of external 排平 website",
+  "source_definition": "排平意思：高概率不会出现平局",
+  "captured_before_results": true,
+  "display_counts": {
+    "single_only": 4,
+    "paiping": 8,
+    "visible_matches": 12
+  },
+  "timezone_note": "Kickoff times are stored exactly as displayed on the Chinese betting page; the screenshot itself does not print a timezone.",
+  "research_rules": [
+    "Treat paiping as an external pre-match label, not as truth.",
+    "Keep both flagged and unflagged matches as forward-test/control samples.",
+    "Do not use final results when reconstructing pre-match features.",
+    "When later Titan/OddsPapi crawler packets arrive, match primarily by competition + teams + displayed kickoff date/time, then bind Titan match_id once resolved.",
+    "Evaluate draw hit rate, false exclusion rate, missed-draw rate, and stratify by league, AH bucket, 1X2 structure and Exchange shadow-rule state."
+  ],
+  "matches": [
+    {"seq":1,"code":"周二001","issue_date":"2026-09-08","kickoff_displayed":"2026-09-08 18:30","competition":"韩职","home":"蔚山现代","away":"首尔FC","jczq_handicap":1,"single":true,"ah_left":0.93,"ah_line":"受让平手/半球","ah_right":0.88,"initial_1x2":[3.21,3.5,1.88],"paiping":true,"titan_match_id":null},
+    {"seq":2,"code":"周二002","issue_date":"2026-09-08","kickoff_displayed":"2026-09-09 00:45","competition":"欧冠","home":"雅典AEK","away":"LASK林茨","jczq_handicap":-1,"single":false,"ah_left":0.98,"ah_line":"半球/一球","ah_right":0.88,"initial_1x2":[1.68,3.65,3.85],"paiping":true,"titan_match_id":null},
+    {"seq":3,"code":"周二003","issue_date":"2026-09-08","kickoff_displayed":"2026-09-09 00:45","competition":"欧冠","home":"布鲁日","away":"维拉","jczq_handicap":1,"single":true,"ah_left":0.85,"ah_line":"受让平手/半球","ah_right":1.0,"initial_1x2":[2.6,3.35,2.25],"paiping":false,"titan_match_id":null},
+    {"seq":4,"code":"周二004","issue_date":"2026-09-08","kickoff_displayed":"2026-09-09 00:45","competition":"荷甲","home":"奈梅亨","away":"SBV精英","jczq_handicap":-1,"single":false,"ah_left":0.83,"ah_line":"一球/球半","ah_right":0.98,"initial_1x2":[1.48,4.3,4.55],"paiping":false,"titan_match_id":null},
+    {"seq":5,"code":"周二005","issue_date":"2026-09-08","kickoff_displayed":"2026-09-09 02:00","competition":"沙特职业联赛","home":"胡巴尔卡德西亚","away":"吉达国民","jczq_handicap":-1,"single":false,"ah_left":0.85,"ah_line":"半球","ah_right":0.95,"initial_1x2":[1.75,3.8,3.4],"paiping":true,"titan_match_id":null},
+    {"seq":6,"code":"周二006","issue_date":"2026-09-08","kickoff_displayed":"2026-09-09 02:45","competition":"英冠","home":"南安普敦","away":"斯旺西","jczq_handicap":-1,"single":false,"ah_left":0.93,"ah_line":"半球/一球","ah_right":0.93,"initial_1x2":[1.67,3.6,3.95],"paiping":false,"titan_match_id":null},
+    {"seq":7,"code":"周二007","issue_date":"2026-09-08","kickoff_displayed":"2026-09-09 02:45","competition":"英联赛杯","home":"桑德兰","away":"赫尔城","jczq_handicap":-1,"single":false,"ah_left":0.85,"ah_line":"半球","ah_right":1.0,"initial_1x2":[1.53,3.65,5.0],"paiping":true,"titan_match_id":null},
+    {"seq":8,"code":"周二008","issue_date":"2026-09-08","kickoff_displayed":"2026-09-09 03:00","competition":"欧冠","home":"皇马","away":"国际米兰","jczq_handicap":-1,"single":true,"ah_left":0.85,"ah_line":"半球","ah_right":1.0,"initial_1x2":[1.45,4.2,4.95],"paiping":true,"titan_match_id":null},
+    {"seq":9,"code":"周二009","issue_date":"2026-09-08","kickoff_displayed":"2026-09-09 03:00","competition":"欧冠","home":"多特蒙德","away":"比利亚雷","jczq_handicap":-1,"single":true,"ah_left":0.95,"ah_line":"半球","ah_right":0.9,"initial_1x2":[1.65,3.8,3.85],"paiping":true,"titan_match_id":null},
+    {"seq":10,"code":"周二010","issue_date":"2026-09-08","kickoff_displayed":"2026-09-09 03:00","competition":"欧冠","home":"里尔","away":"贝蒂斯","jczq_handicap":-1,"single":false,"ah_left":0.8,"ah_line":"平手","ah_right":1.05,"initial_1x2":[1.9,3.3,3.33],"paiping":false,"titan_match_id":null},
+    {"seq":11,"code":"周二011","issue_date":"2026-09-08","kickoff_displayed":"2026-09-09 03:00","competition":"欧冠","home":"波尔图","away":"曼城","jczq_handicap":1,"single":false,"ah_left":0.85,"ah_line":"受让半球/一球","ah_right":1.0,"initial_1x2":[4.85,4.05,1.48],"paiping":true,"titan_match_id":null},
+    {"seq":12,"code":"周二012","issue_date":"2026-09-08","kickoff_displayed":"2026-09-09 06:00","competition":"解放者杯","home":"弗鲁米嫩塞","away":"普拉滕斯","jczq_handicap":-1,"single":false,"ah_left":0.93,"ah_line":"一球","ah_right":0.93,"initial_1x2":[1.38,3.55,8.25],"paiping":true,"titan_match_id":null}
+  ]
+}

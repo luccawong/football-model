@@ -1,0 +1,177 @@
+{
+  "away_team": "Manchester City",
+  "bridge_version": "EXCHANGE-BRIDGE-1.2.0",
+  "engine_version": "GPT-EXCHANGE-1.0.0",
+  "home_team": "FC Porto",
+  "match_id": "3073090",
+  "observed_at": "2026-09-08T16:42:32Z",
+  "provider": "ODDSPAPI_V4",
+  "provider_fixture_id": "id1000000774165874",
+  "provider_mode": "BETFAIR_EXCHANGE_META",
+  "qc": {
+    "away_price_present": true,
+    "betfair_bookmaker_present": true,
+    "draw_price_present": true,
+    "exchange_meta_present": true,
+    "exchange_meta_preserved_raw": true,
+    "fixture_present": true,
+    "home_price_present": true,
+    "market_not_suspended": true,
+    "total_matched_available": false
+  },
+  "rate_limit": {
+    "limit": null,
+    "remaining": null,
+    "reset": null
+  },
+  "schema_version": "exchange-packet-1.2",
+  "selected_bookmaker": {
+    "bookmakerFixtureId": "35998658",
+    "bookmakerIsActive": true,
+    "bookmaker_slug": "betfair-ex",
+    "fixturePath": "https://www.betfair.com/exchange/plus/en/e/e/e-e-35998658",
+    "selections": {
+      "away": {
+        "bookmakerChangedAt": "2026-09-08T16:42:18.130Z",
+        "bookmakerOutcomeId": "47999",
+        "changedAt": "2026-09-08T16:42:18.359Z",
+        "exchangeMeta": {
+          "availableToBack": [
+            {
+              "price": 1.69,
+              "size": 1920.5
+            },
+            {
+              "price": 1.68,
+              "size": 17746.78
+            },
+            {
+              "price": 1.67,
+              "size": 8049.22
+            }
+          ],
+          "availableToLay": [
+            {
+              "price": 1.7,
+              "size": 18249.48
+            },
+            {
+              "price": 1.71,
+              "size": 3979.4
+            },
+            {
+              "price": 1.72,
+              "size": 9688.81
+            }
+          ],
+          "betDelay": 0,
+          "tradedVolume": 428000.0
+        },
+        "limit": 1920.5,
+        "marketId": 101,
+        "outcomeId": 103,
+        "price": 1.69
+      },
+      "draw": {
+        "bookmakerChangedAt": "2026-09-08T16:42:18.223Z",
+        "bookmakerOutcomeId": "58805",
+        "changedAt": "2026-09-08T16:42:18.359Z",
+        "exchangeMeta": {
+          "availableToBack": [
+            {
+              "price": 4.3,
+              "size": 1748.69
+            },
+            {
+              "price": 4.2,
+              "size": 3297.72
+            },
+            {
+              "price": 4.1,
+              "size": 8285.99
+            }
+          ],
+          "availableToLay": [
+            {
+              "price": 4.4,
+              "size": 4342.32
+            },
+            {
+              "price": 4.5,
+              "size": 9827.06
+            },
+            {
+              "price": 4.6,
+              "size": 6677.18
+            }
+          ],
+          "betDelay": 0,
+          "tradedVolume": 19900.0
+        },
+        "limit": 1748.69,
+        "marketId": 101,
+        "outcomeId": 102,
+        "price": 4.3
+      },
+      "home": {
+        "bookmakerChangedAt": "2026-09-08T16:42:18.130Z",
+        "bookmakerOutcomeId": "48785",
+        "changedAt": "2026-09-08T16:42:18.359Z",
+        "exchangeMeta": {
+          "availableToBack": [
+            {
+              "price": 5.6,
+              "size": 1067.39
+            },
+            {
+              "price": 5.5,
+              "size": 3868.19
+            },
+            {
+              "price": 5.4,
+              "size": 4796.76
+            }
+          ],
+          "availableToLay": [
+            {
+              "price": 5.7,
+              "size": 1310.16
+            },
+            {
+              "price": 5.8,
+              "size": 869.15
+            },
+            {
+              "price": 5.9,
+              "size": 2801.3
+            }
+          ],
+          "betDelay": 0,
+          "tradedVolume": 34800.0
+        },
+        "limit": 1067.39,
+        "marketId": 101,
+        "outcomeId": 101,
+        "price": 5.6
+      }
+    },
+    "suspended": false
+  },
+  "sport_id": 10,
+  "start_time": "2026-09-08T19:00:00.000Z",
+  "status_id": 0,
+  "target": {
+    "api_away_team": "Manchester City",
+    "api_home_team": "FC Porto",
+    "titan_away_team": "曼彻斯特城",
+    "titan_home_team": "波尔图"
+  },
+  "tournament_id": 7,
+  "unavailable_fields": [
+    "total_matched",
+    "traded_ladder",
+    "traded_volume_velocity",
+    "guaranteed_multi_level_back_lay_depth"
+  ],
+  "venue": "Betfair Exchange"
+}

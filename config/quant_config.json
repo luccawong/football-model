@@ -1,0 +1,18 @@
+{
+  "engine_version": "GPT-QUANT-0.1.0",
+  "one_x_two_devig_method": "power",
+  "divergence_anchor": "Pinnacle",
+  "max_goals": 12,
+  "max_fit_residual": 0.015,
+  "dynamic_ou_primary_companies": ["Macau", "Pinnacle", "Bet365"],
+  "base_2_5_companies": ["WilliamHill", "Ladbrokes"],
+  "report_ou_lines": [2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.5],
+  "report_ah_lines": [0.0, -0.25, -0.5, -0.75, -1.0, -1.25, -1.5],
+  "rules": {
+    "same_time_slice_required": true,
+    "missing_timeline_must_be_disclosed": true,
+    "quant_layer_cannot_issue_ticket": true,
+    "quant_fail_blocks_quant_evidence": true,
+    "wh_lad_2_5_role": "base_probability_anchor_not_dynamic_mainline"
+  }
+}

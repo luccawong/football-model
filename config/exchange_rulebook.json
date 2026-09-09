@@ -1,0 +1,225 @@
+{
+  "rulebook_version": "BETFAIR-SHADOW-RULEBOOK-1.0.1",
+  "integration_mode": "shadow_research",
+  "formal_system_impact": false,
+  "source_date": "2026-09-08",
+  "source_notes": [
+    "Rules transcribed from three user-supplied screenshots.",
+    "Supplementary screenshot adds R61 and R62 to section 3.2.",
+    "After merging the screenshots, section 3.2 contains 11 visible rules (R61,R62,R63,R64,R65,R66,R67,R74,R75,R76,R77) while the source header still declares 10. All visible rules are preserved; none is deleted to force the count to 10.",
+    "R96 and R99 reference three validation conditions, but the screenshot does not enumerate those three conditions; they remain unresolved until the user supplies them.",
+    "Red marker/highlight is preserved for R36, R37, R76 and R96.",
+    "All rules are research heuristics during the current multi-day Betfair shadow test and cannot alter formal-system statistics by themselves."
+  ],
+  "sections": [
+    {
+      "section_id": "3.2",
+      "title": "必发/市场深度数据",
+      "source_declared_count": 10,
+      "visible_rule_count": 11,
+      "count_qc": "SOURCE_HEADER_COUNT_CONFLICT",
+      "rules": [
+        {
+          "id": "R61",
+          "name": "盈亏比均衡=市场成熟",
+          "core_point": "三项盈亏比接近=市场交易充分",
+          "red_marker": false,
+          "required_inputs": ["home_profit_loss_ratio", "draw_profit_loss_ratio", "away_profit_loss_ratio"],
+          "status": "RESEARCH_ONLY",
+          "unresolved": ["三项盈亏比接近的客观容差阈值未在截图定义"]
+        },
+        {
+          "id": "R62",
+          "name": "高概率低凯利=核心",
+          "core_point": "概率>60%+凯利指数最低=真热",
+          "red_marker": false,
+          "required_inputs": ["selection_probability", "kelly_index", "all_selection_kelly_indices"],
+          "thresholds": {"selection_probability_gt": 0.60, "kelly_rank_required": 1},
+          "status": "RESEARCH_ONLY"
+        },
+        {
+          "id": "R63",
+          "name": "换手平稳=市场共识",
+          "core_point": "Back/Lay 价差<0.10+WoM 40-60%=真共识",
+          "red_marker": false,
+          "required_inputs": ["best_back", "best_lay", "WoM"],
+          "thresholds": {"back_lay_odds_spread_lt": 0.10, "wom_pct_min": 40, "wom_pct_max": 60},
+          "status": "RESEARCH_ONLY"
+        },
+        {
+          "id": "R64",
+          "name": "深层 Back 大单=吃货",
+          "core_point": "深层大单+占比>40%=大资金看好",
+          "red_marker": false,
+          "required_inputs": ["back_ladder", "deep_order_size", "deep_order_share_pct"],
+          "thresholds": {"deep_order_share_pct_gt": 40},
+          "status": "RESEARCH_ONLY",
+          "unresolved": ["deep level definition", "large-order absolute threshold"]
+        },
+        {
+          "id": "R65",
+          "name": "卖方主动压价=不利",
+          "core_point": "WoM<35%+Lay 挂单远超 Back=看空",
+          "red_marker": false,
+          "required_inputs": ["WoM", "back_depth", "lay_depth"],
+          "thresholds": {"wom_pct_lt": 35},
+          "status": "RESEARCH_ONLY",
+          "unresolved": ["Lay远超Back的倍率阈值未在截图定义"]
+        },
+        {
+          "id": "R66",
+          "name": "盈利率异常=市场方向",
+          "core_point": "大小球盈利率偏离 2 倍标准差=顺市场",
+          "red_marker": false,
+          "required_inputs": ["ou_profitability", "ou_profitability_baseline_mean", "ou_profitability_baseline_sd"],
+          "thresholds": {"z_abs_gte": 2.0},
+          "status": "RESEARCH_ONLY"
+        },
+        {
+          "id": "R67",
+          "name": "Back 放量+高位挂单=硬吃",
+          "core_point": "买方高价位主动挂单=真金白银看好",
+          "red_marker": false,
+          "required_inputs": ["back_volume_timeseries", "back_ladder", "price_position"],
+          "status": "RESEARCH_ONLY",
+          "unresolved": ["高位定义与主动挂单识别规则未在截图定义"]
+        },
+        {
+          "id": "R74",
+          "name": "凯差离散度偏高=扭曲",
+          "core_point": "凯差偏离 1.5 倍标准差=赔率被扭曲",
+          "red_marker": false,
+          "required_inputs": ["kelly_dispersion", "kelly_dispersion_baseline_mean", "kelly_dispersion_baseline_sd"],
+          "thresholds": {"z_abs_gte": 1.5},
+          "status": "RESEARCH_ONLY"
+        },
+        {
+          "id": "R75",
+          "name": "凯差热指低位=安全",
+          "core_point": "机构赔付风险可控=真实概率",
+          "red_marker": false,
+          "required_inputs": ["kelly_heat_index", "bookmaker_payout_risk"],
+          "status": "RESEARCH_ONLY",
+          "unresolved": ["凯差热指低位阈值未在截图定义"]
+        },
+        {
+          "id": "R76",
+          "name": "中间价位空白=无人区",
+          "core_point": "Back/Lay 中间空白=谁推谁被吃",
+          "red_marker": true,
+          "required_inputs": ["best_back", "best_lay", "back_ladder", "lay_ladder"],
+          "candidate_proxy": "spread_ticks>1 可作为中间价位存在空档的候选代理，但不得等同原规则结论",
+          "status": "RESEARCH_ONLY"
+        },
+        {
+          "id": "R77",
+          "name": "量价背离=信号",
+          "core_point": "成交方向与赔率变化方向不一致=隐藏力",
+          "red_marker": false,
+          "required_inputs": ["matched_trade_side_direction", "price_direction"],
+          "status": "RESEARCH_ONLY",
+          "current_feed_note": "OddsPapi tradedVolume only gives volume, not matched-side direction; do not fabricate trade direction."
+        }
+      ]
+    },
+    {
+      "section_id": "3.3",
+      "title": "庄家操纵/市场博弈",
+      "source_declared_count": 9,
+      "visible_rule_count": 9,
+      "rules": [
+        {
+          "id": "R36",
+          "name": "线索矛盾→警惕第三选项",
+          "core_point": "≥2 维度互相矛盾=答案在盲区",
+          "red_marker": true,
+          "required_inputs": ["independent_signal_dimensions"],
+          "thresholds": {"contradictory_dimensions_gte": 2},
+          "status": "RESEARCH_ONLY"
+        },
+        {
+          "id": "R37",
+          "name": "“过于完美”=诱盘信号",
+          "core_point": "热门选项数据完美但有表演感=诱盘",
+          "red_marker": true,
+          "required_inputs": ["favorite_signal_stack", "performance_like_flag"],
+          "status": "RESEARCH_ONLY",
+          "unresolved": ["表演感无法由截图给出客观阈值，禁止自动硬判"]
+        },
+        {
+          "id": "R38",
+          "name": "对立选项无支撑=主方向加强",
+          "core_point": "真热+对立选项连反抗都没有=主方向可信",
+          "red_marker": false,
+          "required_inputs": ["main_direction_support", "opposite_direction_support"],
+          "status": "RESEARCH_ONLY"
+        },
+        {
+          "id": "R39",
+          "name": "放量下行=强势确认",
+          "core_point": "成交放量+价位下行=买方压倒性优势",
+          "red_marker": false,
+          "required_inputs": ["tradedVolume_timeseries", "price_timeseries"],
+          "status": "RESEARCH_ONLY",
+          "current_feed_note": "Can be evaluated only from at least two valid pre-match snapshots for the same runner."
+        },
+        {
+          "id": "R58",
+          "name": "庄家自救盘",
+          "core_point": "必发>80%集中+盘口不调整=庄家控盘",
+          "red_marker": false,
+          "required_inputs": ["betfair_concentration_pct", "asian_handicap_timeline"],
+          "thresholds": {"betfair_concentration_pct_gt": 80},
+          "status": "RESEARCH_ONLY",
+          "language_guard": "The phrase 庄家控盘 is preserved from the source rule and must be treated as a hypothesis label, not a verified fact."
+        },
+        {
+          "id": "R59",
+          "name": "控盘成本阈值",
+          "core_point": "顶级赛事操纵成本高概率低，友谊赛反",
+          "red_marker": false,
+          "required_inputs": ["competition_level", "match_type", "liquidity_context"],
+          "status": "RESEARCH_ONLY",
+          "language_guard": "Manipulation is not inferred as fact without independent evidence."
+        },
+        {
+          "id": "R60",
+          "name": "多庄博弈盘",
+          "core_point": "多大资本抢夺控制权→先观察保守为好",
+          "red_marker": false,
+          "required_inputs": ["cross_bookmaker_conflict", "capital_control_proxy"],
+          "status": "RESEARCH_ONLY",
+          "unresolved": ["大资本/控制权的客观识别阈值未在截图定义"]
+        },
+        {
+          "id": "R96",
+          "name": "诱盘验证三条件",
+          "core_point": "盘口持续受捧≠诱盘，需验证三条件",
+          "red_marker": true,
+          "required_inputs": ["three_validation_conditions"],
+          "status": "UNRESOLVED",
+          "unresolved": ["截图未列出三条具体验证条件，禁止猜测"]
+        },
+        {
+          "id": "R99",
+          "name": "反向指标使用条件",
+          "core_point": "散户热度≠总是反向，三条件验证后判断",
+          "red_marker": false,
+          "required_inputs": ["retail_heat", "three_validation_conditions"],
+          "status": "UNRESOLVED",
+          "unresolved": ["截图未列出三条具体验证条件，禁止猜测"]
+        }
+      ]
+    }
+  ],
+  "evaluation_policy": {
+    "baseline_must_be_frozen_before_exchange_rules": true,
+    "rule_outputs_must_be_logged_separately": true,
+    "formal_ticket_statistics_must_not_include_shadow_results": true,
+    "missing_required_input_means_missing_not_false": true,
+    "unresolved_threshold_means_no_automatic_trigger": true,
+    "single_rule_cannot_create_or_overturn_formal_ticket": true,
+    "market_manipulation_language_is_hypothesis_not_fact": true,
+    "post_match_result_must_not_backfill_prematch_rule_state": true
+  }
+}

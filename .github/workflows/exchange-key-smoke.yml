@@ -1,0 +1,25 @@
+name: OddsPapi API Key Smoke Test
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/exchange-key-smoke.yml'
+      - 'exchange_bridge/smoke_test.py'
+      - 'exchange_bridge/oddspapi.py'
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    env:
+      ODDSPAPI_API_KEY: ${{ secrets.ODDSPAPI_API_KEY || secrets.THE_ODDS_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Authenticate OddsPapi
+        run: python -m exchange_bridge.smoke_test
