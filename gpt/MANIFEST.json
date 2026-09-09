@@ -1,6 +1,19 @@
 {
   "model": "GPT Football Model",
-  "model_version": "GPT-FOOTBALL-FULLSTACK-1.1.0",
+  "model_registry": "config/model_registry.json",
+  "default_model_id": "MODEL_1",
+  "default_model_profile": "models/MODEL_1_DEFAULT.md",
+  "model_version": "MODEL_1-2026-09-09 / GPT-FOOTBALL-FULLSTACK-1.2.0",
+  "canonical_memory": "gpt/FOOTBALL_CANONICAL_MEMORY.md",
+  "formal_sop": "gpt/FOOTBALL_SOP.md",
+  "active_decision_policy": "config/active_decision_policy.json",
+  "decision_engine": {
+    "version": "MODEL_1-DECISION-1.0.0",
+    "entrypoint": "gpt/decision_engine.py",
+    "tests": "tests/test_decision_engine.py",
+    "status": "active",
+    "purpose": "Enforce MODEL_1 stage order, draw-exclusion branch, underdog-audit gate, Red Team verdict set and exactly-one-main policy."
+  },
   "quant_engine": {
     "version": "GPT-QUANT-0.1.0",
     "entrypoint": "gpt/quant_core.py",
@@ -41,7 +54,7 @@
     "config": "config/exchange_config.json",
     "protocol": "gpt/EXCHANGE_PROTOCOL.md",
     "tests": "tests/test_exchange_engine.py",
-    "status": "conditional_requires_feed"
+    "status": "conditional_requires_feed_shadow_only"
   },
   "exchange_shadow_rule_engine": {
     "version": "BETFAIR-SHADOW-RULES-1.0.0",
@@ -52,15 +65,23 @@
   },
   "open_source_registry": "docs/OPEN_SOURCE_INTEGRATIONS.md",
   "decision_policy": {
+    "fundamentals_first": true,
+    "real_vs_camouflage_open_audit_required": true,
+    "europe_asia_conversion_audit_required": true,
+    "external_draw_exclusion_hard_test": true,
+    "underdog_outright_audit_required_for_deep_favourites": true,
     "quant_is_evidence_not_ticket": true,
     "feature_engine_is_evidence_not_ticket": true,
     "divergence_information_grade_is_not_ticket_grade": true,
-    "exchange_is_evidence_not_smart_money": true,
+    "exchange_is_shadow_not_smart_money": true,
     "exchange_shadow_excluded_from_formal_statistics": true,
     "baseline_frozen_before_exchange_shadow": true,
     "red_team_required_for_full_sop": true,
     "anti_double_counting": true,
     "no_unvalidated_probability_adjustments": true,
+    "exactly_one_formal_main": true,
+    "non_main_ticket_allowed": false,
+    "final_pass_allowed": false,
     "ticket_lock_rule": true
   }
 }
