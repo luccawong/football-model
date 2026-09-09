@@ -1,5 +1,5 @@
 {
-  "version": "MODEL_1-SUPPORTING-CONTRACTS-1.0.0",
+  "version": "MODEL_1-SUPPORTING-CONTRACTS-1.0.1",
   "model_id": "MODEL_1",
   "formal_runtime": {
     "sop": "gpt/FOOTBALL_SOP.md",
@@ -33,6 +33,11 @@
       "path": "draw_exclusion_research/MODEL_FAMILY_PROTOCOL.md",
       "authority": "RESEARCH_VALIDATION_SUPPORT",
       "formal_effect": "Does not replace authoritative daily execution label contract."
+    },
+    {
+      "path": "research/jcb/HISTORICAL_GOAL_HTFT_MEMORY.md",
+      "authority": "HISTORICAL_RESEARCH_ONLY",
+      "formal_effect": "NONE_BY_DEFAULT; optional auxiliary context only when explicitly supplied under current MODEL_1 policy."
     }
   ],
   "conflict_rule": "Newest explicit user instruction and current formal MODEL_1 policy outrank legacy/supporting research. Conflicts must be surfaced and versioned, never silently resolved by older artifacts."
