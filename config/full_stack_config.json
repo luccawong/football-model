@@ -1,23 +1,37 @@
 {
-  "model_version": "GPT-FOOTBALL-FULLSTACK-1.1.0",
+  "model_id": "MODEL_1",
+  "model_version": "GPT-FOOTBALL-FULLSTACK-1.2.0",
   "feature_engine_version": "GPT-FEATURE-1.0.0",
   "quant_engine_version": "GPT-QUANT-0.1.0",
-  "exchange_engine_version": "GPT-EXCHANGE-1.0.0",
+  "exchange_engine_version": "GPT-EXCHANGE-1.1.0",
+  "decision_engine_version": "MODEL_1-DECISION-1.0.0",
+  "model_registry": "config/model_registry.json",
+  "decision_policy": "config/active_decision_policy.json",
   "principles": {
+    "fundamentals_first": true,
     "facts_inference_assumption_conclusion_separated": true,
     "same_time_slice_required": true,
     "no_silent_missing_data": true,
     "no_unvalidated_probability_adjustments": true,
     "anti_double_counting": true,
     "market_is_data_not_ground_truth": true,
+    "real_vs_camouflage_open_is_diagnostic_not_mechanical": true,
+    "europe_asia_conversion_audit_required": true,
+    "market_attraction_required_before_underdog_interpretation": true,
+    "draw_exclusion_forward_test_hard_gate": true,
+    "underdog_outright_audit_for_deep_favourites": true,
     "exchange_is_data_not_smart_money": true,
+    "exchange_formal_impact": false,
     "red_team_required": true,
+    "exactly_one_formal_main": true,
+    "allow_non_main": false,
+    "allow_final_pass": false,
     "ticket_lock_rule": true
   },
   "dedupe_groups": {
-    "team_strength": ["elo", "pi_rating", "clubelo", "xg_strength", "recent_results"],
+    "team_strength": ["elo", "pi_rating", "clubelo", "xg_strength", "recent_results", "opponent_quality_weighted_form"],
     "squad_strength": ["market_value", "expected_minutes", "lineup_delta", "injury_delta"],
-    "market_direction": ["one_x_two", "asian_handicap", "totals", "betfair_vs_bookmaker"],
+    "market_direction": ["one_x_two", "asian_handicap", "totals", "company_divergence", "europe_asia_conversion"],
     "exchange_microstructure": ["spread", "depth", "imbalance", "price_velocity", "book_percentage"],
     "exchange_liquidity": ["total_matched", "traded_volume_velocity", "near_kickoff_liquidity"],
     "chance_creation": ["xg", "shots", "big_chances", "xT", "VAEP"],
@@ -47,6 +61,7 @@
     "no_direction_from_imbalance_alone": true,
     "no_direction_from_total_matched_alone": true,
     "same_time_compare_with_bookmakers": true,
-    "execution_layer": "RESEARCH_ONLY"
+    "execution_layer": "SHADOW_RESEARCH",
+    "formal_system_impact": false
   }
 }
