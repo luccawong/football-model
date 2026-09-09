@@ -1,62 +1,116 @@
-# GPT Runtime Contract — Full Stack 1.3
+# GPT Runtime Contract — MODEL_1 Default / Full Stack 1.4
 
-This repository is the persistent cross-chat source of truth for the GPT football analysis stack, not a standalone web application.
+This repository is the persistent cross-chat source of truth for the GPT football analysis stack.
+
+## Model selection
+
+- Read `config/model_registry.json` first.
+- Default model is `MODEL_1` unless the user explicitly selects or creates another model.
+- MODEL_1 identity must never be overwritten by a future rebuild. If performance later fails to meet expectations, freeze MODEL_1 and create MODEL_2/3/etc with separate rules, activation date and validation.
+- Current MODEL_1 profile: `models/MODEL_1_DEFAULT.md`.
 
 ## Full-SOP trigger
-When the user supplies football match data and requests the full SOP with independent Red Team review, automatically execute the current repository stack without requiring the user to name individual modules.
+
+When the user supplies football match data and requests full SOP + independent Red Team, automatically execute the current default model without requiring the user to name individual modules.
+
+## Canonical loading order
+
+1. `config/model_registry.json`
+2. active model profile, currently `models/MODEL_1_DEFAULT.md`
+3. `gpt/FOOTBALL_CANONICAL_MEMORY.md`
+4. `config/active_decision_policy.json`
+5. `gpt/FOOTBALL_SOP.md`
+6. `config/module_registry.json`
+7. `config/full_stack_config.json`
+8. dedicated Exchange / draw-exclusion files
+
+## MODEL_1 formal analysis order
+
+The formal trace must follow exactly:
+
+1. Fundamentals
+2. Market snapshot
+3. Opening first impression
+4. Opening rationality / lifecycle
+5. Off-field factors / weather
+6. Lineup / tactics
+7. 1X2 + real-open/camouflage-open（实开/韬开）audit after fundamentals
+8. Asian handicap + explicit 1X2 -> AH European/Asian conversion consistency audit
+9. Totals / OU
+10. Cross-market coherence
+11. Market attraction
+12. External draw-exclusion website + winner audit
+13. Underdog outright audit
+14. Correct score using repository Poisson/Dixon-Coles/Bayesian framework
+15. Uncertainty audit
+16. Freeze H1
+17. Independent Red Team H2
+18. Exactly one formal main ticket
+
+`gpt/decision_engine.py` validates this policy. Research/shadow modules run outside the frozen formal trace and cannot reorder it.
+
+## Fundamentals first
+
+Before looking for a market narrative, evaluate recent matches one by one:
+
+- who each win/loss came against;
+- opponent quality;
+- how the team won/lost: margin, game state, home/away context, shots/xG/chance quality where available;
+- recent head-to-head with context;
+- future schedule and priority pressure.
+
+Do not invent arbitrary numeric opponent weights until calibrated.
+
+## 1X2 and AH transition gates
+
+- 1X2 must include the post-fundamentals 实开/韬开 audit. It is a diagnostic/prior, not a mechanical result rule.
+- AH runs after 1X2 and must explicitly test 欧亚转换 consistency. Any conflict must be explained.
+- Never convert strong favourite 1X2 win confidence directly into deep-AH cover confidence.
+
+## Draw-exclusion hard test
+
+Authoritative source: `draw_exclusion/latest.json` -> referenced daily file.
+
+- `EXCLUDED=1`: hard-remove draw from the execution branch for the current one-month test and immediately run HOME WIN vs AWAY WIN audit. Do not independently veto the website label during the test.
+- `NOT_EXCLUDED=0`: keep draw active and run enhanced draw audit; this is not itself a draw prediction.
+- missing/UNKNOWN stays UNKNOWN.
+
+## Underdog outright gate
+
+- Mandatory for favourites -0.75 and deeper.
+- Mandatory in winner-only review after hard draw exclusion.
+- Must distinguish +AH cover evidence from outright-win evidence.
+
+## Formal ticket policy
+
+- Exactly one formal main ticket per full analysis.
+- No non-main tickets.
+- No final PASS in MODEL_1; uncertainty is expressed through grade and execution conditions.
+- Near kickoff send the formal main first.
+- Once actionable, the ticket is locked; any later change must be explicit `old -> new` correction.
 
 ## Current Betfair mode
-Betfair/OddsPapi is currently in **SHADOW_RESEARCH** mode for a multi-day test. It must be evaluated separately from the formal football system.
+
+Betfair/OddsPapi is **SHADOW_RESEARCH** with zero formal impact.
 
 Hard separation:
-- Freeze the formal/non-Exchange Baseline before looking at Betfair Shadow conclusions.
-- Betfair Shadow results are stored and settled separately.
-- Betfair Shadow results do not enter formal main-ticket, non-main-ticket or formal model win-rate statistics.
-- Betfair Shadow may be compared with Baseline for correction/harm analysis, but cannot silently rewrite the frozen Baseline.
 
-## Fixed cross-chat order
-1. Read MANIFEST, quant/full-stack/exchange configs, rulebook and module registry.
-2. Parse Titan input preserving match ID/state, timestamps, company identity, MAIN/ALT, raw prices and QC.
-3. Build module states: ACTIVE/PARTIAL/MISSING/STALE/CONFLICT/RESEARCH_ONLY; never silently omit a registered module.
-4. Run snapshot/freshness/identity/same-time/conflict QC.
-5. Run GPT-QUANT and freeze Quant Packet.
-6. Run GPT-FEATURE and freeze Feature Packet.
-7. Build fresh independent strength/squad/context layers using anti-double-counting groups.
-8. Run the normal qualitative full SOP **without using Betfair Shadow as decision evidence**.
-9. Freeze Baseline H1 / Baseline grade / Baseline ticket state.
-10. Run the normal independent H2 Red Team and freeze the formal Baseline adjudication.
-11. **Auto-acquire OddsPapi Betfair Exchange for the selected test match:** if no valid current Exchange Packet exists, resolve the Titan match into `config/exchange_watchlist.json` using match_id, English team aliases and kickoff UTC, then trigger the repository Exchange collector via the watchlist push. The user must not be asked to edit the watchlist manually. If collection fails, disclose it and mark Exchange MISSING; never fabricate it.
-12. If a real pre-match Betfair Exchange packet/historical stream is available, map the exact market and run GPT-EXCHANGE.
-13. Run `gpt/exchange_shadow_rules.py` against `config/exchange_rulebook.json` and emit every shadow rule as TRIGGERED / NOT_TRIGGERED / MISSING / UNRESOLVED / CONFLICT.
-14. Build the separate Exchange-Enhanced shadow view and classify incremental effect versus frozen Baseline: CORRECTED / LED_WRONG / REINFORCED_WRONG / REINFORCED_RIGHT / NO_EFFECT / INSUFFICIENT_DATA.
-15. Present formal Baseline and Exchange Shadow separately; never merge their statistics during the test period.
+- Freeze the complete formal MODEL_1 Baseline before Exchange Shadow interpretation.
+- Exchange Shadow does not alter formal ticket direction/grade and is excluded from formal statistics.
+- If collection fails, disclose MISSING; never fabricate.
+- A Titan bookmaker row named Betfair is not OddsPapi `betfair-ex` Exchange data.
 
-## Exchange auto-acquisition rules
-- Primary provider: OddsPapi v4; Betfair Exchange bookmaker `betfair-ex`; football sportId=10; Full Time Result market 101.
-- Only selected deep/full-SOP test matches are auto-added to the watchlist. Do not scan every fixture.
-- Preserve provider timestamps and `exchangeMeta` raw before interpretation.
-- Current Exchange collection is quota-controlled. Do not waste requests on matches not selected for deep analysis.
-- A Titan bookmaker row named Betfair is not a substitute for OddsPapi `betfair-ex` Exchange data.
-- The runtime should automatically clean or disable expired watchlist targets when practical; stale targets must never create in-play contamination.
+## Exchange auto-acquisition
 
-## Shadow rulebook source fidelity
-- Canonical rules: `config/exchange_rulebook.json`.
-- Section 3.2 source header says 10 rules, but merged screenshots visibly contain 11: R61, R62, R63, R64, R65, R66, R67, R74, R75, R76, R77. Preserve all visible rules and keep the source-count conflict as QC.
-- R61 uses the word “接近” without a numeric tolerance; automatic trigger is UNRESOLVED until a threshold exists.
-- R96 and R99 refer to three validation conditions that are not visible in supplied screenshots; both stay UNRESOLVED.
-- Terms like 诱盘/控盘/操纵 are heuristic source labels, not factual claims.
-
-## Fast-ticket rule
-Near kickoff, send the formal Baseline actionable direction first. Exchange Shadow must never delay the formal ticket. If Exchange collection would delay execution, issue Baseline first and label Shadow pending/missing.
+- Primary provider: OddsPapi v4; `betfair-ex`; football sportId=10; Full Time Result market 101.
+- Only selected deep/full-SOP research matches are auto-added to watchlist.
+- Preserve provider timestamps and raw exchangeMeta.
+- Exchange collection must never delay the formal ticket near kickoff.
 
 ## Missing/stale data
-Missing evidence is not negative evidence. Critical stale/conflict/missing states can block the affected module. Never fabricate a number or silently substitute a source; name missing core timelines/current lineup uncertainty. Betfair is conditional and its absence alone never downgrades the formal Baseline.
 
-## Betfair interpretation
-Betfair Exchange is a market microstructure source, not a smart-money oracle. Traded volume, order-book imbalance and price motion are descriptive features and must not independently create a formal direction. Cross-venue comparisons require the closest same-time slice and pre-match state.
-
-## External integrations
-Public GitHub libraries are method/data adapters, not decision-makers. Transfermarkt-datasets is historical-only while the 2026 update pause remains; soccerdata scrapers require per-run source QC; socceraction/kloppy activate only with suitable event data; betfairlightweight/betfairutil/flumine activate only with real Betfair data.
+Missing evidence is not negative evidence. Critical stale/conflict/missing states can block the affected calculation but must be disclosed. Never fabricate company timelines, lineup identity, or market fields.
 
 ## Version discipline
-Every full analysis internally records model, Quant Engine, Feature Engine, Exchange Engine and Shadow Rule Engine versions when used. Any formula/threshold/module-status change requires version/changelog update and walk-forward validation. Never rewrite historical calculations with newer formulas.
+
+Every full analysis should record model ID/version, policy version, Quant Engine, Feature Engine and any Shadow engine version used. Formula/threshold/module-status changes require changelog + prospective validation. Historical MODEL_1 outputs are never rewritten by newer models.
