@@ -1,5 +1,14 @@
 # Changelog
 
+## GPT-FOOTBALL-SOP-1.3 / CANONICAL-MEMORY-2026-09-09 — 2026-09-09
+- Migrated active cross-chat football-model rules into `gpt/FOOTBALL_CANONICAL_MEMORY.md` for user audit and future runtime loading.
+- Added machine-readable `config/active_decision_policy.json`.
+- Replaced the legacy formal-main/non-main/PASS output policy with the newest rule: exactly one formal main ticket per fully analysed match, no non-main tickets, no final PASS; uncertainty is expressed through grade and execution conditions.
+- Formalized the one-month draw-exclusion execution test: `EXCLUDED=1` is a hard draw-removal constraint; `NOT_EXCLUDED=0` triggers enhanced mandatory draw audit; missing/unknown stays UNKNOWN.
+- Formalized mandatory underdog outright audit for favourites -0.75 and deeper, including same-time-slice company divergence and U0-U3 evidence grading.
+- Preserved Betfair/OddsPapi as SHADOW_RESEARCH with zero formal-system impact.
+- Added an explicit conflict-review section for JCB/Sporttery scope, emergency data-integrity handling under no-PASS, and whether exactly-one-main applies to quick-scan candidates or only full analysis.
+
 ## GPT-EXCHANGE-1.1.0 / BETFAIR-SHADOW-RULES-1.0.0 — 2026-09-08
 - Switched the current Betfair integration into SHADOW_RESEARCH mode for a multi-day isolated test; Shadow results are excluded from formal football-system statistics.
 - Added `config/exchange_rulebook.json` from the user-supplied Betfair/depth and market-game screenshots.
