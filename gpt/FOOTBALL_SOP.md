@@ -1,4 +1,4 @@
-# GPT Football Analysis SOP — MODEL_1 Full Stack v1.5
+# GPT Football Analysis SOP — MODEL_1 Full Stack v1.6
 
 Default model: `MODEL_1` from `config/model_registry.json`.
 
@@ -10,6 +10,15 @@ This is the mandatory full-analysis order. Do not reorder or compress these stag
 - If more than two matches are supplied, keep each match separate and do not skip/compress required stages merely to finish faster.
 - Each match must receive its own H1, Red Team H2 and final formal ticket.
 - Near kickoff, ticket-first delivery is allowed, but internal SOP stages are not waived.
+
+## Formal market-source rule
+
+- MODEL_1 formal odds/market analysis is **Titan-only**.
+- Titan is the only formal source for 1X2, AH, OU, line/water lifecycle and company timeline when the user supplies a Titan packet.
+- JCB and Sporttery are currently **disabled** and must not be used even as auxiliary evidence.
+- The GitHub draw-exclusion label remains a separate execution constraint, not an odds source.
+- Off-field official/media/weather information remains a separate context layer, not a replacement market source.
+- OddsPapi/Betfair remains SHADOW_RESEARCH only and has zero formal ticket impact.
 
 1. **Fundamentals first**
    - review recent matches one by one, not only aggregate W-D-L;
@@ -38,22 +47,23 @@ This is the mandatory full-analysis order. Do not reorder or compress these stag
    - use the fundamentals baseline to judge whether the opening/1X2 structure is broadly pricing the real strength gap or contains a camouflage/hidden-pricing structure;
    - real-open/camouflage-open is a prior/diagnostic classification, never a mechanical result rule;
    - WH/Lad primary pair; Interwetten cold-side; Pinnacle capital anchor, not automatic smart money; Macau Asian signal; Bet365 comparator; HKJC Asian/local comparator;
-   - use de-vigged closest same-time slices; preserve real European odds separately from probabilities;
+   - use de-vigged closest same-time slices from Titan; preserve real European odds separately from probabilities;
    - compare structural opening divergence and later divergence expansion;
    - split favourite win from favourite non-win, then split non-win into draw-led vs underdog-win-led paths.
 8. **Asian handicap + European-to-Asian Conversion Audit（欧亚转换）**
    - run only after the 1X2 conclusion is formed;
+   - use Titan AH line/water lifecycle;
    - test whether 1X2 strength, draw structure and AH line/water translate coherently;
    - inspect failed upgrades, reversals, adjacent counterfactual lines and company-specific conflicts;
    - any 1X2-AH inconsistency must be explained, not averaged away;
    - favourite win probability is not the same as deep-handicap cover probability;
    - do not upgrade beyond the observed market ceiling without stable deeper-line consensus.
 9. **Independent totals / OU**
-   - Macau/Pinnacle/Bet365 dynamic structure + OU ladder latent mean;
-   - WH/Lad Base-2.5 probability anchor only;
+   - Titan Macau/Pinnacle/Bet365 dynamic structure + OU ladder latent mean;
+   - Titan WH/Lad Base-2.5 probability anchor only;
    - totals must be determined independently from AH;
-   - JCB/Sporttery is not a production dependency; when explicitly supplied in ChatGPT analysis it is auxiliary only and cannot override the external/Titan OU conclusion.
-10. **Cross-market coherence**: connect 1X2, AH and OU as linked prices; test whether the implied match paths agree or conflict.
+   - JCB/Sporttery are disabled and must not enter the OU conclusion.
+10. **Cross-market coherence**: connect Titan 1X2, AH and OU as linked prices; test whether the implied match paths agree or conflict.
 11. **Market attraction**
    - assess favourite heat and weak-side betting story/public attraction;
    - use attraction as context for interpreting protection/rejection, never as standalone proof.
@@ -66,7 +76,7 @@ This is the mandatory full-analysis order. Do not reorder or compress these stag
    - JC and BD teacher/model families remain separated in research and are not pooled by default.
 13. **Underdog Outright Audit（下盘独赢）**
    - mandatory for favourite handicap -0.75 and deeper and central in draw-excluded winner-only review;
-   - compare WH, Ladbrokes, Bet365, Pinnacle, Interwetten, Macau and HKJC weak-side outright prices after de-vigging;
+   - compare Titan WH, Ladbrokes, Bet365, Pinnacle, Interwetten, Macau and HKJC weak-side outright prices after de-vigging;
    - distinguish structural opening divergence from dynamic divergence expansion;
    - compare company residual versus match median and historical normal bias when calibrated;
    - inspect AH deepening with weak-side outright protection, AH retreat with weak-side strengthening, two-ended win-tail strengthening and cross-company independent clusters;
@@ -74,7 +84,7 @@ This is the mandatory full-analysis order. Do not reorder or compress these stag
    - U0/U1/U2/U3 describe quality of upset evidence, not absolute underdog probability;
    - Red Team must later ask whether the analysis invented reasons for the favourite while ignoring weak-side outright pricing evidence.
 14. **Correct score — repository Poisson / Dixon-Coles / Bayesian framework**
-   - use joint score distribution plus context/Bayesian update;
+   - use Titan-derived market inputs for the quantitative market layer plus context/Bayesian update;
    - maximum Top3 final scorelines, preserving explicit Top1/Top2/Top3 ranking;
    - enforce direction consistency with final 1X2/AH/OU path;
    - account for 5+ team-goal tail in deep handicap/high-total matches;
