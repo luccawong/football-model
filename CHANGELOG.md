@@ -1,5 +1,23 @@
 # Changelog
 
+## MODEL_1 DEFAULT / GPT-FOOTBALL-SOP-1.4 / DECISION-ENGINE-1.0.0 — 2026-09-09
+- Registered the current football stack as `MODEL_1`, the repository default model, via `config/model_registry.json` and `models/MODEL_1_DEFAULT.md`.
+- Added future-model isolation: if MODEL_1 performance is later unsatisfactory, freeze it and create MODEL_2/3/etc rather than overwriting MODEL_1 history.
+- Reordered the full SOP to the user-approved 18-stage sequence with **fundamentals first**.
+- Fundamentals now explicitly require recent match-by-match review, opponent-quality context, how wins/losses happened, and future schedule/priority pressure; arbitrary numeric opponent weights remain forbidden until calibrated.
+- Added mandatory post-fundamentals **实开/韬开** diagnostic inside the 1X2 stage; it is a prior/diagnostic, not a mechanical result rule.
+- Added mandatory 1X2 -> AH **欧亚转换** consistency audit before accepting an Asian-handicap interpretation.
+- Moved market attraction ahead of draw-exclusion and underdog-outright decisions.
+- Draw-exclusion `EXCLUDED=1` now explicitly opens an immediate HOME-vs-AWAY winner audit; `NOT_EXCLUDED=0` keeps the enhanced draw audit.
+- Kept mandatory underdog outright audit after the draw branch, including favourites -0.75 and deeper.
+- Correct-score stage explicitly uses repository Poisson/Dixon-Coles + Bayesian/context framework and direction-consistency gate.
+- Implemented second-step machine enforcement:
+  - updated `config/active_decision_policy.json` with MODEL_1 and the exact 18-stage order;
+  - updated `config/module_registry.json` with stage mapping and new modules;
+  - added `gpt/decision_engine.py` to validate stage order, draw branch, underdog gate, Red Team verdict and exactly-one-main output;
+  - added `tests/test_decision_engine.py`;
+  - updated `gpt/GPT_RUNTIME.md`, `gpt/FULL_STACK_PROTOCOL.md`, `gpt/MANIFEST.json`, `config/full_stack_config.json`, `gpt/FOOTBALL_CANONICAL_MEMORY.md` and `gpt/FOOTBALL_SOP.md`.
+
 ## GPT-FOOTBALL-SOP-1.3 / CANONICAL-MEMORY-2026-09-09 — 2026-09-09
 - Migrated active cross-chat football-model rules into `gpt/FOOTBALL_CANONICAL_MEMORY.md` for user audit and future runtime loading.
 - Added machine-readable `config/active_decision_policy.json`.
