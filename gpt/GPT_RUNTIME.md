@@ -1,4 +1,4 @@
-# GPT Runtime Contract — MODEL_1 Default / Full Stack 1.4
+# GPT Runtime Contract — MODEL_1 Default / Full Stack 1.5
 
 This repository is the persistent cross-chat source of truth for the GPT football analysis stack.
 
@@ -21,8 +21,11 @@ When the user supplies football match data and requests full SOP + independent R
 4. `config/active_decision_policy.json`
 5. `gpt/FOOTBALL_SOP.md`
 6. `config/module_registry.json`
-7. `config/full_stack_config.json`
-8. dedicated Exchange / draw-exclusion files
+7. `config/model_1_trace_contract.json`
+8. `config/model_1_supporting_contracts.json`
+9. `gpt/MEMORY_GAP_AUDIT_2026-09-09.md` as supporting audit only; ACTIVE items may supplement but research/legacy/conflict items cannot override formal policy
+10. `config/full_stack_config.json`
+11. dedicated Exchange / draw-exclusion files
 
 ## MODEL_1 formal analysis order
 
@@ -47,7 +50,20 @@ The formal trace must follow exactly:
 17. Independent Red Team H2
 18. Exactly one formal main ticket
 
-`gpt/decision_engine.py` validates this policy. Research/shadow modules run outside the frozen formal trace and cannot reorder it.
+`gpt/decision_engine.py` validates policy gates. `gpt/formal_trace.py` validates and serializes the complete 18-stage audit trace. Research/shadow modules run outside the frozen formal trace and cannot reorder it.
+
+## Formal runtime packets
+
+Every full MODEL_1 analysis should preserve three linked evidence objects plus the final trace:
+
+- Quant Packet from `gpt/quant_core.py`;
+- Feature/QC Packet mapped by `gpt/model_1_packet_bridge.py`;
+- correct-score stage evidence mapped from Quant + explicit Bayesian/context update by `gpt/model_1_packet_bridge.py`;
+- Formal Analysis Trace from `gpt/formal_trace.py`.
+
+The packet bridge is orchestration only. It must not change validated de-vig, Poisson/Dixon-Coles, AH/OU settlement or uncertainty mathematics merely to fit the SOP.
+
+If an expected packet is unavailable, store explicit `MISSING`; never silently substitute another source or infer a missing time point.
 
 ## Fundamentals first
 
@@ -75,11 +91,14 @@ Authoritative source: `draw_exclusion/latest.json` -> referenced daily file.
 - `NOT_EXCLUDED=0`: keep draw active and run enhanced draw audit; this is not itself a draw prediction.
 - missing/UNKNOWN stays UNKNOWN.
 
+Draw research must preserve teacher/model family where available. `JC_DRAW_MODEL` and `BD_DRAW_MODEL` are separate research families and are not pooled by default.
+
 ## Underdog outright gate
 
 - Mandatory for favourites -0.75 and deeper.
 - Mandatory in winner-only review after hard draw exclusion.
 - Must distinguish +AH cover evidence from outright-win evidence.
+- Historical company-residual / divergence thresholds remain research-only until calibrated under `research/underdog_outright/RESEARCH_PROTOCOL.md`.
 
 ## Formal ticket policy
 
@@ -88,6 +107,10 @@ Authoritative source: `draw_exclusion/latest.json` -> referenced daily file.
 - No final PASS in MODEL_1; uncertainty is expressed through grade and execution conditions.
 - Near kickoff send the formal main first.
 - Once actionable, the ticket is locked; any later change must be explicit `old -> new` correction.
+
+## Analysis-depth rule
+
+Deep analysis is match-by-match. One match at a time is preferred; two is the practical maximum before depth compression risk. If more are supplied, do not skip/reorder required stages merely to finish faster.
 
 ## Current Betfair mode
 
@@ -107,10 +130,14 @@ Hard separation:
 - Preserve provider timestamps and raw exchangeMeta.
 - Exchange collection must never delay the formal ticket near kickoff.
 
+## Prospective validation support
+
+Use `validation/MODEL_1_FORWARD_VALIDATION.md` for measurement discipline around MODEL_1. Where the collector supports it, retain T-5h/T-2h/T-1h/T-30m/T-10m checkpoints, candidate provenance, result-confirmation status and objective quarter-line settlement. These validation controls do not become betting signals.
+
 ## Missing/stale data
 
-Missing evidence is not negative evidence. Critical stale/conflict/missing states can block the affected calculation but must be disclosed. Never fabricate company timelines, lineup identity, or market fields.
+Missing evidence is not negative evidence. Critical stale/conflict/missing states can block the affected calculation but must be disclosed. Never fabricate company timelines, lineup identity, or market fields. Missing sampling nodes are not interpolated from Opening/Current.
 
 ## Version discipline
 
-Every full analysis should record model ID/version, policy version, Quant Engine, Feature Engine and any Shadow engine version used. Formula/threshold/module-status changes require changelog + prospective validation. Historical MODEL_1 outputs are never rewritten by newer models.
+Every full analysis should record model ID/version, policy version, Quant Engine, Feature Engine, packet-bridge version, trace-engine version and any Shadow engine version used. Formula/threshold/module-status changes require changelog + prospective validation. Historical MODEL_1 outputs are never rewritten by newer models.
