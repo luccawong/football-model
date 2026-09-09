@@ -1,5 +1,16 @@
 # Changelog
 
+## MODEL_1 SOP-1.5 / SOURCE-POLICY-1.1 / MEMORY-SAFEGUARDS — 2026-09-09
+- Added explicit analysis-depth rule: one match preferred, two practical maximum before compression risk; multi-match H1/Red Team remain independent.
+- Added opening reasonable-band + adjacent counterfactual pricing requirement and clarified market-intent/inducement as inference rather than fact.
+- Added rating safeguards: generic risk alone does not justify downgrade; downgrade requires material pricing/path/cross-market/cover-ceiling/data-integrity counterevidence; do not upgrade beyond observed market ceiling without stable deeper consensus.
+- Added price/execution safeguard under the new no-PASS regime: a materially different available line requires re-audit and a current formal main, not silent grade transfer or legacy price-threshold PASS.
+- Added explicit missing-data impact disclosure and no timeline interpolation.
+- Added `config/model_1_source_policy.json`: Titan is the raw odds authority when the user supplies a Titan packet; Aoke is supplemental cross-check only; OddsPapi is genuine Betfair Exchange Shadow; API-Football remains a separate software-provider layer where configured.
+- Added raw-packet/storage rules: preserve match_id, source/timestamps/parser version/raw evidence/QC, multi-match `match_index`, per-match isolation, lineup image/DOM capture, validation-packet retention and `validation_packets/latest.json` pointer.
+- Added historical JCB goal-count/HTFT memory under `research/jcb/` as research-only, with no automatic production authority.
+- Strengthened forward validation: frozen-ticket/score recovery cannot be reconstructed from results; identity-conflicted samples stay outside formal hit-rate statistics; Top1 vs Top3 score metrics remain separate; HELPFUL/HARMFUL labels require a frozen pre-match action and confirmed settlement.
+
 ## MODEL_1 TRACE / MEMORY-GAP / FORWARD-VALIDATION — 2026-09-09
 - Added `config/model_1_trace_contract.json` and `gpt/formal_trace.py` so every full MODEL_1 analysis can be serialized and validated as an 18-stage pre-match trace.
 - Added `gpt/model_1_packet_bridge.py` to map existing Quant/Feature outputs into MODEL_1 stage evidence without modifying validated mathematical formulas merely for orchestration.
