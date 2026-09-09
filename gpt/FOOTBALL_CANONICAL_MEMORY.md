@@ -1,339 +1,316 @@
-# Football Canonical Memory — Active Rules Snapshot
+# Football Canonical Memory — MODEL_1 Active Rules
 
 Snapshot date: 2026-09-09
+Default model: `MODEL_1`
+Registry: `config/model_registry.json`
 
-Purpose: migrate the user's cross-chat football-model rules into one auditable GitHub reference so runtime decisions do not depend on chat memory alone. This file distinguishes ACTIVE rules, RESEARCH/SHADOW rules, and SUPERSEDED/CONFLICT items that must not silently drive analysis.
+Purpose: keep the user's active cross-chat football rules in one auditable GitHub source so future analysis does not depend on conversational recall. MODEL_1 is the first/default formal model. If future win rate is unsatisfactory, freeze MODEL_1 and create MODEL_2/3/etc; never silently overwrite MODEL_1 history.
 
-## 1. Authority and versioning
+## 1. Authority / versioning
 
-- GitHub repository `luccawong/football-model` is the canonical football-model rule source.
-- Chat memory is auxiliary context only. If chat memory and the current GitHub formal rule conflict, use the current GitHub rule unless the user explicitly says to modify the model.
-- Rule changes must be versioned prospectively. Do not rewrite old pre-match decisions after results.
-- Once an actionable formal ticket is sent, it is LOCKED. Any later change must be explicitly labeled as a correction with old -> new; silent direction/grade changes are forbidden.
-- Facts, inference, assumptions and conclusions must be separated. The model must actively challenge user hypotheses and its own first-pass narrative.
+- GitHub `luccawong/football-model` is the canonical rule source.
+- Chat memory is auxiliary; a new explicit user instruction takes precedence until GitHub is updated.
+- Rule changes apply prospectively. Do not rewrite old pre-match decisions after results.
+- Once an actionable formal ticket is issued, it is LOCKED. Later change must be an explicit correction `old -> new`.
+- Separate fact / inference / assumption / conclusion and actively challenge both user and model hypotheses.
 
-## 2. Current output / ticket policy — ACTIVE and newest
+## 2. MODEL_1 ticket policy — ACTIVE
 
-- Every analyzed match must produce exactly ONE formal main ticket.
-- There are NO non-main tickets.
-- Do not output a separate non-main strategy layer.
-- Do not use PASS as the final match output during the current policy regime; choose the best available formal main direction and grade it honestly, including low grades where appropriate.
-- Near kickoff, output the formal ticket first: market + handicap/line + grade + actionable reference price + one-line core logic. Full reasoning follows.
-- Formal ticket accuracy is the primary performance metric; the user's personal bet/no-bet status is separate from model correctness.
+- Every fully analysed match produces exactly ONE formal main ticket.
+- No non-main tickets.
+- No final PASS in MODEL_1; uncertainty is expressed through grade and execution conditions.
+- Near kickoff: ticket first = market/line + grade + actionable reference price + one-line logic; explanation follows.
+- Formal ticket correctness is the primary model performance metric; user's personal bet/no-bet is separate.
 
-## 3. Full analysis order — ACTIVE
+## 3. MODEL_1 mandatory full-analysis order — ACTIVE
 
-Deep analysis must follow this order without compressing modules:
+1. **Fundamentals**
+2. **Market snapshot**
+3. **Opening first impression**
+4. **Opening rationality / lifecycle**
+5. **Off-field factors / weather**
+6. **Lineup / tactics**
+7. **1X2**, including post-fundamentals **实开 / 韬开** audit
+8. **Asian handicap**, including explicit **欧亚转换** consistency after 1X2
+9. **Totals / OU**
+10. **Cross-market coherence**
+11. **Market attraction**
+12. **External draw-exclusion website**; if draw is excluded, immediately open HOME-vs-AWAY winner audit; if not excluded, run enhanced draw audit
+13. **Underdog outright audit（下盘独赢）**
+14. **Correct score** using repository Poisson / Dixon-Coles / Bayesian theory
+15. **Uncertainty audit**
+16. **Freeze H1**
+17. **Independent Red Team H2**
+18. **Formal main ticket**
 
-1. Market snapshot / Data Gate
-2. Opening-line first impression
-3. Opening validity / odds lifecycle
-4. Off-field scan
-5. Fundamentals / strength prior
-6. Squad / lineup / tactical audit
-7. Schedule and future-priority audit
-8. 1X2 company pricing and same-time-slice divergence
-9. Asian handicap lifecycle
-10. Independent totals / OU
-11. Cross-market coherence
-12. Market attraction + favourite-failure decomposition
-13. Mandatory underdog outright audit when favourite handicap is -0.75 or deeper
-14. Draw-exclusion website layer and enhanced draw audit
-15. Correct-score layer
-16. Uncertainty audit
-17. Freeze H1
-18. Independent Red Team H2
-19. Final formal main ticket
+Quick scan is only match selection and never substitutes for this deep-analysis sequence.
 
-Quick scan is only for match selection and must never substitute for deep analysis.
+## 4. Fundamentals first — ACTIVE
 
-## 4. Opening interpretation and lifecycle — ACTIVE
+Before market interpretation, review:
 
-- Opening first impression uses OPENING STRUCTURE ONLY. Later injuries, lineups, schedule, motivation, weather and movement must not contaminate the opening read.
-- Later information belongs in the later context layer and later price changes must be explained as movement/repricing logic.
-- Distinguish true opening, information re-opening after intervening matches/news, and ordinary market movement.
-- If an opening quote was posted days earlier and the team played another match after that quote, assess whether the original opening remains a valid anchor.
-- Never compare companies' first visible quotes directly when they were posted at materially different times. Align to the closest common time slice first.
+- recent matches one by one, not only aggregate W-D-L;
+- who each win came against and who each loss came against;
+- opponent quality: a win over a weak side is not equal to a win over a strong side; a narrow loss to an elite side is not equal to a loss to a weak side;
+- how each result happened: margin, game state, home/away context, shots/xG/chance quality where available, whether the result was repeatable or flattering;
+- recent head-to-head only with recency/context, not as a standalone causal rule;
+- future 7–10 day schedule and priority pressure, including strength/importance of upcoming opponents;
+- rotation/travel/expected core minutes and whether a favourite can economically win without covering a deep line.
 
-## 5. 1X2 company roles — ACTIVE
+Do not invent arbitrary numerical opponent-quality weights before calibration.
 
-Mandatory core company audit:
+## 5. Opening interpretation / lifecycle — ACTIVE
 
-- William Hill + Ladbrokes: primary reference pair.
-- William Hill: draw-price position, draw protection/prevention/inducement.
-- Ladbrokes: home/away win-loss difference and relative tail pricing.
-- Interwetten: cold-side / upset-risk check.
-- Pinnacle: capital/market anchor, but NOT automatically 'smart money'.
-- Macau: Asian-market signal and cross-market divergence.
-- Bet365: major comparator and retail/popularity-sensitive reference.
-- HKJC: important local/Asian comparator when available.
+- Opening first impression uses opening structure only. Later injuries, lineups, schedule, weather, motivation and movement must not contaminate it.
+- Then distinguish true opening, information re-opening, and ordinary movement.
+- If a quote was posted days earlier and the team played another match afterwards, reassess whether that opening is still a valid anchor.
+- Companies whose first quotes are separated by days cannot be compared directly; align to the closest common time slice.
 
-For each relevant time slice:
+## 6. 1X2 + 实开 / 韬开 — ACTIVE
 
-- preserve the real European odds (e.g. 2.55 / 3.60 / 2.63);
+The real-open/camouflage-open audit runs only after fundamentals are established.
+
+- Use fundamentals to assess whether the market broadly prices the true strength gap (`实开`) or contains a camouflage/hidden-pricing structure (`韬开`).
+- This is a prior/diagnostic classification, NOT a mechanical result rule.
+- Historical 实开/韬开 rules and AH×1X2 shortcut rules are priors only; they must not be mechanically applied to force a ticket.
+- Cross-check classification against company divergence and lifecycle.
+
+Mandatory company roles:
+
+- William Hill + Ladbrokes = primary pair.
+- WH = draw-price location / protection / inducement audit.
+- Ladbrokes = home/away win-tail difference.
+- Interwetten = cold-side / upset-risk check.
+- Pinnacle = capital/market anchor, not automatic smart money.
+- Macau = Asian signal and divergence.
+- Bet365 = major comparator.
+- HKJC = Asian/local comparator when available.
+
+For relevant aligned time slices:
+
+- preserve real European odds;
 - separately compute de-vig H/D/A probabilities;
-- report percentage-point company differences;
+- report company percentage-point differences;
 - never call de-vig probabilities 'European odds'.
 
-Do not conclude 'lower favourite price = favourite wins'. The main edge is cross-company pricing divergence and its lifecycle.
+Do not conclude `lower favourite price = favourite wins`.
 
-## 6. Favourite failure decomposition — ACTIVE
+## 7. AH + 欧亚转换 — ACTIVE
 
-For strong favourites / obvious hot sides:
+AH runs after 1X2.
 
-- analyse favourite win vs favourite non-win;
-- favourite non-win = draw + underdog win;
-- explicitly determine whether the non-win path is draw-led or underdog-win-led;
-- market attraction is a prerequisite variable: assess whether the underdog has a strong betting story or weak public attraction;
-- weak-side non-lowering odds do not automatically mean rejection if the weak side lacks attraction.
-
-## 7. External draw-exclusion website — ONE-MONTH HARD EXECUTION TEST
-
-Test start: 2026-09-09.
-
-Authoritative source:
-
-`draw_exclusion/latest.json` -> referenced `draw_exclusion/daily/YYYY-MM-DD.json`
-
-Do NOT substitute legacy `research/paiping_labels` as the execution source.
-
-### EXCLUDED = 1
-
-- Treat the website's draw exclusion as a HARD execution constraint for the current one-month test.
-- Do NOT independently veto or reopen whether the match should be draw-excluded.
-- Remove draw from the execution branch.
-- Analyse HOME WIN vs AWAY WIN only, then decide favourite cover / favourite win-no-cover / underdog outright upset.
-- Research records must still preserve the real draw outcome after the match for prospective validation.
-
-### NOT_EXCLUDED = 0
-
-- This does NOT mean the website predicts a draw.
-- Draw remains an active path and must receive an ENHANCED mandatory audit before the final ticket.
-- Audit WH/Lad draw pricing, all core-company de-vig draw probabilities, opening-to-current draw lifecycle, same-time-slice divergence, AH/1X2/OU coherence and draw-compatible score mass.
-- Red Team must explicitly test whether draw is the leading favourite-failure path and whether the proposed handicap ticket survives that draw path.
-- A deep favourite cannot be justified only by a high favourite win probability.
-
-### UNKNOWN / missing
-
-- If the match is absent from the verified daily pool, or the label is NULL/UNKNOWN, keep it UNKNOWN.
-- Never coerce missing into NOT_EXCLUDED.
-
-## 8. Mandatory Underdog Outright Audit — ACTIVE
-
-Trigger: favourite handicap deeper than -0.5, i.e. -0.75 and beyond.
-
-Purpose: correct the historical bias of explaining why a strong favourite should win while treating the weak side only as an AH-cover candidate.
-
-Rules:
-
-- Start from an independent fundamental baseline.
-- Low absolute underdog outright probability is normal and is NOT itself evidence against an upset.
-- Compare WH, Ladbrokes, Bet365, Pinnacle, Interwetten, Macau and HKJC underdog-out-right prices after de-vigging.
-- Use closest same-time slices.
-- Separate structural opening divergence from later divergence expansion.
-- Compare each company versus the same-match company median; where historical calibration exists, also compare versus that company's normal bias for the same league/handicap bucket.
-- Inspect specifically:
-  - AH deepens while underdog outright probability refuses to fall;
-  - AH deepens while underdog outright probability rises;
-  - AH retreats while underdog outright probability rises;
-  - favourite win and underdog win tails strengthen while draw is compressed;
-  - one company protects the underdog in both AH and 1X2;
-  - multiple independent company clusters protect the underdog outright.
-- Never convert '+AH support' into an outright-upset claim without 1X2 evidence.
-- U0/U1/U2/U3 grades reflect quality of outright-upset evidence, not the absolute underdog probability.
-- Red Team must ask: 'Am I inventing reasons for the favourite while ignoring weak-side outright pricing evidence?'
-
-Working interpretation:
-
-- U0: no abnormal underdog outright divergence.
-- U1: one-company / weak isolated protection.
-- U2: at least two independent companies form meaningful weak-side outright divergence.
-- U3: multi-company divergence + lifecycle expansion + AH confirmation + plausible fundamental upset path.
-
-These thresholds are descriptive until historical database calibration validates exact cutoffs.
-
-## 9. Asian handicap — ACTIVE
-
-- Read line AND water lifecycle, not current line alone.
-- Check failed upgrades, reversals, and adjacent counterfactual lines.
-- Favourite win probability is not the same as cover probability.
-- Especially at -0.75 / -1 / -1.25 / -1.5+, audit separately:
+- Explicitly test whether 1X2 strength/draw structure converts coherently into the AH line and water.
+- Any 1X2-AH conflict must be explained, not averaged away.
+- Read line + water lifecycle, failed upgrades, reversals and adjacent counterfactual lines.
+- Favourite win probability is NOT the same as cover probability.
+- For deep favourites, separate:
   1. favourite wins and covers;
   2. favourite wins but does not cover;
   3. draw;
   4. underdog wins outright.
-- Do not let strong 1X2 support automatically upgrade a deep AH ticket.
 
-## 10. Totals / OU — ACTIVE
+## 8. Totals / OU — ACTIVE
 
-- Totals is a separate core module and must be decided independently after 1X2/AH.
-- Never mechanically infer Over/Under from the AH side.
-- WH/Ladbrokes fixed 2.5 is a Base-2.5 probability anchor, not a dynamic-main-line comparator.
-- Dynamic mainstream OU is primarily Macau + Pinnacle + Bet365.
-- If companies display different OU line levels, convert line + price / alternate ladder to a comparable latent total distribution before calling it real disagreement.
-- A large line-level gap alone may be display/ladder-selection difference, not information edge.
-- JCB/Sporttery goal-count data, when explicitly available in analysis context, is auxiliary confirmation only and never the primary totals decision source.
+- OU is a separate core module and must be determined independently from AH.
+- Macau/Pinnacle/Bet365 = dynamic mainstream OU.
+- WH/Lad fixed 2.5 = Base-2.5 probability anchor, not dynamic line-level comparator.
+- Different displayed OU lines require line+price/alternate-ladder normalization to a comparable latent total distribution before calling company disagreement.
+- JCB/Sporttery goal-count data, when explicitly supplied in analysis context, is auxiliary only and never primary OU evidence.
 
-## 11. Correct score — ACTIVE
+## 9. Cross-market coherence — ACTIVE
 
-- Use Poisson/Dixon-Coles style joint distribution plus Bayesian/context update; no lazy score guessing.
+- 1X2, AH and OU are linked prices, not three independent votes.
+- Test whether they imply compatible match paths.
+- Conflicts are information and must be explained, not hidden by averaging.
+
+## 10. Market attraction / favourite failure — ACTIVE
+
+- Assess favourite heat and underdog betting story/public attraction before interpreting weak-side protection.
+- Strong favourites require favourite-win vs favourite-non-win decomposition.
+- Favourite non-win = draw + underdog outright win.
+- Explicitly determine whether favourite failure is draw-led or underdog-win-led.
+- Weak-side non-lowering odds do not automatically mean rejection when the weak side lacks public attraction.
+
+## 11. External draw-exclusion website — ONE-MONTH HARD TEST
+
+Test start: 2026-09-09.
+Authoritative source: `draw_exclusion/latest.json` -> referenced `draw_exclusion/daily/YYYY-MM-DD.json`.
+Legacy research labels are NOT the execution source.
+
+### EXCLUDED = 1
+
+- Hard execution constraint for this one-month test.
+- Do NOT independently veto/reopen whether the website should exclude draw.
+- Remove draw immediately from the execution branch.
+- Immediately open **HOME WIN vs AWAY WIN** audit.
+- Then determine favourite cover / favourite win-no-cover / underdog outright upset.
+- Actual draw outcome is still preserved after the match for prospective website validation.
+
+### NOT_EXCLUDED = 0
+
+- Does NOT mean the website predicts draw.
+- Draw stays active and receives enhanced mandatory audit:
+  - WH/Lad draw position;
+  - all core-company de-vig draw probabilities;
+  - opening-to-current draw lifecycle;
+  - same-time draw divergence;
+  - AH/1X2/OU coherence;
+  - score-grid draw mass and 0-0/1-1/2-2 paths where relevant.
+- Red Team must test whether draw is the leading favourite-failure path and whether a proposed deep-AH ticket survives it.
+
+### UNKNOWN / missing
+
+- Missing/absent/null stays UNKNOWN.
+- Never coerce missing into NOT_EXCLUDED.
+
+## 12. Underdog outright audit — ACTIVE
+
+Mandatory for favourites -0.75 and deeper, and central in winner-only review after hard draw exclusion.
+
+- Start from the independent fundamental baseline.
+- Low absolute underdog win probability is normal and is not evidence against an upset.
+- Compare WH, Ladbrokes, Bet365, Pinnacle, Interwetten, Macau and HKJC weak-side outright prices after de-vigging.
+- Use closest same-time slices.
+- Separate structural opening divergence from later divergence expansion.
+- Compare company residual versus match median; where calibrated, compare abnormal residual versus the company's normal league/handicap bias.
+- Inspect:
+  - AH deepens while underdog outright refuses to weaken;
+  - AH deepens while underdog outright strengthens;
+  - AH retreats while underdog outright strengthens;
+  - favourite and underdog win tails strengthen while draw compresses;
+  - same company protects weak side in AH and 1X2;
+  - multiple independent clusters protect weak-side outright.
+- Never convert +AH support into outright-upset evidence without 1X2 support.
+- U0/U1/U2/U3 = upset-evidence quality, not absolute underdog probability.
+- Red Team must explicitly ask whether the analysis is inventing reasons for the favourite while ignoring weak-side outright pricing.
+
+## 13. Correct score — ACTIVE
+
+- Use repository Poisson/Dixon-Coles joint distribution plus Bayesian/context update.
 - Maximum final Top3 scorelines.
-- Every score candidate must pass direction-consistency with final 1X2, AH and OU conclusions.
-- If final direction is a favourite covering -1 or deeper, downgrade 1-0 / 2-1 / 3-2 type non-cover paths unless the final handicap conclusion itself allows them.
-- For deep handicaps/high totals, account for 5+ team-goal tail even if a source table truncates at four.
+- Every score must pass final 1X2/AH/OU direction-consistency gate.
+- Deep favourite cover conclusions must downgrade non-cover scores like 1-0/2-1/3-2 unless the final AH view explicitly allows them.
+- Account for 5+ team-goal tail in deep-handicap/high-total matches.
 
-## 12. Off-field / relationship / schedule layer — ACTIVE
+## 14. Off-field / weather / relationship layer — ACTIVE
 
-Mandatory checks include:
+Priority:
 
-- official club/league announcements first;
-- then major European sports media and beat/insider reporting including Marca, L'Equipe and Sky Sports where relevant;
-- rumours/insider claims must be labeled as hypotheses unless verified;
-- common/related ownership and multi-club groups;
+1. official club/league / confirmed lineup;
+2. same-day mainstream media and beat/insider reports;
+3. earlier daily digest;
+4. unverified rumours as hypotheses only.
+
+Check, when relevant:
+
+- weather/pitch/referee;
+- common/related ownership or multi-club groups;
 - management/coaching/agent networks;
-- frequent loans/transfers, academy/satellite relationships;
-- local political/business ties;
+- loans/transfers/academy/satellite relationships;
+- local business/political ties;
 - historical friendly/hostile relationships;
-- relegation/title/Europe qualification incentive reciprocity;
-- 'needs points' end-of-season incentives;
-- future 7-10 day schedule priority, not only past rest;
-- next high-priority Champions League/Europa/cup/derby/title match;
-- rotation probability, expected core minutes, travel burden, squad depth and leading-game tempo reduction.
+- relegation/title/Europe incentive reciprocity;
+- future 7–10 day Champions League/Europa/cup/derby/title priorities;
+- rotation, expected core minutes, travel, squad depth, leading-game tempo reduction.
 
-Schedule pressure primarily affects deep-cover ability and score tail; it must not be mechanically translated into 'favourite cannot win'.
+Schedule pressure mainly affects deep-cover ability and score tail; do not mechanically translate it into favourite failure.
 
-Daily same-day off-field digest should be incorporated as a context layer, but later official lineups/club announcements override earlier reporting when contradictory.
+## 15. Data / crawler / missingness — ACTIVE
 
-## 13. Macau post-2026-09-01 regime hypothesis — RESEARCH ONLY
-
-- Preserve all football crawler files from 2026-09-01 onward; do not delete uninteresting/PASS-like samples.
-- Label 2026-09-01 onward as Candidate New Regime and pre-2026-09-01 as Control/Old Regime.
-- Preserve Macau real opening time, each change time, synchronized AH/1X2/OU paths.
-- Do not modify formal ticket logic merely because of the regime hypothesis.
-- Compare opening depth, lead-lag, favourite treatment, weak-side protection, draw pricing, OU ladders and actual results prospectively.
-- After sufficient samples, matched comparison should control league, line bucket and favourite strength.
-- Especially useful Macau divergences should be flagged as research samples.
-
-## 14. Betfair / OddsPapi Exchange — SHADOW ONLY
-
-Current formal authority:
-
-- OddsPapi is used for genuine Betfair Exchange data.
-- Titan rows named Betfair are NOT OddsPapi Exchange and must not be treated as such.
-- Exchange is SHADOW_RESEARCH only; `formal_system_impact = false`.
-- Freeze the non-Exchange baseline first, then run Exchange shadow increment.
-- Single current Back/Lay snapshot is not smart money.
-- Runner `tradedVolume` is cumulative and unsigned; it is not signed order flow.
-- Do not sum runner tradedVolume and call it market total matched.
-- `total_matched`, traded ladder, matched trade-side direction and deep depth remain MISSING unless explicitly returned.
-- Missing Exchange data is not negative evidence and must not force a downgrade.
-- Exchange shadow results are excluded from formal statistics.
-- Do not use a single Exchange rule to create/upgrade/overturn the formal ticket.
-
-Research goal: compare baseline-vs-shadow on the same sample and measure errors corrected versus errors introduced before granting formal authority.
-
-## 15. Price / execution — ACTIVE
-
-- User generally wants decimal odds around >=1.80 for long-run execution; exact minimum may be stated per ticket.
-- Do not reject a stable direction solely because EV/value is thin.
-- Separate price changes into:
-  1. payout/EV change only, direction unchanged;
-  2. information change that alters market structure/path and can justify correction.
-- Only type (2) should materially alter the direction.
-
-## 16. Data / crawler / missingness — ACTIVE
-
-- Titan match_id is the preferred unique match key; when user gives team/date/league, match_index should resolve ID automatically.
-- ID correctness has priority over displayed naming inconsistencies.
-- Deep crawler should preserve 1X2, AH, OU, OU ladder/alternate lines, timestamps, MAIN/ALT, raw_text and QC fields.
-- Starting lineup/formation must be captured when Titan provides it, including image/DOM-derived lineup structures.
+- Titan match_id is the preferred unique match key; ID correctness outranks displayed naming inconsistency.
+- Deep crawler preserves 1X2/AH/OU/OU ladder, timestamps, MAIN/ALT, raw_text and QC.
 - PREDICTED and CONFIRMED lineups must never be conflated.
-- If WH, Ladbrokes, Pinnacle, Interwetten, Bet365 or another key company lacks a verifiable detailed timeline, explicitly name the missing company/match. Opening/current values must not be presented as if they were a full timeline.
-- A blank Titan timeline can be a Titan interface/API issue and must be reported as missing rather than fabricated.
-- Missing data stays MISSING; no silent fill.
+- If WH/Lad/Pinnacle/Interwetten/Bet365 or another key company lacks a verifiable timeline, name the missing company/match explicitly.
+- Opening/current values must not be presented as a full timeline.
+- Titan blank timeline may be interface/API failure; report MISSING rather than fabricate.
 
-Quick-scan crawler core companies remain exactly:
+Quick-scan crawler core companies remain exactly HKJC / Macau / WH / Ladbrokes / Interwetten. Pinnacle/Bet365/Crown enter deep analysis.
 
-- HKJC
-- Macau
-- William Hill
-- Ladbrokes
-- Interwetten
+## 16. Quick scan — ACTIVE
 
-Pinnacle/Bet365/Crown and others belong in deep analysis, not the first quick-scan sheet.
+- Only pre-match first-tier events; started/finished/postponed/interrupted/cancelled excluded.
+- Use Beijing time plus Titan state.
+- Target around five hours before kickoff.
+- Quick scan is match selection, not final deep analysis.
+- High-profile events should not be dropped merely because structure is unclear.
+- Candidate can be AH or OU depending on the cleanest chain.
 
-## 17. Quick scan — ACTIVE
+## 17. Macau post-2026-09-01 regime hypothesis — RESEARCH ONLY
 
-- Scope: pre-match first-tier events only; started/finished/postponed/interrupted/cancelled excluded.
-- Use Beijing time against kickoff in addition to Titan state markers.
-- Target timing is around five hours before kickoff.
-- Quick scan uses opening/early information only and is not a final bet.
-- For Champions League / other high-profile events, do not drop a match merely because structure is unclear; give a direction/structure grade for selection.
-- Candidate direction may be AH or totals, whichever has the cleanest evidence chain.
+- Preserve all post-2026-09-01 crawler files, including ordinary/uninteresting samples.
+- >=2026-09-01 = Candidate New Regime; earlier = Control/Old Regime.
+- Preserve real opening times and synchronized AH/1X2/OU movement.
+- Do not let this hypothesis change formal MODEL_1 tickets before prospective validation.
 
-## 18. Probability role — ACTIVE
+## 18. Betfair / OddsPapi Exchange — SHADOW ONLY
 
-- League/event historical probability is a baseline prior or risk filter, not a standalone single-match betting edge.
-- Example: if a league is structurally high-scoring, avoid casual unders without strong contrary evidence.
-- Do not let obvious team-strength probabilities dominate the analysis; the core remains company pricing divergence and market structure.
+- OddsPapi genuine Betfair Exchange only; Titan Betfair-labelled rows are not a substitute.
+- `formal_system_impact = false`.
+- Freeze formal MODEL_1 Baseline before Exchange Shadow.
+- Single Back/Lay snapshot is not smart money.
+- runner tradedVolume is unsigned cumulative data, not signed flow.
+- Do not sum runner tradedVolume and call it market total matched.
+- Missing deep fields remain MISSING.
+- Exchange shadow is excluded from formal ticket changes and formal statistics.
 
-## 19. Chinese football research — ACTIVE separation rule
+## 19. Probability / price — ACTIVE
 
-- Chinese competitions (CSL, China League One/Two, FA Cup etc.) must use a separate research/calibration pool.
-- Do not transfer overseas calibration blindly into Chinese football.
-- Central overall performance reporting may still aggregate competitions; 'research pool separate, performance ledger unified'.
+- League/event probability is prior/risk filter, not standalone single-match edge.
+- Do not let obvious strong-team base probability dominate company-pricing analysis.
+- User generally wants decimal odds around >=1.80; exact minimum may be stated per ticket.
+- Do not reject a stable direction solely because value/EV is thin.
+- Distinguish payout/EV-only price changes from information changes that alter the match path.
 
-## 20. Post-match diagnostics — ACTIVE
+## 20. Chinese football — ACTIVE separation
 
-- Do not change the core model after a few isolated losses.
-- Run an independent diagnostic layer first: model logic, missing/late data, selection bias, time-axis interpretation, lineup error, market anomaly, off-field miss or other cause.
-- Mandatory deep-favourite upset review after a favourite -0.5 or deeper fails, especially home -0.5/-0.75/-1 and deeper.
-- Never backfill pre-match features using the final result.
+- Chinese competitions use a separate research/calibration pool.
+- Do not blindly transfer overseas calibration.
+- Performance ledger may remain unified: research pool separate, record statistics combined.
 
-## 21. Statistics / record workflow — ACTIVE
+## 21. Post-match diagnostics — ACTIVE
 
-- Analysis chats prioritize analysis and ticket speed; do not update the central workbook/database during pre-match analysis.
-- A user message like '记录/存档' freezes the pre-match final version; it does not automatically write/update the central statistical workbook unless the user explicitly requests a unified update.
-- Only explicit instructions equivalent to '统一纳入表格 / 统一更新统计表 / 现在更新母表' authorize batch write to the current central statistics source.
-- Database is the preferred factual source; Excel is an output/report layer.
-- Correct-score Top1/Top2/Top3 should be preserved with the frozen pre-match record for later settlement.
-- Settlement colors in Excel: full/half win green; full/half loss red; push/void white.
+- Do not change MODEL_1 from a few isolated outcomes.
+- First diagnose model logic, missing/late data, selection bias, time-axis interpretation, lineup error, market anomaly, off-field miss or other cause.
+- Mandatory deep-favourite upset review after a favourite -0.5 or deeper fails.
+- Never backfill pre-match evidence after results.
 
-## 22. Interaction / reasoning discipline — ACTIVE
+## 22. Statistics / record workflow — ACTIVE
 
-- Do not agree reflexively with the user.
-- Before analysis, check for wrong premises, logic jumps, concept switching and missing information.
-- Distinguish facts, forecasts/inference, assumptions and subjective views.
-- If disagreeing, state it directly with evidence, counterexamples, boundary conditions and alternative explanations.
-- Explicitly check sampling bias, causal leaps and after-the-fact rationalization.
+- Analysis chat does not update the central stats source.
+- `记录/存档` = freeze pre-match final version only.
+- Only explicit `统一纳入表格 / 统一更新统计表 / 现在更新母表` authorizes batch central write.
+- Database = fact source; Excel = report/output layer.
+- Preserve correct-score Top1/Top2/Top3 with the frozen pre-match record.
 
-## 23. SUPERSEDED / do not execute
+## 23. Reasoning discipline — ACTIVE
 
-The following older rules are superseded by newer user instructions and must not silently reactivate:
+- Do not agree reflexively.
+- Check wrong premises, logic jumps, concept switching and missing information.
+- Distinguish fact / forecast / assumption / subjective view.
+- If disagreeing, state it with evidence, counterexamples, boundary conditions and alternative explanations.
+- Check sampling bias, causal leaps and post-hoc rationalization.
 
-- 'Formal main or unique non-main/PASS' -> SUPERSEDED. Current rule is exactly one formal main ticket per match; no non-main ticket; no final PASS.
-- 'If there is a formal main, no non-main; otherwise give one non-main' -> SUPERSEDED.
-- Any prior statistics workflow that writes the central workbook immediately when the user says only 'record' -> SUPERSEDED by the freeze-first / unified-update-only rule.
-- Any Betfair mode that allows Exchange to alter formal ticket/grade during the current shadow test -> SUPERSEDED by SHADOW_ONLY.
-- Legacy draw-exclusion research labels as execution source -> SUPERSEDED by `draw_exclusion/latest.json` -> daily file.
+## 24. Superseded — DO NOT EXECUTE
 
-## 24. OPEN CONFLICT / USER REVIEW REQUIRED
+- Formal main / unique non-main / PASS policy -> superseded. MODEL_1 = exactly one formal main, no non-main, no final PASS.
+- Immediate central-table write on `记录` -> superseded by freeze-first workflow.
+- Betfair formal ticket authority -> superseded by SHADOW_ONLY.
+- Legacy draw-exclusion research label as execution source -> superseded by `draw_exclusion/latest.json` -> daily file.
+- Old full-analysis order with market snapshot before fundamentals -> superseded by MODEL_1 order above.
 
-These are intentionally NOT silently resolved; user should inspect:
+## 25. Runtime / second-step implementation
 
-1. JCB/Sporttery: chat-analysis memory says use JCB/Sporttery only as auxiliary context when explicitly supplied, while an older software-V2 decision removed Sporttery from the V2 product/interface. Proposed interpretation: keep JCB out of the V2 software runtime, but allow it as optional external auxiliary context in ChatGPT analysis when user supplies it. USER TO CONFIRM.
-2. 'Every match must have a formal main ticket' removes PASS entirely. This snapshot treats that as the newest hard rule, including low-confidence matches receiving a low-grade main direction. USER TO CONFIRM whether any emergency data-integrity exception should exist for identity mismatch/corrupt data; current wording says no final PASS.
-3. Quick-scan and deep-analysis ticket policy: this snapshot assumes the 'exactly one formal main' requirement applies to every match that receives full analysis, not every raw quick-scan candidate. USER TO CONFIRM.
+MODEL_1 is now encoded beyond prose:
 
-## 25. Runtime loading order
+- `config/model_registry.json` — selects MODEL_1 as default and protects future model identities.
+- `models/MODEL_1_DEFAULT.md` — frozen model profile.
+- `config/active_decision_policy.json` — machine-readable hard policy + 18-stage order.
+- `config/module_registry.json` — modules mapped to the MODEL_1 stages.
+- `gpt/decision_engine.py` — deterministic policy validator for stage order, draw branch, underdog audit, Red Team verdict and exactly-one-main output.
+- `tests/test_decision_engine.py` — policy tests.
+- `gpt/GPT_RUNTIME.md` — cross-chat runtime order.
+- `gpt/MANIFEST.json` — default model/engine manifest.
 
-For future football analysis, preferred rule-loading order is:
+## 26. Open item for user review
 
-1. `gpt/FOOTBALL_CANONICAL_MEMORY.md`
-2. `gpt/FOOTBALL_SOP.md`
-3. `config/active_decision_policy.json`
-4. `config/full_stack_config.json`
-5. `config/module_registry.json`
-6. dedicated Exchange / draw-exclusion rule files
-
-If a lower file conflicts with the newest explicit user policy above, flag the conflict and update the repository rather than silently choosing the older rule.
+JCB/Sporttery scope remains interpreted as: not required in the core software runtime, but when the user explicitly supplies JCB/Sporttery data to ChatGPT analysis it may be used as auxiliary context only. If this is not the desired current rule, revise it explicitly.
