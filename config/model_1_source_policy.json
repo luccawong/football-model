@@ -1,13 +1,14 @@
 {
-  "version": "MODEL_1-SOURCE-POLICY-1.1.0",
+  "version": "MODEL_1-SOURCE-POLICY-1.2.0",
   "model_id": "MODEL_1",
   "project_scope": "FOOTBALL_ONLY",
+  "formal_market_mode": "TITAN_ONLY",
   "odds_sources": {
     "titan": {
-      "role": "PRIMARY_RAW_ODDS_AUTHORITY_WHEN_USER_SUPPLIES_TITAN_PACKET",
+      "role": "SOLE_FORMAL_RAW_ODDS_AUTHORITY_WHEN_USER_SUPPLIES_TITAN_PACKET",
       "scope": ["1X2", "AH", "OU", "timeline", "MAIN_ALT", "lineup_when_present"],
       "rules": [
-        "All opening/current/timeline odds used from a Titan packet must originate from Titan raw evidence.",
+        "All formal opening/current/timeline odds must originate from Titan raw evidence.",
         "Preserve match_id, timestamps, company identity, raw prices and QC.",
         "Preserve source_url, fetched_at, parser/crawler version and raw snapshot/hash where available.",
         "Preserve raw HTML/JSON/JS responses or equivalent raw packet evidence when the crawler exposes them.",
@@ -15,11 +16,20 @@
         "Blank or broken timeline stays MISSING rather than fabricated."
       ]
     },
+    "jcb": {
+      "role": "DISABLED",
+      "formal_use": false,
+      "auxiliary_use": false
+    },
+    "sporttery": {
+      "role": "DISABLED",
+      "formal_use": false,
+      "auxiliary_use": false
+    },
     "aoke": {
-      "role": "SUPPLEMENTAL_CROSS_CHECK_ONLY",
-      "may_supply": ["injury", "lineup", "schedule", "table", "motivation", "weather", "news", "market-normality cross-check"],
-      "cannot_replace_titan_core_odds_history": true,
-      "odds_conflict_policy": "Titan raw odds chain has priority; disclose conflict."
+      "role": "DISABLED_AS_MARKET_SOURCE",
+      "formal_odds_use": false,
+      "notes": "Do not use Aoke odds to supplement or override Titan formal market analysis."
     },
     "oddspapi": {
       "role": "GENUINE_BETFAIR_EXCHANGE_PROVIDER",
@@ -29,8 +39,14 @@
     },
     "api_football": {
       "role": "SOFTWARE_PROVIDER_ARCHITECTURE_ONLY_WHERE_CONFIGURED",
-      "notes": "Do not silently substitute API-Football for a user-supplied Titan analysis packet."
+      "formal_match_analysis_market_use": false,
+      "notes": "Do not substitute API-Football for the Titan formal analysis packet."
     }
+  },
+  "separate_non_market_inputs": {
+    "github_draw_exclusion": "EXECUTION_CONSTRAINT_NOT_ODDS_SOURCE",
+    "official_and_media_off_field": "CONTEXT_LAYER_NOT_ODDS_SOURCE",
+    "weather": "CONTEXT_LAYER_NOT_ODDS_SOURCE"
   },
   "multi_match_packet": {
     "allowed": true,
@@ -58,8 +74,8 @@
   },
   "quick_scan": {
     "core_5": ["HKJC", "Macau", "William Hill", "Ladbrokes", "Interwetten"],
-    "dynamic_ou_confirmation": ["Pinnacle", "Bet365"],
-    "dynamic_ou_confirmation_not_equal_weight_core": true
+    "all_prices_must_come_from_titan": true,
+    "pinnacle_bet365_allowed_only_when_present_in_titan_deep_analysis": true
   },
   "context_sources": {
     "official_priority": ["club", "league", "competition", "confirmed lineup"],
