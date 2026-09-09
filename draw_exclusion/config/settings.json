@@ -1,0 +1,8 @@
+{
+  "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+  "http_timeout_seconds": 30,
+  "site_timezone": "Asia/Shanghai",
+  "require_current_site_date": true,
+  "reasonable_time_window_minutes": 30,
+  "timezone_offsets_minutes": [60, 480]
+}

@@ -1,0 +1,11 @@
+schema_version: "1.0"
+competitions:
+  premier_league: ["英超", "Premier League", "EPL"]
+  serie_a: ["意甲", "Serie A"]
+  bundesliga: ["德甲", "Bundesliga"]
+  primeira_liga: ["葡超", "Primeira Liga"]
+  brasileirao_serie_a: ["巴西甲", "巴甲", "Brasileirao Serie A"]
+  la_liga: ["西甲", "La Liga"]
+  ligue_1: ["法甲", "Ligue 1"]
+  uefa_champions_league: ["欧冠", "UEFA Champions League", "UCL"]
+

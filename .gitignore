@@ -18,3 +18,6 @@ work/
 .pipeline.lock
 failed_batches/
 draw_exclusion_research/raw/
+draw_exclusion/raw/
+draw_exclusion/database/*.db*
+draw_exclusion/database/*.sqlite*

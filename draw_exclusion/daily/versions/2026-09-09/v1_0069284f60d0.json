@@ -1,0 +1,3709 @@
+{
+  "schema_version": "2.0",
+  "date": "2026-09-09",
+  "source": "external_draw_site",
+  "source_status": "OK",
+  "snapshot": {
+    "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+    "snapshot_time_utc": "2026-09-09T04:52:39+00:00",
+    "snapshot_time_beijing": "2026-09-09T12:52:39+08:00",
+    "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+    "http_date": "Wed, 09 Sep 2026 04:52:49 GMT",
+    "last_modified": "Wed, 09 Sep 2026 04:05:12 GMT",
+    "page_reported_update_time": "2026-09-09T10:41:00+08:00",
+    "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e",
+    "html_size": 340541,
+    "html_path": "raw/2026-09-09/snapshot_v1_20260909_125239.html",
+    "content_version": 1,
+    "same_hash_as_previous": true,
+    "manual_screenshot_present": false
+  },
+  "snapshot_diff": {
+    "previous_snapshot_id": "snap_b5d2843e7053c178716ddc76d69e525e6aed8ebd4988d997cf8a1c4f8b3e4ff3",
+    "added": [],
+    "deleted": [],
+    "label_changed": [],
+    "odds_changed": [],
+    "time_changed": []
+  },
+  "label_contract": {
+    "1": "EXCLUDED",
+    "0": "NOT_EXCLUDED",
+    "null": "UNKNOWN"
+  },
+  "forensic_conflicts": [],
+  "matches": [
+    {
+      "research_match_id": "drm_9d7230d2659e8a66a6fdd47464b221131f2b55fe601ef36f1f38bfcdd1e2c38b",
+      "source_research_match_id": "drm_bde9de2a016f60285d0f08c1ff5b8b1052150027d4af49564d7d0c63f943075d",
+      "titan_match_id": null,
+      "source_market": "JC",
+      "competition": {
+        "raw_name": "韩职",
+        "canonical_id": "competition_b53e3648aa12ffac",
+        "canonical_name": "韩职",
+        "alias_registered": false
+      },
+      "match_number": "周三001",
+      "home_team": {
+        "raw_name": "江原FC",
+        "canonical_id": "team_2d3d4840d68ff8a8",
+        "canonical_name": "江原FC",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "全北现代",
+        "canonical_id": "team_f74c3ef2dee8eb49",
+        "canonical_name": "全北现代",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-09T18:30:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "周三001|江原FC|全北现代",
+      "source_row_index": 0,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": 2.65,
+        "draw_1x2": 2.92,
+        "away_1x2": 2.44,
+        "asian_handicap": -0.0,
+        "asian_handicap_raw": "平手",
+        "home_water": 0.75,
+        "away_water": 1.05
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_950dbf15a11e3937edef96a9b08bafb502d7969ec7e18c57e806cc2d03b254e7",
+      "source_research_match_id": "drm_abd220fc686036ee127c1ab57c98b4ff5b6d582d1d54444a963a49792a099091",
+      "titan_match_id": null,
+      "source_market": "JC",
+      "competition": {
+        "raw_name": "欧冠",
+        "canonical_id": "uefa_champions_league",
+        "canonical_name": "欧冠",
+        "alias_registered": true
+      },
+      "match_number": "周三003",
+      "home_team": {
+        "raw_name": "巴萨",
+        "canonical_id": "team_21477b7853a34a84",
+        "canonical_name": "巴萨",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "费耶诺德",
+        "canonical_id": "team_cdbc30c0e59434a9",
+        "canonical_name": "费耶诺德",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T00:45:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "周三003|巴萨|费耶诺德",
+      "source_row_index": 1,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -2.25,
+        "asian_handicap_raw": "两球/两球半",
+        "home_water": 1.0,
+        "away_water": 0.85
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_bbaba2158b577e3400b70d0c0676fd57d3cb4ca401a4273ff77ac9a1ea2dfd2c",
+      "source_research_match_id": "drm_788c221cc6de6aa7944073e6bda117d660a706cf4632ca93ebbb6524c3117b91",
+      "titan_match_id": null,
+      "source_market": "JC",
+      "competition": {
+        "raw_name": "欧冠",
+        "canonical_id": "uefa_champions_league",
+        "canonical_name": "欧冠",
+        "alias_registered": true
+      },
+      "match_number": "周三004",
+      "home_team": {
+        "raw_name": "斯图加特",
+        "canonical_id": "team_26033bffc1f465d5",
+        "canonical_name": "斯图加特",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "维京",
+        "canonical_id": "team_cdc2fad02ef9305b",
+        "canonical_name": "维京",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T00:45:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "周三004|斯图加特|维京",
+      "source_row_index": 2,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -1.25,
+        "asian_handicap_raw": "一球/球半",
+        "home_water": 0.85,
+        "away_water": 1.0
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_b0343a0ffbda0865b790a98cc5eb95c05bfd5a88abc96b39364fea3d9072923a",
+      "source_research_match_id": "drm_6a3a2cfe1ae019140f836947d58019ad961c01afd9989f2d2493711f586d47ea",
+      "titan_match_id": null,
+      "source_market": "JC",
+      "competition": {
+        "raw_name": "荷甲",
+        "canonical_id": "competition_8797aa7fae69e69f",
+        "canonical_name": "荷甲",
+        "alias_registered": false
+      },
+      "match_number": "周三005",
+      "home_team": {
+        "raw_name": "特温特",
+        "canonical_id": "team_9a352a762fd494c7",
+        "canonical_name": "特温特",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "特尔斯达",
+        "canonical_id": "team_aa169562794d059d",
+        "canonical_name": "特尔斯达",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T00:45:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "周三005|特温特|特尔斯达",
+      "source_row_index": 3,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -1.75,
+        "asian_handicap_raw": "球半/两球",
+        "home_water": 1.0,
+        "away_water": 0.8
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_7af125c642026cb00e40029bbe68f84e911f0ae851cbec89801812ccf35fc676",
+      "source_research_match_id": "drm_b6561c49a00bd0d6c35ecc96471840de928b492305dca624ca8c122ad91efefe",
+      "titan_match_id": null,
+      "source_market": "JC",
+      "competition": {
+        "raw_name": "欧冠",
+        "canonical_id": "uefa_champions_league",
+        "canonical_name": "欧冠",
+        "alias_registered": true
+      },
+      "match_number": "周三006",
+      "home_team": {
+        "raw_name": "里斯本",
+        "canonical_id": "team_cdedf06610769e03",
+        "canonical_name": "里斯本",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "加拉塔萨",
+        "canonical_id": "team_e4d9e35441849493",
+        "canonical_name": "加拉塔萨",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T03:00:00+08:00",
+      "external_draw_exclusion_label": 1,
+      "external_label_status": "EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "周三006|里斯本|加拉塔萨",
+      "source_row_index": 4,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": 1.58,
+        "draw_1x2": 3.75,
+        "away_1x2": 4.35,
+        "asian_handicap": -0.5,
+        "asian_handicap_raw": "半球",
+        "home_water": 0.95,
+        "away_water": 0.9
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_bba5172a6f62d3776f503db7b866ef2cb6060c7096ccb91692bebc4daef746c5",
+      "source_research_match_id": "drm_7dab8f2ace1104af028d823eb637cf14c633a4d9e527dc35961aa585ea599a74",
+      "titan_match_id": null,
+      "source_market": "JC",
+      "competition": {
+        "raw_name": "欧冠",
+        "canonical_id": "uefa_champions_league",
+        "canonical_name": "欧冠",
+        "alias_registered": true
+      },
+      "match_number": "周三007",
+      "home_team": {
+        "raw_name": "那不勒斯",
+        "canonical_id": "napoli",
+        "canonical_name": "那不勒斯",
+        "alias_registered": true
+      },
+      "away_team": {
+        "raw_name": "阿森纳",
+        "canonical_id": "arsenal",
+        "canonical_name": "阿森纳",
+        "alias_registered": true
+      },
+      "kickoff_time": "2026-09-10T03:00:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "周三007|那不勒斯|阿森纳",
+      "source_row_index": 5,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": 4.4,
+        "draw_1x2": 3.38,
+        "away_1x2": 1.65,
+        "asian_handicap": 0.5,
+        "asian_handicap_raw": "受让半球",
+        "home_water": 0.83,
+        "away_water": 1.03
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_dae939584a1abb5036d0ab61d284b96d867da91d38270989c5e49e42088bf38b",
+      "source_research_match_id": "drm_f1035b51e87c8169c50c64409a7dd52bc976eeab3227b76e38cd6ed51711f92f",
+      "titan_match_id": null,
+      "source_market": "JC",
+      "competition": {
+        "raw_name": "欧冠",
+        "canonical_id": "uefa_champions_league",
+        "canonical_name": "欧冠",
+        "alias_registered": true
+      },
+      "match_number": "周三008",
+      "home_team": {
+        "raw_name": "利物浦",
+        "canonical_id": "team_c40ad3a8c1696f5d",
+        "canonical_name": "利物浦",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "马竞",
+        "canonical_id": "atletico_madrid",
+        "canonical_name": "马德里竞技",
+        "alias_registered": true
+      },
+      "kickoff_time": "2026-09-10T03:00:00+08:00",
+      "external_draw_exclusion_label": 1,
+      "external_label_status": "EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "周三008|利物浦|马竞",
+      "source_row_index": 6,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": 1.63,
+        "draw_1x2": 3.7,
+        "away_1x2": 4.07,
+        "asian_handicap": -0.5,
+        "asian_handicap_raw": "半球",
+        "home_water": 0.9,
+        "away_water": 0.95
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_7d162a4bca5f40569c0418bd964600231d128f1f516a060942675343f67056ab",
+      "source_research_match_id": "drm_ed4a1ab73f451c1137d6b38abaf61468393cd48ca447e5fa6af5a456bee6bea2",
+      "titan_match_id": null,
+      "source_market": "JC",
+      "competition": {
+        "raw_name": "欧冠",
+        "canonical_id": "uefa_champions_league",
+        "canonical_name": "欧冠",
+        "alias_registered": true
+      },
+      "match_number": "周三009",
+      "home_team": {
+        "raw_name": "巴黎圣曼",
+        "canonical_id": "team_d6887f2333cea654",
+        "canonical_name": "巴黎圣曼",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "布拉迪斯",
+        "canonical_id": "team_3976c943403dae32",
+        "canonical_name": "布拉迪斯",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T03:00:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "周三009|巴黎圣曼|布拉迪斯",
+      "source_row_index": 7,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -2.5,
+        "asian_handicap_raw": "两球半",
+        "home_water": 0.83,
+        "away_water": 1.03
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_8603657db2f94020a7e98ae56edab4faba60d0400b2d736dc98138c5d6775c63",
+      "source_research_match_id": "drm_a9f61cb81188aca09d5277f8683174d29204beb8ef76160c4b5508fb0a40c49f",
+      "titan_match_id": null,
+      "source_market": "JC",
+      "competition": {
+        "raw_name": "英联赛杯",
+        "canonical_id": "competition_d4f697df961702da",
+        "canonical_name": "英联赛杯",
+        "alias_registered": false
+      },
+      "match_number": "周三011",
+      "home_team": {
+        "raw_name": "切尔西",
+        "canonical_id": "team_9d383ac04d519045",
+        "canonical_name": "切尔西",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "利兹联",
+        "canonical_id": "team_16d4107aa8fe1a80",
+        "canonical_name": "利兹联",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T03:00:00+08:00",
+      "external_draw_exclusion_label": 1,
+      "external_label_status": "EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "周三011|切尔西|利兹联",
+      "source_row_index": 8,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": 1.51,
+        "draw_1x2": 3.85,
+        "away_1x2": 4.85,
+        "asian_handicap": -0.75,
+        "asian_handicap_raw": "半球/一球",
+        "home_water": 0.83,
+        "away_water": 1.03
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_aa99991af685a53f298a8a131b402ca35abebe37f7e87153b7e7473c00b764aa",
+      "source_research_match_id": "drm_728a70a41b05c3114346b6524b7c43578498cee61deb6982089f3a767af39fd1",
+      "titan_match_id": null,
+      "source_market": "JC",
+      "competition": {
+        "raw_name": "解放者杯",
+        "canonical_id": "competition_5a51873acf081a1b",
+        "canonical_name": "解放者杯",
+        "alias_registered": false
+      },
+      "match_number": "周三013",
+      "home_team": {
+        "raw_name": "帕梅拉斯",
+        "canonical_id": "team_9739fbba29c7540a",
+        "canonical_name": "帕梅拉斯",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "基多体大",
+        "canonical_id": "team_5abec4f29c2a273c",
+        "canonical_name": "基多体大",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T06:00:00+08:00",
+      "external_draw_exclusion_label": 1,
+      "external_label_status": "EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "周三013|帕梅拉斯|基多体大",
+      "source_row_index": 9,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": 1.2,
+        "draw_1x2": 4.95,
+        "away_1x2": 11.0,
+        "asian_handicap": -1.5,
+        "asian_handicap_raw": "球半",
+        "home_water": 0.9,
+        "away_water": 0.95
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_29e624df436cd786132e1aa2fd4d1a1e536d0b70a309f86d947dade2c8d023ce",
+      "source_research_match_id": "drm_a25be47cdb1547a12addd594800952e17699801bc732bdd9fee3156b36ea64b7",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "K1联赛",
+        "canonical_id": "competition_cdba98ce28b6e138",
+        "canonical_name": "K1联赛",
+        "alias_registered": false
+      },
+      "match_number": "32",
+      "home_team": {
+        "raw_name": "大田韩亚市民",
+        "canonical_id": "team_c5c35e6d5d4036d9",
+        "canonical_name": "大田韩亚市民",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "FC安养",
+        "canonical_id": "team_9796e3e11f18ace8",
+        "canonical_name": "FC安养",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-09T18:20:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|32|大田韩亚市民|FC安养",
+      "source_row_index": 0,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -1.0,
+        "asian_handicap_raw": "一球",
+        "home_water": 1.03,
+        "away_water": 0.78
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_3bb7e2723edc9bcfc95438de55be42bddc4bc66c0feebd53dc24204e471fa0a2",
+      "source_research_match_id": "drm_12fac6dbf1ab6bdf509a2721a487d0c7ef63fe438b4da9245745e3cd55712bec",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "K1联赛",
+        "canonical_id": "competition_cdba98ce28b6e138",
+        "canonical_name": "K1联赛",
+        "alias_registered": false
+      },
+      "match_number": "33",
+      "home_team": {
+        "raw_name": "江原FC",
+        "canonical_id": "team_2d3d4840d68ff8a8",
+        "canonical_name": "江原FC",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "全北现代",
+        "canonical_id": "team_f74c3ef2dee8eb49",
+        "canonical_name": "全北现代",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-09T18:20:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|33|江原FC|全北现代",
+      "source_row_index": 1,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.0,
+        "asian_handicap_raw": "平手",
+        "home_water": 0.75,
+        "away_water": 1.05
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_82089bf2a2352e25f579e8c10ae8dd795b1ec2928389f781b14bbebf87e6a613",
+      "source_research_match_id": "drm_1803b1559e572585ff6f5e95eb513d090a739395172ffd4240ddccde62189a33",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "K1联赛",
+        "canonical_id": "competition_cdba98ce28b6e138",
+        "canonical_name": "K1联赛",
+        "alias_registered": false
+      },
+      "match_number": "34",
+      "home_team": {
+        "raw_name": "光州FC",
+        "canonical_id": "team_d4919d9233d771f7",
+        "canonical_name": "光州FC",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "济州SK",
+        "canonical_id": "team_5052f456d8f898cc",
+        "canonical_name": "济州SK",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-09T18:20:00+08:00",
+      "external_draw_exclusion_label": 1,
+      "external_label_status": "EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|34|光州FC|济州SK",
+      "source_row_index": 2,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": 0.5,
+        "asian_handicap_raw": "受让半球",
+        "home_water": 0.95,
+        "away_water": 0.85
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_4fd81191338c5259770dac511448076f056919a403f44f03e69497c5f32f91bc",
+      "source_research_match_id": "drm_6e71374b80753a5e7a8f306c227f014af4b8eb1435e9b4e26c798fe4cb77369c",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "K1联赛",
+        "canonical_id": "competition_cdba98ce28b6e138",
+        "canonical_name": "K1联赛",
+        "alias_registered": false
+      },
+      "match_number": "35",
+      "home_team": {
+        "raw_name": "浦项铁人",
+        "canonical_id": "team_5ac9e844294376af",
+        "canonical_name": "浦项铁人",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "金泉尚武",
+        "canonical_id": "team_4449a5217fd5df8a",
+        "canonical_name": "金泉尚武",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-09T18:20:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|35|浦项铁人|金泉尚武",
+      "source_row_index": 3,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.25,
+        "asian_handicap_raw": "平手/半球",
+        "home_water": 1.0,
+        "away_water": 0.8
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_93815606a1298446fefd9f28e9fdd1ea5958f2d8c53bac9d71f080249311fad7",
+      "source_research_match_id": "drm_aa6dae74614cf59e8b838e6c5c276e660e6d76eef58b389ffe94605567c03383",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "捷克甲",
+        "canonical_id": "competition_28e04f4503246ef1",
+        "canonical_name": "捷克甲",
+        "alias_registered": false
+      },
+      "match_number": "36",
+      "home_team": {
+        "raw_name": "亚布洛内茨",
+        "canonical_id": "team_6907c1037cdd6cd3",
+        "canonical_name": "亚布洛内茨",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "俄斯特拉发",
+        "canonical_id": "team_5412c89815395366",
+        "canonical_name": "俄斯特拉发",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-09T22:50:00+08:00",
+      "external_draw_exclusion_label": 1,
+      "external_label_status": "EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|36|亚布洛内茨|俄斯特拉发",
+      "source_row_index": 4,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": null,
+        "asian_handicap_raw": null,
+        "home_water": null,
+        "away_water": null
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_e6ab9b59f82568c7ff8b684f2097d7491fb587ae1787a252b83969f9d3b6ce93",
+      "source_research_match_id": "drm_f4466b5bd2c93a3dab490542ea735041317ad2412df8334adc131e75984203b1",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "芬超",
+        "canonical_id": "competition_6c72935bf43397fb",
+        "canonical_name": "芬超",
+        "alias_registered": false
+      },
+      "match_number": "37",
+      "home_team": {
+        "raw_name": "赫尔辛基",
+        "canonical_id": "team_865c3afb4db4224d",
+        "canonical_name": "赫尔辛基",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "国际图尔库",
+        "canonical_id": "team_41ab86506b0470c3",
+        "canonical_name": "国际图尔库",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-09T22:50:00+08:00",
+      "external_draw_exclusion_label": 1,
+      "external_label_status": "EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|37|赫尔辛基|国际图尔库",
+      "source_row_index": 5,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.0,
+        "asian_handicap_raw": "平手",
+        "home_water": 0.85,
+        "away_water": 0.95
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_14aca1617af52637894906184b5f6e76b7ade6195d76c784a5038d60d65f7383",
+      "source_research_match_id": "drm_95d92369103674f7e7e98d9b45bc5e362ed21b86cb9d0314863718d4e422a1db",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "欧冠联赛",
+        "canonical_id": "competition_cbc72c67b2b42571",
+        "canonical_name": "欧冠联赛",
+        "alias_registered": false
+      },
+      "match_number": "38",
+      "home_team": {
+        "raw_name": "巴塞罗那",
+        "canonical_id": "team_1d3e035fa12aa4d9",
+        "canonical_name": "巴塞罗那",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "费耶诺德",
+        "canonical_id": "team_cdbc30c0e59434a9",
+        "canonical_name": "费耶诺德",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T00:35:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|38|巴塞罗那|费耶诺德",
+      "source_row_index": 6,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -2.25,
+        "asian_handicap_raw": "两球/两球半",
+        "home_water": 1.0,
+        "away_water": 0.85
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_f0a067599970cc0b41a36f3ae80f4c116c91b44325da83b5899dccfe5380003d",
+      "source_research_match_id": "drm_1f63d2fb8e49b3507dce9c4f9c4abee798e5507e5ea2349ebefce3020051415c",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "欧冠联赛",
+        "canonical_id": "competition_cbc72c67b2b42571",
+        "canonical_name": "欧冠联赛",
+        "alias_registered": false
+      },
+      "match_number": "39",
+      "home_team": {
+        "raw_name": "斯图加特",
+        "canonical_id": "team_26033bffc1f465d5",
+        "canonical_name": "斯图加特",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "维京",
+        "canonical_id": "team_cdc2fad02ef9305b",
+        "canonical_name": "维京",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T00:35:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|39|斯图加特|维京",
+      "source_row_index": 7,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": null,
+        "asian_handicap_raw": null,
+        "home_water": null,
+        "away_water": null
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_24401f5c88181d0d2852924ab9398d238d8f7b1a771b892970bfee4a78f30e4b",
+      "source_research_match_id": "drm_ca31ea3159da24b0a6411c329be75f8d9b63d3b4b5272c682c00ae013b03c39d",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "荷甲",
+        "canonical_id": "competition_8797aa7fae69e69f",
+        "canonical_name": "荷甲",
+        "alias_registered": false
+      },
+      "match_number": "40",
+      "home_team": {
+        "raw_name": "特温特",
+        "canonical_id": "team_9a352a762fd494c7",
+        "canonical_name": "特温特",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "特尔斯达",
+        "canonical_id": "team_aa169562794d059d",
+        "canonical_name": "特尔斯达",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T00:35:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|40|特温特|特尔斯达",
+      "source_row_index": 8,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -1.75,
+        "asian_handicap_raw": "球半/两球",
+        "home_water": 1.0,
+        "away_water": 0.8
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_73f6517f213b21d598698a58349a1f03457751823206385385e543de19a96063",
+      "source_research_match_id": "drm_9404755d8426053dcc5060fa0f27affd4542e9bd413481dfb0cd6a262ba2682f",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "捷克甲",
+        "canonical_id": "competition_28e04f4503246ef1",
+        "canonical_name": "捷克甲",
+        "alias_registered": false
+      },
+      "match_number": "41",
+      "home_team": {
+        "raw_name": "赫拉德茨克拉洛韦",
+        "canonical_id": "team_b1117aab327ab4d0",
+        "canonical_name": "赫拉德茨克拉洛韦",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "比尔森胜利",
+        "canonical_id": "team_04d99defc8ee10e4",
+        "canonical_name": "比尔森胜利",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T00:50:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|41|赫拉德茨克拉洛韦|比尔森胜利",
+      "source_row_index": 9,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": null,
+        "asian_handicap_raw": null,
+        "home_water": null,
+        "away_water": null
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_6e234ed4b6727384173f44a111f28d59dd47ca994fe9b21276049a3891d5e574",
+      "source_research_match_id": "drm_1312976d60f1b50d7fc0ac514a1775b0fc9f6604a325b2f2a0f0731e5ad9b2a8",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "丹麦杯",
+        "canonical_id": "competition_eaf1ee5cf578e234",
+        "canonical_name": "丹麦杯",
+        "alias_registered": false
+      },
+      "match_number": "42",
+      "home_team": {
+        "raw_name": "科灵",
+        "canonical_id": "team_afbecc6a9382a9cc",
+        "canonical_name": "科灵",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "欧登塞",
+        "canonical_id": "team_26f4e464f1848d25",
+        "canonical_name": "欧登塞",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T00:50:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|42|科灵|欧登塞",
+      "source_row_index": 10,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": null,
+        "asian_handicap_raw": null,
+        "home_water": null,
+        "away_water": null
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_197a5d3ff7b61600cedaa8c495305887897ba6472d822f2a9b8b50fc15433cc5",
+      "source_research_match_id": "drm_0e8a4a149516f933a84d1831e6af20efa592a625ca8ceb322ad87cf84f067c7c",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "瑞典甲",
+        "canonical_id": "competition_2db245a932bcce97",
+        "canonical_name": "瑞典甲",
+        "alias_registered": false
+      },
+      "match_number": "43",
+      "home_team": {
+        "raw_name": "兰斯克鲁纳",
+        "canonical_id": "team_62579319bdae4fc0",
+        "canonical_name": "兰斯克鲁纳",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "赫尔辛堡",
+        "canonical_id": "team_d5f353ec833068c2",
+        "canonical_name": "赫尔辛堡",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T00:50:00+08:00",
+      "external_draw_exclusion_label": 1,
+      "external_label_status": "EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|43|兰斯克鲁纳|赫尔辛堡",
+      "source_row_index": 11,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.5,
+        "asian_handicap_raw": "半球",
+        "home_water": 0.8,
+        "away_water": 1.0
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_fac234496d24eedd50c9bbf7748267eee9b474faf8700f5bcd9423f6d97bb603",
+      "source_research_match_id": "drm_e712a172d5e37cc876d3931c897612ca6af3bb7fd25bd2e50acaa7dd0c87d1bc",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "瑞典甲",
+        "canonical_id": "competition_2db245a932bcce97",
+        "canonical_name": "瑞典甲",
+        "alias_registered": false
+      },
+      "match_number": "45",
+      "home_team": {
+        "raw_name": "桑德维肯",
+        "canonical_id": "team_94c06732b075c156",
+        "canonical_name": "桑德维肯",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "奥迪沃德",
+        "canonical_id": "team_11ff61bb3ed414bf",
+        "canonical_name": "奥迪沃德",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T00:50:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|45|桑德维肯|奥迪沃德",
+      "source_row_index": 12,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.0,
+        "asian_handicap_raw": "平手",
+        "home_water": 0.78,
+        "away_water": 1.03
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_9c6ee33951a27c91c231f513e6e84431cf42c96cd30daedd29423e75ebfe5f71",
+      "source_research_match_id": "drm_085e2d2a18f891fa76c377d02e161a7ae040e6ef9989cdff07d977e01c7b1b11",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "英冠",
+        "canonical_id": "competition_13f71504f3f9e803",
+        "canonical_name": "英冠",
+        "alias_registered": false
+      },
+      "match_number": "47",
+      "home_team": {
+        "raw_name": "德比郡",
+        "canonical_id": "team_64fa62590903a6f7",
+        "canonical_name": "德比郡",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "西布朗维奇",
+        "canonical_id": "team_9303db07d3bbf152",
+        "canonical_name": "西布朗维奇",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T02:35:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|47|德比郡|西布朗维奇",
+      "source_row_index": 13,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": 0.25,
+        "asian_handicap_raw": "受让平手/半球",
+        "home_water": 0.88,
+        "away_water": 0.98
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_c79eb5b4188732f496ac99ee0fa0bcf2e5c7e1ffaf578daaa5cbb32d92be7f2a",
+      "source_research_match_id": "drm_f842ded964fc74c366f0b08cdba0e46bd3cafb12bd0305303d609c12dd29fcad",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "英冠",
+        "canonical_id": "competition_13f71504f3f9e803",
+        "canonical_name": "英冠",
+        "alias_registered": false
+      },
+      "match_number": "48",
+      "home_team": {
+        "raw_name": "诺维奇",
+        "canonical_id": "team_2c7f41d9ad4bb561",
+        "canonical_name": "诺维奇",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "伯明翰",
+        "canonical_id": "team_affbb0973e105309",
+        "canonical_name": "伯明翰",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T02:35:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|48|诺维奇|伯明翰",
+      "source_row_index": 14,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.5,
+        "asian_handicap_raw": "半球",
+        "home_water": 1.05,
+        "away_water": 0.8
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_e27653e7c02a319e5078c6e3bcd17ed2e874f577a684bdc352a64a41ba7332ec",
+      "source_research_match_id": "drm_c45e2299d9a5bebdadabd0eb0afa620731db6516764869d6486f594e9b434370",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "苏超",
+        "canonical_id": "competition_8e6cd6cff62fcd01",
+        "canonical_name": "苏超",
+        "alias_registered": false
+      },
+      "match_number": "49",
+      "home_team": {
+        "raw_name": "格拉斯哥流浪者",
+        "canonical_id": "team_f8ffe4e3dfe27ed7",
+        "canonical_name": "格拉斯哥流浪者",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "圣米伦",
+        "canonical_id": "team_9e418736c48e9f7e",
+        "canonical_name": "圣米伦",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T02:35:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|49|格拉斯哥流浪者|圣米伦",
+      "source_row_index": 15,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -1.5,
+        "asian_handicap_raw": "球半",
+        "home_water": 0.93,
+        "away_water": 0.93
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_49afe25a4b1d290a24e217a8721d9f5b237bd84f158e48c6495b33e86ccd5de7",
+      "source_research_match_id": "drm_f7f1aaac56e836fe6a41057aea369482ad2ce5aa04157efdf7a53c95989bb853",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "欧冠联赛",
+        "canonical_id": "competition_cbc72c67b2b42571",
+        "canonical_name": "欧冠联赛",
+        "alias_registered": false
+      },
+      "match_number": "50",
+      "home_team": {
+        "raw_name": "巴黎圣日耳曼",
+        "canonical_id": "paris_saint_germain",
+        "canonical_name": "巴黎圣日耳曼",
+        "alias_registered": true
+      },
+      "away_team": {
+        "raw_name": "布拉迪斯拉发",
+        "canonical_id": "team_5265bb16c61e8362",
+        "canonical_name": "布拉迪斯拉发",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T02:50:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|50|巴黎圣日耳曼|布拉迪斯拉发",
+      "source_row_index": 16,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -2.5,
+        "asian_handicap_raw": "两球半",
+        "home_water": 0.83,
+        "away_water": 1.03
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_0dd7cc450442dfec638ae2c4214767cdc747d49a6329a1bb29a6876cec5044c0",
+      "source_research_match_id": "drm_0e5caf931d6db312eddc5723dc6e44d39f7baeea731f269ebd7975b90d9dcbfd",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "欧冠联赛",
+        "canonical_id": "competition_cbc72c67b2b42571",
+        "canonical_name": "欧冠联赛",
+        "alias_registered": false
+      },
+      "match_number": "51",
+      "home_team": {
+        "raw_name": "利物浦",
+        "canonical_id": "team_c40ad3a8c1696f5d",
+        "canonical_name": "利物浦",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "马德里竞技",
+        "canonical_id": "atletico_madrid",
+        "canonical_name": "马德里竞技",
+        "alias_registered": true
+      },
+      "kickoff_time": "2026-09-10T02:50:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|51|利物浦|马德里竞技",
+      "source_row_index": 17,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.5,
+        "asian_handicap_raw": "半球",
+        "home_water": 0.9,
+        "away_water": 0.95
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_7695c43bf7ea30513b40a981ee400212d7cccfdf432132fe8a0823a9bf5f58bf",
+      "source_research_match_id": "drm_5f88f36e38a0f56493e25d4afab99ec2702b1d0c9c84e6201467d4a4cd390f4e",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "欧冠联赛",
+        "canonical_id": "competition_cbc72c67b2b42571",
+        "canonical_name": "欧冠联赛",
+        "alias_registered": false
+      },
+      "match_number": "52",
+      "home_team": {
+        "raw_name": "葡萄牙体育",
+        "canonical_id": "sporting_cp",
+        "canonical_name": "葡萄牙体育",
+        "alias_registered": true
+      },
+      "away_team": {
+        "raw_name": "加拉塔萨雷",
+        "canonical_id": "team_a9b373bb7927e1bc",
+        "canonical_name": "加拉塔萨雷",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T02:50:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|52|葡萄牙体育|加拉塔萨雷",
+      "source_row_index": 18,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.5,
+        "asian_handicap_raw": "半球",
+        "home_water": 0.95,
+        "away_water": 0.9
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_16ed6a13a51029ca4c91470cfb3ac12f06d162960a53efc2d951d2e158606170",
+      "source_research_match_id": "drm_d201aebf967dd708413d3535dfeb10a63221a00b1611104badbff47ae2c2c35b",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "欧冠联赛",
+        "canonical_id": "competition_cbc72c67b2b42571",
+        "canonical_name": "欧冠联赛",
+        "alias_registered": false
+      },
+      "match_number": "53",
+      "home_team": {
+        "raw_name": "那不勒斯",
+        "canonical_id": "napoli",
+        "canonical_name": "那不勒斯",
+        "alias_registered": true
+      },
+      "away_team": {
+        "raw_name": "阿森纳",
+        "canonical_id": "arsenal",
+        "canonical_name": "阿森纳",
+        "alias_registered": true
+      },
+      "kickoff_time": "2026-09-10T02:50:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|53|那不勒斯|阿森纳",
+      "source_row_index": 19,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": 0.5,
+        "asian_handicap_raw": "受让半球",
+        "home_water": 0.83,
+        "away_water": 1.03
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_c54a28bc2839629a1a37e5d34762c880639bd65714c4545287da0ddb2fd2d7e8",
+      "source_research_match_id": "drm_9705b458afe24b0104d339d09c39209a45746fa837b254fe4d9c2754df57c0c9",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "英联杯",
+        "canonical_id": "competition_c531b19bcbf7e18d",
+        "canonical_name": "英联杯",
+        "alias_registered": false
+      },
+      "match_number": "54",
+      "home_team": {
+        "raw_name": "切尔西",
+        "canonical_id": "team_9d383ac04d519045",
+        "canonical_name": "切尔西",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "利兹联",
+        "canonical_id": "team_16d4107aa8fe1a80",
+        "canonical_name": "利兹联",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T02:50:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|54|切尔西|利兹联",
+      "source_row_index": 20,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.75,
+        "asian_handicap_raw": "半球/一球",
+        "home_water": 0.83,
+        "away_water": 1.03
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_baf450eccc2280585250c04c41513f37eac9291a51a30bf326f8ab21d77331ed",
+      "source_research_match_id": "drm_5a6e46cd620df4be3a3b40e01b3a868f3f093ed792b80ea394c8264b937d1a28",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "英冠",
+        "canonical_id": "competition_13f71504f3f9e803",
+        "canonical_name": "英冠",
+        "alias_registered": false
+      },
+      "match_number": "55",
+      "home_team": {
+        "raw_name": "查尔顿",
+        "canonical_id": "team_f9036002234990dc",
+        "canonical_name": "查尔顿",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "女王公园巡游者",
+        "canonical_id": "team_cf010aed9d5393f2",
+        "canonical_name": "女王公园巡游者",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T02:50:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|55|查尔顿|女王公园巡游者",
+      "source_row_index": 21,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": 0.25,
+        "asian_handicap_raw": "受让平手/半球",
+        "home_water": 0.78,
+        "away_water": 1.1
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_d55d469270edddd72bf6fde633e80c8687951f8813daf414edd4d1ac47f0217e",
+      "source_research_match_id": "drm_a2560f881be3d50b18115cfa152a2bd2f56bf1fa441baff9839779ca04260a93",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "苏超",
+        "canonical_id": "competition_8e6cd6cff62fcd01",
+        "canonical_name": "苏超",
+        "alias_registered": false
+      },
+      "match_number": "56",
+      "home_team": {
+        "raw_name": "圣约翰斯通",
+        "canonical_id": "team_0e34db4f60acdf13",
+        "canonical_name": "圣约翰斯通",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "凯尔特人",
+        "canonical_id": "team_d070890355d2a68f",
+        "canonical_name": "凯尔特人",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T02:50:00+08:00",
+      "external_draw_exclusion_label": 1,
+      "external_label_status": "EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|56|圣约翰斯通|凯尔特人",
+      "source_row_index": 22,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": 1.25,
+        "asian_handicap_raw": "受让一球/球半",
+        "home_water": 0.85,
+        "away_water": 1.0
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_439f33fd33836ce03f54d608e22f8d36c51e8d8f954530ac628b6b82c1f87f8f",
+      "source_research_match_id": "drm_08882ca126e72328f6bcfb580b49cec4f8e2d117c262d7e1839c8e3208d5a450",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "葡超",
+        "canonical_id": "primeira_liga",
+        "canonical_name": "葡超",
+        "alias_registered": true
+      },
+      "match_number": "57",
+      "home_team": {
+        "raw_name": "摩雷伦斯",
+        "canonical_id": "team_12339c6de6adcb73",
+        "canonical_name": "摩雷伦斯",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "本菲卡",
+        "canonical_id": "team_44d80d6e402713f0",
+        "canonical_name": "本菲卡",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T03:35:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|57|摩雷伦斯|本菲卡",
+      "source_row_index": 23,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": 2.0,
+        "asian_handicap_raw": "受让两球",
+        "home_water": 0.9,
+        "away_water": 0.95
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_b83f5ce1642135652eb0b0285fffbfd34393ac22c469f94169b64167647f8407",
+      "source_research_match_id": "drm_b41b98de900a75595a15788336df3eed8594151cf92e9cf68b7dbd885ef58005",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "解放者杯",
+        "canonical_id": "competition_5a51873acf081a1b",
+        "canonical_name": "解放者杯",
+        "alias_registered": false
+      },
+      "match_number": "58",
+      "home_team": {
+        "raw_name": "帕尔梅拉斯",
+        "canonical_id": "team_9c193cd642f8ecbd",
+        "canonical_name": "帕尔梅拉斯",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "基多体育大学",
+        "canonical_id": "team_712e4b7d8a73d59e",
+        "canonical_name": "基多体育大学",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T05:50:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|58|帕尔梅拉斯|基多体育大学",
+      "source_row_index": 24,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -1.5,
+        "asian_handicap_raw": "球半",
+        "home_water": 0.9,
+        "away_water": 0.95
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_f521c9e97e67837af394df149f5ca2d5364c67e4aa523525c5a401c3ea0e4a73",
+      "source_research_match_id": "drm_20a2e4f6ba2cf408bec07fe18f33fa7a31b24587faa09c07faa5535a9ccab519",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "南俱杯",
+        "canonical_id": "competition_4baf2a756eef606b",
+        "canonical_name": "南俱杯",
+        "alias_registered": false
+      },
+      "match_number": "59",
+      "home_team": {
+        "raw_name": "桑托斯",
+        "canonical_id": "team_8e5fb297247c72af",
+        "canonical_name": "桑托斯",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "米内罗竞技",
+        "canonical_id": "atletico_mineiro",
+        "canonical_name": "米内罗竞技",
+        "alias_registered": true
+      },
+      "kickoff_time": "2026-09-10T05:50:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|59|桑托斯|米内罗竞技",
+      "source_row_index": 25,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.25,
+        "asian_handicap_raw": "平手/半球",
+        "home_water": 0.77,
+        "away_water": 1.1
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_44c995b1b07ad281eeda6ed4ca4cfda81e257d467040a587315630e305755013",
+      "source_research_match_id": "drm_90a655b8575503c5c12acb48a275f6fbe63ee358887d09d9fadf78af6a6a61b7",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "巴西乙",
+        "canonical_id": "competition_e1e773724fa06ef0",
+        "canonical_name": "巴西乙",
+        "alias_registered": false
+      },
+      "match_number": "61",
+      "home_team": {
+        "raw_name": "福塔莱萨",
+        "canonical_id": "team_da4897e87d0c6ed2",
+        "canonical_name": "福塔莱萨",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "阿瓦伊",
+        "canonical_id": "team_135b566523c96903",
+        "canonical_name": "阿瓦伊",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T06:20:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|61|福塔莱萨|阿瓦伊",
+      "source_row_index": 26,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -1.0,
+        "asian_handicap_raw": "一球",
+        "home_water": 1.0,
+        "away_water": 0.8
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_b1a42406cd16c3ef151d75d1e3e0a99841e56b8ec14ce1b561c919e1fb69be5f",
+      "source_research_match_id": "drm_294e657c2bd9a0b1eebfeff82c58e4ba2779dcf82d30faabb0025dac547374d5",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "美职",
+        "canonical_id": "competition_564efa99227a2732",
+        "canonical_name": "美职",
+        "alias_registered": false
+      },
+      "match_number": "63",
+      "home_team": {
+        "raw_name": "亚特兰大联",
+        "canonical_id": "team_c7aacf07423c2164",
+        "canonical_name": "亚特兰大联",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "奥兰多城",
+        "canonical_id": "team_422d8a169cfe68d8",
+        "canonical_name": "奥兰多城",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T07:20:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|63|亚特兰大联|奥兰多城",
+      "source_row_index": 27,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.25,
+        "asian_handicap_raw": "平手/半球",
+        "home_water": 0.8,
+        "away_water": 1.0
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_5eb67a39bbba00f866c5024adf07e858620bf8eec5683faad5c0484c690b2616",
+      "source_research_match_id": "drm_4b547c1fded8079fe181b41e40a43cf23c4c24746a5e53053252a48d5b1d1ef0",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "美职",
+        "canonical_id": "competition_564efa99227a2732",
+        "canonical_name": "美职",
+        "alias_registered": false
+      },
+      "match_number": "64",
+      "home_team": {
+        "raw_name": "华盛顿联",
+        "canonical_id": "team_420aa469aa045d08",
+        "canonical_name": "华盛顿联",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "哥伦布机员",
+        "canonical_id": "team_466fc76f0f4d7e9e",
+        "canonical_name": "哥伦布机员",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T07:20:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|64|华盛顿联|哥伦布机员",
+      "source_row_index": 28,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.25,
+        "asian_handicap_raw": "平手/半球",
+        "home_water": 1.05,
+        "away_water": 0.75
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_45045a8ffa4560d7678588d5a1d14f3e27906ebd9cbe914a3ec39bb49e60715a",
+      "source_research_match_id": "drm_264fab29dca6f8a768db1b20628461a90b6317d03fd2b8b2aca605701ebbb3bd",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "美职",
+        "canonical_id": "competition_564efa99227a2732",
+        "canonical_name": "美职",
+        "alias_registered": false
+      },
+      "match_number": "65",
+      "home_team": {
+        "raw_name": "CF蒙特利尔",
+        "canonical_id": "team_5dc45f85b7860c4d",
+        "canonical_name": "CF蒙特利尔",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "夏洛特FC",
+        "canonical_id": "team_ffaf5b331924865d",
+        "canonical_name": "夏洛特FC",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T07:20:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|65|CF蒙特利尔|夏洛特FC",
+      "source_row_index": 29,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.25,
+        "asian_handicap_raw": "平手/半球",
+        "home_water": 1.03,
+        "away_water": 0.78
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_2ddefa42dcb28d2c7836d24029a4b89d56885ba5cf2211430ba648ae81709ad4",
+      "source_research_match_id": "drm_7f01dd20e0bbd3807274221cdc1a8062186e33926ffc43975acb5eba05ca5a76",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "美职",
+        "canonical_id": "competition_564efa99227a2732",
+        "canonical_name": "美职",
+        "alias_registered": false
+      },
+      "match_number": "66",
+      "home_team": {
+        "raw_name": "多伦多FC",
+        "canonical_id": "team_042e21ae0df0e516",
+        "canonical_name": "多伦多FC",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "纳什维尔SC",
+        "canonical_id": "team_e686e0b9bb14e253",
+        "canonical_name": "纳什维尔SC",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T07:20:00+08:00",
+      "external_draw_exclusion_label": 1,
+      "external_label_status": "EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|66|多伦多FC|纳什维尔SC",
+      "source_row_index": 30,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": 0.25,
+        "asian_handicap_raw": "受让平手/半球",
+        "home_water": 0.85,
+        "away_water": 0.95
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_07a2ae592d2602ace5da6015d0e114e96c0b4932a7c6bfd1f75f99f55f837c60",
+      "source_research_match_id": "drm_96fbfa62caee4d2ff213586d8babd479adba0604e457ee521d776e792660293a",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "巴西乙",
+        "canonical_id": "competition_e1e773724fa06ef0",
+        "canonical_name": "巴西乙",
+        "alias_registered": false
+      },
+      "match_number": "67",
+      "home_team": {
+        "raw_name": "米内罗美洲",
+        "canonical_id": "team_814b0c8742dafb81",
+        "canonical_name": "米内罗美洲",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "累西腓航海",
+        "canonical_id": "team_02c314c33af13e6a",
+        "canonical_name": "累西腓航海",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T07:20:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|67|米内罗美洲|累西腓航海",
+      "source_row_index": 31,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.0,
+        "asian_handicap_raw": "平手",
+        "home_water": 0.85,
+        "away_water": 0.95
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_0c7d872b343552c64707ab6fa006371cc269c587a3bd45c9adf59dd2a67b0659",
+      "source_research_match_id": "drm_58c845e103552ecb54fdc54175e8117aed56b41c79fe33bb1d091fe35586a9e9",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "巴西乙",
+        "canonical_id": "competition_e1e773724fa06ef0",
+        "canonical_name": "巴西乙",
+        "alias_registered": false
+      },
+      "match_number": "68",
+      "home_team": {
+        "raw_name": "铁路工人",
+        "canonical_id": "team_517d395d4966e2ca",
+        "canonical_name": "铁路工人",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "巴西雷加塔斯",
+        "canonical_id": "team_591ba0046f8ec3ca",
+        "canonical_name": "巴西雷加塔斯",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T07:20:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|68|铁路工人|巴西雷加塔斯",
+      "source_row_index": 32,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.25,
+        "asian_handicap_raw": "平手/半球",
+        "home_water": 1.0,
+        "away_water": 0.8
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_cc16aca9dddc4f76a20577872a8763f61aa13ebf5f12b50ace31ffb8feb7a9c3",
+      "source_research_match_id": "drm_0ac73afcfaca17edef4f63a0c1e72e09ff9d61eedc72cdcf9b90be9201c9c5e4",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "美职",
+        "canonical_id": "competition_564efa99227a2732",
+        "canonical_name": "美职",
+        "alias_registered": false
+      },
+      "match_number": "69",
+      "home_team": {
+        "raw_name": "费城联合",
+        "canonical_id": "team_e896fef9919c1bb7",
+        "canonical_name": "费城联合",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "FC辛辛那提",
+        "canonical_id": "team_a50c612092739b71",
+        "canonical_name": "FC辛辛那提",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T07:20:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|69|费城联合|FC辛辛那提",
+      "source_row_index": 33,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.75,
+        "asian_handicap_raw": "半球/一球",
+        "home_water": 0.93,
+        "away_water": 0.88
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_0dc922c0d74665d37520144d98c3552cbfa400cc7b408a3d347479f016552733",
+      "source_research_match_id": "drm_85983b7a083929f9cbd482c44f7a247be88b3104f5e5392b5d88f58a92b58f3a",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "美职",
+        "canonical_id": "competition_564efa99227a2732",
+        "canonical_name": "美职",
+        "alias_registered": false
+      },
+      "match_number": "70",
+      "home_team": {
+        "raw_name": "纽约城",
+        "canonical_id": "team_d671a4b2eb8bd97f",
+        "canonical_name": "纽约城",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "新英格兰革命",
+        "canonical_id": "team_945e72d01fb084f2",
+        "canonical_name": "新英格兰革命",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T07:50:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|70|纽约城|新英格兰革命",
+      "source_row_index": 34,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.25,
+        "asian_handicap_raw": "平手/半球",
+        "home_water": 0.8,
+        "away_water": 1.0
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_2f2ac1ad54c177dfefcee1deda1d530e899251bb96c5da37ec840b8e8bd52d05",
+      "source_research_match_id": "drm_e4df2a66ea6ecb60bebce690ce57d132cb1288371a315c02f7f02a896d11771a",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "解放者杯",
+        "canonical_id": "competition_5a51873acf081a1b",
+        "canonical_name": "解放者杯",
+        "alias_registered": false
+      },
+      "match_number": "71",
+      "home_team": {
+        "raw_name": "拉普拉塔大学生",
+        "canonical_id": "team_2de5ad44684f2641",
+        "canonical_name": "拉普拉塔大学生",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "科林蒂安",
+        "canonical_id": "team_731c351377b40419",
+        "canonical_name": "科林蒂安",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T08:20:00+08:00",
+      "external_draw_exclusion_label": 1,
+      "external_label_status": "EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|71|拉普拉塔大学生|科林蒂安",
+      "source_row_index": 35,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.0,
+        "asian_handicap_raw": "平手",
+        "home_water": 0.75,
+        "away_water": 1.13
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_af15582a3832d425719594d068c744761a382672de33049e3621e78794159073",
+      "source_research_match_id": "drm_23cf16be768daa5d996ec7bab031c0ee123354904e746030c62d118287d7dd9d",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "美职",
+        "canonical_id": "competition_564efa99227a2732",
+        "canonical_name": "美职",
+        "alias_registered": false
+      },
+      "match_number": "72",
+      "home_team": {
+        "raw_name": "奥斯汀FC",
+        "canonical_id": "team_32e817d10c1d8d99",
+        "canonical_name": "奥斯汀FC",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "科罗拉多急流",
+        "canonical_id": "team_a84014e3523c9f6b",
+        "canonical_name": "科罗拉多急流",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T08:20:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|72|奥斯汀FC|科罗拉多急流",
+      "source_row_index": 36,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.0,
+        "asian_handicap_raw": "平手",
+        "home_water": 0.78,
+        "away_water": 1.03
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_8104e34f9aae55c3785f0f06f84b64c6a58723ae98abacaeead2be9232a5ae89",
+      "source_research_match_id": "drm_809292744e617370e24587160b93dd5c9b9b0d197147e52e86280ab2a9be16b1",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "美职",
+        "canonical_id": "competition_564efa99227a2732",
+        "canonical_name": "美职",
+        "alias_registered": false
+      },
+      "match_number": "73",
+      "home_team": {
+        "raw_name": "芝加哥火焰",
+        "canonical_id": "team_f0e5da26889c9f53",
+        "canonical_name": "芝加哥火焰",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "国际迈阿密",
+        "canonical_id": "team_c9ee2d8cac2784db",
+        "canonical_name": "国际迈阿密",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T08:20:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|73|芝加哥火焰|国际迈阿密",
+      "source_row_index": 37,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.25,
+        "asian_handicap_raw": "平手/半球",
+        "home_water": 0.95,
+        "away_water": 0.85
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_be1db1b83ea4a9ee145f0ee3aa315e6352754f7cfc579576be36b0b3533f4509",
+      "source_research_match_id": "drm_b9817c8c79a135ff722c73ba27e63345fa4ca50cb91427e275d94f80f6c832d3",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "美职",
+        "canonical_id": "competition_564efa99227a2732",
+        "canonical_name": "美职",
+        "alias_registered": false
+      },
+      "match_number": "74",
+      "home_team": {
+        "raw_name": "休斯敦迪纳摩",
+        "canonical_id": "team_ed3fdf79bd92c6b1",
+        "canonical_name": "休斯敦迪纳摩",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "皇家盐湖城",
+        "canonical_id": "team_7b68361ae47f68d6",
+        "canonical_name": "皇家盐湖城",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T08:20:00+08:00",
+      "external_draw_exclusion_label": 1,
+      "external_label_status": "EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|74|休斯敦迪纳摩|皇家盐湖城",
+      "source_row_index": 38,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.75,
+        "asian_handicap_raw": "半球/一球",
+        "home_water": 0.85,
+        "away_water": 0.95
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_11cd3411cf1c17408f10dfb0a5c81513c001fb47aaf246b73399f4b286212813",
+      "source_research_match_id": "drm_52bdf37d77047bfb2ddee45ec662a56e64a571b3f17fefb264dbffb9cdfffb37",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "美职",
+        "canonical_id": "competition_564efa99227a2732",
+        "canonical_name": "美职",
+        "alias_registered": false
+      },
+      "match_number": "75",
+      "home_team": {
+        "raw_name": "明尼苏达联",
+        "canonical_id": "team_08f66a4066a8a34a",
+        "canonical_name": "明尼苏达联",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "FC达拉斯",
+        "canonical_id": "team_917bc049d32b0631",
+        "canonical_name": "FC达拉斯",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T08:20:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|75|明尼苏达联|FC达拉斯",
+      "source_row_index": 39,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.5,
+        "asian_handicap_raw": "半球",
+        "home_water": 0.98,
+        "away_water": 0.83
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_1f7a676d23039950f7797e3474cb712fcb295f328e041d478ca97789747bc36d",
+      "source_research_match_id": "drm_35d261e0ca4f7cf385b77017c408d869c99c3b83dff81bdc075e923361a36194",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "巴西乙",
+        "canonical_id": "competition_e1e773724fa06ef0",
+        "canonical_name": "巴西乙",
+        "alias_registered": false
+      },
+      "match_number": "76",
+      "home_team": {
+        "raw_name": "戈亚尼亚竞技",
+        "canonical_id": "team_365f17b2e2225cce",
+        "canonical_name": "戈亚尼亚竞技",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "塞阿拉",
+        "canonical_id": "team_72e8fc4e629dd92e",
+        "canonical_name": "塞阿拉",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T08:20:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|76|戈亚尼亚竞技|塞阿拉",
+      "source_row_index": 40,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.5,
+        "asian_handicap_raw": "半球",
+        "home_water": 0.93,
+        "away_water": 0.88
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_e9ba324857faad16d6d7e47eb6de03056b94fe3e73ea92413bc5f7c80a4b12e9",
+      "source_research_match_id": "drm_7ee74f1061e05f60dd4b58ca8e9d0904482b2fd0674df51c6736bf79c09f1fac",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "美职",
+        "canonical_id": "competition_564efa99227a2732",
+        "canonical_name": "美职",
+        "alias_registered": false
+      },
+      "match_number": "77",
+      "home_team": {
+        "raw_name": "洛杉矶FC",
+        "canonical_id": "team_a4f18212e9fcae4f",
+        "canonical_name": "洛杉矶FC",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "纽约红牛",
+        "canonical_id": "team_11c04c4f0cafd3cb",
+        "canonical_name": "纽约红牛",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T10:20:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|77|洛杉矶FC|纽约红牛",
+      "source_row_index": 41,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -1.25,
+        "asian_handicap_raw": "一球/球半",
+        "home_water": 0.8,
+        "away_water": 1.0
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_f01f73138f238df8243d653aa7f23999c423e841371f411093907ae653158658",
+      "source_research_match_id": "drm_3b8efea05791f51e68418a6ba759487b98850a3b64d9cbc766eef1eb4ae8d9a7",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "美职",
+        "canonical_id": "competition_564efa99227a2732",
+        "canonical_name": "美职",
+        "alias_registered": false
+      },
+      "match_number": "78",
+      "home_team": {
+        "raw_name": "波特兰伐木者",
+        "canonical_id": "team_63f0302048746224",
+        "canonical_name": "波特兰伐木者",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "圣路易斯城",
+        "canonical_id": "team_072671636f6cd4bc",
+        "canonical_name": "圣路易斯城",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T10:20:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|78|波特兰伐木者|圣路易斯城",
+      "source_row_index": 42,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.5,
+        "asian_handicap_raw": "半球",
+        "home_water": 1.0,
+        "away_water": 0.8
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_b4d01de8ff6cb326b3f258fe39ab506c2ae7bd94b4cbdb4553065c8db8397004",
+      "source_research_match_id": "drm_14ead598c37074680decbf151aa5064df78484b3c87cd37f02f7116a12a3d89d",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "美职",
+        "canonical_id": "competition_564efa99227a2732",
+        "canonical_name": "美职",
+        "alias_registered": false
+      },
+      "match_number": "80",
+      "home_team": {
+        "raw_name": "温哥华白浪",
+        "canonical_id": "team_6ba627e29e22b35e",
+        "canonical_name": "温哥华白浪",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "洛杉矶银河",
+        "canonical_id": "team_bc3fa746a4957e59",
+        "canonical_name": "洛杉矶银河",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T10:20:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|80|温哥华白浪|洛杉矶银河",
+      "source_row_index": 43,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -1.75,
+        "asian_handicap_raw": "球半/两球",
+        "home_water": 0.95,
+        "away_water": 0.85
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_f956857591b9cb12e39cc97a9c16d6831b7fe170de41773ae1f45c7a9adbc5ed",
+      "source_research_match_id": "drm_0e4767b7053eb814f484e1806ee233d466588917b9f330971274aeb519c436d3",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "希腊杯",
+        "canonical_id": "competition_dfd586d1552c878c",
+        "canonical_name": "希腊杯",
+        "alias_registered": false
+      },
+      "match_number": "81",
+      "home_team": {
+        "raw_name": "特里波利斯之星",
+        "canonical_id": "team_064d083b5cae5f61",
+        "canonical_name": "特里波利斯之星",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "阿瑞斯",
+        "canonical_id": "team_eadc44f1a25aec7c",
+        "canonical_name": "阿瑞斯",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-10T22:35:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|81|特里波利斯之星|阿瑞斯",
+      "source_row_index": 44,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": null,
+        "asian_handicap_raw": null,
+        "home_water": null,
+        "away_water": null
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_727b44622ea1d86a3cce9ab3c8d481653f4158cdb00a110918b57b1073386c7f",
+      "source_research_match_id": "drm_35f496bc81e877d2c2e762bf98022c5ef6c13480a229f96ddbe79cd5b0b9074e",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "欧冠联赛",
+        "canonical_id": "competition_cbc72c67b2b42571",
+        "canonical_name": "欧冠联赛",
+        "alias_registered": false
+      },
+      "match_number": "82",
+      "home_team": {
+        "raw_name": "费内巴切",
+        "canonical_id": "team_1d2f8a64cf91cbf9",
+        "canonical_name": "费内巴切",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "罗马",
+        "canonical_id": "team_3b54664e8163d36a",
+        "canonical_name": "罗马",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-11T00:35:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|82|费内巴切|罗马",
+      "source_row_index": 45,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": null,
+        "asian_handicap_raw": null,
+        "home_water": null,
+        "away_water": null
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_1f0b06e5a621c4cc5ca15fe74ed67d803220c390a2a5c6c8565dfab255e119f9",
+      "source_research_match_id": "drm_7e633504a3724f67bb260a9e3cbb32762cd778b402b8bedef70eabe1f01b10ce",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "瑞典甲",
+        "canonical_id": "competition_2db245a932bcce97",
+        "canonical_name": "瑞典甲",
+        "alias_registered": false
+      },
+      "match_number": "84",
+      "home_team": {
+        "raw_name": "松兹瓦尔",
+        "canonical_id": "team_6e4cf5114ab0890b",
+        "canonical_name": "松兹瓦尔",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "厄勒布鲁",
+        "canonical_id": "team_cf297e1751027f60",
+        "canonical_name": "厄勒布鲁",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-11T00:50:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|84|松兹瓦尔|厄勒布鲁",
+      "source_row_index": 46,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": null,
+        "asian_handicap_raw": null,
+        "home_water": null,
+        "away_water": null
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_d2981e5f10962dc1c9451e1bef0d23d8f42309144126c99a631540541c737700",
+      "source_research_match_id": "drm_8f92c51cba83ad782c5c0a6dec95f2b1ccd45963bfca084f1404fcbf396d0f7a",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "瑞典甲",
+        "canonical_id": "competition_2db245a932bcce97",
+        "canonical_name": "瑞典甲",
+        "alias_registered": false
+      },
+      "match_number": "85",
+      "home_team": {
+        "raw_name": "瓦尔贝里",
+        "canonical_id": "team_04a2839f19270d89",
+        "canonical_name": "瓦尔贝里",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "北雪平",
+        "canonical_id": "team_4f30dd950a4ae6d9",
+        "canonical_name": "北雪平",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-11T00:50:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|85|瓦尔贝里|北雪平",
+      "source_row_index": 47,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": null,
+        "asian_handicap_raw": null,
+        "home_water": null,
+        "away_water": null
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_8c429e5de5771f7f45ae6fc796c2d2e9c341c4cc2fa551d062685099e4f98cb2",
+      "source_research_match_id": "drm_1b32c7624d890f6181f49b82472d478125e32f8875492f43a3fbcac6dd5ecc2b",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "欧冠联赛",
+        "canonical_id": "competition_cbc72c67b2b42571",
+        "canonical_name": "欧冠联赛",
+        "alias_registered": false
+      },
+      "match_number": "88",
+      "home_team": {
+        "raw_name": "拜仁慕尼黑",
+        "canonical_id": "bayern_munich",
+        "canonical_name": "拜仁慕尼黑",
+        "alias_registered": true
+      },
+      "away_team": {
+        "raw_name": "博德闪耀",
+        "canonical_id": "team_8920c83bcbd711de",
+        "canonical_name": "博德闪耀",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-11T02:50:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|88|拜仁慕尼黑|博德闪耀",
+      "source_row_index": 48,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -2.25,
+        "asian_handicap_raw": "两球/两球半",
+        "home_water": 1.03,
+        "away_water": 0.83
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_87b56e6c48afbf4fa9fe6c0f2584d7ac676fb5be11bc782571e9e9dd8ae71da6",
+      "source_research_match_id": "drm_8c4f7d3c96f13ae597c667810afd6ee5dc7ccf92eac748f230321055c88f6917",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "欧冠联赛",
+        "canonical_id": "competition_cbc72c67b2b42571",
+        "canonical_name": "欧冠联赛",
+        "alias_registered": false
+      },
+      "match_number": "89",
+      "home_team": {
+        "raw_name": "曼彻斯特联",
+        "canonical_id": "team_14675ccf426860aa",
+        "canonical_name": "曼彻斯特联",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "萨巴赫",
+        "canonical_id": "team_6792a87dfeba9237",
+        "canonical_name": "萨巴赫",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-11T02:50:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|89|曼彻斯特联|萨巴赫",
+      "source_row_index": 49,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -2.25,
+        "asian_handicap_raw": "两球/两球半",
+        "home_water": 0.85,
+        "away_water": 1.0
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_ae236ce22387ddacff8c75256a93cbbf596c3152f99b3da67ae4798505a1d278",
+      "source_research_match_id": "drm_24c16a009921e644c5fb40b4d188bc438cbd68af2757b7a5ebb33d09c8f9f86d",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "欧冠联赛",
+        "canonical_id": "competition_cbc72c67b2b42571",
+        "canonical_name": "欧冠联赛",
+        "alias_registered": false
+      },
+      "match_number": "90",
+      "home_team": {
+        "raw_name": "布拉格斯拉维亚",
+        "canonical_id": "team_30585921d694d040",
+        "canonical_name": "布拉格斯拉维亚",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "朗斯",
+        "canonical_id": "team_953602417931d9fe",
+        "canonical_name": "朗斯",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-11T02:50:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|90|布拉格斯拉维亚|朗斯",
+      "source_row_index": 50,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": null,
+        "asian_handicap_raw": null,
+        "home_water": null,
+        "away_water": null
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_0f91cdc92e5c47c3aa8e2b643f0cc5412b69d4ef8f7f15c900378896bf807351",
+      "source_research_match_id": "drm_d95a15c8337d9e8c9f4796131dc3560e256eb7c648c018a0e79a4b9ddf3cbde1",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "欧冠联赛",
+        "canonical_id": "competition_cbc72c67b2b42571",
+        "canonical_name": "欧冠联赛",
+        "alias_registered": false
+      },
+      "match_number": "91",
+      "home_team": {
+        "raw_name": "科莫",
+        "canonical_id": "team_0d80c94faf9a0416",
+        "canonical_name": "科莫",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "RB莱比锡",
+        "canonical_id": "team_28982feec85e4443",
+        "canonical_name": "RB莱比锡",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-11T02:50:00+08:00",
+      "external_draw_exclusion_label": 1,
+      "external_label_status": "EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|91|科莫|RB莱比锡",
+      "source_row_index": 51,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.25,
+        "asian_handicap_raw": "平手/半球",
+        "home_water": 1.03,
+        "away_water": 0.83
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_40a81bb8b0b6afec2caa7d69b2c5197264950e4a4e38b709f38bdf7cc2d61850",
+      "source_research_match_id": "drm_a458fa2d16be558b7142db280091f6fda9ddbdaac56cd0c349985bbcb7f54e27",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "英甲",
+        "canonical_id": "competition_f982d3f782345c04",
+        "canonical_name": "英甲",
+        "alias_registered": false
+      },
+      "match_number": "92",
+      "home_team": {
+        "raw_name": "斯蒂夫尼奇",
+        "canonical_id": "team_4760fd3f63938a84",
+        "canonical_name": "斯蒂夫尼奇",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "卢顿",
+        "canonical_id": "team_f542e468705d88bc",
+        "canonical_name": "卢顿",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-11T02:50:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|92|斯蒂夫尼奇|卢顿",
+      "source_row_index": 52,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": 0.25,
+        "asian_handicap_raw": "受让平手/半球",
+        "home_water": 0.9,
+        "away_water": 0.95
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_aba4a008622555f43135ad4998b18161cdf72567aa446885a7792f7a5254006a",
+      "source_research_match_id": "drm_32633e6de12e69c0b084dc23919e1249e5811cf5edfcdda48e559492c704048a",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "葡超",
+        "canonical_id": "primeira_liga",
+        "canonical_name": "葡超",
+        "alias_registered": true
+      },
+      "match_number": "93",
+      "home_team": {
+        "raw_name": "阿马多拉之星",
+        "canonical_id": "team_bce4f934b76518f1",
+        "canonical_name": "阿马多拉之星",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "布拉加",
+        "canonical_id": "team_8153504d1f019c93",
+        "canonical_name": "布拉加",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-11T03:05:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|93|阿马多拉之星|布拉加",
+      "source_row_index": 53,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": 0.75,
+        "asian_handicap_raw": "受让半球/一球",
+        "home_water": 0.88,
+        "away_water": 0.98
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_28e5d59ff9f97fdb7e8a9c888d503fe5b4742ecd91b33b3894e82889110f59bd",
+      "source_research_match_id": "drm_84fa185eed1c3acb209c48de41cb4812ab993b1ff3f87731b7f97048d089c9fd",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "巴西乙",
+        "canonical_id": "competition_e1e773724fa06ef0",
+        "canonical_name": "巴西乙",
+        "alias_registered": false
+      },
+      "match_number": "94",
+      "home_team": {
+        "raw_name": "圣贝尔纳多",
+        "canonical_id": "team_c35f2bf0c26479f8",
+        "canonical_name": "圣贝尔纳多",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "隆德里纳",
+        "canonical_id": "team_6beb5591c1663cef",
+        "canonical_name": "隆德里纳",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-11T06:20:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|94|圣贝尔纳多|隆德里纳",
+      "source_row_index": 54,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.75,
+        "asian_handicap_raw": "半球/一球",
+        "home_water": 1.0,
+        "away_water": 0.8
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_3fb8a23db5443e52a1fbdb4d7ab0efe1ac0a2fa80d10c41ade1bf3b01a260c55",
+      "source_research_match_id": "drm_7bed842e198007393f1beef61165220bc38912bf6b26c3382ab322db2130a4aa",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "巴西乙",
+        "canonical_id": "competition_e1e773724fa06ef0",
+        "canonical_name": "巴西乙",
+        "alias_registered": false
+      },
+      "match_number": "95",
+      "home_team": {
+        "raw_name": "维拉诺瓦",
+        "canonical_id": "team_eb9733d6e7a46ee5",
+        "canonical_name": "维拉诺瓦",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "戈亚斯",
+        "canonical_id": "team_7baef7f6fc8cc154",
+        "canonical_name": "戈亚斯",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-11T06:20:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|95|维拉诺瓦|戈亚斯",
+      "source_row_index": 55,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.5,
+        "asian_handicap_raw": "半球",
+        "home_water": 1.05,
+        "away_water": 0.75
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_ac0c3d24b24c3f24178405ba05ec50e501e5fd22c3e3f56480b7fe4d066c99c1",
+      "source_research_match_id": "drm_d512ce49604363675e44ebc13a2137a376fc2ca4046101d9bbfbf22a27d7b064",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "巴西乙",
+        "canonical_id": "competition_e1e773724fa06ef0",
+        "canonical_name": "巴西乙",
+        "alias_registered": false
+      },
+      "match_number": "98",
+      "home_team": {
+        "raw_name": "累西腓体育",
+        "canonical_id": "team_96db9534676ca1cb",
+        "canonical_name": "累西腓体育",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "庞特普雷塔",
+        "canonical_id": "team_76ea220a749dcadb",
+        "canonical_name": "庞特普雷塔",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-11T08:20:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|98|累西腓体育|庞特普雷塔",
+      "source_row_index": 56,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": null,
+        "asian_handicap_raw": null,
+        "home_water": null,
+        "away_water": null
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    },
+    {
+      "research_match_id": "drm_b4ae58080b0fa0903a04076934cd1afece718f52ccaa748e256ac206639c1c2f",
+      "source_research_match_id": "drm_62205023ccab282ccc9139d062b9a7730c0dc98294c9a68681de5dff062b44ef",
+      "titan_match_id": null,
+      "source_market": "BD",
+      "competition": {
+        "raw_name": "墨超",
+        "canonical_id": "competition_6b4ca0ea28e9e6ef",
+        "canonical_name": "墨超",
+        "alias_registered": false
+      },
+      "match_number": "99",
+      "home_team": {
+        "raw_name": "普马斯",
+        "canonical_id": "team_e88f2acccf9a3701",
+        "canonical_name": "普马斯",
+        "alias_registered": false
+      },
+      "away_team": {
+        "raw_name": "莱昂",
+        "canonical_id": "team_d76e9b6952520404",
+        "canonical_name": "莱昂",
+        "alias_registered": false
+      },
+      "kickoff_time": "2026-09-11T10:55:00+08:00",
+      "external_draw_exclusion_label": 0,
+      "external_label_status": "NOT_EXCLUDED",
+      "label_origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+      "source_data_key": "BD|99|普马斯|莱昂",
+      "source_row_index": 57,
+      "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+      "titan_resolution": {
+        "status": "not_found",
+        "matched_by": null,
+        "confidence": null
+      },
+      "visible_odds": {
+        "home_1x2": null,
+        "draw_1x2": null,
+        "away_1x2": null,
+        "asian_handicap": -0.5,
+        "asian_handicap_raw": "半球",
+        "home_water": 0.78,
+        "away_water": 1.03
+      },
+      "provenance": [
+        {
+          "origin": "VERIFIED_AUTOMATIC_SNAPSHOT",
+          "snapshot_id": "snap_740f7de941313026dbdb812c0a1c847d1b9505ee583a32e50752f41c3b266384",
+          "source_url": "https://jc-odds-compare-l7oubi5p.edgeone.cool/",
+          "sha256": "0069284f60d0d759535f8dc1e37e240f5ba92a29566ac57f01be4a00885f542e"
+        }
+      ]
+    }
+  ]
+}

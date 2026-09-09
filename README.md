@@ -2,15 +2,15 @@
 
 纯 Python 的 Titan/V23 Excel 验证流水线。日常运行不依赖 Codex、不调用 LLM、不生成比赛判断或 CODEX 报告。原始 Excel 只读。
 
-## Draw Exclusion Research
+## External Draw Exclusion Label Layer
 
-第二阶段的排平 Teacher 数据采集、SQLite、Titan 对齐和日报位于 `draw_exclusion_research/`。从仓库根目录运行：
+正式的外部排平 Teacher 标签层位于 `draw_exclusion/`；此前的 `draw_exclusion_research/` 作为已验证底层采集与 Titan 适配组件保留。从仓库根目录运行：
 
 ```powershell
 python scripts/run_draw_exclusion_daily.py
 ```
 
-该入口只采集、匹配和 QC，不输出比赛预测。原始 HTML 与本地 SQLite 不进入 Git；每日 Markdown 报告、schema 和代码进入版本控制。
+该入口只采集、匹配和 QC，不输出比赛预测。`draw_exclusion/index.json` 是跨聊天按 Titan ID 查询的首选入口，日期/球队查询使用 `draw_exclusion/query_label.py`。只有网站完整比赛池中的行能得到 `0` 或 `1`；缺快照、池外和匹配失败全部保持 `NULL / UNKNOWN`。原始 HTML 与本地 SQLite 不进入 Git；GitHub Actions 将其保留为 30 天私有 artifact，并提交每日 manifest、hash、diff、索引及 QC。
 
 ## 安装与运行
 

@@ -1,0 +1,18 @@
+schema_version: "1.0"
+teams:
+  sporting_cp: ["葡萄牙体育", "里斯本竞技", "Sporting CP", "Sporting Lisbon"]
+  cd_nacional: ["葡萄牙国民", "国民队", "CD Nacional", "Nacional Madeira"]
+  sao_paulo: ["圣保罗", "São Paulo", "Sao Paulo", "São Paulo FC"]
+  atletico_mineiro: ["米内罗竞技", "明尼路", "Atlético Mineiro", "Atletico Mineiro", "Atletico MG"]
+  inter_milan: ["国际米兰", "国米", "Inter Milan", "Inter", "Internazionale"]
+  napoli: ["那不勒斯", "Napoli", "SSC Napoli"]
+  manchester_city: ["曼彻斯特城", "曼城", "Manchester City", "Man City"]
+  coventry_city: ["考文垂", "Coventry City", "Coventry"]
+  athletic_bilbao: ["毕尔巴鄂竞技", "毕尔巴鄂", "Athletic Bilbao", "Athletic Club"]
+  atletico_madrid: ["马德里竞技", "马竞", "Atletico Madrid", "Atlético Madrid"]
+  real_madrid: ["皇家马德里", "皇马", "Real Madrid"]
+  bayern_munich: ["拜仁慕尼黑", "拜仁", "Bayern Munich", "Bayern München", "Bayern"]
+  borussia_dortmund: ["多特蒙德", "多特", "Borussia Dortmund", "Dortmund"]
+  paris_saint_germain: ["巴黎圣日耳曼", "巴黎", "Paris Saint-Germain", "PSG"]
+  arsenal: ["阿森纳", "Arsenal"]
+
