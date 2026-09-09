@@ -1,10 +1,11 @@
 {
-  "version": "MODEL_1-SUPPORTING-CONTRACTS-1.0.1",
+  "version": "MODEL_1-SUPPORTING-CONTRACTS-1.0.2",
   "model_id": "MODEL_1",
   "formal_runtime": {
     "sop": "gpt/FOOTBALL_SOP.md",
     "canonical_memory": "gpt/FOOTBALL_CANONICAL_MEMORY.md",
     "decision_policy": "config/active_decision_policy.json",
+    "source_policy": "config/model_1_source_policy.json",
     "trace_contract": "config/model_1_trace_contract.json",
     "decision_engine": "gpt/decision_engine.py",
     "formal_trace_engine": "gpt/formal_trace.py"
