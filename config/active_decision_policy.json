@@ -1,5 +1,5 @@
 {
-  "policy_version": "FOOTBALL-ACTIVE-DECISION-POLICY-2026-09-09.2",
+  "policy_version": "FOOTBALL-ACTIVE-DECISION-POLICY-2026-09-09.3",
   "effective_date": "2026-09-09",
   "model_selection": {
     "registry": "config/model_registry.json",
@@ -10,8 +10,16 @@
   "authority": {
     "canonical_memory": "gpt/FOOTBALL_CANONICAL_MEMORY.md",
     "formal_sop": "gpt/FOOTBALL_SOP.md",
+    "supporting_contracts": "config/model_1_supporting_contracts.json",
     "github_over_chat_memory_on_conflict": true,
     "user_explicit_new_instruction_overrides_repository_until_repository_is_updated": true
+  },
+  "analysis_depth": {
+    "deep_analysis_match_by_match": true,
+    "preferred_matches_per_batch": 1,
+    "practical_max_before_depth_compression_risk": 2,
+    "if_more_than_two_do_not_skip_or_compress_required_stages": true,
+    "multi_match_red_team_must_remain_independent_per_match": true
   },
   "analysis_order": [
     "fundamentals",
@@ -45,6 +53,13 @@
     "shot_xg_chance_quality_when_available": true,
     "no_arbitrary_numeric_weight_without_calibration": true
   },
+  "opening_rationality": {
+    "reasonable_opening_band_from_fundamentals_required": true,
+    "adjacent_counterfactual_price_or_line_check_required": true,
+    "market_intent_may_consider_blocking_inducement_attraction": true,
+    "market_intent_is_inference_not_fact": true,
+    "suspicious_favourite_price_does_not_automatically_delete_draw": true
+  },
   "real_vs_camouflage_open": {
     "enabled": true,
     "stage": "ONE_X_TWO_AFTER_FUNDAMENTALS",
@@ -58,6 +73,38 @@
     "require_1x2_to_ah_consistency_check": true,
     "conflict_must_be_explained_not_averaged_away": true,
     "favourite_win_probability_is_not_cover_probability": true
+  },
+  "market_ceiling_and_rating": {
+    "risk_flag_alone_cannot_downgrade_without_path_pricing_or_execution_impact": true,
+    "downgrade_requires_material_counterevidence": true,
+    "examples_of_material_counterevidence": [
+      "multi_market_conflict",
+      "pricing_structure_no_longer_supports_h1",
+      "excessive_favourite_tax_or_constrained_cover_path",
+      "failed_deeper_upgrade_or_market_ceiling",
+      "critical_missing_or_conflicting_data_affecting_the_direction"
+    ],
+    "do_not_upgrade_beyond_observed_market_ceiling_without_stable_deeper_consensus": true,
+    "one_x_two_strength_cannot_upgrade_deep_ah_by_itself": true,
+    "red_team_must_distinguish_risk_presence_from_direction_invalidity": true
+  },
+  "price_execution": {
+    "thin_ev_alone_does_not_invalidate_direction": true,
+    "separate_payout_ev_change_from_information_change": true,
+    "direction_correction_requires_information_or_structure_change": true,
+    "usual_decimal_execution_floor_context": 1.80,
+    "ticket_specific_minimum_price_allowed": true,
+    "if_market_moves_to_a_different_line_reaudit_instead_of_transferring_grade": true,
+    "legacy_price_below_threshold_pass_logic_is_superseded_by_exactly_one_main_policy": true,
+    "under_current_no_pass_policy_reaudit_and_issue_one_current_formal_main": true
+  },
+  "missing_data_policy": {
+    "missing_stays_missing": true,
+    "name_missing_company_or_module": true,
+    "state_whether_missing_data_affects_direction_or_grade": true,
+    "opening_and_current_do_not_equal_full_timeline": true,
+    "missing_timeline_nodes_not_interpolated": true,
+    "source_no_data_is_not_negative_evidence": true
   },
   "ticket_policy": {
     "formal_main_per_full_analysis": 1,
@@ -137,6 +184,7 @@
     "wh_lad_2_5_role": "BASE_2_5_PROBABILITY_ANCHOR",
     "ou_ladder_normalization_required_for_line_level_comparison": true,
     "jcb_sporttery_goal_count_primary": false,
+    "jcb_sporttery_production_dependency": false,
     "jcb_sporttery_auxiliary_only_when_explicitly_supplied": true
   },
   "correct_score": {
@@ -144,6 +192,8 @@
     "poisson_dixon_coles_required": true,
     "bayesian_context_update_required": true,
     "max_final_scores": 3,
+    "preserve_top1_top2_top3_order": true,
+    "never_backfit_score_candidates_after_result": true,
     "direction_consistency_gate_required": true
   },
   "exchange": {
@@ -172,12 +222,15 @@
     "may_overturn_h1": true,
     "must_test_draw_when_not_excluded": true,
     "must_test_underdog_outright_for_deep_favourites": true,
-    "must_test_win_probability_vs_cover_probability_confusion": true
+    "must_test_win_probability_vs_cover_probability_confusion": true,
+    "must_not_downgrade_for_generic_risk_without_material_path_impact": true
   },
   "recording_workflow": {
     "analysis_chat_does_not_update_central_stats": true,
     "record_or_archive_means_freeze_prematch_only": true,
     "central_write_requires_explicit_unified_update_command": true,
-    "database_is_fact_source_excel_is_report_output": true
+    "database_is_fact_source_excel_is_report_output": true,
+    "formal_model_accuracy_primary_user_execution_secondary": true,
+    "score_stats_separate_top1_exact_from_top3_any_hit": true
   }
 }
