@@ -1,0 +1,45 @@
+{
+  "version": "MODEL_1-SOURCE-POLICY-1.0.0",
+  "model_id": "MODEL_1",
+  "odds_sources": {
+    "titan": {
+      "role": "PRIMARY_RAW_ODDS_SOURCE_WHEN_USER_SUPPLIES_TITAN_PACKET",
+      "scope": ["1X2", "AH", "OU", "timeline", "MAIN_ALT", "lineup_when_present"],
+      "rules": [
+        "Preserve match_id, timestamps, company identity, raw prices and QC.",
+        "Opening/current is not a substitute for missing timeline.",
+        "Blank or broken timeline stays MISSING rather than fabricated."
+      ]
+    },
+    "aoke": {
+      "role": "SUPPLEMENTAL_CROSS_CHECK_ONLY",
+      "may_supply": ["injury", "lineup", "schedule", "table", "motivation", "weather", "news", "market-normality cross-check"],
+      "cannot_replace_titan_core_odds_history": true,
+      "odds_conflict_policy": "Titan raw odds chain has priority; disclose conflict."
+    },
+    "oddspapi": {
+      "role": "GENUINE_BETFAIR_EXCHANGE_PROVIDER",
+      "formal_impact": false,
+      "mode": "SHADOW_RESEARCH",
+      "titan_row_named_betfair_is_not_equivalent": true
+    },
+    "api_football": {
+      "role": "SOFTWARE_PROVIDER_ARCHITECTURE_ONLY_WHERE_CONFIGURED",
+      "notes": "Do not silently substitute API-Football for a user-supplied Titan analysis packet."
+    }
+  },
+  "context_sources": {
+    "official_priority": ["club", "league", "competition", "confirmed lineup"],
+    "major_media_examples": ["Marca", "L'Equipe", "Sky Sports", "relevant beat reporters"],
+    "daily_digest_role": "SAME_DAY_CONTEXT_LAYER",
+    "unverified_rumour_role": "HYPOTHESIS_ONLY"
+  },
+  "freshness_hierarchy": "Latest official lineup/club announcement > same-day mainstream/beat report > earlier daily digest > unverified rumour.",
+  "conflict_policy": {
+    "never_average_identity_conflicts_away": true,
+    "state_source_conflict_explicitly": true,
+    "state_whether_conflict_affects_direction_or_grade": true,
+    "missing_is_not_negative_evidence": true,
+    "no_post_result_backfill": true
+  }
+}
