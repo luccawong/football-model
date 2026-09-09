@@ -1,0 +1,39 @@
+{
+  "version": "MODEL_1-SUPPORTING-CONTRACTS-1.0.0",
+  "model_id": "MODEL_1",
+  "formal_runtime": {
+    "sop": "gpt/FOOTBALL_SOP.md",
+    "canonical_memory": "gpt/FOOTBALL_CANONICAL_MEMORY.md",
+    "decision_policy": "config/active_decision_policy.json",
+    "trace_contract": "config/model_1_trace_contract.json",
+    "decision_engine": "gpt/decision_engine.py",
+    "formal_trace_engine": "gpt/formal_trace.py"
+  },
+  "supporting_memory": [
+    {
+      "path": "gpt/MEMORY_GAP_AUDIT_2026-09-09.md",
+      "authority": "SUPPORTING_AUDIT",
+      "formal_effect": "Only sections explicitly marked current/ACTIVE may supplement MODEL_1; research/legacy/conflict sections cannot override formal policy."
+    }
+  ],
+  "validation_support": [
+    {
+      "path": "validation/MODEL_1_FORWARD_VALIDATION.md",
+      "authority": "VALIDATION_ONLY",
+      "formal_effect": "NONE"
+    }
+  ],
+  "research_support": [
+    {
+      "path": "research/underdog_outright/RESEARCH_PROTOCOL.md",
+      "authority": "RESEARCH_ONLY_UNCALIBRATED",
+      "formal_effect": "NONE_UNTIL_PROMOTED"
+    },
+    {
+      "path": "draw_exclusion_research/MODEL_FAMILY_PROTOCOL.md",
+      "authority": "RESEARCH_VALIDATION_SUPPORT",
+      "formal_effect": "Does not replace authoritative daily execution label contract."
+    }
+  ],
+  "conflict_rule": "Newest explicit user instruction and current formal MODEL_1 policy outrank legacy/supporting research. Conflicts must be surfaced and versioned, never silently resolved by older artifacts."
+}
