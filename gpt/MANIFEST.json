@@ -8,6 +8,7 @@
   "memory_gap_audit": "gpt/MEMORY_GAP_AUDIT_2026-09-09.md",
   "formal_sop": "gpt/FOOTBALL_SOP.md",
   "active_decision_policy": "config/active_decision_policy.json",
+  "source_policy": "config/model_1_source_policy.json",
   "supporting_contracts": "config/model_1_supporting_contracts.json",
   "trace_contract": "config/model_1_trace_contract.json",
   "decision_engine": {
@@ -83,6 +84,7 @@
   },
   "underdog_research_protocol": "research/underdog_outright/RESEARCH_PROTOCOL.md",
   "draw_model_family_protocol": "draw_exclusion_research/MODEL_FAMILY_PROTOCOL.md",
+  "jcb_historical_research_memory": "research/jcb/HISTORICAL_GOAL_HTFT_MEMORY.md",
   "forward_validation_protocol": "validation/MODEL_1_FORWARD_VALIDATION.md",
   "open_source_registry": "docs/OPEN_SOURCE_INTEGRATIONS.md",
   "decision_policy": {
