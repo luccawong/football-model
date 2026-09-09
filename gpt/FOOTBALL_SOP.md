@@ -1,4 +1,4 @@
-# GPT Football Analysis SOP — Full Stack v1.2
+# GPT Football Analysis SOP — Full Stack v1.3
 
 1. Market snapshot + Data Gate: state, timestamp, identity, MAIN/ALT, freshness, conflicts, missing core timelines.
 2. Opening-only first impression: no later results/injuries/movements contaminate opening interpretation.
@@ -11,7 +11,7 @@
 9. Feature Packet freeze: reversals/failed upgrades, freshness, disagreement, entropy/uncertainty, module gates.
 10. 1X2 pricing: WH/Lad primary pair; Interwetten cold-side; Pinnacle anchor; Macau signal; Bet365 comparator; same-time slices.
 11. Asian handicap: line+water lifecycle, failed upgrade/downgrade, adjacent counterfactual lines.
-12. Independent totals: Macau/Pinnacle/Bet365 dynamic structure + OU ladder latent mean + WH/Lad Base-2.5; JCB auxiliary only when supplied.
+12. Independent totals: Macau/Pinnacle/Bet365 dynamic structure + OU ladder latent mean + WH/Lad Base-2.5; JCB auxiliary only when explicitly supplied as external analysis context.
 13. Cross-market coherence: linked structure, not three independent votes.
 14. Market attraction + favourite-failure paths.
 15. Mandatory Underdog Outright Audit for favourite handicap deeper than -0.5 (i.e. -0.75 and beyond):
@@ -45,8 +45,12 @@
 21. Uncertainty audit: model/company disagreement, OOD/missingness, stale/conflicting sources.
 22. Freeze H1.
 23. Independent strongest coherent Red Team H2.
-24. CONFIRM/DOWNGRADE/OVERTURN.
-25. Formal main or unique non-main/PASS under standing execution rules.
+24. CONFIRM/DOWNGRADE/UPGRADE/OVERTURN.
+25. Final output: exactly ONE formal main ticket per fully analysed match. Non-main tickets are abolished. Final PASS is not allowed under the current ticket policy; uncertainty must be expressed through grade and execution conditions instead.
+
+## Canonical memory reference
+
+Runtime should load `gpt/FOOTBALL_CANONICAL_MEMORY.md` and `config/active_decision_policy.json` before applying lower-level modules. If a lower-level rule conflicts with the newest explicit policy, flag and update the repository rather than silently executing the older rule.
 
 ## Divergence validation protocol
 
@@ -66,4 +70,4 @@ Do not select companies or thresholds after seeing results. Do not promote infor
 Use chronological walk-forward Brier/RPS/log-loss/reliability. Do not change core logic from a few outcomes. Prefer league-specific calibration; Chinese football stays separate for research/calibration. Black-box ML, Kelly and live-inplay Bayesian remain RESEARCH_ONLY until promoted after validation.
 
 ## Ticket lock
-Once a formal actionable ticket is issued it is locked. Later changes are explicit corrections.
+Once a formal actionable ticket is issued it is locked. Later changes are explicit corrections with old -> new; silent replacement is forbidden.
