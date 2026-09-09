@@ -55,7 +55,7 @@ Before kickoff freeze:
 - ticket line, grade and actionable price;
 - draw-exclusion label and model family when available;
 - underdog U-grade where triggered;
-- Top3 scorelines;
+- Top1/Top2/Top3 score ranking exactly as published;
 - missing/conflict/QC states;
 - Shadow research outputs separately.
 
@@ -98,6 +98,19 @@ Asian handicap and OU quarter-line settlement states:
 
 Never collapse direction correctness and financial settlement into one label.
 
+## Correct-score settlement
+
+Preserve only pre-match frozen candidates and their order.
+
+Track separately:
+- Top1 exact hit;
+- Top3 any hit;
+- actual final score;
+- formal handicap-direction settlement;
+- optional conditional diagnostics such as `P(score hit | handicap direction hit)` once sample size is adequate.
+
+Do not invent unrecovered Top2/Top3 candidates after the result and do not re-rank candidates post-match.
+
 ## Formal vs user execution
 
 Primary model metric: formal main ticket correctness/settlement.
@@ -124,6 +137,16 @@ Before changing the model after a failure, classify likely cause:
 - other documented cause.
 
 A favourite -0.5 or deeper failure requires dedicated favourite-failure/upset review.
+
+## Shadow / incremental-layer effect labels
+
+`HELPFUL` / `HARMFUL` may be assigned only when:
+- the alternative/shadow layer had an explicit pre-match frozen action or change recommendation;
+- the relevant market result is confirmed and objectively settled.
+
+Do not label `KEEP`, `UNRESOLVED`, missing-data, or non-action states as HELPFUL/HARMFUL after seeing the result.
+
+This prevents post-match narrative relabeling.
 
 ## Betfair Shadow comparison
 
