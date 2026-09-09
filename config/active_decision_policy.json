@@ -1,5 +1,5 @@
 {
-  "policy_version": "FOOTBALL-ACTIVE-DECISION-POLICY-2026-09-09.3",
+  "policy_version": "FOOTBALL-ACTIVE-DECISION-POLICY-2026-09-09.4",
   "effective_date": "2026-09-09",
   "model_selection": {
     "registry": "config/model_registry.json",
@@ -13,6 +13,17 @@
     "supporting_contracts": "config/model_1_supporting_contracts.json",
     "github_over_chat_memory_on_conflict": true,
     "user_explicit_new_instruction_overrides_repository_until_repository_is_updated": true
+  },
+  "formal_market_source_policy": {
+    "mode": "TITAN_ONLY",
+    "titan_is_only_formal_odds_market_source": true,
+    "jcb_disabled": true,
+    "sporttery_disabled": true,
+    "jcb_sporttery_auxiliary_use_disabled": true,
+    "jcb_sporttery_cannot_affect_1x2_ah_ou_score_or_ticket": true,
+    "draw_exclusion_github_label_is_separate_execution_constraint_not_market_odds_source": true,
+    "off_field_public_information_is_separate_context_not_market_odds_source": true,
+    "betfair_oddspapi_remains_shadow_research_only": true
   },
   "analysis_depth": {
     "deep_analysis_match_by_match": true,
@@ -180,12 +191,13 @@
   },
   "totals": {
     "independent_from_ah": true,
+    "formal_source": "TITAN_ONLY",
     "dynamic_core": ["Macau", "Pinnacle", "Bet365"],
     "wh_lad_2_5_role": "BASE_2_5_PROBABILITY_ANCHOR",
     "ou_ladder_normalization_required_for_line_level_comparison": true,
-    "jcb_sporttery_goal_count_primary": false,
-    "jcb_sporttery_production_dependency": false,
-    "jcb_sporttery_auxiliary_only_when_explicitly_supplied": true
+    "jcb_enabled": false,
+    "sporttery_enabled": false,
+    "jcb_sporttery_auxiliary_allowed": false
   },
   "correct_score": {
     "repository_quant_framework_required": true,
