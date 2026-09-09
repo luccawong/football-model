@@ -1,12 +1,16 @@
 {
-  "version": "MODEL_1-SOURCE-POLICY-1.0.0",
+  "version": "MODEL_1-SOURCE-POLICY-1.1.0",
   "model_id": "MODEL_1",
+  "project_scope": "FOOTBALL_ONLY",
   "odds_sources": {
     "titan": {
-      "role": "PRIMARY_RAW_ODDS_SOURCE_WHEN_USER_SUPPLIES_TITAN_PACKET",
+      "role": "PRIMARY_RAW_ODDS_AUTHORITY_WHEN_USER_SUPPLIES_TITAN_PACKET",
       "scope": ["1X2", "AH", "OU", "timeline", "MAIN_ALT", "lineup_when_present"],
       "rules": [
+        "All opening/current/timeline odds used from a Titan packet must originate from Titan raw evidence.",
         "Preserve match_id, timestamps, company identity, raw prices and QC.",
+        "Preserve source_url, fetched_at, parser/crawler version and raw snapshot/hash where available.",
+        "Preserve raw HTML/JSON/JS responses or equivalent raw packet evidence when the crawler exposes them.",
         "Opening/current is not a substitute for missing timeline.",
         "Blank or broken timeline stays MISSING rather than fabricated."
       ]
@@ -27,6 +31,35 @@
       "role": "SOFTWARE_PROVIDER_ARCHITECTURE_ONLY_WHERE_CONFIGURED",
       "notes": "Do not silently substitute API-Football for a user-supplied Titan analysis packet."
     }
+  },
+  "multi_match_packet": {
+    "allowed": true,
+    "markdown_can_contain_multiple_matches": true,
+    "match_index_required": true,
+    "match_id_is_unique_primary_key": true,
+    "each_match_must_have_independent_match_block": true,
+    "each_match_must_have_independent_timeline_and_market_judgement": true,
+    "cross_match_data_contamination_forbidden": true
+  },
+  "lineup_capture": {
+    "capture_when_titan_publishes_lineup": true,
+    "preserve_formation_and_starting_xi": true,
+    "image_or_dom_derived_lineup_allowed": true,
+    "predicted_and_confirmed_must_be_distinguished": true
+  },
+  "storage": {
+    "retain_crawler_packets": true,
+    "retain_validation_packets": true,
+    "database_json_is_fact_layer": true,
+    "markdown_is_analysis_validation_view": true,
+    "validation_packet_root": "validation_packets/YYYY-MM-DD/",
+    "latest_pointer": "validation_packets/latest.json",
+    "do_not_delete_raw_packet_merely_because_match_is_uninteresting": true
+  },
+  "quick_scan": {
+    "core_5": ["HKJC", "Macau", "William Hill", "Ladbrokes", "Interwetten"],
+    "dynamic_ou_confirmation": ["Pinnacle", "Bet365"],
+    "dynamic_ou_confirmation_not_equal_weight_core": true
   },
   "context_sources": {
     "official_priority": ["club", "league", "competition", "confirmed lineup"],
