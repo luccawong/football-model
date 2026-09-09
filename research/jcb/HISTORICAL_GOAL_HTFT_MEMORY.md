@@ -1,30 +1,30 @@
 # Historical JCB Goal-Count / HTFT Research Memory
 
-Status: HISTORICAL_RESEARCH_ONLY
-Current MODEL_1 production impact: NONE by default.
+Status: ARCHIVE_DISABLED_NOT_LOADED
+Current MODEL_1 production impact: NONE
+Current MODEL_1 auxiliary impact: NONE
 
-This file preserves older user-defined JCB research so it is not lost during GitHub migration. It must not silently reactivate a production dependency.
+This file preserves older JCB/Sporttery research only for historical reproducibility. The user has currently disabled both JCB and Sporttery as analysis sources. MODEL_1 formal market analysis is Titan-only.
 
-## Scope boundary
+## Current hard boundary
 
-- Current MODEL_1 external/Titan 1X2 -> AH -> OU analysis comes first.
-- JCB/竞彩 is not a mandatory production dependency.
-- Historical user preference: JCB information was used primarily for goal-count and HT/FT research, not as the primary 1X2 direction engine.
-- If explicitly supplied in ChatGPT analysis under current policy, JCB may only be auxiliary context and cannot override the primary external/Titan market conclusion.
-- Older software branches that disabled all current JCB/Sporttery production output remain historically valid for those branches.
+- Do not load this file into MODEL_1 runtime.
+- Do not use JCB or Sporttery in 1X2, AH, OU, correct score, H1, Red Team or final ticket.
+- Do not use JCB/Sporttery even as auxiliary confirmation under the current policy.
+- Reactivation requires a new explicit versioned user instruction.
 
-## Historical data snapshot remembered from prior research
+## Historical data snapshot preserved for archive only
 
-Preserved user-reported dataset figures:
+Preserved user-reported dataset figures from older research:
 - de-duplicated total-goals sample: 24,139 matches;
 - actual 7+ goals: 616 matches (~2.55%);
 - HT/FT complete sample: 24,082 matches.
 
-These are historical research-memory figures and should be re-verified from the source dataset before any new statistical claim.
+These figures are archival and should not be used in current MODEL_1 analysis.
 
-## Goal-count buckets
+## Historical goal-count buckets
 
-Keep distinct buckets:
+Older research kept distinct buckets:
 - 0
 - 1
 - 2
@@ -34,42 +34,24 @@ Keep distinct buckets:
 - 6
 - 7+
 
-Do not merge 5/6 into 7+.
-
 ## Historical 0-goal-anchor hypotheses
 
-Older exploratory hypotheses used JCB 0-goal price bands as descriptive anchors:
+Older exploratory hypotheses included:
 - <10 -> roughly 0-2 goals
 - 10-14 -> roughly 1-3 goals
 - 15-20 -> roughly 2-4 goals
 - >20 -> roughly 4-6 goals
 
-These are hypotheses, not current MODEL_1 rules. They require fresh historical validation before reuse.
+These are archived hypotheses only.
 
-## Historical totals-output preference
+## Historical HT/FT research
 
-Older research preferred two final total-goal choices rather than three. This is preserved as historical JCB research behavior, not a current formal MODEL_1 requirement unless reactivated explicitly.
-
-## HT/FT research
-
-Historical JCB research included:
+Older research included:
 - win/loss and loss/win HT/FT paths conditioned on expected full-time 1X2;
 - left-side slope and right-tail shape;
 - league-baseline normalization;
-- separation of league-specific total distributions rather than one universal curve.
+- league-specific total distributions.
 
-## Stop-price terminology
+## Archive safeguard
 
-Older workflow distinguished current price from sale-close price. When JCB had already stopped selling, the last value was to be called `停售价/停售前最后价`, not current/live price.
-
-Historical close-time notes remembered from prior workflow:
-- weekend: about 23:00 Beijing time;
-- weekday: about 22:00 Beijing time.
-
-These timing notes are historical and should be checked against current operating rules before use.
-
-## Research-only safeguards
-
-- No JCB feature can become a MODEL_1 formal weight merely because it existed in older chats.
-- No post-result threshold fitting.
-- Any reactivation requires a versioned user instruction, dataset re-verification, and walk-forward validation.
+No item in this file can affect MODEL_1 unless the user explicitly re-enables the source in a future model/policy version.
