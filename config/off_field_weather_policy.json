@@ -1,0 +1,120 @@
+{
+  "version": "MODEL_1-OFFFIELD-WEATHER-1.0.0",
+  "model_id": "MODEL_1",
+  "formal_stage": 5,
+  "stage_name": "OFF_FIELD_WEATHER",
+  "principle": "Use environment, psychology and relationship factors as evidence-conditioned context. Do not apply universal fixed goal, probability or grade penalties without calibration.",
+  "mandatory_output": {
+    "weather_section_must_be_visible_in_every_full_analysis": true,
+    "if_data_unavailable_output": "WEATHER_DATA_MISSING",
+    "check_current_conditions": true,
+    "check_near_kickoff_forecast_or_nowcast": true,
+    "check_precipitation": true,
+    "check_wind_and_gusts": true,
+    "check_temperature": true,
+    "check_humidity_or_heat_stress": true,
+    "check_altitude_when_relevant": true,
+    "check_pitch_drainage_surface_roof_when_relevant": true,
+    "check_travel_timezones_and_arrival_timing_when_relevant": true,
+    "state_expected_tactical_and_market_path_impact": true
+  },
+  "weather_environment": {
+    "heat_humidity": {
+      "status": "ACTIVE_QUALITATIVE",
+      "rule": "High heat/humidity may reduce high-intensity output and alter pacing, especially for non-acclimatized teams. Prefer WBGT/heat-stress context when available.",
+      "forbidden_shortcuts": [
+        "Do not multiply expected goals by a universal (1-Debuff) factor.",
+        "Do not automatically downgrade one grade because conditions are hot/humid."
+      ]
+    },
+    "altitude": {
+      "status": "ACTIVE_QUALITATIVE",
+      "rule": "Altitude, especially around 2000m+ and for low-altitude/non-acclimatized visitors, can reduce running/high-intensity output and affect recovery and ball flight. Review actual venue altitude, days since arrival and acclimatization history.",
+      "forbidden_shortcuts": [
+        "Do not hard-code second-half attack x0.7.",
+        "Do not use universal 3-day/7-day multipliers without validation."
+      ]
+    },
+    "rain_wind": {
+      "status": "ACTIVE_QUALITATIVE",
+      "rule": "Heavy rain, standing water, strong wind/gusts and poor drainage can alter ball speed, passing, crossing, long balls, goalkeeper handling, footing, set-piece value and error rates. Direction of total goals is not predetermined.",
+      "forbidden_shortcuts": [
+        "Do not assign universal -0.5/-1.0/-1.5 expected-goal penalties by rain category.",
+        "Do not assume heavy rain always means Under."
+      ]
+    },
+    "travel_circadian": {
+      "status": "ACTIVE_QUALITATIVE",
+      "rule": "For transmeridian/long-haul travel, consider body-clock mismatch, number/direction of time zones, arrival time, sleep/recovery opportunity and whether the trip is national-team-to-club or club travel.",
+      "forbidden_shortcuts": [
+        "Do not hard-code morning=-0.3, afternoon=-0.2, late-night=-0.5 or any universal kickoff penalty.",
+        "Do not treat local kickoff time alone as circadian evidence without travel/body-clock context."
+      ]
+    },
+    "home_geography": {
+      "status": "ACTIVE_RESIDUAL_ONLY",
+      "rule": "Home crowd, geography, altitude/climate familiarity and local adaptation may matter, but only as residual context beyond the model's existing home-field baseline.",
+      "anti_double_counting": true
+    },
+    "long_rest": {
+      "status": "REJECT_FIXED_RULE",
+      "rule": "Rest >=6 days is not automatically an attacking penalty. Review training rhythm, return from break, squad rotation and match context instead."
+    }
+  },
+  "human_psychology_relationship": {
+    "general": {
+      "status": "ACTIVE_QUALITATIVE",
+      "rule": "Narrative/psychology factors must have identifiable evidence and a plausible mechanism. They cannot receive a universal grade penalty/bonus."
+    },
+    "two_leg_ties": {
+      "status": "ACTIVE_CONTEXT",
+      "rule": "Use aggregate score, qualification incentives, competition rules, home/away leg, remaining time and opponent style to infer game state. A first-leg lead >=2 does not mechanically imply relaxation, and a trailing team does not mechanically become a good bet."
+    },
+    "manager_change_morale": {
+      "status": "ACTIVE_HYPOTHESIS_ONLY",
+      "rule": "New manager, morale rebound, complacency or emotional letdown may be considered only with supporting squad/club evidence and price confirmation. Guard against regression-to-the-mean and post-hoc storytelling.",
+      "forbidden_shortcuts": [
+        "No fixed +1 for new manager.",
+        "No fixed -0.5 for complacency.",
+        "No fixed -1 for end-of-season relaxation."
+      ]
+    },
+    "national_team_chemistry": {
+      "status": "ACTIVE_CONTEXT",
+      "rule": "Review continuity, shared-club/cohort familiarity, training time, coach tenure and lineup turnover for national teams. Shared origin can support coordination, but fixed player-count thresholds are not calibrated.",
+      "forbidden_shortcuts": [
+        "No >=5 same-source players => +0.5 automatic bonus.",
+        "No >7 temporary call-ups => -0.5 automatic penalty."
+      ]
+    },
+    "club_relationship_network": {
+      "status": "ACTIVE_CONTEXT",
+      "rule": "Review ownership/multi-club groups, management/coaching/agent networks, loans/transfers, academy/satellite relationships, local business/political ties, historic friendly/hostile ties and table incentives. Keep verified facts separate from reciprocity hypotheses.",
+      "forbidden_shortcuts": [
+        "No S/A/B bond tier automatic +1.0/+0.5/+0.3 adjustment.",
+        "No relationship narrative can override Titan market evidence by itself."
+      ]
+    },
+    "host_face_bilateral_narrative": {
+      "status": "HYPOTHESIS_ONLY",
+      "rule": "For national-team/host events, etiquette, host-face, bilateral or ceremonial narratives may be logged only when there is concrete public evidence; otherwise label as unverified and do not use as a formal weight."
+    }
+  },
+  "tactical_countermatch": {
+    "status": "STAGE_6_NOT_STAGE_5",
+    "rule": "Tactical style-counter relationships belong in Lineup/Tactics. Opaque V1/V2/V3/V4 fixed counter weights are not accepted into MODEL_1 without definition and validation."
+  },
+  "evidence_hierarchy": [
+    "latest official lineup/club/league/competition information",
+    "same-day reputable mainstream/beat reporting",
+    "same-day off-field digest",
+    "older contextual reporting",
+    "unverified rumour/hypothesis"
+  ],
+  "decision_use": {
+    "may_change_direction_if_material_and_market_coherent": true,
+    "generic_risk_alone_cannot_force_downgrade": true,
+    "must_state_fact_inference_assumption_separately": true,
+    "must_avoid_double_counting_with_hfa_schedule_and_lineup_modules": true
+  }
+}
