@@ -1,11 +1,13 @@
 {
-  "version": "MODEL_1-SUPPORTING-CONTRACTS-1.0.3",
+  "version": "MODEL_1-SUPPORTING-CONTRACTS-1.1.0",
   "model_id": "MODEL_1",
   "formal_runtime": {
     "sop": "gpt/FOOTBALL_SOP.md",
     "canonical_memory": "gpt/FOOTBALL_CANONICAL_MEMORY.md",
     "decision_policy": "config/active_decision_policy.json",
     "source_policy": "config/model_1_source_policy.json",
+    "off_field_weather_policy": "config/off_field_weather_policy.json",
+    "freeze_contract": "config/model_1_freeze.json",
     "trace_contract": "config/model_1_trace_contract.json",
     "decision_engine": "gpt/decision_engine.py",
     "formal_trace_engine": "gpt/formal_trace.py"
@@ -43,5 +45,12 @@
       "reason": "User disabled JCB and Sporttery for current MODEL_1; formal market analysis is Titan-only."
     }
   ],
+  "freeze_policy": {
+    "status": "FROZEN_FORMAL_SEMANTICS",
+    "start_date_beijing": "2026-09-10",
+    "end_date_beijing": "2026-10-10",
+    "new_formal_rule_changes_allowed": false,
+    "new_ideas_during_freeze": "LOG_ONLY_FOR_FUTURE_MODEL_2"
+  },
   "conflict_rule": "Newest explicit user instruction and current formal MODEL_1 policy outrank legacy/supporting research. Conflicts must be surfaced and versioned, never silently resolved by older artifacts."
 }
