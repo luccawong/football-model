@@ -1,6 +1,6 @@
 {
   "schema_version": "2.0",
-  "latest_date": "2026-09-09",
+  "latest_date": "2026-09-10",
   "by_titan_match_id": {},
   "by_research_match_id": {
     "drm_9d7230d2659e8a66a6fdd47464b221131f2b55fe601ef36f1f38bfcdd1e2c38b": {
@@ -600,156 +600,222 @@
     "drm_f956857591b9cb12e39cc97a9c16d6831b7fe170de41773ae1f45c7a9adbc5ed": {
       "research_match_id": "drm_f956857591b9cb12e39cc97a9c16d6831b7fe170de41773ae1f45c7a9adbc5ed",
       "titan_match_id": null,
-      "date": "2026-09-09",
+      "date": "2026-09-10",
       "external_draw_exclusion_label": 0,
       "status": "MATCHED_NOT_EXCLUDED",
       "source_market": "BD",
-      "snapshot_id": "snap_b5d2843e7053c178716ddc76d69e525e6aed8ebd4988d997cf8a1c4f8b3e4ff3",
-      "snapshot_time": "2026-09-09T12:49:16+08:00",
-      "manifest": "daily/2026-09-09.json"
+      "snapshot_id": "snap_6f077d40084e0b2618b62d5196ac0ff430f9e858c5a75a56e5e80ac6d9a705aa",
+      "snapshot_time": "2026-09-10T12:40:30+08:00",
+      "manifest": "daily/2026-09-10.json"
     },
     "drm_727b44622ea1d86a3cce9ab3c8d481653f4158cdb00a110918b57b1073386c7f": {
       "research_match_id": "drm_727b44622ea1d86a3cce9ab3c8d481653f4158cdb00a110918b57b1073386c7f",
       "titan_match_id": null,
-      "date": "2026-09-09",
+      "date": "2026-09-10",
       "external_draw_exclusion_label": 0,
       "status": "MATCHED_NOT_EXCLUDED",
       "source_market": "BD",
-      "snapshot_id": "snap_b5d2843e7053c178716ddc76d69e525e6aed8ebd4988d997cf8a1c4f8b3e4ff3",
-      "snapshot_time": "2026-09-09T12:49:16+08:00",
-      "manifest": "daily/2026-09-09.json"
+      "snapshot_id": "snap_6f077d40084e0b2618b62d5196ac0ff430f9e858c5a75a56e5e80ac6d9a705aa",
+      "snapshot_time": "2026-09-10T12:40:30+08:00",
+      "manifest": "daily/2026-09-10.json"
     },
     "drm_1f0b06e5a621c4cc5ca15fe74ed67d803220c390a2a5c6c8565dfab255e119f9": {
       "research_match_id": "drm_1f0b06e5a621c4cc5ca15fe74ed67d803220c390a2a5c6c8565dfab255e119f9",
       "titan_match_id": null,
-      "date": "2026-09-09",
+      "date": "2026-09-10",
       "external_draw_exclusion_label": 0,
       "status": "MATCHED_NOT_EXCLUDED",
       "source_market": "BD",
-      "snapshot_id": "snap_b5d2843e7053c178716ddc76d69e525e6aed8ebd4988d997cf8a1c4f8b3e4ff3",
-      "snapshot_time": "2026-09-09T12:49:16+08:00",
-      "manifest": "daily/2026-09-09.json"
+      "snapshot_id": "snap_6f077d40084e0b2618b62d5196ac0ff430f9e858c5a75a56e5e80ac6d9a705aa",
+      "snapshot_time": "2026-09-10T12:40:30+08:00",
+      "manifest": "daily/2026-09-10.json"
     },
     "drm_d2981e5f10962dc1c9451e1bef0d23d8f42309144126c99a631540541c737700": {
       "research_match_id": "drm_d2981e5f10962dc1c9451e1bef0d23d8f42309144126c99a631540541c737700",
       "titan_match_id": null,
-      "date": "2026-09-09",
+      "date": "2026-09-10",
       "external_draw_exclusion_label": 0,
       "status": "MATCHED_NOT_EXCLUDED",
       "source_market": "BD",
-      "snapshot_id": "snap_b5d2843e7053c178716ddc76d69e525e6aed8ebd4988d997cf8a1c4f8b3e4ff3",
-      "snapshot_time": "2026-09-09T12:49:16+08:00",
-      "manifest": "daily/2026-09-09.json"
+      "snapshot_id": "snap_6f077d40084e0b2618b62d5196ac0ff430f9e858c5a75a56e5e80ac6d9a705aa",
+      "snapshot_time": "2026-09-10T12:40:30+08:00",
+      "manifest": "daily/2026-09-10.json"
     },
     "drm_8c429e5de5771f7f45ae6fc796c2d2e9c341c4cc2fa551d062685099e4f98cb2": {
       "research_match_id": "drm_8c429e5de5771f7f45ae6fc796c2d2e9c341c4cc2fa551d062685099e4f98cb2",
       "titan_match_id": null,
-      "date": "2026-09-09",
+      "date": "2026-09-10",
       "external_draw_exclusion_label": 0,
       "status": "MATCHED_NOT_EXCLUDED",
       "source_market": "BD",
-      "snapshot_id": "snap_b5d2843e7053c178716ddc76d69e525e6aed8ebd4988d997cf8a1c4f8b3e4ff3",
-      "snapshot_time": "2026-09-09T12:49:16+08:00",
-      "manifest": "daily/2026-09-09.json"
+      "snapshot_id": "snap_6f077d40084e0b2618b62d5196ac0ff430f9e858c5a75a56e5e80ac6d9a705aa",
+      "snapshot_time": "2026-09-10T12:40:30+08:00",
+      "manifest": "daily/2026-09-10.json"
     },
     "drm_87b56e6c48afbf4fa9fe6c0f2584d7ac676fb5be11bc782571e9e9dd8ae71da6": {
       "research_match_id": "drm_87b56e6c48afbf4fa9fe6c0f2584d7ac676fb5be11bc782571e9e9dd8ae71da6",
       "titan_match_id": null,
-      "date": "2026-09-09",
+      "date": "2026-09-10",
       "external_draw_exclusion_label": 0,
       "status": "MATCHED_NOT_EXCLUDED",
       "source_market": "BD",
-      "snapshot_id": "snap_b5d2843e7053c178716ddc76d69e525e6aed8ebd4988d997cf8a1c4f8b3e4ff3",
-      "snapshot_time": "2026-09-09T12:49:16+08:00",
-      "manifest": "daily/2026-09-09.json"
+      "snapshot_id": "snap_6f077d40084e0b2618b62d5196ac0ff430f9e858c5a75a56e5e80ac6d9a705aa",
+      "snapshot_time": "2026-09-10T12:40:30+08:00",
+      "manifest": "daily/2026-09-10.json"
     },
     "drm_ae236ce22387ddacff8c75256a93cbbf596c3152f99b3da67ae4798505a1d278": {
       "research_match_id": "drm_ae236ce22387ddacff8c75256a93cbbf596c3152f99b3da67ae4798505a1d278",
       "titan_match_id": null,
-      "date": "2026-09-09",
+      "date": "2026-09-10",
       "external_draw_exclusion_label": 0,
       "status": "MATCHED_NOT_EXCLUDED",
       "source_market": "BD",
-      "snapshot_id": "snap_b5d2843e7053c178716ddc76d69e525e6aed8ebd4988d997cf8a1c4f8b3e4ff3",
-      "snapshot_time": "2026-09-09T12:49:16+08:00",
-      "manifest": "daily/2026-09-09.json"
+      "snapshot_id": "snap_6f077d40084e0b2618b62d5196ac0ff430f9e858c5a75a56e5e80ac6d9a705aa",
+      "snapshot_time": "2026-09-10T12:40:30+08:00",
+      "manifest": "daily/2026-09-10.json"
     },
     "drm_0f91cdc92e5c47c3aa8e2b643f0cc5412b69d4ef8f7f15c900378896bf807351": {
       "research_match_id": "drm_0f91cdc92e5c47c3aa8e2b643f0cc5412b69d4ef8f7f15c900378896bf807351",
       "titan_match_id": null,
-      "date": "2026-09-09",
+      "date": "2026-09-10",
       "external_draw_exclusion_label": 1,
       "status": "MATCHED_EXCLUDED",
       "source_market": "BD",
-      "snapshot_id": "snap_b5d2843e7053c178716ddc76d69e525e6aed8ebd4988d997cf8a1c4f8b3e4ff3",
-      "snapshot_time": "2026-09-09T12:49:16+08:00",
-      "manifest": "daily/2026-09-09.json"
+      "snapshot_id": "snap_6f077d40084e0b2618b62d5196ac0ff430f9e858c5a75a56e5e80ac6d9a705aa",
+      "snapshot_time": "2026-09-10T12:40:30+08:00",
+      "manifest": "daily/2026-09-10.json"
     },
     "drm_40a81bb8b0b6afec2caa7d69b2c5197264950e4a4e38b709f38bdf7cc2d61850": {
       "research_match_id": "drm_40a81bb8b0b6afec2caa7d69b2c5197264950e4a4e38b709f38bdf7cc2d61850",
       "titan_match_id": null,
-      "date": "2026-09-09",
+      "date": "2026-09-10",
       "external_draw_exclusion_label": 0,
       "status": "MATCHED_NOT_EXCLUDED",
       "source_market": "BD",
-      "snapshot_id": "snap_b5d2843e7053c178716ddc76d69e525e6aed8ebd4988d997cf8a1c4f8b3e4ff3",
-      "snapshot_time": "2026-09-09T12:49:16+08:00",
-      "manifest": "daily/2026-09-09.json"
+      "snapshot_id": "snap_6f077d40084e0b2618b62d5196ac0ff430f9e858c5a75a56e5e80ac6d9a705aa",
+      "snapshot_time": "2026-09-10T12:40:30+08:00",
+      "manifest": "daily/2026-09-10.json"
     },
     "drm_aba4a008622555f43135ad4998b18161cdf72567aa446885a7792f7a5254006a": {
       "research_match_id": "drm_aba4a008622555f43135ad4998b18161cdf72567aa446885a7792f7a5254006a",
       "titan_match_id": null,
-      "date": "2026-09-09",
+      "date": "2026-09-10",
       "external_draw_exclusion_label": 0,
       "status": "MATCHED_NOT_EXCLUDED",
       "source_market": "BD",
-      "snapshot_id": "snap_b5d2843e7053c178716ddc76d69e525e6aed8ebd4988d997cf8a1c4f8b3e4ff3",
-      "snapshot_time": "2026-09-09T12:49:16+08:00",
-      "manifest": "daily/2026-09-09.json"
+      "snapshot_id": "snap_6f077d40084e0b2618b62d5196ac0ff430f9e858c5a75a56e5e80ac6d9a705aa",
+      "snapshot_time": "2026-09-10T12:40:30+08:00",
+      "manifest": "daily/2026-09-10.json"
     },
     "drm_28e5d59ff9f97fdb7e8a9c888d503fe5b4742ecd91b33b3894e82889110f59bd": {
       "research_match_id": "drm_28e5d59ff9f97fdb7e8a9c888d503fe5b4742ecd91b33b3894e82889110f59bd",
       "titan_match_id": null,
-      "date": "2026-09-09",
+      "date": "2026-09-10",
       "external_draw_exclusion_label": 0,
       "status": "MATCHED_NOT_EXCLUDED",
       "source_market": "BD",
-      "snapshot_id": "snap_b5d2843e7053c178716ddc76d69e525e6aed8ebd4988d997cf8a1c4f8b3e4ff3",
-      "snapshot_time": "2026-09-09T12:49:16+08:00",
-      "manifest": "daily/2026-09-09.json"
+      "snapshot_id": "snap_6f077d40084e0b2618b62d5196ac0ff430f9e858c5a75a56e5e80ac6d9a705aa",
+      "snapshot_time": "2026-09-10T12:40:30+08:00",
+      "manifest": "daily/2026-09-10.json"
     },
     "drm_3fb8a23db5443e52a1fbdb4d7ab0efe1ac0a2fa80d10c41ade1bf3b01a260c55": {
       "research_match_id": "drm_3fb8a23db5443e52a1fbdb4d7ab0efe1ac0a2fa80d10c41ade1bf3b01a260c55",
       "titan_match_id": null,
-      "date": "2026-09-09",
+      "date": "2026-09-10",
       "external_draw_exclusion_label": 0,
       "status": "MATCHED_NOT_EXCLUDED",
       "source_market": "BD",
-      "snapshot_id": "snap_b5d2843e7053c178716ddc76d69e525e6aed8ebd4988d997cf8a1c4f8b3e4ff3",
-      "snapshot_time": "2026-09-09T12:49:16+08:00",
-      "manifest": "daily/2026-09-09.json"
+      "snapshot_id": "snap_6f077d40084e0b2618b62d5196ac0ff430f9e858c5a75a56e5e80ac6d9a705aa",
+      "snapshot_time": "2026-09-10T12:40:30+08:00",
+      "manifest": "daily/2026-09-10.json"
     },
     "drm_ac0c3d24b24c3f24178405ba05ec50e501e5fd22c3e3f56480b7fe4d066c99c1": {
       "research_match_id": "drm_ac0c3d24b24c3f24178405ba05ec50e501e5fd22c3e3f56480b7fe4d066c99c1",
       "titan_match_id": null,
-      "date": "2026-09-09",
+      "date": "2026-09-10",
       "external_draw_exclusion_label": 0,
       "status": "MATCHED_NOT_EXCLUDED",
       "source_market": "BD",
-      "snapshot_id": "snap_b5d2843e7053c178716ddc76d69e525e6aed8ebd4988d997cf8a1c4f8b3e4ff3",
-      "snapshot_time": "2026-09-09T12:49:16+08:00",
-      "manifest": "daily/2026-09-09.json"
+      "snapshot_id": "snap_6f077d40084e0b2618b62d5196ac0ff430f9e858c5a75a56e5e80ac6d9a705aa",
+      "snapshot_time": "2026-09-10T12:40:30+08:00",
+      "manifest": "daily/2026-09-10.json"
     },
     "drm_b4ae58080b0fa0903a04076934cd1afece718f52ccaa748e256ac206639c1c2f": {
       "research_match_id": "drm_b4ae58080b0fa0903a04076934cd1afece718f52ccaa748e256ac206639c1c2f",
       "titan_match_id": null,
-      "date": "2026-09-09",
+      "date": "2026-09-10",
       "external_draw_exclusion_label": 0,
       "status": "MATCHED_NOT_EXCLUDED",
       "source_market": "BD",
-      "snapshot_id": "snap_b5d2843e7053c178716ddc76d69e525e6aed8ebd4988d997cf8a1c4f8b3e4ff3",
-      "snapshot_time": "2026-09-09T12:49:16+08:00",
-      "manifest": "daily/2026-09-09.json"
+      "snapshot_id": "snap_6f077d40084e0b2618b62d5196ac0ff430f9e858c5a75a56e5e80ac6d9a705aa",
+      "snapshot_time": "2026-09-10T12:40:30+08:00",
+      "manifest": "daily/2026-09-10.json"
+    },
+    "drm_b8c71ce71a58e141ff4e90ae83c1f20cccbb34aa555a5d569a36a4a43540049e": {
+      "research_match_id": "drm_b8c71ce71a58e141ff4e90ae83c1f20cccbb34aa555a5d569a36a4a43540049e",
+      "titan_match_id": null,
+      "date": "2026-09-10",
+      "external_draw_exclusion_label": 1,
+      "status": "MATCHED_EXCLUDED",
+      "source_market": "JC",
+      "snapshot_id": "snap_6f077d40084e0b2618b62d5196ac0ff430f9e858c5a75a56e5e80ac6d9a705aa",
+      "snapshot_time": "2026-09-10T12:40:30+08:00",
+      "manifest": "daily/2026-09-10.json"
+    },
+    "drm_487d1846d9b854e4fd1bdf6cb6fe2fa6e85bbd0d393ae14f2628f558724057f4": {
+      "research_match_id": "drm_487d1846d9b854e4fd1bdf6cb6fe2fa6e85bbd0d393ae14f2628f558724057f4",
+      "titan_match_id": null,
+      "date": "2026-09-10",
+      "external_draw_exclusion_label": 1,
+      "status": "MATCHED_EXCLUDED",
+      "source_market": "JC",
+      "snapshot_id": "snap_6f077d40084e0b2618b62d5196ac0ff430f9e858c5a75a56e5e80ac6d9a705aa",
+      "snapshot_time": "2026-09-10T12:40:30+08:00",
+      "manifest": "daily/2026-09-10.json"
+    },
+    "drm_34c17a2cbc46dcf973acffe44bbc71dba701c8f9e8132df74716113c3025d46a": {
+      "research_match_id": "drm_34c17a2cbc46dcf973acffe44bbc71dba701c8f9e8132df74716113c3025d46a",
+      "titan_match_id": null,
+      "date": "2026-09-10",
+      "external_draw_exclusion_label": 0,
+      "status": "MATCHED_NOT_EXCLUDED",
+      "source_market": "JC",
+      "snapshot_id": "snap_6f077d40084e0b2618b62d5196ac0ff430f9e858c5a75a56e5e80ac6d9a705aa",
+      "snapshot_time": "2026-09-10T12:40:30+08:00",
+      "manifest": "daily/2026-09-10.json"
+    },
+    "drm_c2d24e6cf9818884bf5c126b4d1c1afb498e45436a79a52dc5eadbf5ec3a27b2": {
+      "research_match_id": "drm_c2d24e6cf9818884bf5c126b4d1c1afb498e45436a79a52dc5eadbf5ec3a27b2",
+      "titan_match_id": null,
+      "date": "2026-09-10",
+      "external_draw_exclusion_label": 0,
+      "status": "MATCHED_NOT_EXCLUDED",
+      "source_market": "JC",
+      "snapshot_id": "snap_6f077d40084e0b2618b62d5196ac0ff430f9e858c5a75a56e5e80ac6d9a705aa",
+      "snapshot_time": "2026-09-10T12:40:30+08:00",
+      "manifest": "daily/2026-09-10.json"
+    },
+    "drm_0733bb9d26118f619b10475bfe19a8b10b40cd65c34435e1ebb82ace860fe1ab": {
+      "research_match_id": "drm_0733bb9d26118f619b10475bfe19a8b10b40cd65c34435e1ebb82ace860fe1ab",
+      "titan_match_id": null,
+      "date": "2026-09-10",
+      "external_draw_exclusion_label": 0,
+      "status": "MATCHED_NOT_EXCLUDED",
+      "source_market": "JC",
+      "snapshot_id": "snap_6f077d40084e0b2618b62d5196ac0ff430f9e858c5a75a56e5e80ac6d9a705aa",
+      "snapshot_time": "2026-09-10T12:40:30+08:00",
+      "manifest": "daily/2026-09-10.json"
+    },
+    "drm_e0309a5be3da729dd399e8abc8efa3178aecd96a3cabcdebb2fce2efb6357174": {
+      "research_match_id": "drm_e0309a5be3da729dd399e8abc8efa3178aecd96a3cabcdebb2fce2efb6357174",
+      "titan_match_id": null,
+      "date": "2026-09-10",
+      "external_draw_exclusion_label": 1,
+      "status": "MATCHED_EXCLUDED",
+      "source_market": "JC",
+      "snapshot_id": "snap_6f077d40084e0b2618b62d5196ac0ff430f9e858c5a75a56e5e80ac6d9a705aa",
+      "snapshot_time": "2026-09-10T12:40:30+08:00",
+      "manifest": "daily/2026-09-10.json"
     }
   },
   "by_kickoff_date": {
@@ -757,13 +823,16 @@
       "daily/2026-09-09.json"
     ],
     "2026-09-10": [
-      "daily/2026-09-09.json"
+      "daily/2026-09-09.json",
+      "daily/2026-09-10.json"
     ],
     "2026-09-11": [
-      "daily/2026-09-09.json"
+      "daily/2026-09-09.json",
+      "daily/2026-09-10.json"
     ]
   },
   "manifests": {
-    "2026-09-09": "daily/2026-09-09.json"
+    "2026-09-09": "daily/2026-09-09.json",
+    "2026-09-10": "daily/2026-09-10.json"
   }
 }
