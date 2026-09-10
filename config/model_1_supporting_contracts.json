@@ -1,11 +1,12 @@
 {
-  "version": "MODEL_1-SUPPORTING-CONTRACTS-1.1.0",
+  "version": "MODEL_1-SUPPORTING-CONTRACTS-1.1.1",
   "model_id": "MODEL_1",
   "formal_runtime": {
     "sop": "gpt/FOOTBALL_SOP.md",
     "canonical_memory": "gpt/FOOTBALL_CANONICAL_MEMORY.md",
     "decision_policy": "config/active_decision_policy.json",
     "source_policy": "config/model_1_source_policy.json",
+    "opening_baseline_policy": "config/opening_baseline_policy.json",
     "off_field_weather_policy": "config/off_field_weather_policy.json",
     "freeze_contract": "config/model_1_freeze.json",
     "trace_contract": "config/model_1_trace_contract.json",
