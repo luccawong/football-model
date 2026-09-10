@@ -1,5 +1,5 @@
 {
-  "version": "MODEL_1-OPENING-BASELINE-1.0.0",
+  "version": "MODEL_1-OPENING-BASELINE-1.1.0",
   "model_id": "MODEL_1",
   "formal_stages": [1, 4],
   "purpose": "Preserve the pre-market league/team fair-opening reference used to judge whether an actual opening is reasonable, shallow or deep.",
@@ -14,10 +14,22 @@
     "if_league_calibration_missing": "MARK_UNCALIBRATED_AND_USE_A_WIDER_QUALITATIVE_REASONABLE_OPENING_BAND",
     "do_not_invent_precise_fair_line_when_calibration_is_missing": true
   },
+  "historical_calibration_method": {
+    "preferred_same_company_anchor": "HKJC opening 1X2 de-vig -> HKJC opening Asian main line",
+    "reason": "Avoid contaminating league-opening calibration with cross-company quote-time differences or alternate-line selection.",
+    "cross_company_opening_mix_for_calibration": false,
+    "alternate_line_mix_for_calibration": false,
+    "opening_band_difference_flags": {
+      "0.25_handicap_step": "REVIEW_REQUIRED",
+      "0.50_or_more_handicap_step": "STRUCTURAL_ANOMALY_ALERT"
+    },
+    "flags_are_diagnostic_not_ticket_triggers": true
+  },
   "interpretation": {
     "reasonable_opening_band_is_reference_not_result_prediction": true,
     "actual_opening_must_then_be_compared_with_company_structure_lifecycle_attraction_and_counterfactual_adjacent_lines": true,
-    "opening_reasonableness_does_not_delete_draw_or_force_favourite": true
+    "opening_reasonableness_does_not_delete_draw_or_force_favourite": true,
+    "anomaly_alert_does_not_directly_create_a_ticket": true
   },
   "confidence_quality": {
     "secondary_or_low_information_competitions_require_wider_uncertainty": true,
