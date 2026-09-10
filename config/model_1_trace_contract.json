@@ -1,5 +1,5 @@
 {
-  "contract_version": "MODEL_1-TRACE-CONTRACT-1.1.0",
+  "contract_version": "MODEL_1-TRACE-CONTRACT-1.2.0",
   "model_id": "MODEL_1",
   "purpose": "Machine-auditable record that every full analysis completed the user-approved 18-stage MODEL_1 sequence without silent omission or reordering.",
   "stage_status_values": ["COMPLETE", "COMPLETE_WITH_MISSING", "CONFLICT", "BLOCKED"],
@@ -33,7 +33,14 @@
     ],
     "market_snapshot": ["match_identity_qc", "snapshot_time", "market_state", "source_freshness", "missing_core_data"],
     "opening_first_impression": ["opening_only_view", "opening_structure_conclusion"],
-    "opening_rationality_lifecycle": ["opening_reasonable_range", "opening_validity", "lifecycle_events", "counterfactual_opening_check"],
+    "opening_rationality_lifecycle": [
+      "opening_reasonable_range",
+      "league_opening_baseline_audited",
+      "hfa_double_counting_check",
+      "opening_validity",
+      "lifecycle_events",
+      "counterfactual_opening_check"
+    ],
     "off_field_weather": [
       "official_information",
       "media_or_rumour_status",
@@ -62,6 +69,11 @@
     "formal_main_exactly_one": ["ticket_market", "ticket_line", "ticket_direction", "ticket_grade", "actionable_price", "ticket_locked"]
   },
   "conditional_rules": {
+    "opening_baseline": {
+      "policy_file": "config/opening_baseline_policy.json",
+      "if_league_calibration_missing_mark_uncalibrated": true,
+      "no_precise_fair_line_fabrication": true
+    },
     "weather": {
       "missing_weather_is_allowed_only_if_explicitly_disclosed": true,
       "weather_data_missing_token": "WEATHER_DATA_MISSING",
@@ -87,6 +99,7 @@
     "feature_packet": "gpt/feature_engine.py evidence/QC output or explicit MISSING",
     "decision_validation": "gpt/decision_engine.py",
     "trace_validation": "gpt/formal_trace.py",
+    "opening_baseline_policy": "config/opening_baseline_policy.json",
     "off_field_weather_policy": "config/off_field_weather_policy.json"
   },
   "immutability": {
