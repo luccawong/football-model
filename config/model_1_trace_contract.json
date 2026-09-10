@@ -1,5 +1,5 @@
 {
-  "contract_version": "MODEL_1-TRACE-CONTRACT-1.2.0",
+  "contract_version": "MODEL_1-TRACE-CONTRACT-1.2.1",
   "model_id": "MODEL_1",
   "purpose": "Machine-auditable record that every full analysis completed the user-approved 18-stage MODEL_1 sequence without silent omission or reordering.",
   "stage_status_values": ["COMPLETE", "COMPLETE_WITH_MISSING", "CONFLICT", "BLOCKED"],
@@ -57,7 +57,7 @@
     "lineup_tactics": ["lineup_status", "injury_suspension_review", "formation_matchup"],
     "one_x_two_real_vs_camouflage_open": ["real_decimal_odds", "devig_probabilities", "same_time_slice_comparison", "company_divergence_pp", "real_vs_camouflage_open_audited"],
     "asian_handicap_europe_asia_conversion": ["ah_lifecycle", "water_lifecycle", "europe_asia_conversion_audited", "win_vs_cover_separated"],
-    "totals": ["dynamic_ou_structure", "base_2_5_anchor", "ou_independent_conclusion"],
+    "totals": ["dynamic_ou_structure", "base_2_5_anchor", "ou_reference_line", "ou_direction", "ou_direction_confidence", "ou_independent_conclusion"],
     "cross_market_coherence": ["one_x_two_ah_ou_coherence", "conflicts_explained"],
     "market_attraction": ["favourite_attraction", "underdog_attraction", "attraction_interpretation"],
     "draw_exclusion_winner_audit": ["authoritative_draw_label", "draw_branch", "draw_audit_completed"],
@@ -78,6 +78,15 @@
       "missing_weather_is_allowed_only_if_explicitly_disclosed": true,
       "weather_data_missing_token": "WEATHER_DATA_MISSING",
       "no_universal_weather_debuff": true
+    },
+    "totals": {
+      "mandatory_direction_before_score": true,
+      "allowed_directions": ["OVER", "UNDER"],
+      "neutral_or_pass_direction_allowed": false,
+      "direction_is_model_subconclusion_not_a_second_ticket": true,
+      "must_state_reference_line": true,
+      "score_stage_blocked_if_ou_direction_missing": true,
+      "score_stage_must_use_ou_direction_in_bayesian_context_and_direction_consistency_gate": true
     },
     "draw_exclusion": {
       "EXCLUDED": ["winner_only_audit_completed", "draw_removed_from_execution"],
