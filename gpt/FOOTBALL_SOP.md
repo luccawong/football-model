@@ -1,8 +1,8 @@
-# GPT Football Analysis SOP — MODEL_1 Full Stack v1.6
+# GPT Football Analysis SOP — MODEL_1 Full Stack v1.7
 
 Default model: `MODEL_1` from `config/model_registry.json`.
 
-This is the mandatory full-analysis order. Do not reorder or compress these stages unless the user explicitly changes MODEL_1.
+This is the mandatory full-analysis order. Do not reorder or compress these stages unless the user explicitly changes MODEL_1. Formal MODEL_1 semantics are frozen from 2026-09-10 through 2026-10-10 Beijing time under `config/model_1_freeze.json`.
 
 ## Analysis-depth rule
 
@@ -13,9 +13,9 @@ This is the mandatory full-analysis order. Do not reorder or compress these stag
 
 ## Formal market-source rule
 
-- MODEL_1 formal odds/market analysis is **Titan-only**.
+- MODEL_1 formal odds/market analysis is Titan-only.
 - Titan is the only formal source for 1X2, AH, OU, line/water lifecycle and company timeline when the user supplies a Titan packet.
-- JCB and Sporttery are currently **disabled** and must not be used even as auxiliary evidence.
+- JCB and Sporttery are disabled and must not be used even as auxiliary evidence.
 - The GitHub draw-exclusion label remains a separate execution constraint, not an odds source.
 - Off-field official/media/weather information remains a separate context layer, not a replacement market source.
 - OddsPapi/Betfair remains SHADOW_RESEARCH only and has zero formal ticket impact.
@@ -26,7 +26,8 @@ This is the mandatory full-analysis order. Do not reorder or compress these stag
    - weight opponent quality conceptually: beating a weak side is not equal to beating a strong side, and losing narrowly to an elite side is not equal to losing to a weak side;
    - inspect how the team won/lost: score margin, match state, home/away context, shots/xG/chance quality where available, repeatability and whether the result was flattering/misleading;
    - include recent head-to-head with recency/context only, never as a standalone causal rule;
-   - include future schedule and priority pressure, not only past rest;
+   - include future 7–10 day schedule and priority pressure, not only past rest;
+   - audit rotation, travel, expected core minutes, squad depth and whether a favourite can economically win without covering a deep line;
    - do not invent arbitrary numeric weights before historical calibration.
 2. **Market snapshot + Data Gate**
    - state, timestamp, identity, MAIN/ALT, freshness, conflicts and missing core timelines;
@@ -40,7 +41,21 @@ This is the mandatory full-analysis order. Do not reorder or compress these stag
    - check adjacent counterfactual prices/lines: why this opening rather than the neighboring alternative;
    - blocking/inducement/attraction/market-intent explanations are inference, not verified fact;
    - an unusually high/low favourite quote does not by itself delete the draw path.
-5. **Off-field impact / weather**: official club/league information first, then major media/beat reporting; include motivation, relationship/reciprocity, travel, weather/pitch/referee when relevant; label rumours.
+5. **Off-field impact / weather — mandatory visible section**
+   - use `config/off_field_weather_policy.json`;
+   - output weather in every full analysis. If reliable data cannot be verified, output `WEATHER_DATA_MISSING` rather than silently omitting it;
+   - information hierarchy: latest official club/league/competition/confirmed-lineup information > same-day reputable mainstream/beat reporting > same-day off-field digest > older context > unverified rumour/hypothesis;
+   - current/near-kickoff environment: precipitation intensity and thunderstorm risk, wind/gusts, temperature, humidity/heat stress/WBGT when available, venue altitude, pitch/drainage/standing-water/roof status;
+   - travel/circadian: long-haul or transmeridian travel, time-zone direction, arrival time, sleep/recovery opportunity and body-clock mismatch when relevant;
+   - two-leg ties: use aggregate score, qualification incentives, rules, venue and opponent style. Do not mechanically map first-leg lead/trail into a betting direction;
+   - psychology: manager change, morale rebound, complacency, emotional letdown and end-season motivation require identifiable evidence plus a plausible mechanism; guard against regression-to-the-mean and post-hoc storytelling;
+   - national-team chemistry: review continuity, shared-club/cohort familiarity, training time, coach tenure and lineup turnover; do not use fixed player-count bonuses/penalties;
+   - relationship/reciprocity: review ownership/multi-club groups, management/coaching/agent networks, loans/transfers, academy/satellite relations, local business/political ties, historic friendly/hostile ties and table incentives; verified facts and reciprocity hypotheses must remain separate;
+   - host-face/bilateral/ceremonial narratives may be logged only with concrete public evidence; otherwise they remain unverified and carry no formal weight;
+   - weather is a path modifier, not a predetermined Over/Under rule. Heavy rain may suppress technical execution but can also increase slips, goalkeeper handling errors, set-piece volatility and transition mistakes;
+   - home geography/climate familiarity is residual context only and must not be double-counted on top of the existing HFA baseline;
+   - reject uncalibrated fixed shortcuts: no universal heat/humidity x-goal debuff, altitude second-half x0.7, rain -0.5/-1/-1.5 goals, kickoff-time -0.2/-0.3/-0.5, new-manager +1, complacency -0.5, end-season -1, same-club-count +0.5, club-bond +1/+0.5/+0.3, or rest>=6 days attack -0.2;
+   - opaque V1/V2/V3/V4 tactical-counter weights belong nowhere in Stage 5 and are not part of MODEL_1 without definition/validation.
 6. **Lineup / tactics**: official vs predicted XI distinction, injuries/suspensions, expected-minutes relevance, formation, tactical matchup, set pieces/pressing/goalkeeper when adequate data exist.
 7. **1X2 pricing + Real-Open / Camouflage-Open Audit（实开 / 韬开）**
    - this audit occurs only after fundamentals are established;
@@ -107,7 +122,7 @@ This is the mandatory full-analysis order. Do not reorder or compress these stag
    - final PASS is not allowed under current MODEL_1 policy; uncertainty is expressed by grade and execution conditions;
    - near kickoff, send ticket first: market/line + grade + actionable reference price + one-sentence core logic;
    - once actionable, ticket is LOCKED; any later change requires explicit correction `old -> new`;
-   - if the available market moves to a materially different line, re-audit that current line rather than silently transferring the old grade; legacy 'price below threshold = PASS' rules are superseded by the current exactly-one-main policy.
+   - if the available market moves to a materially different line, re-audit that current line rather than silently transferring the old grade.
 
 ## Favourite-failure decomposition
 
@@ -133,13 +148,15 @@ When draw is hard-excluded by the website during the current test, remove path 3
 2. `models/MODEL_1_DEFAULT.md` for MODEL_1
 3. `gpt/FOOTBALL_CANONICAL_MEMORY.md`
 4. `config/active_decision_policy.json`
-5. `gpt/FOOTBALL_SOP.md`
-6. `config/module_registry.json`
-7. `config/model_1_trace_contract.json`
-8. `config/model_1_supporting_contracts.json`
-9. `gpt/MEMORY_GAP_AUDIT_2026-09-09.md` as supporting audit only
-10. `config/full_stack_config.json`
-11. dedicated Exchange/draw-exclusion research files
+5. `config/off_field_weather_policy.json`
+6. `gpt/FOOTBALL_SOP.md`
+7. `config/module_registry.json`
+8. `config/model_1_trace_contract.json`
+9. `config/model_1_supporting_contracts.json`
+10. `config/model_1_freeze.json`
+11. `gpt/MEMORY_GAP_AUDIT_2026-09-09.md` as supporting audit only
+12. `config/full_stack_config.json`
+13. dedicated Exchange/draw-exclusion research files
 
 ## Formal trace / packet audit
 
@@ -148,10 +165,8 @@ When draw is hard-excluded by the website during the current test, remove path 3
 - `gpt/model_1_packet_bridge.py` maps existing Quant/Feature outputs into formal stage evidence without changing validated mathematical formulas.
 - Missing packets/timelines/nodes stay explicit MISSING; do not silently substitute or backfill.
 
-## Divergence validation protocol
+## Validation and freeze
 
-The Defensive Divergence Stack remains `RESEARCH_ONLY_UNCALIBRATED` until prospective validation is adequate. Store the full pre-match snapshot first, then settle outcomes later. Validate by league/market/handicap bucket: target-side divergence magnitude, attraction, persistence, independent clusters, lead-lag, cross-market confirmation and actual path split. Do not select thresholds after results.
+Use chronological walk-forward Brier/RPS/log-loss/reliability. Do not change MODEL_1 from a few outcomes. Prefer an adequate prospective block (roughly 30-50 comparable full analyses is a practical first review window unless a hard logic/data bug appears). Prefer league-specific calibration; Chinese football stays separate for research/calibration.
 
-## Validation
-
-Use chronological walk-forward Brier/RPS/log-loss/reliability. Do not change MODEL_1 from a few outcomes. Prefer an adequate prospective block (roughly 30-50 comparable full analyses is a practical first review window unless a hard logic/data bug appears). Prefer league-specific calibration; Chinese football stays separate for research/calibration. Black-box ML, Kelly and live-inplay Bayesian remain RESEARCH_ONLY until promoted after validation.
+During the formal freeze through 2026-10-10 Beijing time, new ideas are LOG_ONLY for future MODEL_2 consideration. Parser/QC/data-identity bug fixes and tests are allowed only when they restore the frozen semantics rather than change them.
