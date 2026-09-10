@@ -1,16 +1,18 @@
 {
-  "policy_version": "FOOTBALL-ACTIVE-DECISION-POLICY-2026-09-09.4",
+  "policy_version": "FOOTBALL-ACTIVE-DECISION-POLICY-2026-09-09.5",
   "effective_date": "2026-09-09",
   "model_selection": {
     "registry": "config/model_registry.json",
     "default_model_id": "MODEL_1",
     "use_default_unless_user_explicitly_selects_another_model": true,
-    "future_rebuild_creates_new_model_id_instead_of_overwriting_model_1": true
+    "future_rebuild_creates_new_model_id_instead_of_overwriting_model_1": true,
+    "freeze_contract": "config/model_1_freeze.json"
   },
   "authority": {
     "canonical_memory": "gpt/FOOTBALL_CANONICAL_MEMORY.md",
     "formal_sop": "gpt/FOOTBALL_SOP.md",
     "supporting_contracts": "config/model_1_supporting_contracts.json",
+    "off_field_weather_policy": "config/off_field_weather_policy.json",
     "github_over_chat_memory_on_conflict": true,
     "user_explicit_new_instruction_overrides_repository_until_repository_is_updated": true
   },
@@ -57,11 +59,14 @@
     "recent_match_by_match_review": true,
     "recent_head_to_head_with_context": true,
     "future_schedule_required": true,
+    "future_schedule_horizon_days": [7, 10],
     "opponent_quality_weighting_required": true,
     "wins_must_record_how_and_against_whom": true,
     "losses_must_record_how_and_against_whom": true,
     "home_away_context_required": true,
     "shot_xg_chance_quality_when_available": true,
+    "rotation_travel_expected_minutes_required_when_relevant": true,
+    "economic_win_vs_cover_path_required_for_deep_favourites": true,
     "no_arbitrary_numeric_weight_without_calibration": true
   },
   "opening_rationality": {
@@ -70,6 +75,41 @@
     "market_intent_may_consider_blocking_inducement_attraction": true,
     "market_intent_is_inference_not_fact": true,
     "suspicious_favourite_price_does_not_automatically_delete_draw": true
+  },
+  "off_field_weather": {
+    "policy_file": "config/off_field_weather_policy.json",
+    "visible_weather_output_required_every_full_analysis": true,
+    "if_weather_unavailable_output_weather_data_missing": true,
+    "latest_official_overrides_earlier_media": true,
+    "same_day_off_field_digest_must_be_checked_when_available": true,
+    "unverified_rumours_are_hypotheses_only": true,
+    "weather": {
+      "check_current_conditions": true,
+      "check_near_kickoff_forecast_or_nowcast": true,
+      "check_rain_and_precipitation_intensity": true,
+      "check_wind_and_gusts": true,
+      "check_temperature_and_humidity_or_heat_stress": true,
+      "check_altitude_when_relevant": true,
+      "check_pitch_drainage_surface_roof_when_relevant": true,
+      "check_travel_timezones_arrival_and_body_clock_when_relevant": true,
+      "heavy_rain_does_not_mechanically_mean_under": true,
+      "no_universal_goal_debuff_formula": true,
+      "no_universal_weather_grade_penalty": true
+    },
+    "psychology_relationship": {
+      "two_leg_aggregate_state_required_when_relevant": true,
+      "manager_change_morale_complacency_are_evidence_conditioned_hypotheses": true,
+      "national_team_continuity_shared_club_training_time_coach_tenure_review_when_relevant": true,
+      "club_relationship_network_scan_required_when_relevant": true,
+      "host_face_bilateral_narrative_hypothesis_only_without_public_evidence": true,
+      "no_fixed_plus_minus_goal_probability_or_grade_weights": true,
+      "avoid_regression_to_mean_and_post_hoc_storytelling": true
+    },
+    "anti_double_counting": {
+      "home_geography_only_residual_beyond_hfa": true,
+      "travel_schedule_not_counted_twice": true,
+      "lineup_tactics_not_counted_twice": true
+    }
   },
   "real_vs_camouflage_open": {
     "enabled": true,
@@ -227,6 +267,16 @@
     "preserve_all_post_start_crawler_files": true,
     "no_post_result_reconstruction": true
   },
+  "quick_scan": {
+    "selection_only_not_deep_analysis": true,
+    "target_about_hours_before_kickoff": 5,
+    "pre_match_tier_one_only": true,
+    "use_beijing_time_and_titan_state": true,
+    "champions_league_and_high_profile_do_not_drop_only_for_unclear_structure": true,
+    "high_profile_unclear_matches_keep_direction_and_structure_grade": true,
+    "candidate_market_can_be_ah_or_ou": true,
+    "core_companies": ["HKJC", "Macau", "William Hill", "Ladbrokes", "Interwetten"]
+  },
   "red_team": {
     "required": true,
     "independent_h2_required": true,
@@ -244,5 +294,15 @@
     "database_is_fact_source_excel_is_report_output": true,
     "formal_model_accuracy_primary_user_execution_secondary": true,
     "score_stats_separate_top1_exact_from_top3_any_hit": true
+  },
+  "formal_semantics_freeze": {
+    "enabled": true,
+    "contract": "config/model_1_freeze.json",
+    "timezone": "Asia/Shanghai",
+    "start_date": "2026-09-10",
+    "end_date": "2026-10-10",
+    "no_rule_threshold_or_formal_module_changes": true,
+    "research_ideas_log_only": true,
+    "bugfixes_allowed_only_if_they_restore_frozen_semantics": true
   }
 }
