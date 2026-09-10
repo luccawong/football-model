@@ -18,6 +18,7 @@ If MODEL_1 performance later fails to meet the user's expectations, do NOT overw
 - `gpt/FOOTBALL_SOP.md`
 - `config/active_decision_policy.json`
 - `config/model_1_source_policy.json`
+- `config/opening_baseline_policy.json`
 - `config/off_field_weather_policy.json`
 - `config/model_1_freeze.json`
 - `config/module_registry.json`
@@ -29,17 +30,19 @@ If MODEL_1 performance later fails to meet the user's expectations, do NOT overw
 Supporting audit/validation documents:
 
 - `gpt/MEMORY_GAP_AUDIT_2026-09-09.md`
+- `docs/MODEL_1_OFFFIELD_WEATHER_HEURISTIC_AUDIT_20260910.md`
 - `validation/MODEL_1_FORWARD_VALIDATION.md`
 - `research/underdog_outright/RESEARCH_PROTOCOL.md`
 - `draw_exclusion_research/MODEL_FAMILY_PROTOCOL.md`
+- `research/pending_model_2/README.md`
 
 Supporting research cannot override formal MODEL_1 policy unless explicitly promoted by a new versioned user instruction.
 
 ## Formal market-source policy
 
-- MODEL_1 formal market/odds source is **Titan only**.
+- MODEL_1 formal market/odds source is Titan only.
 - Titan supplies formal 1X2, AH, OU, line/water lifecycle and bookmaker timeline inputs.
-- JCB and Sporttery are **disabled**: no formal use and no auxiliary use.
+- JCB and Sporttery are disabled: no formal use and no auxiliary use.
 - Any historical JCB/Sporttery research file is archive-only and is not loaded by MODEL_1.
 - GitHub draw-exclusion labels remain a separate execution constraint, not an odds source.
 - Official/media/weather information remains context, not a replacement odds source.
@@ -75,10 +78,17 @@ Fundamentals are evaluated before market interpretation and must include, when d
 - opponent-quality weighting rather than treating all wins/losses equally;
 - how the team won or lost: margin, game state, shot/xG/chance quality where available, home/away context and whether the result was repeatable;
 - recent head-to-head only with context and recency, not as a standalone causal rule;
-- future 7-10 day schedule and priority pressure;
+- future schedule and priority pressure;
 - strength of opponents in the upcoming schedule;
 - rotation/travel/expected core minutes and whether a favourite can economically win without covering a deep line;
 - avoid arbitrary numerical weights until historically calibrated.
+
+## Opening baseline / HFA anti-double-counting
+
+- Build the reasonable opening reference with league-specific historical opening calibration where available.
+- Use league HFA baseline plus team-specific home/away residuals; do not stack a full generic home advantage and a second generic away penalty.
+- Old rough conversions such as 'about 10 rating points = 1 goal' are seed concepts only, not fixed MODEL_1 constants.
+- If league calibration is missing, mark the fair-opening band uncalibrated and widen uncertainty instead of fabricating a precise fair line.
 
 ## Stage 5 — Off-field factors / weather
 
