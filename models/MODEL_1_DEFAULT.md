@@ -1,7 +1,8 @@
 # MODEL_1 — Current Default Football Model
 
-Status: ACTIVE_DEFAULT
+Status: ACTIVE_DEFAULT_FROZEN_FORMAL_SEMANTICS
 Effective date: 2026-09-09
+Formal freeze window: 2026-09-10 through 2026-10-10 (Asia/Shanghai)
 
 This is the first formally registered football model in this repository. It is the default model for full pre-match analysis unless the user explicitly selects or creates another model.
 
@@ -17,6 +18,8 @@ If MODEL_1 performance later fails to meet the user's expectations, do NOT overw
 - `gpt/FOOTBALL_SOP.md`
 - `config/active_decision_policy.json`
 - `config/model_1_source_policy.json`
+- `config/off_field_weather_policy.json`
+- `config/model_1_freeze.json`
 - `config/module_registry.json`
 - `config/model_1_trace_contract.json`
 - `gpt/decision_engine.py`
@@ -72,9 +75,38 @@ Fundamentals are evaluated before market interpretation and must include, when d
 - opponent-quality weighting rather than treating all wins/losses equally;
 - how the team won or lost: margin, game state, shot/xG/chance quality where available, home/away context and whether the result was repeatable;
 - recent head-to-head only with context and recency, not as a standalone causal rule;
-- future schedule and priority pressure;
+- future 7-10 day schedule and priority pressure;
 - strength of opponents in the upcoming schedule;
+- rotation/travel/expected core minutes and whether a favourite can economically win without covering a deep line;
 - avoid arbitrary numerical weights until historically calibrated.
+
+## Stage 5 — Off-field factors / weather
+
+Every full analysis must visibly output the weather subsection. If reliable weather data cannot be obtained, output `WEATHER_DATA_MISSING` rather than omitting weather.
+
+Mandatory environment review when relevant:
+
+- current conditions and near-kickoff forecast/nowcast;
+- precipitation intensity, thunderstorm risk, wind and gusts;
+- temperature, humidity and heat stress/WBGT when available;
+- venue altitude and visitor acclimatization;
+- pitch surface, drainage, standing-water risk and roof status;
+- long-haul/transmeridian travel, time zones, arrival time, sleep/body-clock mismatch.
+
+Mandatory human/context review when relevant:
+
+- aggregate score/game state in two-leg ties;
+- manager change, morale, rebound/letdown and complacency only as evidence-conditioned hypotheses;
+- national-team continuity, shared-club/cohort familiarity, training time, coach tenure and lineup turnover;
+- ownership/multi-club groups, management/coaching/agent networks, loans/transfers, academy/satellite relations, local business/political ties and table-incentive reciprocity;
+- host-face/bilateral/ceremonial narratives only when supported by public evidence; otherwise hypothesis only;
+- same-day off-field digest is checked when available, but latest official information overrides earlier reporting.
+
+No universal numeric debuffs/bonuses are accepted for these factors. In particular, MODEL_1 rejects automatic formulas such as heat/humidity x-goal reductions, altitude second-half x0.7, rain -0.5/-1/-1.5 goals, fixed kickoff-time penalties, new-manager +1, complacency -0.5, end-season -1, same-club-player-count bonuses, club-bond +1/+0.5/+0.3, or rest >=6 days attack -0.2.
+
+Weather is a path modifier, not a predetermined Over/Under rule: heavy rain can suppress technical execution but can also raise slips, goalkeeper errors, set-piece volatility and transition mistakes. Home geography/climate familiarity is residual context only and must not be double-counted on top of the existing home-field baseline.
+
+Tactical style-counter rules belong in Stage 6, not Stage 5. Opaque V1/V2/V3/V4 fixed counter weights are not part of MODEL_1.
 
 ## Market interpretation constraints
 
@@ -124,6 +156,14 @@ Missing evidence stays MISSING. Missing validation sampling nodes are never inte
 - Where the collector supports it, preserve T-5h / T-2h / T-1h / T-30m / T-10m snapshots without backfilling missing nodes.
 - Confirm real terminal match status before settlement.
 - Keep formal model correctness separate from whether the user personally placed the bet.
+
+## One-month formal freeze
+
+From 2026-09-10 through 2026-10-10 Beijing time, do not alter MODEL_1 formal semantics, stage order, source authority, thresholds, ticket policy or module authority based on recent results or new ideas.
+
+Allowed during the freeze: data collection, result/stat updates, parser/QC/identity bug fixes, tests that enforce already-frozen behavior, and logging research ideas for a future MODEL_2 with zero formal impact.
+
+Only an explicit user instruction may end or override this freeze early.
 
 ## Research-only layers
 
