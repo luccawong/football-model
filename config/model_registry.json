@@ -1,17 +1,24 @@
 {
-  "registry_version": "FOOTBALL-MODEL-REGISTRY-1.0.0",
+  "registry_version": "FOOTBALL-MODEL-REGISTRY-1.1.0",
   "default_model_id": "MODEL_1",
   "selection_policy": "USE_DEFAULT_UNLESS_USER_EXPLICITLY_SELECTS_OR_CREATES_ANOTHER_MODEL",
   "models": [
     {
       "model_id": "MODEL_1",
       "name": "Current Full SOP Model",
-      "status": "ACTIVE_DEFAULT",
+      "status": "ACTIVE_DEFAULT_FROZEN_FORMAL_SEMANTICS",
       "effective_date": "2026-09-09",
-      "description": "Current user-approved full football SOP with hard draw-exclusion forward test, enhanced draw audit, underdog outright audit, independent Red Team and exactly one formal main ticket.",
+      "freeze_contract": "config/model_1_freeze.json",
+      "freeze_window": {
+        "timezone": "Asia/Shanghai",
+        "start_date": "2026-09-10",
+        "end_date": "2026-10-10"
+      },
+      "description": "Current user-approved full football SOP with Titan-only formal market source, hard draw-exclusion forward test, enhanced draw audit, underdog outright audit, explicit off-field/weather audit, independent Red Team and exactly one formal main ticket.",
       "canonical_memory": "gpt/FOOTBALL_CANONICAL_MEMORY.md",
       "sop": "gpt/FOOTBALL_SOP.md",
       "decision_policy": "config/active_decision_policy.json",
+      "off_field_weather_policy": "config/off_field_weather_policy.json",
       "module_registry": "config/module_registry.json",
       "runtime": "gpt/GPT_RUNTIME.md",
       "decision_engine": "gpt/decision_engine.py",
@@ -29,6 +36,7 @@
     "new_model_ids": "MODEL_2, MODEL_3, ...",
     "new_model_must_have_separate_effective_date": true,
     "new_model_must_have_separate_changelog_entry": true,
-    "compare_models_on_same_or_clearly_defined_samples": true
+    "compare_models_on_same_or_clearly_defined_samples": true,
+    "during_model_1_freeze_new_ideas_are_log_only": true
   }
 }
