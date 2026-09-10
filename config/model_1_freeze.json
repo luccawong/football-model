@@ -1,0 +1,50 @@
+{
+  "version": "MODEL_1-FREEZE-1.0.0",
+  "model_id": "MODEL_1",
+  "status": "FROZEN_FORMAL_SEMANTICS",
+  "timezone": "Asia/Shanghai",
+  "freeze_start_date": "2026-09-10",
+  "freeze_end_date": "2026-10-10",
+  "user_instruction": "Pause formal MODEL_1 changes for one month after this finalization pass.",
+  "frozen_scope": [
+    "18-stage SOP order",
+    "formal market-source authority",
+    "ticket policy",
+    "draw-exclusion hard-test semantics",
+    "enhanced draw audit",
+    "underdog outright audit",
+    "1X2 company roles",
+    "AH European-Asian conversion logic",
+    "OU logic",
+    "off-field/weather qualitative policy",
+    "rating/downgrade/upgrade semantics",
+    "Red Team authority",
+    "correct-score framework",
+    "formal output format"
+  ],
+  "changes_forbidden_during_freeze": [
+    "new formal modules",
+    "new formal weights or fixed probability/goal/grade adjustments",
+    "threshold tuning based on recent results",
+    "promotion of research/shadow features into formal decision authority",
+    "reordering formal stages",
+    "changing exactly-one-main/no-non-main/no-final-PASS policy",
+    "changing Titan-only formal market-source policy"
+  ],
+  "allowed_non_semantic_maintenance": [
+    "fix parser/runtime/code bugs that prevent the frozen rules from executing as written",
+    "fix data identity, missingness or QC bugs without changing decision semantics",
+    "add tests for already-frozen behavior",
+    "collect new Titan/raw/validation data",
+    "update results and statistics",
+    "record research ideas for later MODEL_2 consideration with zero formal impact",
+    "repair documentation inconsistencies so they match the frozen current policy"
+  ],
+  "new_idea_policy": {
+    "during_freeze": "LOG_ONLY",
+    "preferred_destination": "research/pending_model_2/",
+    "formal_impact": "NONE",
+    "promotion_before_freeze_end": false
+  },
+  "override": "Only an explicit user instruction to end/override the freeze may alter formal MODEL_1 semantics before 2026-10-10."
+}
