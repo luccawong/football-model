@@ -1,5 +1,5 @@
 {
-  "registry_version": "FOOTBALL-MODEL-REGISTRY-1.1.0",
+  "registry_version": "FOOTBALL-MODEL-REGISTRY-1.1.1",
   "default_model_id": "MODEL_1",
   "selection_policy": "USE_DEFAULT_UNLESS_USER_EXPLICITLY_SELECTS_OR_CREATES_ANOTHER_MODEL",
   "models": [
@@ -14,11 +14,13 @@
         "start_date": "2026-09-10",
         "end_date": "2026-10-10"
       },
-      "description": "Current user-approved full football SOP with Titan-only formal market source, hard draw-exclusion forward test, enhanced draw audit, underdog outright audit, explicit off-field/weather audit, independent Red Team and exactly one formal main ticket.",
+      "description": "Current user-approved full football SOP with Titan-only formal market source, hard draw-exclusion forward test, enhanced draw audit, underdog outright audit, explicit off-field/weather audit, Bayesian posterior Poisson/Dixon-Coles correct-score Stage14, independent Red Team and exactly one formal main ticket.",
       "canonical_memory": "gpt/FOOTBALL_CANONICAL_MEMORY.md",
       "sop": "gpt/FOOTBALL_SOP.md",
       "decision_policy": "config/active_decision_policy.json",
       "off_field_weather_policy": "config/off_field_weather_policy.json",
+      "stage14_policy": "config/model_1_stage14_policy.json",
+      "stage14_engine": "gpt/stage14_bayesian.py",
       "module_registry": "config/module_registry.json",
       "runtime": "gpt/GPT_RUNTIME.md",
       "decision_engine": "gpt/decision_engine.py",
