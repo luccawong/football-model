@@ -1,17 +1,17 @@
 """MODEL_1 packet bridge.
 
-Keeps the validated mathematical/feature engines independent while mapping their
-outputs into the 18-stage MODEL_1 formal trace. This file is orchestration only;
-it does not change de-vig, Poisson/Dixon-Coles, AH settlement or uncertainty math.
+Maps validated Quant/Feature outputs into the 18-stage formal trace without
+changing the underlying mathematical engines. Formal Stage14 now requires the
+MODEL_1 Bayesian posterior score engine; market reconstruction alone is research-only.
 """
 from __future__ import annotations
 
 from typing import Any, Mapping, Sequence
 
 from gpt.feature_engine import module_gate
-from gpt.quant_core import score_grid, probabilities_1x2, correct_score_probabilities
+from gpt.stage14_bayesian import build_stage14_score_packet
 
-PACKET_BRIDGE_VERSION = "MODEL_1-PACKET-BRIDGE-1.0.0"
+PACKET_BRIDGE_VERSION = "MODEL_1-PACKET-BRIDGE-1.1.0"
 
 
 class PacketBridgeError(ValueError):
@@ -51,66 +51,84 @@ def build_feature_packet(
 def build_correct_score_quant_evidence(
     *,
     quant_packet: Mapping[str, Any],
-    company: str,
-    bayesian_context_update: Mapping[str, Any],
-    final_top3: Sequence[str],
-    direction_consistency_gate: bool,
+    prior_packet: Mapping[str, Any] | None = None,
+    context_updates: Sequence[Mapping[str, Any]] | None = None,
+    execution_path: Mapping[str, Any] | None = None,
+    market_absorbed_fraction: float = 0.0,
+    market_sigma_floor: float = 0.12,
     max_goals: int = 12,
+    draws: int = 4000,
+    # Legacy arguments are retained only so old callers fail clearly instead of
+    # silently producing a market-only score packet.
+    company: str | None = None,
+    bayesian_context_update: Mapping[str, Any] | None = None,
+    final_top3: Sequence[str] | None = None,
+    direction_consistency_gate: bool | None = None,
 ) -> dict[str, Any]:
-    """Map one company reconstruction into stage-14 score evidence.
+    """Build formal MODEL_1 Stage14 evidence from a true Bayesian posterior.
 
-    The Bayesian/context update is supplied explicitly by the formal analysis layer;
-    this bridge never fabricates it from the market reconstruction.
+    A validated prior is mandatory. Pinnacle/Bet365/Macau reconstructions are
+    consumed jointly by the posterior engine as a correlated market cluster.
+    The bridge never promotes single-company market reconstruction to formal Top3.
     """
-    reconstruction = quant_packet.get("reconstruction")
-    if not isinstance(reconstruction, Mapping) or company not in reconstruction:
-        raise PacketBridgeError(f"No reconstruction available for company {company!r}.")
-    rec = reconstruction[company]
-    for key in ("lambda_home", "lambda_away", "rho"):
-        if key not in rec:
-            raise PacketBridgeError(f"Reconstruction missing {key}.")
+    if prior_packet is None:
+        raise PacketBridgeError(
+            "Formal MODEL_1 Stage14 requires prior_packet; market-only fallback is forbidden."
+        )
 
-    grid = score_grid(
-        float(rec["lambda_home"]),
-        float(rec["lambda_away"]),
-        float(rec["rho"]),
+    stage14 = build_stage14_score_packet(
+        quant_packet,
+        prior_packet,
+        context_updates=context_updates,
+        execution_path=execution_path,
+        market_absorbed_fraction=market_absorbed_fraction,
+        market_sigma_floor=market_sigma_floor,
         max_goals=max_goals,
+        draws=draws,
     )
-    p1x2 = probabilities_1x2(grid)
-    top_model_scores = correct_score_probabilities(grid, 10)
+    if stage14.get("status") not in {"BAYESIAN_POSTERIOR_TOP3", "SCORELINE_CONFLICT"}:
+        raise PacketBridgeError(
+            f"Formal Stage14 unavailable: {stage14.get('reason', stage14.get('status'))}"
+        )
 
-    five_plus_home = float(grid[5:, :].sum()) if grid.shape[0] > 5 else 0.0
-    five_plus_away = float(grid[:, 5:].sum()) if grid.shape[1] > 5 else 0.0
-    any_team_five_plus = float(
-        grid[5:, :].sum() + grid[:, 5:].sum() - grid[5:, 5:].sum()
-    ) if grid.shape[0] > 5 and grid.shape[1] > 5 else 0.0
-
-    if len(final_top3) > 3:
-        raise PacketBridgeError("MODEL_1 final correct-score output is capped at Top3.")
-
+    predictive = stage14.get("posterior_predictive", {})
+    top3_rows = list(stage14.get("top3", []))
     return {
         "packet_bridge_version": PACKET_BRIDGE_VERSION,
         "model_id": "MODEL_1",
-        "formal_stage": "correct_score_poisson_bayesian",
+        "formal_stage": "correct_score_poisson_dixon_coles_bayesian",
         "quant_engine_version": quant_packet.get("engine_version"),
+        "stage14_engine_version": stage14.get("engine_version"),
         "quant_packet_ref": {
             "match_id": quant_packet.get("match_id"),
             "snapshot_time": quant_packet.get("snapshot_time"),
-            "company": company,
+            "companies": ["Pinnacle", "Bet365", "Macau"],
+        },
+        "posterior_ref": {
+            "status": stage14.get("posterior", {}).get("status"),
+            "mean_log_lambda": stage14.get("posterior", {}).get("mean_log_lambda"),
+            "cov_log_lambda": stage14.get("posterior", {}).get("cov_log_lambda"),
+            "rho": stage14.get("posterior", {}).get("rho"),
+            "rho_source": stage14.get("posterior", {}).get("rho_source"),
         },
         "score_grid_ref": {
-            "lambda_home": float(rec["lambda_home"]),
-            "lambda_away": float(rec["lambda_away"]),
-            "rho": float(rec["rho"]),
-            "model_1x2": p1x2,
-            "raw_top10": top_model_scores,
-            "five_plus_home_tail": five_plus_home,
-            "five_plus_away_tail": five_plus_away,
-            "any_team_five_plus_tail": any_team_five_plus,
+            "provenance": stage14.get("provenance"),
+            "model_1x2": predictive.get("model_1x2"),
+            "raw_top10": stage14.get("raw_top10"),
+            "five_plus_home_tail": predictive.get("five_plus_home_tail"),
+            "five_plus_away_tail": predictive.get("five_plus_away_tail"),
+            "any_team_five_plus_tail": predictive.get("any_team_five_plus_tail"),
         },
-        "bayesian_context_update": dict(bayesian_context_update),
-        "top3_scores": list(final_top3),
-        "direction_consistency_gate": bool(direction_consistency_gate),
+        "top3_scores": [row.get("score") for row in top3_rows],
+        "top3_rows": top3_rows,
+        "direction_consistency_gate": stage14.get("status") != "SCORELINE_CONFLICT",
+        "execution_path": stage14.get("execution_path"),
+        "market_reconstruction_role": "LIKELIHOOD_OR_MARKET_REFERENCE_ONLY",
+        "no_market_only_fallback": True,
+        "legacy_manual_top3_ignored": final_top3 is not None,
+        "legacy_single_company_ignored": company is not None,
+        "legacy_context_blob_preserved_only": dict(bayesian_context_update or {}),
+        "legacy_direction_flag_preserved_only": direction_consistency_gate,
     }
 
 
