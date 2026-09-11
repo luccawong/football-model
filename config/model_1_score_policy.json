@@ -1,0 +1,66 @@
+{
+  "policy_version": "MODEL_1-SCORE-POLICY-1.0.0",
+  "model_id": "MODEL_1",
+  "formal_stage": 14,
+  "formal_engine": "BAYESIAN_POSTERIOR_POISSON_DIXON_COLES",
+  "prior": {
+    "space": "log_rate",
+    "formula_home": "mu_league + hfa_league + attack_home - defense_away + x_beta_home",
+    "formula_away": "mu_league + attack_away - defense_home + x_beta_away",
+    "required_source_groups": ["TEAM_DATA"],
+    "required_uncertainty": "2x2 positive-definite cov_log_lambda",
+    "no_fabricated_numeric_context_effects": true
+  },
+  "market_lambda_fusion": {
+    "companies": ["Pinnacle", "Bet365", "Macau"],
+    "method": "CORRELATED_MARKET_CLUSTER_LOG_RATE",
+    "treat_as_independent_votes": false,
+    "simple_final_lambda_average_forbidden": true,
+    "cross_company_dispersion_inflates_uncertainty": true,
+    "log_lambda_sigma_floor": 0.12,
+    "sigma_floor_status": "PROVISIONAL_CALIBRATION_PARAMETER",
+    "roles": {
+      "Pinnacle": "ANCHOR_CONFIRMATION_NOT_SMART_MONEY_BY_DEFAULT",
+      "Bet365": "CANDIDATE_REPRICING_LEAD_REQUIRES_REGIME_CHECK",
+      "Macau": "WEAK_LEAD_ASIAN_MARKET_CONFIRMATION"
+    }
+  },
+  "bayesian_update": {
+    "source_groups": ["TEAM_DATA", "LINEUP", "1X2", "AH", "OU_MAIN", "OU_CURVE", "OFFFIELD"],
+    "anti_double_counting": true,
+    "effective_fraction_rule": "1 - absorbed_fraction",
+    "unvalidated_narrative_to_lambda_mapping_forbidden": true,
+    "market_only_fallback_forbidden": true
+  },
+  "posterior_predictive": {
+    "method": "DETERMINISTIC_MONTE_CARLO",
+    "draws": 4000,
+    "max_goals": 12,
+    "score_kernel": "DIXON_COLES",
+    "bivariate_poisson": "DISABLED_UNTIL_HISTORICALLY_TRAINED",
+    "integrate_parameter_uncertainty": true,
+    "preserve_5_plus_tail": true
+  },
+  "consistency": {
+    "one_x_two_and_formal_ah": "HARD_DIRECTION_GATE",
+    "ou": "AUXILIARY_SCORELINE_CONSISTENCY",
+    "ou_must_not_issue_or_flip_formal_ticket": true,
+    "draw_exclusion_does_not_delete_raw_posterior_draw_mass": true,
+    "draw_exclusion_may_filter_final_execution_consistent_top3": true
+  },
+  "output": {
+    "max_final_scores": 3,
+    "freeze_before_kickoff": true,
+    "display_immediately_below_formal_main_ticket": true,
+    "display_fields": ["Top1", "Top2", "Top3", "posterior_probability", "provenance"],
+    "missing_prior_behavior": "SHOW_SCORELINE_MISSING_DO_NOT_FABRICATE",
+    "provenance_label": "BAYESIAN_POSTERIOR_POISSON_DIXON_COLES"
+  },
+  "validation": {
+    "historical_manual_cohort": "MANUAL_PRE_PATCH",
+    "market_reconstruction_cohort": "AUTO_QUANT_MARKET_RECONSTRUCTION",
+    "formal_new_cohort": "BAYESIAN_POSTERIOR_POISSON_DIXON_COLES",
+    "metrics": ["Top1_hit_rate", "Top3_coverage", "correct_score_NLL", "RPS", "1X2_Brier", "OU_logloss", "AH_cover_calibration"],
+    "no_post_result_recompute": true
+  }
+}
