@@ -1,0 +1,43 @@
+{
+  "policy_id": "MODEL_1-STAGE14-BAYESIAN-POSTERIOR-1.0.0",
+  "model_id": "MODEL_1",
+  "formal_stage": 14,
+  "formal_stage_name": "correct_score_poisson_dixon_coles_bayesian_posterior",
+  "formal_output_source_required": "BAYESIAN_POSTERIOR_POISSON_DC",
+  "market_reconstruction_role": "LIKELIHOOD_OR_MARKET_REFERENCE_ONLY",
+  "market_reconstruction_may_be_final_score_distribution": false,
+  "posterior_predictive_required": true,
+  "posterior_integration": "WEIGHTED_MIXTURE_OVER_LAMBDA_HOME_LAMBDA_AWAY_RHO_PARTICLES",
+  "prior_contract": {
+    "provenance_required": true,
+    "minimum_particles": 2,
+    "result_leakage_forbidden": true,
+    "post_match_reconstruction_forbidden": true
+  },
+  "evidence_contract": {
+    "validated_for_update_required": true,
+    "independent_update_required": true,
+    "timestamp_must_not_exceed_cutoff": true,
+    "likelihood_uncertainty_must_be_supplied": true,
+    "invent_default_sigma_or_weight": false
+  },
+  "allowed_formal_status": "POSTERIOR_VALIDATED",
+  "insufficient_data_status": "INSUFFICIENT_SOURCE_DATA",
+  "fallback_policy": {
+    "market_only_as_formal_top3": false,
+    "manual_probability_fabrication": false,
+    "prior_only_as_posterior": false
+  },
+  "score_output": {
+    "maximum_top3": 3,
+    "preserve_top1_top2_top3_order": true,
+    "direction_consistency_gate_after_posterior": true,
+    "five_plus_tail_required_when_relevant": true
+  },
+  "implementation": {
+    "posterior_engine": "gpt/stage14_bayesian.py",
+    "stage14_entry": "gpt/stage14_auto.py",
+    "formal_bridge": "gpt/model_1_packet_bridge.py"
+  },
+  "freeze_classification": "IMPLEMENTATION_REPAIR_RESTORING_ALREADY_FROZEN_STAGE14_SEMANTICS"
+}
