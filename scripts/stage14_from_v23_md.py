@@ -2,9 +2,10 @@ from __future__ import annotations
 
 import argparse
 import json
+from pathlib import Path
 
 from gpt.quant_core import build_quant_packet
-from gpt.stage14_auto import automatic_top3
+from gpt.stage14_auto import automatic_top3, market_reconstruction_top3
 from src.parser.titan_md import read_markdown_tables
 
 
@@ -49,20 +50,40 @@ def build_payload(tables, match_id):
     return {"match_id": str(match_id), "companies": usable}
 
 
-def build_stage14(path, match_id):
+def _load_json(value):
+    if value is None:
+        return None
+    path = Path(value)
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def build_stage14(
+    path,
+    match_id,
+    *,
+    prior_packet,
+    context_updates=None,
+    execution_path=None,
+):
     tables = read_markdown_tables(path)
     quant = build_quant_packet(build_payload(tables, match_id))
-    available = quant.get("reconstruction", {})
-    company = next((name for name in CORE if name in available), None)
-    if company is None:
-        return {"match_id": str(match_id), "status": "MISSING", "reason": "NO_CORE_RECONSTRUCTION"}
-    score = automatic_top3(quant, company)
+    score = automatic_top3(
+        quant,
+        prior_packet=prior_packet,
+        context_updates=context_updates,
+        execution_path=execution_path,
+    )
+    research = {}
+    for company in CORE:
+        if company in quant.get("reconstruction", {}):
+            research[company] = market_reconstruction_top3(quant, company)
     return {
         "match_id": str(match_id),
-        "research_only": True,
+        "formal_model": "MODEL_1",
+        "formal_stage14": score,
+        "research_market_reconstruction": research,
         "quant_engine_version": quant.get("engine_version"),
-        "company": company,
-        "stage14": score,
+        "no_market_only_fallback": True,
     }
 
 
@@ -70,8 +91,26 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("markdown")
     parser.add_argument("match_id")
+    parser.add_argument("--prior-json", required=True)
+    parser.add_argument("--context-json")
+    parser.add_argument("--execution-json")
     args = parser.parse_args()
-    print(json.dumps(build_stage14(args.markdown, args.match_id), ensure_ascii=False, indent=2))
+    prior = _load_json(args.prior_json)
+    context = _load_json(args.context_json)
+    execution = _load_json(args.execution_json)
+    print(
+        json.dumps(
+            build_stage14(
+                args.markdown,
+                args.match_id,
+                prior_packet=prior,
+                context_updates=context,
+                execution_path=execution,
+            ),
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
 
 
 if __name__ == "__main__":
