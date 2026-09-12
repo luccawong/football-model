@@ -15,7 +15,7 @@ from draw_exclusion.query_label import query_by_titan
 
 from gpt.feature_engine import module_gate
 from gpt.prior_engine import PriorEngineError
-from gpt.prior_competition import resolve_prior
+from gpt.prior_runtime import resolve_prior
 from gpt.stage14_bayesian import build_stage14_score_packet
 
 PACKET_BRIDGE_VERSION = "MODEL_1-PACKET-BRIDGE-1.3.0"
