@@ -1,47 +1,32 @@
 {
-  "policy_version": "MODEL_1-TITAN-PRIOR-POLICY-1.0.0",
+  "policy_version": "MODEL_1-TITAN-PRIOR-POLICY-1.1.0",
   "model_id": "MODEL_1",
   "formal_stage": 14,
-  "status": "REQUIRES_DATA_CALIBRATION_BEFORE_PRODUCTION_STORE",
+  "status": "REQUIRES_RAW_CALIBRATION_AND_COMPETITION_OOS_BEFORE_PRODUCTION_ACTIVATION",
   "source_contract": {
     "allowed": [
       "Titan historical completed match results",
-      "league baseline",
-      "home-field advantage",
-      "team attack/defence latent states",
+      "competition-specific scoring baseline",
+      "competition-specific home-field advantage",
+      "historical team attack/defence latent states",
       "opponent adjustment",
       "time decay",
       "hierarchical partial pooling",
       "cross-season state transition"
     ],
     "forbidden": [
-      "Pinnacle",
-      "Bet365",
-      "Macau",
-      "current 1X2",
-      "current AH",
-      "current OU",
-      "external draw-exclusion label",
-      "lineup",
-      "injury",
-      "rotation",
-      "schedule/travel",
-      "weather",
-      "off-field narrative"
+      "Pinnacle", "Bet365", "Macau", "William Hill", "Ladbrokes", "HKJC", "Interwetten",
+      "current 1X2", "current AH", "current OU", "Betfair", "JCB",
+      "external draw-exclusion label", "lineup", "injury", "suspension", "rotation",
+      "schedule/travel", "weather", "off-field narrative", "club relations"
     ],
     "market_and_context_must_enter_after_prior": true
   },
   "raw_schema": {
     "table": "matches",
+    "competition_universe_query": "SELECT DISTINCT competition FROM matches",
     "required_canonical_fields": [
-      "match_id",
-      "match_date",
-      "league",
-      "season",
-      "home_team",
-      "away_team",
-      "home_score",
-      "away_score"
+      "match_id", "match_date", "league", "season", "home_team", "away_team", "home_score", "away_score"
     ],
     "aliases": {
       "match_id": ["match_id", "id"],
@@ -53,66 +38,83 @@
       "home_score": ["home_score"],
       "away_score": ["away_score"]
     },
+    "legacy_api_note": "canonical field league maps raw competition and has competition semantics throughout the prior engine",
     "missing_field_action": "INVALID_DO_NOT_SYNTHESIZE"
   },
+  "minimum_history": {
+    "completed_matches": 80,
+    "oos_seasons": 4,
+    "insufficient_action": "INSUFFICIENT_HISTORY",
+    "cross_competition_parameter_borrowing_forbidden": true
+  },
   "model": {
-    "home_formula": "log(lambda_H)=mu_league+hfa_league+attack_home_season-defense_away_season",
-    "away_formula": "log(lambda_A)=mu_league+attack_away_season-defense_home_season",
-    "league_baselines_are_independent": true,
+    "home_formula": "log(lambda_H)=mu_competition+HFA_competition+attack_home_season-defense_away_season",
+    "away_formula": "log(lambda_A)=mu_competition+attack_away_season-defense_home_season",
+    "legacy_mu_league_semantics": "mu_league is retained only as an API field; it means competition-specific scoring baseline",
+    "competition_baselines_are_independent": true,
+    "global_baseline_forbidden": true,
     "opponent_adjustment": "JOINT_POISSON_REGRESSION",
     "hierarchy": "GAUSSIAN_TEAM_SEASON_RANDOM_EFFECTS_WITH_CONSECUTIVE_SEASON_TRANSITIONS",
-    "new_or_promoted_team_fallback": "LEAGUE_BASELINE",
+    "domestic_new_or_promoted_team_fallback": "COMPETITION_BASELINE_PLUS_CURRENT_SEASON_EVIDENCE",
+    "european_new_club_fallback": "EUROPEAN_COMPETITION_BASELINE_PLUS_CURRENT_COMPETITION_EVIDENCE",
+    "copy_domestic_league_state_into_europe_forbidden": true,
     "uncertainty": "LAPLACE_FULL_PARAMETER_COVARIANCE_PROPAGATION",
     "fixed_score_covariance_forbidden": true
   },
   "time_decay": {
     "weight": "0.5^(age_days/half_life_days)",
-    "selected_half_life_days": null,
-    "selection_status": "CALIBRATION_REQUIRED",
-    "research_candidate_half_life_days": [120, 180, 270, 365, 540, 730, 1095],
-    "boundary_winner_requires_grid_extension": true,
-    "fixed_unvalidated_gamma_forbidden": true
+    "selection_scope": "COMPETITION_SPECIFIC_TRAIN_ONLY",
+    "research_candidate_half_life_days": [90, 120, 180, 240, 365, 540, 730, 1095],
+    "boundary_winner_action": "SHADOW_GRID_EXTENSION_REQUIRED",
+    "shared_unvalidated_half_life_forbidden": true
   },
   "hierarchical_shrinkage": {
-    "selected_team_sd": null,
-    "selected_transition_sd": null,
-    "selection_status": "CALIBRATION_REQUIRED",
+    "selection_scope": "COMPETITION_SPECIFIC_TRAIN_ONLY",
     "research_candidate_team_sd": [0.15, 0.25, 0.35, 0.5, 0.7],
     "research_candidate_transition_sd": [0.08, 0.12, 0.2, 0.3, 0.45],
-    "boundary_winner_requires_grid_extension": true
+    "boundary_winner_action": "SHADOW_GRID_EXTENSION_REQUIRED"
   },
   "validation": {
-    "ordering": "SEASON_FORWARD_NO_SHUFFLE",
-    "default_if_five_seasons_available": {
-      "train": "first three seasons",
-      "validate": "penultimate season",
-      "test": "latest season"
-    },
-    "hyperparameter_selection": "NESTED_SEASON_FORWARD_INSIDE_TRAIN_ONLY",
+    "ordering": "COMPETITION_SPECIFIC_SEASON_FORWARD_NO_SHUFFLE",
+    "split_rule": "for each competition independently: all seasons except last two=train, penultimate=validation, latest=test",
+    "hyperparameter_selection": "NESTED_SEASON_FORWARD_INSIDE_EACH_COMPETITION_TRAIN_ONLY",
     "selection_metric": "prior-only goal Poisson NLL on inner folds",
+    "walk_forward_test_updates": "fixed hyperparameters; fit only on matches strictly before each evaluation cutoff",
     "final_comparison_models": [
       "A_MARKET_RECONSTRUCTION_ONLY",
       "B_TITAN_HISTORICAL_PRIOR_ONLY",
       "C_TITAN_PRIOR_PLUS_CORRELATED_MARKET_BAYESIAN_POSTERIOR"
     ],
     "required_metrics": [
-      "correct_score_NLL",
-      "Top1_exact_score_hit_rate",
-      "Top3_coverage",
-      "1X2_Brier",
-      "RPS",
-      "OU_calibration",
-      "AH_cover_calibration"
+      "correct_score_NLL", "Top1_exact_score_hit_rate", "Top3_coverage",
+      "1X2_Brier", "RPS", "OU_over2_5_Brier", "OU_over2_5_logloss",
+      "OU_calibration", "AH_settlement_aware_Brier", "AH_cover_equivalent_calibration"
     ],
+    "comparison_must_be_reported_per_competition": true,
+    "aggregate_cannot_hide_competition_failure": true,
     "model_selection_by_top3_only_forbidden": true,
     "test_set_parameter_tuning_forbidden": true,
     "post_result_recompute_forbidden": true
   },
+  "activation": {
+    "allowed_states": ["ACTIVE", "SHADOW", "DISABLED", "INSUFFICIENT_HISTORY"],
+    "minimum_common_test_matches_for_active": 80,
+    "active_gate": {
+      "C_score_NLL_lte_A": true,
+      "C_1X2_Brier_lte_A": true,
+      "C_RPS_lte_A": true,
+      "C_Top3_not_worse_than_A_by_more_than_pp": 1.5
+    },
+    "disabled_gate": "C score NLL is >2% worse than A and both 1X2 Brier and RPS are worse than A",
+    "otherwise": "SHADOW",
+    "note": "activation thresholds are engineering release gates, not claims of statistical significance"
+  },
   "runtime": {
-    "prior_context_required": ["league", "season", "home_team", "away_team"],
-    "match_date_optional_when_using_frozen_store": true,
+    "prior_context_preferred": ["competition", "season", "home_team", "away_team", "match_date"],
+    "legacy_context_alias": "league may stand for competition",
     "generated_store_default": "database/priors/model_1_titan_prior_store.json",
     "raw_database_must_not_be_committed": true,
-    "market_only_fallback_forbidden": true
+    "market_only_fallback_forbidden": true,
+    "BAYESIAN_PRIOR_REQUIRED_protection_retained": true
   }
 }
