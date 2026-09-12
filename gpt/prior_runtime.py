@@ -1,14 +1,13 @@
 """Runtime resolver for MODEL_1 Titan historical priors.
 
-Supports both the legacy dense-covariance store and the compact sparse-precision
-store produced after the 2026-09-12 full raw-SQLite validation.  The compact
-format stores the penalised-posterior precision matrix and solves only the two
-fixture log-rate directions needed by Stage14, avoiding huge dense covariance
-files.  Train-only process covariance is added after Laplace propagation.
+Supports legacy dense stores and the production compact store.  Production
+models keep the penalised-posterior precision matrix (CSC) and solve only the
+two fixture log-rate directions needed by Stage14; competition models may be
+split into separate JSON files and are loaded lazily.  Train-only process
+covariance is then added to Laplace parameter uncertainty.
 
-No market/current-context field is admitted here.  Formal Stage14 still requires
-an ACTIVE competition; SHADOW/DISABLED/INSUFFICIENT_HISTORY cannot silently
-become priors.
+No market/current-context field is admitted here. Formal Stage14 requires an
+ACTIVE competition; SHADOW/DISABLED/INSUFFICIENT_HISTORY remain research-only.
 """
 from __future__ import annotations
 
@@ -21,21 +20,10 @@ import numpy as np
 from scipy import sparse
 from scipy.sparse.linalg import splu
 
-from gpt.prior_engine import (
-    FORBIDDEN_PRIOR_KEYS,
-    PriorEngineError,
-    _season_start,
-    _utc_naive,
-)
+from gpt.prior_engine import FORBIDDEN_PRIOR_KEYS, PriorEngineError, _season_start, _utc_naive
 from gpt.prior_competition import resolve_prior as _resolve_legacy_prior
 
 KNOWN_ACTIVATIONS = {"ACTIVE", "SHADOW", "DISABLED", "INSUFFICIENT_HISTORY"}
-
-
-def _load_store(value: Mapping[str, Any] | str | Path) -> dict[str, Any]:
-    if isinstance(value, Mapping):
-        return dict(value)
-    return json.loads(Path(value).read_text(encoding="utf-8"))
 
 
 def _validated_context(context: Mapping[str, Any]) -> tuple[str, int]:
@@ -52,6 +40,39 @@ def _validated_context(context: Mapping[str, Any]) -> tuple[str, int]:
         if not context.get(key):
             raise PriorEngineError(f"Prior context missing: {key}")
     return str(competition), _season_start(context["season"])
+
+
+def _load_store_and_model(
+    value: Mapping[str, Any] | str | Path,
+    competition: str,
+) -> tuple[dict[str, Any], Mapping[str, Any] | None]:
+    """Load manifest plus only the requested competition model when split."""
+    if isinstance(value, Mapping):
+        store = dict(value)
+        models = store.get("competition_models") or store.get("league_models") or {}
+        model = models.get(competition) if isinstance(models, Mapping) else None
+        return store, model if isinstance(model, Mapping) else None
+
+    path = Path(value)
+    store = json.loads(path.read_text(encoding="utf-8"))
+    models = store.get("competition_models") or store.get("league_models") or {}
+    model = models.get(competition) if isinstance(models, Mapping) else None
+    if isinstance(model, Mapping):
+        return store, model
+
+    model_files = store.get("model_files") or {}
+    ref = model_files.get(competition) if isinstance(model_files, Mapping) else None
+    if isinstance(ref, Mapping) and ref.get("path"):
+        model_path = (path.parent / str(ref["path"])).resolve()
+        try:
+            payload = json.loads(model_path.read_text(encoding="utf-8"))
+        except OSError as exc:
+            raise PriorEngineError(f"Prior model file unavailable for {competition}: {model_path}") from exc
+        loaded = payload.get("model") if isinstance(payload, Mapping) else None
+        if str(payload.get("competition")) != competition or not isinstance(loaded, Mapping):
+            raise PriorEngineError(f"Prior model file has invalid competition payload: {competition}")
+        return store, loaded
+    return store, None
 
 
 def _state_reference(model: Mapping[str, Any], state_map: Mapping[tuple[str, int], int], team: str, season_start: int) -> dict[str, Any]:
@@ -91,6 +112,7 @@ def _pd2(cov: np.ndarray) -> tuple[np.ndarray, float]:
 def _resolve_compact(
     context: Mapping[str, Any],
     store: Mapping[str, Any],
+    model: Mapping[str, Any],
     *,
     require_active: bool,
 ) -> dict[str, Any]:
@@ -102,14 +124,9 @@ def _resolve_compact(
     if require_active and activation != "ACTIVE":
         raise PriorEngineError(f"Competition prior is not formally active: {competition} ({activation})")
 
-    models = store.get("competition_models") or {}
-    model = models.get(competition)
-    if not isinstance(model, Mapping):
-        raise PriorEngineError(f"No calibrated Titan prior model for competition: {competition}")
     precision = model.get("precision_csc")
     if not isinstance(precision, Mapping):
         raise PriorEngineError(f"Compact prior model missing precision matrix: {competition}")
-
     theta = np.asarray(model["theta"], dtype=float)
     layout = model["parameter_layout"]
     n = int(layout["state_count"])
@@ -117,10 +134,7 @@ def _resolve_compact(
     do = int(layout["defence_offset"])
     if do != ao + n:
         raise PriorEngineError("Stored compact parameter layout is inconsistent.")
-    state_map = {
-        (str(item["team"]), int(item["season_start"])): i
-        for i, item in enumerate(model["states"])
-    }
+    state_map = {(str(s["team"]), int(s["season_start"])): i for i, s in enumerate(model["states"])}
     hr = _state_reference(model, state_map, str(context["home_team"]), target_season)
     ar = _state_reference(model, state_map, str(context["away_team"]), target_season)
 
@@ -139,14 +153,7 @@ def _resolve_compact(
     Xtarget = np.vstack([xh, xa])
     mean = Xtarget @ theta
     shape = tuple(int(x) for x in precision["shape"])
-    H = sparse.csc_matrix(
-        (
-            np.asarray(precision["data"], dtype=float),
-            np.asarray(precision["indices"], dtype=np.int32),
-            np.asarray(precision["indptr"], dtype=np.int32),
-        ),
-        shape=shape,
-    )
+    H = sparse.csc_matrix((np.asarray(precision["data"], dtype=float), np.asarray(precision["indices"], dtype=np.int32), np.asarray(precision["indptr"], dtype=np.int32)), shape=shape)
     if shape != (len(theta), len(theta)):
         raise PriorEngineError("Compact precision shape does not match theta.")
     try:
@@ -168,9 +175,9 @@ def _resolve_compact(
         idx = ref["state_index"]
         return 0.0 if idx is None else float(theta[offset + int(idx)])
 
-    mu = float(theta[int(layout["mu_league"])] )
-    hfa = float(theta[int(layout["hfa_league"])] )
-    packet = {
+    mu = float(theta[int(layout["mu_league"])])
+    hfa = float(theta[int(layout["hfa_league"])])
+    return {
         "status": "VALID",
         "engine_version": "MODEL_1-TITAN-PRIOR-RUNTIME-2.1.0",
         "mean_log_lambda": [float(mean[0]), float(mean[1])],
@@ -180,35 +187,24 @@ def _resolve_compact(
         "calibration_ref": store.get("calibration_ref"),
         "activation": activation,
         "components": {
-            "mu_league": mu,
-            "mu_competition": mu,
-            "hfa_league": hfa,
-            "hfa_competition": hfa,
-            "attack_home": state_value(hr, ao),
-            "defense_home": state_value(hr, do),
-            "attack_away": state_value(ar, ao),
-            "defense_away": state_value(ar, do),
-            "x_beta_home": 0.0,
-            "x_beta_away": 0.0,
+            "mu_league": mu, "mu_competition": mu,
+            "hfa_league": hfa, "hfa_competition": hfa,
+            "attack_home": state_value(hr, ao), "defense_home": state_value(hr, do),
+            "attack_away": state_value(ar, ao), "defense_away": state_value(ar, do),
+            "x_beta_home": 0.0, "x_beta_away": 0.0,
         },
         "fixture": {
-            "competition": competition,
-            "league": competition,
-            "home_team": str(context["home_team"]),
-            "away_team": str(context["away_team"]),
-            "season": str(context["season"]),
-            "season_start": target_season,
-            "match_date": _utc_naive(context.get("match_date") or context.get("kickoff")).isoformat(sep=" ")
-            if (context.get("match_date") or context.get("kickoff")) is not None else None,
+            "competition": competition, "league": competition,
+            "home_team": str(context["home_team"]), "away_team": str(context["away_team"]),
+            "season": str(context["season"]), "season_start": target_season,
+            "match_date": _utc_naive(context.get("match_date") or context.get("kickoff")).isoformat(sep=" ") if (context.get("match_date") or context.get("kickoff")) is not None else None,
         },
         "hierarchy": {
-            "home_team_fallback": hr["fallback"],
-            "away_team_fallback": ar["fallback"],
+            "home_team_fallback": hr["fallback"], "away_team_fallback": ar["fallback"],
             "half_life_days": float(model["hyperparameters"]["half_life_days"]),
             "team_sd": float(model["hyperparameters"]["team_sd"]),
             "transition_sd": float(model["hyperparameters"]["transition_sd"]),
-            "opponent_adjusted": True,
-            "partial_pooling": True,
+            "opponent_adjusted": True, "partial_pooling": True,
             "competition_specific_baseline": True,
             "legacy_mu_league_semantics": "competition-specific scoring baseline",
         },
@@ -219,13 +215,10 @@ def _resolve_compact(
             "fixed_score_covariance_forbidden": True,
         },
         "anti_double_counting": {
-            "market_inputs_used": False,
-            "external_draw_label_used": False,
-            "context_inputs_used": False,
-            "process_covariance_train_only": True,
+            "market_inputs_used": False, "external_draw_label_used": False,
+            "context_inputs_used": False, "process_covariance_train_only": True,
         },
     }
-    return packet
 
 
 def resolve_prior(
@@ -234,11 +227,16 @@ def resolve_prior(
     *,
     require_active: bool = True,
 ) -> dict[str, Any]:
-    """Resolve a formal or research Titan prior from dense or compact stores."""
-    loaded = _load_store(store)
-    models = loaded.get("competition_models")
-    competition = context.get("competition") or context.get("league")
-    model = models.get(str(competition)) if isinstance(models, Mapping) and competition else None
+    """Resolve a formal/research Titan prior from dense or compact stores."""
+    competition, _ = _validated_context(context)
+    loaded, model = _load_store_and_model(store, competition)
     if isinstance(model, Mapping) and isinstance(model.get("precision_csc"), Mapping):
-        return _resolve_compact(context, loaded, require_active=require_active)
+        return _resolve_compact(context, loaded, model, require_active=require_active)
+    # Legacy in-memory/dense stores retain the original resolver contract.
+    if model is not None:
+        loaded = dict(loaded)
+        loaded.setdefault("competition_models", {})
+        loaded["competition_models"] = dict(loaded["competition_models"])
+        loaded["competition_models"][competition] = dict(model)
+        loaded["league_models"] = dict(loaded.get("league_models") or loaded["competition_models"])
     return _resolve_legacy_prior(context, loaded, require_active=require_active)
