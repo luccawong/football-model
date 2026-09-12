@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import Any, Mapping, Sequence
 
 from gpt.prior_engine import PriorEngineError
-from gpt.prior_competition import resolve_prior
+from gpt.prior_runtime import resolve_prior
 from gpt.quant_core import score_grid, correct_score_probabilities
 from gpt.stage14_bayesian import build_stage14_score_packet
 
