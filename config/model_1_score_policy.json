@@ -1,13 +1,13 @@
 {
-  "policy_version": "MODEL_1-SCORE-POLICY-1.1.0",
+  "policy_version": "MODEL_1-SCORE-POLICY-1.2.0",
   "model_id": "MODEL_1",
   "formal_stage14": "BAYESIAN_POSTERIOR_DIXON_COLES",
   "prior": {
     "required": true,
-    "engine": "gpt.prior_engine",
+    "engine": "gpt.prior_engine + gpt.prior_competition",
     "policy_ref": "config/model_1_prior_policy.json",
     "formal_source": "TITAN_HISTORICAL_MATCH_RESULTS_ONLY",
-    "auto_resolution": "prior_context + calibrated prior_store",
+    "auto_resolution": "competition-aware prior_context + calibrated prior_store",
     "required_source_group": "TEAM_DATA",
     "required_covariance": "2x2_positive_definite",
     "uncertainty_method": "LAPLACE_FULL_PARAMETER_COVARIANCE_PROPAGATION",
@@ -45,32 +45,37 @@
   },
   "top3": {
     "formal_source": "BAYESIAN_POSTERIOR_PREDICTIVE_GRID",
+    "raw_posterior_distribution_must_not_be_deleted": true,
     "winner_consistency": "HARD",
-    "ah_consistency": "HARD when execution_path.ah.hard_gate=true",
-    "ou_consistency": "HARD only when execution_path.ou.hard_gate=true; otherwise ranking penalty",
+    "ah_consistency": "HARD when execution_path.ah is formal",
+    "ah_positive_settlement_required": true,
+    "ah_push_allowed_in_final_top3": false,
+    "ah_examples": {
+      "favorite_minus_1": "1-0, 2-1, 3-2 are ineligible because they only push",
+      "favorite_minus_1_75": "2-1 is ineligible because it loses the selected AH side"
+    },
+    "ou_consistency": "AUXILIARY unless execution_path.ou.hard_gate=true",
+    "ou_must_not_flip_formal_ticket": true,
     "manual_reordering": false,
     "raw_top10_preserved": true,
-    "robustness_frequency_required": true
+    "robustness_frequency_required": true,
+    "pipeline": "raw posterior score distribution -> execution consistency filter -> final Top3"
   },
   "fallback": {
     "market_only_formal_stage14": false,
     "market_reconstruction_research_only": true,
-    "missing_prior_action": "MISSING_BAYESIAN_PRIOR",
-    "missing_context_for_auto_prior_action": "MISSING_BAYESIAN_PRIOR_CONTEXT"
+    "missing_prior_action": "BAYESIAN_PRIOR_REQUIRED",
+    "missing_context_for_auto_prior_action": "BAYESIAN_PRIOR_CONTEXT_REQUIRED"
   },
   "validation": {
     "required_metrics": [
-      "Top1 exact score",
-      "Top3 coverage",
-      "correct-score NLL",
-      "RPS",
-      "1X2 Brier",
-      "OU calibration/logloss",
-      "AH cover calibration"
+      "Top1 exact score", "Top3 coverage", "correct-score NLL", "RPS", "1X2 Brier",
+      "OU calibration/logloss", "AH settlement-aware calibration"
     ],
     "time_split_required": true,
     "random_shuffle_forbidden": true,
     "compare_market_only_vs_prior_only_vs_posterior": true,
-    "select_by_top3_only": false
+    "select_by_top3_only": false,
+    "historical_execution_filter_note": "do not invent a formal AH ticket from the archived market line; test runtime gate separately when formal execution_path is known"
   }
 }
