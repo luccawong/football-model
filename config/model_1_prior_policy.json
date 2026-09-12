@@ -1,0 +1,118 @@
+{
+  "policy_version": "MODEL_1-TITAN-PRIOR-POLICY-1.0.0",
+  "model_id": "MODEL_1",
+  "formal_stage": 14,
+  "status": "REQUIRES_DATA_CALIBRATION_BEFORE_PRODUCTION_STORE",
+  "source_contract": {
+    "allowed": [
+      "Titan historical completed match results",
+      "league baseline",
+      "home-field advantage",
+      "team attack/defence latent states",
+      "opponent adjustment",
+      "time decay",
+      "hierarchical partial pooling",
+      "cross-season state transition"
+    ],
+    "forbidden": [
+      "Pinnacle",
+      "Bet365",
+      "Macau",
+      "current 1X2",
+      "current AH",
+      "current OU",
+      "external draw-exclusion label",
+      "lineup",
+      "injury",
+      "rotation",
+      "schedule/travel",
+      "weather",
+      "off-field narrative"
+    ],
+    "market_and_context_must_enter_after_prior": true
+  },
+  "raw_schema": {
+    "table": "matches",
+    "required_canonical_fields": [
+      "match_id",
+      "match_date",
+      "league",
+      "season",
+      "home_team",
+      "away_team",
+      "home_score",
+      "away_score"
+    ],
+    "aliases": {
+      "match_id": ["match_id", "id"],
+      "match_date": ["kickoff", "match_date", "match_time", "date"],
+      "league": ["competition", "league", "competition_name"],
+      "season": ["season"],
+      "home_team": ["home_team", "home_name"],
+      "away_team": ["away_team", "away_name"],
+      "home_score": ["home_score"],
+      "away_score": ["away_score"]
+    },
+    "missing_field_action": "INVALID_DO_NOT_SYNTHESIZE"
+  },
+  "model": {
+    "home_formula": "log(lambda_H)=mu_league+hfa_league+attack_home_season-defense_away_season",
+    "away_formula": "log(lambda_A)=mu_league+attack_away_season-defense_home_season",
+    "league_baselines_are_independent": true,
+    "opponent_adjustment": "JOINT_POISSON_REGRESSION",
+    "hierarchy": "GAUSSIAN_TEAM_SEASON_RANDOM_EFFECTS_WITH_CONSECUTIVE_SEASON_TRANSITIONS",
+    "new_or_promoted_team_fallback": "LEAGUE_BASELINE",
+    "uncertainty": "LAPLACE_FULL_PARAMETER_COVARIANCE_PROPAGATION",
+    "fixed_score_covariance_forbidden": true
+  },
+  "time_decay": {
+    "weight": "0.5^(age_days/half_life_days)",
+    "selected_half_life_days": null,
+    "selection_status": "CALIBRATION_REQUIRED",
+    "research_candidate_half_life_days": [120, 180, 270, 365, 540, 730, 1095],
+    "boundary_winner_requires_grid_extension": true,
+    "fixed_unvalidated_gamma_forbidden": true
+  },
+  "hierarchical_shrinkage": {
+    "selected_team_sd": null,
+    "selected_transition_sd": null,
+    "selection_status": "CALIBRATION_REQUIRED",
+    "research_candidate_team_sd": [0.15, 0.25, 0.35, 0.5, 0.7],
+    "research_candidate_transition_sd": [0.08, 0.12, 0.2, 0.3, 0.45],
+    "boundary_winner_requires_grid_extension": true
+  },
+  "validation": {
+    "ordering": "SEASON_FORWARD_NO_SHUFFLE",
+    "default_if_five_seasons_available": {
+      "train": "first three seasons",
+      "validate": "penultimate season",
+      "test": "latest season"
+    },
+    "hyperparameter_selection": "NESTED_SEASON_FORWARD_INSIDE_TRAIN_ONLY",
+    "selection_metric": "prior-only goal Poisson NLL on inner folds",
+    "final_comparison_models": [
+      "A_MARKET_RECONSTRUCTION_ONLY",
+      "B_TITAN_HISTORICAL_PRIOR_ONLY",
+      "C_TITAN_PRIOR_PLUS_CORRELATED_MARKET_BAYESIAN_POSTERIOR"
+    ],
+    "required_metrics": [
+      "correct_score_NLL",
+      "Top1_exact_score_hit_rate",
+      "Top3_coverage",
+      "1X2_Brier",
+      "RPS",
+      "OU_calibration",
+      "AH_cover_calibration"
+    ],
+    "model_selection_by_top3_only_forbidden": true,
+    "test_set_parameter_tuning_forbidden": true,
+    "post_result_recompute_forbidden": true
+  },
+  "runtime": {
+    "prior_context_required": ["league", "season", "home_team", "away_team"],
+    "match_date_optional_when_using_frozen_store": true,
+    "generated_store_default": "database/priors/model_1_titan_prior_store.json",
+    "raw_database_must_not_be_committed": true,
+    "market_only_fallback_forbidden": true
+  }
+}
