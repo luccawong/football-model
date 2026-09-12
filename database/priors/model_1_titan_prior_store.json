@@ -1,0 +1,41 @@
+{
+  "store_version": "MODEL_1-TITAN-PRIOR-STORE-2.1.0-COMPACT",
+  "status": "VALID",
+  "created_from": "TITAN_HISTORICAL_MATCH_RESULTS_ONLY",
+  "as_of": "2026-05-31 00:00:01",
+  "dataset_audit": {
+    "dataset_sha256": "cb409b3ceb882491671c08abbf6815fdfbaa398010de0377ad1d7bcf0d1531a7",
+    "matches_count": 13090,
+    "date_min": "2021-06-23 02:00:00",
+    "date_max": "2026-05-31 00:00:00",
+    "competitions": ["德甲","意甲","欧冠","欧协联","欧罗巴","法甲","英超","西甲"],
+    "seasons": ["2021-2022","2022-2023","2023-2024","2024-2025","2025-2026"]
+  },
+  "competition_status": {
+    "德甲": {"activation":"SHADOW","reason":"UNRESOLVED_HYPERPARAMETER_BOUNDARY"},
+    "意甲": {"activation":"SHADOW","reason":"UNRESOLVED_HYPERPARAMETER_BOUNDARY"},
+    "欧冠": {"activation":"ACTIVE","reason":"SCORE_OOS_GATE_PASS","failed_checks":[],"gate":{"primary":"C score_NLL <= A in both validation and test","top3_noninferiority_margin":0.01,"secondary_brier_rps_harm_margin":0.005}},
+    "欧协联": {"activation":"SHADOW","reason":"UNRESOLVED_HYPERPARAMETER_BOUNDARY"},
+    "欧罗巴": {"activation":"SHADOW","reason":"UNRESOLVED_HYPERPARAMETER_BOUNDARY"},
+    "法甲": {"activation":"SHADOW","reason":"SCORE_OOS_GATE_FAIL","failed_checks":["validate:score_NLL","test:Top3"],"gate":{"primary":"C score_NLL <= A in both validation and test","top3_noninferiority_margin":0.01,"secondary_brier_rps_harm_margin":0.005}},
+    "英超": {"activation":"SHADOW","reason":"SCORE_OOS_GATE_FAIL","failed_checks":["validate:score_NLL","test:score_NLL"],"gate":{"primary":"C score_NLL <= A in both validation and test","top3_noninferiority_margin":0.01,"secondary_brier_rps_harm_margin":0.005}},
+    "西甲": {"activation":"SHADOW","reason":"SCORE_OOS_GATE_FAIL","failed_checks":["validate:score_NLL","test:score_NLL"],"gate":{"primary":"C score_NLL <= A in both validation and test","top3_noninferiority_margin":0.01,"secondary_brier_rps_harm_margin":0.005}}
+  },
+  "league_models_alias": true,
+  "legacy_field_semantics": {"league":"competition","mu_league":"competition-specific scoring baseline","hfa_league":"competition-specific home-field advantage"},
+  "anti_double_counting": {"market_inputs_in_prior":false,"context_inputs_in_prior":false},
+  "calibration": {"split":"2021-22..2023-24 train / 2024-25 validation / 2025-26 test","process_covariance":"TRAIN_ONLY_SEASON_FORWARD_RESIDUAL_METHOD_OF_MOMENTS","oos_report":"docs/MODEL_1_TITAN_PRIOR_VALIDATION_20260912.md"},
+  "calibration_ref": "MODEL_1-TITAN-PRIOR-20260912",
+  "model_files": {
+    "德甲":{"path":"competitions/bundesliga.json","sha256":"ff2e15e286e15fd10b259f6eebba603d6c5bcc8496546eb29a8bbc299b05d866","bytes":83032},
+    "意甲":{"path":"competitions/serie_a.json","sha256":"0d58e7258e348cd6fae4731f0240a95d73024568f63e5df561735f4cdb85d887","bytes":108419},
+    "欧冠":{"path":"competitions/ucl.json","sha256":"0394116d7acd7409982838eef7410a80c4e9ade693da2e8e79f872e18b742a56","bytes":173719},
+    "欧协联":{"path":"competitions/uecl.json","sha256":"f6f86983756adfd885566b44901c563c7228f7533ace2038288fe19f7725b447","bytes":330959},
+    "欧罗巴":{"path":"competitions/uel.json","sha256":"f83391aa775e0897b6d3f169de5b6901ece8a400bd6685b6477f1671361e4205","bytes":142032},
+    "法甲":{"path":"competitions/ligue_1.json","sha256":"e7596385dc7ffe3197692b3148a96dad7f73846408327f99b5770d5fd472b174","bytes":88869},
+    "英超":{"path":"competitions/premier_league.json","sha256":"1d1fcd37b4aae69b8d54d6fcce3e88519b93fbd2cbc3d57c906efe7e63d38b91","bytes":114790},
+    "西甲":{"path":"competitions/la_liga.json","sha256":"9774960e9cc364e4466e5b55c1271038be181756523524abc73ad4340a9ec299","bytes":103047}
+  },
+  "storage_format": "COMPETITION_SPLIT_JSON_SPARSE_PRECISION_V1",
+  "competition_models": {}
+}
