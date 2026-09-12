@@ -25,6 +25,27 @@ def market_reconstruction_top3(quant_packet: Mapping[str, Any], company: str) ->
     }
 
 
+def _formal_execution_path(execution_path: Mapping[str, Any] | None) -> Mapping[str, Any] | None:
+    """Enforce MODEL_1's formal AH scoreline gate on Stage14 output.
+
+    If a formal AH path is supplied, every displayed scoreline must settle the
+    selected AH side positively (> 0 payoff). Push/half-loss/full-loss scorelines
+    are therefore ineligible. The underlying posterior distribution is untouched.
+    """
+    if execution_path is None:
+        return None
+    path = dict(execution_path)
+    ah = path.get("ah")
+    if isinstance(ah, Mapping):
+        ah_path = dict(ah)
+        if bool(ah_path.get("formal", True)):
+            ah_path["hard_gate"] = True
+            ah_path["positive_settlement_required"] = True
+            ah_path["push_allowed"] = False
+        path["ah"] = ah_path
+    return path
+
+
 def automatic_top3(
     quant_packet: Mapping[str, Any],
     company: str | None = None,
@@ -54,7 +75,7 @@ def automatic_top3(
         quant_packet,
         prior_packet,
         context_updates=context_updates,
-        execution_path=execution_path,
+        execution_path=_formal_execution_path(execution_path),
         market_absorbed_fraction=market_absorbed_fraction,
         market_sigma_floor=market_sigma_floor,
         max_goals=max_goals,
