@@ -4,16 +4,19 @@ import argparse
 from datetime import timedelta
 import json
 from pathlib import Path
-import sys
 
+from gpt.prior_competition import (
+    audit_competition_coverage,
+    build_competition_store,
+    competition_split,
+    file_sha256,
+    save_competition_store,
+)
 from gpt.prior_engine import (
     PriorEngineError,
-    _season_start,
     audit_titan_sqlite,
-    build_prior_store,
     calibrate_hyperparameters,
     load_titan_matches,
-    save_prior_store,
 )
 
 
@@ -21,151 +24,202 @@ def _load_policy(path: str | Path) -> dict:
     return json.loads(Path(path).read_text(encoding="utf-8"))
 
 
-def _split_seasons(rows: list[dict]) -> dict[str, list[str]]:
-    by_start: dict[int, str] = {}
-    for row in rows:
-        by_start.setdefault(int(row["season_start"]), str(row["season"]))
-    ordered = [by_start[k] for k in sorted(by_start)]
-    if len(ordered) < 5:
-        raise PriorEngineError(
-            f"At least five seasons are required for the default train/validate/test protocol; got {ordered}."
-        )
-    return {
-        "train": ordered[:-2],
-        "validate": [ordered[-2]],
-        "test": [ordered[-1]],
-    }
-
-
 def _is_boundary(value: float, candidates: list[float]) -> bool:
     return abs(value - min(candidates)) < 1e-12 or abs(value - max(candidates)) < 1e-12
 
 
+def _coverage_map(coverage: dict) -> dict[str, dict]:
+    return {str(x["competition"]): dict(x) for x in coverage["competition_coverage"]}
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Audit Titan SQLite, select leak-safe prior hyperparameters, and build MODEL_1 prior store."
+        description=(
+            "Audit the raw Titan SQLite and calibrate MODEL_1 historical priors "
+            "independently for every actual competition."
+        )
     )
     parser.add_argument("--db", required=True, help="Path to football_odds_2021_2026.sqlite")
-    parser.add_argument(
-        "--policy", default="config/model_1_prior_policy.json",
-        help="Prior policy JSON. Candidate grids are research grids, not fixed conclusions.",
-    )
+    parser.add_argument("--policy", default="config/model_1_prior_policy.json")
     parser.add_argument(
         "--output", default="database/priors/model_1_titan_prior_store.json",
-        help="Generated prior store. Do not commit the raw SQLite database.",
+        help="Candidate/final prior store. Formal activation remains SHADOW until OOS validation.",
     )
     parser.add_argument(
         "--report", default="validation/model_1_prior_calibration.json",
-        help="Calibration audit report.",
+        help="Competition-level raw audit + train-only calibration report.",
     )
-    parser.add_argument("--min-matches", type=int, default=80)
+    parser.add_argument("--min-matches", type=int, default=None)
     args = parser.parse_args()
 
     policy = _load_policy(args.policy)
-    audit = audit_titan_sqlite(args.db)
-    if audit.get("status") != "VALID":
-        print(json.dumps(audit, ensure_ascii=False, indent=2))
-        return 2
+    min_matches = int(args.min_matches or policy.get("minimum_history", {}).get("completed_matches", 80))
+    min_oos_seasons = int(policy.get("minimum_history", {}).get("oos_seasons", 4))
 
-    rows, audit = load_titan_matches(args.db)
-    split = _split_seasons(rows)
-    leagues = sorted({r["league"] for r in rows})
+    raw_audit = audit_titan_sqlite(args.db)
+    if raw_audit.get("status") != "VALID":
+        print(json.dumps(raw_audit, ensure_ascii=False, indent=2))
+        return 2
+    rows, raw_audit = load_titan_matches(args.db)
+    raw_audit = dict(raw_audit)
+    raw_audit["dataset_sha256"] = file_sha256(args.db)
+
+    coverage = audit_competition_coverage(
+        args.db,
+        min_completed_matches=min_matches,
+        min_oos_seasons=min_oos_seasons,
+    )
+    coverage_by_comp = _coverage_map(coverage)
+    competitions = list(coverage["competition_universe"])
+
     td = policy["time_decay"]
     hs = policy["hierarchical_shrinkage"]
     half_lives = [float(x) for x in td["research_candidate_half_life_days"]]
     team_sds = [float(x) for x in hs["research_candidate_team_sd"]]
     transition_sds = [float(x) for x in hs["research_candidate_transition_sd"]]
 
-    calibration_by_league: dict[str, dict] = {}
+    split_by_competition: dict[str, dict] = {}
+    calibration_by_competition: dict[str, dict] = {}
     selected: dict[str, dict[str, float]] = {}
+    competition_status: dict[str, dict] = {}
     boundary_hits: list[dict] = []
-    for league in leagues:
+
+    for competition in competitions:
+        raw_cov = coverage_by_comp.get(competition, {})
+        split = competition_split(
+            rows,
+            competition,
+            min_oos_seasons=min_oos_seasons,
+        )
+        split_by_competition[competition] = split
+
+        if raw_cov.get("prior_status") == "DATA_QUALITY_FAIL":
+            competition_status[competition] = {
+                "activation": "DISABLED",
+                "reason": raw_cov.get("reason", "DATA_QUALITY_FAIL"),
+                "raw_prior_status": raw_cov.get("prior_status"),
+            }
+            calibration_by_competition[competition] = {
+                "status": "SKIPPED",
+                "reason": raw_cov.get("reason", "DATA_QUALITY_FAIL"),
+            }
+            continue
+        if raw_cov.get("prior_status") == "INSUFFICIENT_HISTORY":
+            competition_status[competition] = {
+                "activation": "INSUFFICIENT_HISTORY",
+                "reason": raw_cov.get("reason", "TOO_FEW_COMPLETED_MATCHES"),
+                "raw_prior_status": raw_cov.get("prior_status"),
+            }
+            calibration_by_competition[competition] = {
+                "status": "CALIBRATION_REQUIRED",
+                "reason": "INSUFFICIENT_HISTORY",
+            }
+            continue
+        if split.get("status") != "VALID" or len(split.get("train", [])) < 2:
+            competition_status[competition] = {
+                "activation": "INSUFFICIENT_HISTORY",
+                "reason": "INSUFFICIENT_OOS_HISTORY",
+                "raw_prior_status": raw_cov.get("prior_status"),
+            }
+            calibration_by_competition[competition] = {
+                "status": "CALIBRATION_REQUIRED",
+                "reason": "INSUFFICIENT_OOS_HISTORY",
+            }
+            continue
+
         result = calibrate_hyperparameters(
             rows,
-            league=league,
+            league=competition,
             train_seasons=split["train"],
             half_life_candidates=half_lives,
             team_sd_candidates=team_sds,
             transition_sd_candidates=transition_sds,
-            min_matches=args.min_matches,
+            min_matches=min_matches,
         )
-        calibration_by_league[league] = result
+        calibration_by_competition[competition] = result
         if result.get("status") != "VALIDATED_ON_TRAIN_FOLDS":
+            competition_status[competition] = {
+                "activation": "SHADOW",
+                "reason": result.get("reason", "TRAIN_CALIBRATION_FAILED"),
+                "raw_prior_status": raw_cov.get("prior_status"),
+            }
             continue
+
         chosen = dict(result["selected"])
-        selected[league] = chosen
-        if (
+        selected[competition] = chosen
+        on_boundary = (
             _is_boundary(float(chosen["half_life_days"]), half_lives)
             or _is_boundary(float(chosen["team_sd"]), team_sds)
             or _is_boundary(float(chosen["transition_sd"]), transition_sds)
-        ):
-            boundary_hits.append({"league": league, **chosen})
+        )
+        if on_boundary:
+            boundary_hits.append({"competition": competition, **chosen})
+            reason = "GRID_EXTENSION_REQUIRED"
+        else:
+            reason = "PENDING_OOS_ACTIVATION"
+        competition_status[competition] = {
+            "activation": "SHADOW",
+            "reason": reason,
+            "raw_prior_status": raw_cov.get("prior_status"),
+            "selected_hyperparameters": chosen,
+        }
 
-    report = {
-        "status": "GRID_EXTENSION_REQUIRED" if boundary_hits else "CALIBRATED_TRAIN_ONLY",
-        "data_audit": audit,
-        "split": split,
-        "leagues": leagues,
-        "calibration_by_league": calibration_by_league,
+    calibration_report = {
+        "status": "TRAIN_CALIBRATION_COMPLETE_PENDING_OOS",
+        "data_audit": raw_audit,
+        "competition_universe": competitions,
+        "competition_coverage": coverage["competition_coverage"],
+        "competition_season_coverage": coverage["competition_season_coverage"],
+        "split_by_competition": split_by_competition,
+        "calibration_by_competition": calibration_by_competition,
         "selected_hyperparameters": selected,
+        "competition_status_pre_oos": competition_status,
         "boundary_hits": boundary_hits,
         "anti_leakage": {
             "random_shuffle": False,
             "hyperparameters_see_validate": False,
             "hyperparameters_see_test": False,
             "market_data_in_prior": False,
+            "global_cross_competition_baseline": False,
         },
     }
     report_path = Path(args.report)
     report_path.parent.mkdir(parents=True, exist_ok=True)
-    report_path.write_text(json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
+    report_path.write_text(json.dumps(calibration_report, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    if boundary_hits:
-        print(
-            "One or more hyperparameter winners are on a research-grid boundary. "
-            "Extend the grid before freezing production parameters.",
-            file=sys.stderr,
-        )
-        print(json.dumps(boundary_hits, ensure_ascii=False, indent=2), file=sys.stderr)
-        return 3
-    if set(selected) != set(leagues):
-        missing = sorted(set(leagues) - set(selected))
-        print(f"Calibration unavailable for leagues: {missing}", file=sys.stderr)
-        return 4
-
-    # Production store is fitted only after hyperparameters have been frozen from
-    # inner train folds.  It may use the complete historical archive after the
-    # validation/test report has been frozen; this does not retune hyperparameters.
-    max_date = max(r["match_date"] for r in rows)
-    final_as_of = max_date + timedelta(seconds=1)
-    store = build_prior_store(
-        rows,
-        hyperparameters_by_league=selected,
-        as_of=final_as_of,
-        dataset_audit=audit,
-        calibration={
-            "protocol": "NESTED_SEASON_FORWARD_TRAIN_ONLY",
-            "split": split,
-            "selected_hyperparameters": selected,
-            "calibration_report": str(report_path),
-        },
-        min_matches=args.min_matches,
-    )
-    save_prior_store(store, args.output)
-    print(
-        json.dumps(
-            {
-                "status": "OK",
-                "output": args.output,
-                "calibration_ref": store["calibration_ref"],
-                "split": split,
-                "matches": audit.get("usable_completed_matches"),
-                "leagues": leagues,
+    # Build a candidate store for every successfully train-calibrated competition.
+    # All such models stay SHADOW until validate_model_1_prior.py evaluates the
+    # untouched test season and writes the final per-competition activation.
+    if selected:
+        max_date = max(r["match_date"] for r in rows)
+        final_as_of = max_date + timedelta(seconds=1)
+        store = build_competition_store(
+            rows,
+            hyperparameters_by_competition=selected,
+            competition_status=competition_status,
+            as_of=final_as_of,
+            dataset_audit=raw_audit,
+            calibration={
+                "protocol": "COMPETITION_SPECIFIC_NESTED_SEASON_FORWARD_TRAIN_ONLY",
+                "split_by_competition": split_by_competition,
+                "selected_hyperparameters": selected,
+                "calibration_report": str(report_path),
             },
-            ensure_ascii=False,
-            indent=2,
+            min_matches=min_matches,
         )
-    )
+        save_competition_store(store, args.output)
+
+    print(json.dumps({
+        "status": calibration_report["status"],
+        "output": args.output if selected else None,
+        "report": str(report_path),
+        "dataset_sha256": raw_audit["dataset_sha256"],
+        "matches": raw_audit.get("matches_count"),
+        "competitions": competitions,
+        "calibrated_competitions": sorted(selected),
+        "boundary_hits": boundary_hits,
+        "activation": {k: v["activation"] for k, v in competition_status.items()},
+    }, ensure_ascii=False, indent=2))
     return 0
 
 
