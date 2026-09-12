@@ -3,6 +3,7 @@
 Status: ACTIVE_DEFAULT_FROZEN_FORMAL_SEMANTICS
 Effective date: 2026-09-09
 Formal freeze window: 2026-09-10 through 2026-10-10 (Asia/Shanghai)
+Latest explicit user-authorized rule override: 2026-09-11 — OU/correct-score recommendation consistency gate
 
 This is the first formally registered football model in this repository. It is the default model for full pre-match analysis unless the user explicitly selects or creates another model.
 
@@ -63,7 +64,7 @@ Supporting research cannot override formal MODEL_1 policy unless explicitly prom
 11. Market attraction
 12. External draw-exclusion website; EXCLUDED immediately opens winner-only audit, NOT_EXCLUDED triggers enhanced draw audit
 13. Underdog outright audit
-14. Correct score using repository Poisson / Dixon-Coles / Bayesian framework
+14. Correct score using repository Poisson / Dixon-Coles / Bayesian framework + mandatory OU-score recommendation consistency gate
 15. Uncertainty audit
 16. Freeze H1
 17. Independent Red Team H2
@@ -146,6 +147,22 @@ During the one-month forward test beginning 2026-09-09:
 - U0/U1/U2/U3 grades describe upset-evidence quality, not absolute probability.
 - Historical residual/divergence thresholds remain research-only until validated.
 
+## Correct-score recommendation consistency gate
+
+This is a formal MODEL_1 recommendation/output rule for Stage 14. It governs the final recommended correct scores; it does not rewrite the underlying Poisson / Dixon-Coles / Bayesian probability distribution.
+
+- The final OU recommendation and the recommended scorelines must be logically consistent on total goals.
+- Prohibited contradiction A: recommend Over > X.XX while both Top1 and Top2 total goals are at or below the OU threshold.
+- Prohibited contradiction B: recommend Under < X.XX while both Top1 and Top2 total goals are at or above the OU threshold.
+- Prohibited contradiction C: recommend Over 2.5 while Top1 is 1-0 or 0-0.
+- Prohibited contradiction D: recommend Under 2.5 while Top1 is 2-1 or 3-2.
+- After the conclusion quick table and before the core narrative, the analysis must visibly declare:
+  - OU recommended direction and line;
+  - Top1 score, total-goal count and compliant/non-compliant status;
+  - Top2 score, total-goal count and compliant/non-compliant status.
+- At least one of Top1 or Top2 must fully comply with the OU recommendation. If neither complies, the output is 100% invalid and the OU or correct-score derivation must be rerun before any final recommendation is allowed.
+- This is a recommendation-consistency gate, not a claim that every high-probability scoreline must lie on the same side of the total line.
+
 ## Ticket policy
 
 - Exactly one formal main ticket per fully analysed match.
@@ -173,7 +190,7 @@ From 2026-09-10 through 2026-10-10 Beijing time, do not alter MODEL_1 formal sem
 
 Allowed during the freeze: data collection, result/stat updates, parser/QC/identity bug fixes, tests that enforce already-frozen behavior, and logging research ideas for a future MODEL_2 with zero formal impact.
 
-Only an explicit user instruction may end or override this freeze early.
+Only an explicit user instruction may end or override this freeze early. The OU/correct-score recommendation consistency gate above is an explicit user-authorized MODEL_1 override dated 2026-09-11 and is therefore formal immediately.
 
 ## Research-only layers
 
