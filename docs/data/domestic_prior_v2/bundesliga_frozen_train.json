@@ -1,0 +1,179 @@
+{
+  "engine_version": "DOMESTIC-PRIOR-V2",
+  "competition": "德甲",
+  "selected": {
+    "hyperparameters": {
+      "structure": "monthly",
+      "half_life_days": 730.0,
+      "team_sd": 0.25,
+      "transition_sd": 0.03
+    },
+    "metrics": {
+      "n": 612,
+      "correct_score_NLL": 3.1059290892816915,
+      "Top1_exact_score_hit_rate": 0.13398692810457516,
+      "Top3_coverage": 0.2957516339869281,
+      "1X2_Brier": 0.5973182696935111,
+      "RPS": 0.20411193012135068,
+      "OU_over2_5_Brier": 0.23563562526375867,
+      "OU_over2_5_logloss": 0.6649092756218219,
+      "OU_over2_5_calibration": {
+        "n": 612,
+        "brier": 0.23563562526375867,
+        "ece": 0.040986895397525536,
+        "bins": [
+          {
+            "lo": 0.4,
+            "hi": 0.5,
+            "n": 23,
+            "pred": 0.4816552811514356,
+            "actual": 0.5652173913043478
+          },
+          {
+            "lo": 0.5,
+            "hi": 0.6000000000000001,
+            "n": 271,
+            "pred": 0.556506038307982,
+            "actual": 0.5498154981549815
+          },
+          {
+            "lo": 0.6000000000000001,
+            "hi": 0.7000000000000001,
+            "n": 249,
+            "pred": 0.6439903128535719,
+            "actual": 0.6907630522088354
+          },
+          {
+            "lo": 0.7000000000000001,
+            "hi": 0.8,
+            "n": 67,
+            "pred": 0.7368936616265026,
+            "actual": 0.5970149253731343
+          },
+          {
+            "lo": 0.8,
+            "hi": 0.9,
+            "n": 2,
+            "pred": 0.834686180065377,
+            "actual": 1.0
+          }
+        ]
+      },
+      "AH_settlement_aware_Brier": null,
+      "AH_cover_equivalent_calibration": {
+        "n": 0,
+        "brier": null,
+        "ece": null,
+        "bins": []
+      }
+    },
+    "rho": -0.1308977980900334,
+    "rho_shrinkage": 1.0,
+    "rho_first_fold": -0.13492178649953485,
+    "selection_objective": "CORRECT_SCORE_PREDICTIVE_NLL",
+    "boundary": [
+      "half_life_days",
+      "transition_sd"
+    ],
+    "scope": "TRAIN_2021_2022_2023_ONLY",
+    "folds": [
+      {
+        "fit": [
+          2021
+        ],
+        "validate": 2022
+      },
+      {
+        "fit": [
+          2021,
+          2022
+        ],
+        "validate": 2023
+      }
+    ],
+    "candidate_count": 100,
+    "structure_winners": [
+      {
+        "structure": "monthly",
+        "half_life_days": 730.0,
+        "team_sd": 0.25,
+        "transition_sd": 0.03
+      },
+      {
+        "structure": "rolling30",
+        "half_life_days": 730.0,
+        "team_sd": 0.25,
+        "transition_sd": 0.03
+      },
+      {
+        "structure": "rolling60",
+        "half_life_days": 730.0,
+        "team_sd": 0.25,
+        "transition_sd": 0.03
+      },
+      {
+        "structure": "rolling90",
+        "half_life_days": 730.0,
+        "team_sd": 0.25,
+        "transition_sd": 0.03
+      }
+    ]
+  },
+  "promoted": {
+    "status": "FALLBACK",
+    "mean": [
+      0.0,
+      0.0
+    ],
+    "n": 4,
+    "reason": "FEWER_THAN_SIX_TRAIN_ENTRANTS"
+  },
+  "trust": {
+    "opening": {
+      "kappa": 15.572585160336038,
+      "objective": 3.056974811928215,
+      "n": 612,
+      "boundary": false,
+      "bounds": [
+        0.01,
+        1000.0
+      ],
+      "scope": "TRAIN_INNER_OOS_CORRECT_SCORE_NLL",
+      "process_covariance": [
+        [
+          0.031334298702984716,
+          -0.01860186127908764
+        ],
+        [
+          -0.018601861279087643,
+          0.01104314624451638
+        ]
+      ],
+      "rho": -0.1308977980900334,
+      "ref": "DOMESTIC-PRIOR-V2"
+    },
+    "closing": {
+      "kappa": 5.999063954628361,
+      "objective": 3.055715558620966,
+      "n": 612,
+      "boundary": false,
+      "bounds": [
+        0.01,
+        1000.0
+      ],
+      "scope": "TRAIN_INNER_OOS_CORRECT_SCORE_NLL",
+      "process_covariance": [
+        [
+          0.031334298702984716,
+          -0.01860186127908764
+        ],
+        [
+          -0.018601861279087643,
+          0.01104314624451638
+        ]
+      ],
+      "rho": -0.1308977980900334,
+      "ref": "DOMESTIC-PRIOR-V2"
+    }
+  }
+}

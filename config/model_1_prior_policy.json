@@ -2,6 +2,35 @@
   "policy_version": "MODEL_1-TITAN-PRIOR-POLICY-1.1.0",
   "model_id": "MODEL_1",
   "formal_stage": 14,
+  "domestic_v2": {
+    "competitions": ["英超", "西甲", "意甲", "德甲", "法甲"],
+    "european_models_frozen": true,
+    "state_candidates": ["monthly", "rolling30", "rolling60", "rolling90"],
+    "state_refresh": "MONTH_START_STRICTLY_PRE_CUTOFF_RESULTS",
+    "train_season_starts": [2021, 2022, 2023],
+    "validation_season_start": 2024,
+    "test_season_start": 2025,
+    "selection_objective": "CORRECT_SCORE_PREDICTIVE_NLL",
+    "secondary_release_constraints": ["Top3", "1X2_Brier", "RPS"],
+    "rho": "TRAIN_INNER_SEASON_FORWARD_ESTIMATION_AND_SHRINKAGE",
+    "process_covariance": "TRAIN_INNER_OOS_RESIDUAL_MOMENTS_MINUS_POISSON_AND_LAPLACE_PSD_PROJECTION",
+    "effective_covariance": "kappa_phase * (Laplace_covariance + Train_process_covariance)",
+    "kappa": "SEPARATE_OPENING_CLOSING_TRAIN_PREDICTIVE_NLL",
+    "promoted_class": "TRAIN_SAME_COMPETITION_ENTRANTS_MINIMUM_SIX_TEAM_SEASONS_ELSE_BASELINE",
+    "gate": {
+      "periods_required": ["validation", "test"],
+      "minimum_common_matches_each_period": 80,
+      "C_score_NLL_lte_A": true,
+      "C_1X2_Brier_lte_A": true,
+      "C_RPS_lte_A": true,
+      "Top3_max_harm_absolute": 0.01,
+      "OU_AH_Brier_max_harm_absolute": 0.005,
+      "unresolved_train_boundary_blocks_active": true,
+      "opening_closing_independent": true
+    },
+    "runtime_default_phase": "closing",
+    "intraday_trust_interpolation": "NOT_AUTHORIZED_WITHOUT_OOS_EVIDENCE"
+  },
   "status": "REQUIRES_RAW_CALIBRATION_AND_COMPETITION_OOS_BEFORE_PRODUCTION_ACTIVATION",
   "source_contract": {
     "allowed": [

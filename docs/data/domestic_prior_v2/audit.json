@@ -1,0 +1,72 @@
+{
+  "英超": {
+    "validation": {
+      "max_metric_replay_error": 0.0,
+      "C_quadrature_24_minus_12_mean_NLL": -2.968194345280488e-10,
+      "C_quadrature_24_minus_12_max_abs_NLL": 6.681167308286717e-08,
+      "paired_phase_rows": 760
+    },
+    "test": {
+      "max_metric_replay_error": 0.0,
+      "C_quadrature_24_minus_12_mean_NLL": -1.2501987749140808e-14,
+      "C_quadrature_24_minus_12_max_abs_NLL": 4.942712905631197e-12,
+      "paired_phase_rows": 760
+    }
+  },
+  "西甲": {
+    "validation": {
+      "max_metric_replay_error": 0.0,
+      "C_quadrature_24_minus_12_mean_NLL": 7.952898892070094e-10,
+      "C_quadrature_24_minus_12_max_abs_NLL": 6.597215662651479e-07,
+      "paired_phase_rows": 760
+    },
+    "test": {
+      "max_metric_replay_error": 0.0,
+      "C_quadrature_24_minus_12_mean_NLL": 1.9995784516472973e-09,
+      "C_quadrature_24_minus_12_max_abs_NLL": 1.237606808590641e-06,
+      "paired_phase_rows": 760
+    }
+  },
+  "意甲": {
+    "validation": {
+      "max_metric_replay_error": 0.0,
+      "C_quadrature_24_minus_12_mean_NLL": -1.7008485847806073e-11,
+      "C_quadrature_24_minus_12_max_abs_NLL": 1.311688535565736e-08,
+      "paired_phase_rows": 760
+    },
+    "test": {
+      "max_metric_replay_error": 0.0,
+      "C_quadrature_24_minus_12_mean_NLL": -2.7627023475935475e-15,
+      "C_quadrature_24_minus_12_max_abs_NLL": 1.7745804825608502e-12,
+      "paired_phase_rows": 760
+    }
+  },
+  "德甲": {
+    "validation": {
+      "max_metric_replay_error": 0.0,
+      "C_quadrature_24_minus_12_mean_NLL": -8.19754762955962e-08,
+      "C_quadrature_24_minus_12_max_abs_NLL": 4.7334384835728827e-05,
+      "paired_phase_rows": 612
+    },
+    "test": {
+      "max_metric_replay_error": 0.0,
+      "C_quadrature_24_minus_12_mean_NLL": -4.2899434931787407e-08,
+      "C_quadrature_24_minus_12_max_abs_NLL": 2.000192315554372e-05,
+      "paired_phase_rows": 612
+    }
+  },
+  "法甲": {
+    "validation": {
+      "max_metric_replay_error": 0.0,
+      "C_quadrature_24_minus_12_mean_NLL": -7.259004835133583e-11,
+      "C_quadrature_24_minus_12_max_abs_NLL": 4.1902641356728054e-08,
+      "paired_phase_rows": 612
+    },
+    "test": {
+      "max_metric_replay_error": 0.0,
+      "C_quadrature_24_minus_12_mean_NLL": 8.257652985509785e-11,
+      "C_quadrature_24_minus_12_max_abs_NLL": 3.0910811243956005e-08,
+      "paired_phase_rows": 612
+    }
+  }
+}

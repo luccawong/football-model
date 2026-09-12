@@ -236,6 +236,12 @@ def _resolve_compact(context: Mapping[str, Any], store: Mapping[str, Any], model
 def resolve_prior(context: Mapping[str, Any], store: Mapping[str, Any] | str | Path, *, require_active: bool = True) -> dict[str, Any]:
     """Resolve a formal/research Titan prior from dense or compact stores."""
     competition, _ = _validated_context(context)
+    # Domestic V2 descriptors override only their named competition. European
+    # numerical state and legacy explicit-prior callers retain their old paths.
+    manifest = dict(store) if isinstance(store, Mapping) else json.loads(Path(store).read_text(encoding="utf-8"))
+    domestic = manifest.get("domestic_v2", {}).get(competition)
+    if isinstance(domestic, Mapping):
+        return _resolve_domestic(context, manifest, domestic, store, require_active=require_active)
     loaded, model = _load_store_and_model(store, competition)
     if isinstance(model, Mapping) and isinstance(model.get("precision_csc"), Mapping):
         return _resolve_compact(context, loaded, model, require_active=require_active)
@@ -246,3 +252,64 @@ def resolve_prior(context: Mapping[str, Any], store: Mapping[str, Any] | str | P
         loaded["competition_models"][competition] = dict(model)
         loaded["league_models"] = dict(loaded.get("league_models") or loaded["competition_models"])
     return _resolve_legacy_prior(context, loaded, require_active=require_active)
+
+
+def _resolve_domestic(context, manifest, descriptor, store, *, require_active):
+    from gpt.domestic_prior import dynamic_packet
+
+    phase = str(context.get("snapshot_phase", "closing")).lower()
+    if phase not in {"opening", "closing"}:
+        raise PriorEngineError("Domestic prior needs an opening or closing snapshot_phase")
+    kickoff = context.get("kickoff") or context.get("match_date")
+    if kickoff is None:
+        raise PriorEngineError("Domestic dynamic prior requires kickoff")
+    if "payload" in descriptor:
+        payload = descriptor["payload"]
+    else:
+        if isinstance(store, Mapping):
+            raise PriorEngineError("External domestic descriptor requires a store file path")
+        root = Path(store).resolve().parent
+        path = (root / descriptor["path"]).resolve()
+        if not path.is_relative_to(root):
+            raise PriorEngineError("Domestic model path escapes prior store")
+        try:
+            raw = path.read_bytes()
+        except OSError as exc:
+            raise PriorEngineError("Domestic model file unavailable") from exc
+        if sha256(raw).hexdigest() != descriptor.get("sha256"):
+            raise PriorEngineError("Domestic model checksum mismatch")
+        payload = json.loads(raw)
+    competition = context.get("competition") or context.get("league")
+    if payload.get("competition") != competition:
+        raise PriorEngineError("Domestic model competition mismatch")
+    activation = payload.get("oos", {}).get("activation", {})
+    overall = manifest.get("competition_status", {}).get(competition, {}).get("activation", "SHADOW")
+    if require_active and (overall != "ACTIVE" or activation.get(phase, {}).get("status") != "ACTIVE"):
+        raise PriorEngineError(f"Competition prior is not formally active: {competition} / {phase}")
+    frozen = payload["frozen"]
+    if require_active and (frozen["selected"]["boundary"] or frozen["trust"][phase]["boundary"]):
+        raise PriorEngineError("Domestic Train boundary is unresolved")
+    if require_active:
+        from gpt.domestic_gate import activation_gate
+        evidence = activation_gate(payload["oos"]["validation"], payload["oos"]["test"],
+                                   frozen["selected"], frozen["trust"])
+        if evidence[phase]["status"] != "ACTIVE":
+            raise PriorEngineError("Domestic OOS evidence does not pass the release gate")
+    packet = dynamic_packet(payload["model"], str(context["home_team"]), str(context["away_team"]),
+                            str(context["season"]), kickoff, frozen["trust"][phase])
+    packet["activation"] = overall
+    packet["snapshot_phase"] = phase
+    packet["lifecycle"] = activation.get("lifecycle", "SHADOW")
+    return packet
+
+
+class DomesticPriorResolver:
+    """Bound metadata-only API; prices remain downstream of this resolver."""
+    def __init__(self, store, *, snapshot_phase="closing"):
+        self.store = store
+        self.snapshot_phase = snapshot_phase
+
+    def resolve_prior(self, competition, season, home_team, away_team, kickoff):
+        return resolve_prior({"competition": competition, "season": season,
+                              "home_team": home_team, "away_team": away_team,
+                              "kickoff": kickoff, "snapshot_phase": self.snapshot_phase}, self.store)

@@ -5,41 +5,399 @@
     "matches_count": 13090,
     "date_min": "2021-06-23 02:00:00",
     "date_max": "2026-05-31 00:00:00",
-    "competitions": ["德甲","意甲","欧冠","欧协联","欧罗巴","法甲","英超","西甲"],
-    "seasons": ["2021-2022","2022-2023","2023-2024","2024-2025","2025-2026"]
+    "competitions": [
+      "德甲",
+      "意甲",
+      "欧冠",
+      "欧协联",
+      "欧罗巴",
+      "法甲",
+      "英超",
+      "西甲"
+    ],
+    "seasons": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ]
   },
   "competition_status": {
-    "德甲":{"activation":"SHADOW","reason":"UNRESOLVED_HYPERPARAMETER_BOUNDARY"},
-    "意甲":{"activation":"SHADOW","reason":"UNRESOLVED_HYPERPARAMETER_BOUNDARY"},
-    "欧冠":{"activation":"ACTIVE","reason":"SCORE_OOS_GATE_PASS","failed_checks":[]},
-    "欧协联":{"activation":"SHADOW","reason":"UNRESOLVED_HYPERPARAMETER_BOUNDARY"},
-    "欧罗巴":{"activation":"SHADOW","reason":"UNRESOLVED_HYPERPARAMETER_BOUNDARY"},
-    "法甲":{"activation":"SHADOW","reason":"SCORE_OOS_GATE_FAIL","failed_checks":["validate:score_NLL","test:Top3"]},
-    "英超":{"activation":"SHADOW","reason":"SCORE_OOS_GATE_FAIL","failed_checks":["validate:score_NLL","test:score_NLL"]},
-    "西甲":{"activation":"SHADOW","reason":"SCORE_OOS_GATE_FAIL","failed_checks":["validate:score_NLL","test:score_NLL"]}
+    "德甲": {
+      "activation": "SHADOW",
+      "reason": "UNRESOLVED_HYPERPARAMETER_BOUNDARY"
+    },
+    "意甲": {
+      "activation": "SHADOW",
+      "reason": "UNRESOLVED_HYPERPARAMETER_BOUNDARY"
+    },
+    "欧冠": {
+      "activation": "ACTIVE",
+      "reason": "SCORE_OOS_GATE_PASS",
+      "failed_checks": []
+    },
+    "欧协联": {
+      "activation": "SHADOW",
+      "reason": "UNRESOLVED_HYPERPARAMETER_BOUNDARY"
+    },
+    "欧罗巴": {
+      "activation": "SHADOW",
+      "reason": "UNRESOLVED_HYPERPARAMETER_BOUNDARY"
+    },
+    "法甲": {
+      "activation": "SHADOW",
+      "reason": "SCORE_OOS_GATE_FAIL",
+      "failed_checks": [
+        "validate:score_NLL",
+        "test:Top3"
+      ]
+    },
+    "英超": {
+      "activation": "SHADOW",
+      "reason": "SCORE_OOS_GATE_FAIL",
+      "failed_checks": [
+        "validate:score_NLL",
+        "test:score_NLL"
+      ]
+    },
+    "西甲": {
+      "activation": "SHADOW",
+      "reason": "SCORE_OOS_GATE_FAIL",
+      "failed_checks": [
+        "validate:score_NLL",
+        "test:score_NLL"
+      ]
+    }
   },
   "hyperparameters": {
-    "德甲":{"half_life_days":1000000000.0,"team_sd":0.25,"transition_sd":0.005,"calibration":"BOUNDARY_UNRESOLVED"},
-    "意甲":{"half_life_days":120.0,"team_sd":0.35,"transition_sd":4.0,"calibration":"BOUNDARY_UNRESOLVED"},
-    "欧冠":{"half_life_days":270.0,"team_sd":0.35,"transition_sd":0.12,"calibration":"INTERIOR"},
-    "欧协联":{"half_life_days":730.0,"team_sd":0.25,"transition_sd":0.005,"calibration":"BOUNDARY_UNRESOLVED"},
-    "欧罗巴":{"half_life_days":540.0,"team_sd":0.25,"transition_sd":0.005,"calibration":"BOUNDARY_UNRESOLVED"},
-    "法甲":{"half_life_days":2190.0,"team_sd":0.25,"transition_sd":0.08,"calibration":"INTERIOR"},
-    "英超":{"half_life_days":60.0,"team_sd":0.35,"transition_sd":0.03,"calibration":"INTERIOR"},
-    "西甲":{"half_life_days":730.0,"team_sd":0.35,"transition_sd":0.12,"calibration":"INTERIOR"}
+    "德甲": {
+      "half_life_days": 1000000000.0,
+      "team_sd": 0.25,
+      "transition_sd": 0.005,
+      "calibration": "BOUNDARY_UNRESOLVED"
+    },
+    "意甲": {
+      "half_life_days": 120.0,
+      "team_sd": 0.35,
+      "transition_sd": 4.0,
+      "calibration": "BOUNDARY_UNRESOLVED"
+    },
+    "欧冠": {
+      "half_life_days": 270.0,
+      "team_sd": 0.35,
+      "transition_sd": 0.12,
+      "calibration": "INTERIOR"
+    },
+    "欧协联": {
+      "half_life_days": 730.0,
+      "team_sd": 0.25,
+      "transition_sd": 0.005,
+      "calibration": "BOUNDARY_UNRESOLVED"
+    },
+    "欧罗巴": {
+      "half_life_days": 540.0,
+      "team_sd": 0.25,
+      "transition_sd": 0.005,
+      "calibration": "BOUNDARY_UNRESOLVED"
+    },
+    "法甲": {
+      "half_life_days": 2190.0,
+      "team_sd": 0.25,
+      "transition_sd": 0.08,
+      "calibration": "INTERIOR"
+    },
+    "英超": {
+      "half_life_days": 60.0,
+      "team_sd": 0.35,
+      "transition_sd": 0.03,
+      "calibration": "INTERIOR"
+    },
+    "西甲": {
+      "half_life_days": 730.0,
+      "team_sd": 0.35,
+      "transition_sd": 0.12,
+      "calibration": "INTERIOR"
+    }
   },
   "process_covariance": {
-    "德甲":{"n_matches":612,"process_cov_log_lambda":[[0.035431916339622296,-0.02414749245089523],[-0.02414749245089523,0.01823485127490023]],"process_sd_home":0.18823367482898032,"process_sd_away":0.13503648127413656},
-    "意甲":{"n_matches":750,"process_cov_log_lambda":[[2e-08,0.0],[0.0,2e-08]],"process_sd_home":0.0001414213562373095,"process_sd_away":0.0001414213562373095},
-    "欧冠":{"n_matches":428,"process_cov_log_lambda":[[0.15052611594626936,-0.07234992840084413],[-0.07234992840084413,0.17416236866224732]],"process_sd_home":0.3879769528545083,"process_sd_away":0.41732765144697437},
-    "欧协联":{"n_matches":832,"process_cov_log_lambda":[[0.13774059547825218,-0.1004119545813809],[-0.1004119545813809,0.21891156380870277]],"process_sd_home":0.37113420143965736,"process_sd_away":0.4678798604435788},
-    "欧罗巴":{"n_matches":350,"process_cov_log_lambda":[[0.22679224002506104,0.0],[0.0,2e-08]],"process_sd_home":0.47622708871405145,"process_sd_away":0.0001414213562373095},
-    "法甲":{"n_matches":686,"process_cov_log_lambda":[[2e-08,0.0],[0.0,0.04186946254305741]],"process_sd_home":0.0001414213562373095,"process_sd_away":0.20462028868872562},
-    "英超":{"n_matches":760,"process_cov_log_lambda":[[0.08246461862551387,-0.0678211193945551],[-0.0678211193945551,0.08141938063728264]],"process_sd_home":0.28716653465456915,"process_sd_away":0.2853408148815774},
-    "西甲":{"n_matches":760,"process_cov_log_lambda":[[0.02272550946500825,0.01783050698682046],[0.01783050698682046,0.015501243742644034]],"process_sd_home":0.15074982409611046,"process_sd_away":0.12450399087034936}
+    "德甲": {
+      "n_matches": 612,
+      "process_cov_log_lambda": [
+        [
+          0.035431916339622296,
+          -0.02414749245089523
+        ],
+        [
+          -0.02414749245089523,
+          0.01823485127490023
+        ]
+      ],
+      "process_sd_home": 0.18823367482898032,
+      "process_sd_away": 0.13503648127413656
+    },
+    "意甲": {
+      "n_matches": 750,
+      "process_cov_log_lambda": [
+        [
+          2e-08,
+          0.0
+        ],
+        [
+          0.0,
+          2e-08
+        ]
+      ],
+      "process_sd_home": 0.0001414213562373095,
+      "process_sd_away": 0.0001414213562373095
+    },
+    "欧冠": {
+      "n_matches": 428,
+      "process_cov_log_lambda": [
+        [
+          0.15052611594626936,
+          -0.07234992840084413
+        ],
+        [
+          -0.07234992840084413,
+          0.17416236866224732
+        ]
+      ],
+      "process_sd_home": 0.3879769528545083,
+      "process_sd_away": 0.41732765144697437
+    },
+    "欧协联": {
+      "n_matches": 832,
+      "process_cov_log_lambda": [
+        [
+          0.13774059547825218,
+          -0.1004119545813809
+        ],
+        [
+          -0.1004119545813809,
+          0.21891156380870277
+        ]
+      ],
+      "process_sd_home": 0.37113420143965736,
+      "process_sd_away": 0.4678798604435788
+    },
+    "欧罗巴": {
+      "n_matches": 350,
+      "process_cov_log_lambda": [
+        [
+          0.22679224002506104,
+          0.0
+        ],
+        [
+          0.0,
+          2e-08
+        ]
+      ],
+      "process_sd_home": 0.47622708871405145,
+      "process_sd_away": 0.0001414213562373095
+    },
+    "法甲": {
+      "n_matches": 686,
+      "process_cov_log_lambda": [
+        [
+          2e-08,
+          0.0
+        ],
+        [
+          0.0,
+          0.04186946254305741
+        ]
+      ],
+      "process_sd_home": 0.0001414213562373095,
+      "process_sd_away": 0.20462028868872562
+    },
+    "英超": {
+      "n_matches": 760,
+      "process_cov_log_lambda": [
+        [
+          0.08246461862551387,
+          -0.0678211193945551
+        ],
+        [
+          -0.0678211193945551,
+          0.08141938063728264
+        ]
+      ],
+      "process_sd_home": 0.28716653465456915,
+      "process_sd_away": 0.2853408148815774
+    },
+    "西甲": {
+      "n_matches": 760,
+      "process_cov_log_lambda": [
+        [
+          0.02272550946500825,
+          0.01783050698682046
+        ],
+        [
+          0.01783050698682046,
+          0.015501243742644034
+        ]
+      ],
+      "process_sd_home": 0.15074982409611046,
+      "process_sd_away": 0.12450399087034936
+    }
   },
   "runtime_store": "database/priors/model_1_titan_prior_store.json",
-  "runtime_active_competitions": ["欧冠"],
-  "shadow_competitions": ["德甲","意甲","欧协联","欧罗巴","法甲","英超","西甲"],
-  "validation_report": "docs/MODEL_1_TITAN_PRIOR_VALIDATION_20260912.md"
+  "runtime_active_competitions": [
+    "欧冠"
+  ],
+  "shadow_competitions": [
+    "德甲",
+    "意甲",
+    "欧协联",
+    "欧罗巴",
+    "法甲",
+    "英超",
+    "西甲"
+  ],
+  "validation_report": "docs/MODEL_1_TITAN_PRIOR_VALIDATION_20260912.md",
+  "domestic_v2": {
+    "engine_version": "DOMESTIC-PRIOR-V2",
+    "report": "docs/MODEL_1_TITAN_PRIOR_VALIDATION_20260912.md",
+    "competitions": [
+      "英超",
+      "西甲",
+      "意甲",
+      "德甲",
+      "法甲"
+    ],
+    "all_runs_complete": true,
+    "activation": {
+      "英超": {
+        "opening": {
+          "status": "SHADOW",
+          "reasons": [
+            "validation:SCORE_NLL_WORSE",
+            "test:SCORE_NLL_WORSE",
+            "test:TOP3_HARM",
+            "test:1X2_Brier_HARM",
+            "test:RPS_HARM"
+          ]
+        },
+        "closing": {
+          "status": "SHADOW",
+          "reasons": [
+            "validation:SCORE_NLL_WORSE",
+            "validation:1X2_Brier_HARM",
+            "validation:RPS_HARM",
+            "test:SCORE_NLL_WORSE",
+            "test:TOP3_HARM",
+            "test:1X2_Brier_HARM",
+            "test:RPS_HARM"
+          ]
+        },
+        "activation": "SHADOW",
+        "lifecycle": "SHADOW"
+      },
+      "西甲": {
+        "opening": {
+          "status": "SHADOW",
+          "reasons": [
+            "UNRESOLVED_TRAIN_BOUNDARY",
+            "validation:SCORE_NLL_WORSE",
+            "validation:1X2_Brier_HARM",
+            "validation:RPS_HARM",
+            "test:SCORE_NLL_WORSE",
+            "test:TOP3_HARM",
+            "test:1X2_Brier_HARM",
+            "test:RPS_HARM"
+          ]
+        },
+        "closing": {
+          "status": "SHADOW",
+          "reasons": [
+            "UNRESOLVED_TRAIN_BOUNDARY",
+            "validation:1X2_Brier_HARM",
+            "validation:RPS_HARM",
+            "test:SCORE_NLL_WORSE",
+            "test:TOP3_HARM",
+            "test:1X2_Brier_HARM",
+            "test:RPS_HARM"
+          ]
+        },
+        "activation": "SHADOW",
+        "lifecycle": "SHADOW"
+      },
+      "意甲": {
+        "opening": {
+          "status": "SHADOW",
+          "reasons": [
+            "UNRESOLVED_TRAIN_BOUNDARY",
+            "validation:SCORE_NLL_WORSE",
+            "validation:TOP3_HARM",
+            "validation:1X2_Brier_HARM",
+            "validation:RPS_HARM",
+            "test:TOP3_HARM",
+            "test:1X2_Brier_HARM",
+            "test:RPS_HARM"
+          ]
+        },
+        "closing": {
+          "status": "SHADOW",
+          "reasons": [
+            "UNRESOLVED_TRAIN_BOUNDARY",
+            "validation:SCORE_NLL_WORSE",
+            "validation:TOP3_HARM",
+            "validation:1X2_Brier_HARM",
+            "validation:RPS_HARM",
+            "test:SCORE_NLL_WORSE",
+            "test:TOP3_HARM",
+            "test:1X2_Brier_HARM",
+            "test:RPS_HARM"
+          ]
+        },
+        "activation": "SHADOW",
+        "lifecycle": "SHADOW"
+      },
+      "德甲": {
+        "opening": {
+          "status": "SHADOW",
+          "reasons": [
+            "UNRESOLVED_TRAIN_BOUNDARY",
+            "validation:TOP3_HARM",
+            "test:SCORE_NLL_WORSE"
+          ]
+        },
+        "closing": {
+          "status": "SHADOW",
+          "reasons": [
+            "UNRESOLVED_TRAIN_BOUNDARY",
+            "validation:RPS_HARM",
+            "test:SCORE_NLL_WORSE",
+            "test:1X2_Brier_HARM",
+            "test:RPS_HARM"
+          ]
+        },
+        "activation": "SHADOW",
+        "lifecycle": "SHADOW"
+      },
+      "法甲": {
+        "opening": {
+          "status": "SHADOW",
+          "reasons": [
+            "validation:SCORE_NLL_WORSE",
+            "validation:1X2_Brier_HARM",
+            "validation:RPS_HARM",
+            "test:SCORE_NLL_WORSE",
+            "test:1X2_Brier_HARM",
+            "test:RPS_HARM"
+          ]
+        },
+        "closing": {
+          "status": "SHADOW",
+          "reasons": [
+            "validation:SCORE_NLL_WORSE",
+            "validation:RPS_HARM"
+          ]
+        },
+        "activation": "SHADOW",
+        "lifecycle": "SHADOW"
+      }
+    }
+  }
 }
