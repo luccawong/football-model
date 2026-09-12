@@ -2,9 +2,9 @@
 
 Supports legacy dense stores and the production compact store. Production models
 keep a sparse penalised-posterior precision matrix and solve only the two fixture
-log-rate directions Stage14 needs. Competition model payloads may be packed as
-zlib+base85 text chunks and are loaded lazily. Train-only process covariance is
-then added to Laplace parameter uncertainty.
+log-rate directions Stage14 needs. The complete calibrated store may be packed as
+LZMA+base85 text chunks; every chunk and the decoded payload are SHA256 checked.
+Train-only process covariance is added to Laplace parameter uncertainty.
 
 No market/current-context field is admitted here. Formal Stage14 requires an
 ACTIVE competition; SHADOW/DISABLED/INSUFFICIENT_HISTORY remain research-only.
@@ -14,6 +14,7 @@ from __future__ import annotations
 import base64
 from hashlib import sha256
 import json
+import lzma
 from math import exp
 from pathlib import Path
 from typing import Any, Mapping
@@ -45,6 +46,24 @@ def _validated_context(context: Mapping[str, Any]) -> tuple[str, int]:
     return str(competition), _season_start(context["season"])
 
 
+def _read_checked_chunks(root: Path, parts: list[Mapping[str, Any]], label: str) -> bytes:
+    chunks: list[str] = []
+    for part in parts:
+        part_path = (root / str(part["path"])).resolve()
+        try:
+            text = part_path.read_text(encoding="ascii")
+        except OSError as exc:
+            raise PriorEngineError(f"Prior chunk unavailable for {label}: {part_path}") from exc
+        expected = part.get("sha256")
+        if expected and sha256(text.encode("ascii")).hexdigest() != str(expected):
+            raise PriorEngineError(f"Prior chunk checksum mismatch: {label} / {part_path.name}")
+        chunks.append(text)
+    try:
+        return base64.b85decode("".join(chunks).encode("ascii"))
+    except Exception as exc:
+        raise PriorEngineError(f"Prior base85 decode failed for {label}.") from exc
+
+
 def _decode_external_model(root: Path, competition: str, ref: Mapping[str, Any]) -> Mapping[str, Any]:
     if ref.get("path"):
         model_path = (root / str(ref["path"])).resolve()
@@ -53,32 +72,38 @@ def _decode_external_model(root: Path, competition: str, ref: Mapping[str, Any])
         except OSError as exc:
             raise PriorEngineError(f"Prior model file unavailable for {competition}: {model_path}") from exc
     elif ref.get("encoding") == "ZLIB_BASE85_JSON" and isinstance(ref.get("parts"), list):
-        chunks: list[str] = []
-        for part in ref["parts"]:
-            part_path = (root / str(part["path"])).resolve()
-            try:
-                text = part_path.read_text(encoding="ascii")
-            except OSError as exc:
-                raise PriorEngineError(f"Prior model chunk unavailable for {competition}: {part_path}") from exc
-            expected = part.get("sha256")
-            if expected and sha256(text.encode("ascii")).hexdigest() != str(expected):
-                raise PriorEngineError(f"Prior model chunk checksum mismatch: {competition} / {part_path.name}")
-            chunks.append(text)
         try:
-            raw = zlib.decompress(base64.b85decode("".join(chunks).encode("ascii")))
+            raw = zlib.decompress(_read_checked_chunks(root, ref["parts"], competition))
             payload = json.loads(raw.decode("utf-8"))
         except Exception as exc:
+            if isinstance(exc, PriorEngineError):
+                raise
             raise PriorEngineError(f"Packed prior model decode failed for {competition}.") from exc
-        expected_decoded = ref.get("decoded_sha256")
-        if expected_decoded and sha256(raw).hexdigest() != str(expected_decoded):
+        if ref.get("decoded_sha256") and sha256(raw).hexdigest() != str(ref["decoded_sha256"]):
             raise PriorEngineError(f"Prior model decoded checksum mismatch: {competition}")
     else:
         raise PriorEngineError(f"Unsupported prior model storage descriptor for {competition}.")
-
     loaded = payload.get("model") if isinstance(payload, Mapping) else None
     if str(payload.get("competition")) != competition or not isinstance(loaded, Mapping):
         raise PriorEngineError(f"Prior model file has invalid competition payload: {competition}")
     return loaded
+
+
+def _decode_full_store(root: Path, descriptor: Mapping[str, Any]) -> dict[str, Any]:
+    if descriptor.get("encoding") != "LZMA_BASE85_JSON" or not isinstance(descriptor.get("parts"), list):
+        raise PriorEngineError("Unsupported packed prior-store descriptor.")
+    try:
+        raw = lzma.decompress(_read_checked_chunks(root, descriptor["parts"], "FULL_STORE"))
+        decoded = json.loads(raw.decode("utf-8"))
+    except Exception as exc:
+        if isinstance(exc, PriorEngineError):
+            raise
+        raise PriorEngineError("Packed prior-store decode failed.") from exc
+    if descriptor.get("decoded_sha256") and sha256(raw).hexdigest() != str(descriptor["decoded_sha256"]):
+        raise PriorEngineError("Packed prior-store decoded checksum mismatch.")
+    if decoded.get("status") != "VALID" or not isinstance(decoded.get("competition_models"), Mapping):
+        raise PriorEngineError("Decoded packed prior store is invalid.")
+    return decoded
 
 
 def _load_store_and_model(value: Mapping[str, Any] | str | Path, competition: str) -> tuple[dict[str, Any], Mapping[str, Any] | None]:
@@ -94,6 +119,16 @@ def _load_store_and_model(value: Mapping[str, Any] | str | Path, competition: st
     model = models.get(competition) if isinstance(models, Mapping) else None
     if isinstance(model, Mapping):
         return store, model
+
+    packed = store.get("packed_store")
+    if isinstance(packed, Mapping):
+        decoded = _decode_full_store(path.parent, packed)
+        decoded_models = decoded.get("competition_models", {})
+        model = decoded_models.get(competition) if isinstance(decoded_models, Mapping) else None
+        # Activation/status stays authoritative from the small manifest; decoded
+        # payload supplies numerical model state only.
+        return store, model if isinstance(model, Mapping) else None
+
     refs = store.get("model_files") or {}
     ref = refs.get(competition) if isinstance(refs, Mapping) else None
     if isinstance(ref, Mapping):
@@ -153,9 +188,11 @@ def _resolve_compact(context: Mapping[str, Any], store: Mapping[str, Any], model
     xh[int(layout["hfa_league"])] = 1.0
     xa[int(layout["mu_league"])] = 1.0
     if hr["state_index"] is not None:
-        xh[ao + int(hr["state_index"])] += 1.0; xa[do + int(hr["state_index"])] -= 1.0
+        xh[ao + int(hr["state_index"])] += 1.0
+        xa[do + int(hr["state_index"])] -= 1.0
     if ar["state_index"] is not None:
-        xa[ao + int(ar["state_index"])] += 1.0; xh[do + int(ar["state_index"])] -= 1.0
+        xa[ao + int(ar["state_index"])] += 1.0
+        xh[do + int(ar["state_index"])] -= 1.0
 
     Xtarget = np.vstack([xh, xa])
     mean = Xtarget @ theta
@@ -168,7 +205,8 @@ def _resolve_compact(context: Mapping[str, Any], store: Mapping[str, Any], model
     except Exception as exc:
         raise PriorEngineError(f"Compact prior precision solve failed for {competition}.") from exc
     innovation = float(hr["innovation_variance"]) + float(ar["innovation_variance"])
-    cov[0, 0] += innovation; cov[1, 1] += innovation
+    cov[0, 0] += innovation
+    cov[1, 1] += innovation
     process_cov = np.asarray(model.get("process_cov_log_lambda", np.zeros((2, 2))), float)
     if process_cov.shape != (2, 2) or not np.all(np.isfinite(process_cov)):
         raise PriorEngineError(f"Invalid train-only process covariance for {competition}.")
@@ -179,15 +217,19 @@ def _resolve_compact(context: Mapping[str, Any], store: Mapping[str, Any], model
 
     mu, hfa = float(theta[int(layout["mu_league"])]), float(theta[int(layout["hfa_league"])])
     return {
-        "status":"VALID", "engine_version":"MODEL_1-TITAN-PRIOR-RUNTIME-2.1.0",
-        "mean_log_lambda":[float(mean[0]),float(mean[1])], "cov_log_lambda":cov.tolist(),
-        "mean_lambda":[float(exp(mean[0])),float(exp(mean[1]))], "source_groups":["TEAM_DATA"],
-        "calibration_ref":store.get("calibration_ref"), "activation":activation,
-        "components":{"mu_league":mu,"mu_competition":mu,"hfa_league":hfa,"hfa_competition":hfa,"attack_home":sv(hr,ao),"defense_home":sv(hr,do),"attack_away":sv(ar,ao),"defense_away":sv(ar,do),"x_beta_home":0.0,"x_beta_away":0.0},
-        "fixture":{"competition":competition,"league":competition,"home_team":str(context["home_team"]),"away_team":str(context["away_team"]),"season":str(context["season"]),"season_start":target_season,"match_date":_utc_naive(context.get("match_date") or context.get("kickoff")).isoformat(sep=" ") if (context.get("match_date") or context.get("kickoff")) is not None else None},
-        "hierarchy":{"home_team_fallback":hr["fallback"],"away_team_fallback":ar["fallback"],"half_life_days":float(model["hyperparameters"]["half_life_days"]),"team_sd":float(model["hyperparameters"]["team_sd"]),"transition_sd":float(model["hyperparameters"]["transition_sd"]),"opponent_adjusted":True,"partial_pooling":True,"competition_specific_baseline":True,"legacy_mu_league_semantics":"competition-specific scoring baseline"},
-        "uncertainty":{"method":"LAPLACE_SPARSE_PRECISION_PROPAGATION_PLUS_TRAIN_ONLY_PROCESS_COVARIANCE","process_cov_log_lambda":process_cov.tolist(),"numerical_pd_jitter":float(jitter),"fixed_score_covariance_forbidden":True},
-        "anti_double_counting":{"market_inputs_used":False,"external_draw_label_used":False,"context_inputs_used":False,"process_covariance_train_only":True},
+        "status": "VALID",
+        "engine_version": "MODEL_1-TITAN-PRIOR-RUNTIME-2.1.0",
+        "mean_log_lambda": [float(mean[0]), float(mean[1])],
+        "cov_log_lambda": cov.tolist(),
+        "mean_lambda": [float(exp(mean[0])), float(exp(mean[1]))],
+        "source_groups": ["TEAM_DATA"],
+        "calibration_ref": store.get("calibration_ref"),
+        "activation": activation,
+        "components": {"mu_league": mu, "mu_competition": mu, "hfa_league": hfa, "hfa_competition": hfa, "attack_home": sv(hr, ao), "defense_home": sv(hr, do), "attack_away": sv(ar, ao), "defense_away": sv(ar, do), "x_beta_home": 0.0, "x_beta_away": 0.0},
+        "fixture": {"competition": competition, "league": competition, "home_team": str(context["home_team"]), "away_team": str(context["away_team"]), "season": str(context["season"]), "season_start": target_season, "match_date": _utc_naive(context.get("match_date") or context.get("kickoff")).isoformat(sep=" ") if (context.get("match_date") or context.get("kickoff")) is not None else None},
+        "hierarchy": {"home_team_fallback": hr["fallback"], "away_team_fallback": ar["fallback"], "half_life_days": float(model["hyperparameters"]["half_life_days"]), "team_sd": float(model["hyperparameters"]["team_sd"]), "transition_sd": float(model["hyperparameters"]["transition_sd"]), "opponent_adjusted": True, "partial_pooling": True, "competition_specific_baseline": True, "legacy_mu_league_semantics": "competition-specific scoring baseline"},
+        "uncertainty": {"method": "LAPLACE_SPARSE_PRECISION_PROPAGATION_PLUS_TRAIN_ONLY_PROCESS_COVARIANCE", "process_cov_log_lambda": process_cov.tolist(), "numerical_pd_jitter": float(jitter), "fixed_score_covariance_forbidden": True},
+        "anti_double_counting": {"market_inputs_used": False, "external_draw_label_used": False, "context_inputs_used": False, "process_covariance_train_only": True},
     }
 
 
