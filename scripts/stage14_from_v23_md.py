@@ -61,7 +61,9 @@ def build_stage14(
     path,
     match_id,
     *,
-    prior_packet,
+    prior_packet=None,
+    prior_store=None,
+    prior_context=None,
     context_updates=None,
     execution_path=None,
 ):
@@ -70,6 +72,8 @@ def build_stage14(
     score = automatic_top3(
         quant,
         prior_packet=prior_packet,
+        prior_store=prior_store,
+        prior_context=prior_context,
         context_updates=context_updates,
         execution_path=execution_path,
     )
@@ -91,11 +95,22 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("markdown")
     parser.add_argument("match_id")
-    parser.add_argument("--prior-json", required=True)
+    source = parser.add_mutually_exclusive_group(required=True)
+    source.add_argument("--prior-json", help="Pre-built validated prior packet JSON")
+    source.add_argument("--prior-store", help="Calibrated Titan historical prior store JSON")
+    parser.add_argument(
+        "--prior-context-json",
+        help="Required with --prior-store unless the caller injects match context elsewhere; must contain league/season/home_team/away_team.",
+    )
     parser.add_argument("--context-json")
     parser.add_argument("--execution-json")
     args = parser.parse_args()
+
     prior = _load_json(args.prior_json)
+    store = args.prior_store
+    prior_context = _load_json(args.prior_context_json)
+    if store is not None and prior_context is None:
+        parser.error("--prior-store requires --prior-context-json; season is never inferred from kickoff date.")
     context = _load_json(args.context_json)
     execution = _load_json(args.execution_json)
     print(
@@ -104,6 +119,8 @@ def main():
                 args.markdown,
                 args.match_id,
                 prior_packet=prior,
+                prior_store=store,
+                prior_context=prior_context,
                 context_updates=context,
                 execution_path=execution,
             ),
