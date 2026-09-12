@@ -1,4 +1,4 @@
-# GPT Football Analysis SOP — MODEL_1 Full Stack v1.7
+# GPT Football Analysis SOP — MODEL_1 Full Stack v1.8
 
 Default model: `MODEL_1` from `config/model_registry.json`.
 
@@ -103,7 +103,15 @@ This is the mandatory full-analysis order. Do not reorder or compress these stag
    - maximum Top3 final scorelines, preserving explicit Top1/Top2/Top3 ranking;
    - enforce direction consistency with final 1X2/AH/OU path;
    - account for 5+ team-goal tail in deep handicap/high-total matches;
-   - never reconstruct or re-rank pre-match score candidates after seeing the result.
+   - never reconstruct or re-rank pre-match score candidates after seeing the result;
+   - **OU ↔ correct-score recommendation consistency is a hard output gate**: the final recommended OU direction and the recommended scorelines must not contradict each other on total goals;
+   - prohibited contradiction A: recommend Over > X.XX while both Top1 and Top2 total goals are at or below the OU threshold;
+   - prohibited contradiction B: recommend Under < X.XX while both Top1 and Top2 total goals are at or above the OU threshold;
+   - prohibited contradiction C: recommend Over 2.5 while Top1 is 1-0 or 0-0;
+   - prohibited contradiction D: recommend Under 2.5 while Top1 is 2-1 or 3-2;
+   - after the conclusion quick table and before the core narrative, output an explicit consistency declaration containing: OU direction + line, Top1 + total goals + compliant/non-compliant, Top2 + total goals + compliant/non-compliant;
+   - at least one of Top1 or Top2 must fully comply with the recommended OU direction. If neither complies, the output is invalid and the OU or correct-score derivation must be rerun before any final answer is allowed;
+   - this gate applies to the **recommendation/output layer**. It does not erase probability mass on the opposite side of the OU line inside the underlying Poisson/Dixon-Coles/Bayesian distribution.
 15. **Uncertainty audit**
    - company/model disagreement, OOD/missingness, stale/conflicting sources, unresolved modules and execution sensitivity;
    - generic 'risk exists' is not itself a downgrade reason. Distinguish risk presence from material counterevidence that changes the result path, pricing structure, cover ceiling or execution viability.
@@ -169,4 +177,4 @@ When draw is hard-excluded by the website during the current test, remove path 3
 
 Use chronological walk-forward Brier/RPS/log-loss/reliability. Do not change MODEL_1 from a few outcomes. Prefer an adequate prospective block (roughly 30-50 comparable full analyses is a practical first review window unless a hard logic/data bug appears). Prefer league-specific calibration; Chinese football stays separate for research/calibration.
 
-During the formal freeze through 2026-10-10 Beijing time, new ideas are LOG_ONLY for future MODEL_2 consideration. Parser/QC/data-identity bug fixes and tests are allowed only when they restore the frozen semantics rather than change them.
+During the formal freeze through 2026-10-10 Beijing time, new ideas are LOG_ONLY for future MODEL_2 consideration. Parser/QC/data-identity bug fixes and tests are allowed only when they restore the frozen semantics rather than change them. This OU-score recommendation consistency gate is an explicit user-authorized MODEL_1 override on 2026-09-11 and therefore is formal immediately.
