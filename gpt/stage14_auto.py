@@ -3,7 +3,8 @@ from __future__ import annotations
 from pathlib import Path
 from typing import Any, Mapping, Sequence
 
-from gpt.prior_engine import PriorEngineError, build_prior_packet
+from gpt.prior_engine import PriorEngineError
+from gpt.prior_competition import resolve_prior
 from gpt.quant_core import score_grid, correct_score_probabilities
 from gpt.stage14_bayesian import build_stage14_score_packet
 
@@ -30,10 +31,9 @@ def market_reconstruction_top3(quant_packet: Mapping[str, Any], company: str) ->
 def _formal_execution_path(execution_path: Mapping[str, Any] | None) -> Mapping[str, Any] | None:
     """Enforce MODEL_1's formal AH scoreline gate on Stage14 output.
 
-    This preserves the main-branch rule added after the prior-engine branch was
-    cut: if a formal AH path is supplied, every displayed scoreline must settle
-    the selected AH side positively.  The posterior distribution itself remains
-    untouched; only the final scoreline eligibility gate is tightened.
+    If a formal AH path is supplied, every displayed scoreline must settle the
+    selected AH side positively. The posterior distribution itself remains
+    untouched; only final scoreline eligibility is filtered.
     """
     if execution_path is None:
         return None
@@ -65,11 +65,12 @@ def automatic_top3(
 ) -> dict[str, Any]:
     """Formal MODEL_1 automatic Stage14 entry point.
 
-    A validated Bayesian prior is mandatory.  Callers may still pass a pre-built
-    ``prior_packet``.  Alternatively ``prior_context`` + a calibrated Titan
-    ``prior_store`` resolve the packet automatically.  The resolver reads only
-    league/season/team metadata and historical prior state; it never reads the
-    market reconstruction as prior evidence.
+    A validated Bayesian prior is mandatory. Callers may still pass a pre-built
+    ``prior_packet``. Alternatively ``prior_context`` + a calibrated Titan
+    ``prior_store`` resolve the packet automatically. The preferred metadata key
+    is ``competition``; legacy ``league`` remains accepted. The resolver admits
+    only competitions whose OOS activation is ACTIVE. SHADOW, DISABLED and
+    INSUFFICIENT_HISTORY cannot silently become formal priors.
 
     ``company`` is accepted only for backward call compatibility and is not used
     to select a single bookmaker for the formal posterior. Pinnacle/Bet365/Macau
@@ -89,7 +90,7 @@ def automatic_top3(
                 "no_market_only_fallback": True,
             }
         try:
-            prior_packet = build_prior_packet(context, prior_store)
+            prior_packet = resolve_prior(context, prior_store, require_active=True)
             resolution = "AUTO_TITAN_HISTORICAL_PRIOR"
         except PriorEngineError as exc:
             return {
