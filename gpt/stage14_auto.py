@@ -1,7 +1,9 @@
 from __future__ import annotations
 
+from pathlib import Path
 from typing import Any, Mapping, Sequence
 
+from gpt.prior_engine import PriorEngineError, build_prior_packet
 from gpt.quant_core import score_grid, correct_score_probabilities
 from gpt.stage14_bayesian import build_stage14_score_packet
 
@@ -30,6 +32,8 @@ def automatic_top3(
     company: str | None = None,
     *,
     prior_packet: Mapping[str, Any] | None = None,
+    prior_context: Mapping[str, Any] | None = None,
+    prior_store: Mapping[str, Any] | str | Path | None = None,
     context_updates: Sequence[Mapping[str, Any]] | None = None,
     execution_path: Mapping[str, Any] | None = None,
     market_absorbed_fraction: float = 0.0,
@@ -39,10 +43,41 @@ def automatic_top3(
 ) -> dict[str, Any]:
     """Formal MODEL_1 automatic Stage14 entry point.
 
-    A validated Bayesian prior is mandatory. `company` is accepted only for backward
-    call compatibility and is not used to select a single bookmaker for the formal
-    posterior. Pinnacle/Bet365/Macau are fused as one correlated market cluster.
+    A validated Bayesian prior is mandatory.  Callers may still pass a pre-built
+    ``prior_packet``.  Alternatively ``prior_context`` + a calibrated Titan
+    ``prior_store`` resolve the packet automatically.  The resolver reads only
+    league/season/team metadata and historical prior state; it never reads the
+    market reconstruction as prior evidence.
+
+    ``company`` is accepted only for backward call compatibility and is not used
+    to select a single bookmaker for the formal posterior. Pinnacle/Bet365/Macau
+    are fused later as one correlated market likelihood cluster.
     """
+    resolution = "EXPLICIT_PRIOR_PACKET"
+    if prior_packet is None and prior_store is not None:
+        context = prior_context
+        if context is None:
+            embedded = quant_packet.get("prior_context") or quant_packet.get("match_context")
+            context = embedded if isinstance(embedded, Mapping) else None
+        if context is None:
+            return {
+                "status": "MISSING",
+                "reason": "BAYESIAN_PRIOR_CONTEXT_REQUIRED",
+                "top3": [],
+                "no_market_only_fallback": True,
+            }
+        try:
+            prior_packet = build_prior_packet(context, prior_store)
+            resolution = "AUTO_TITAN_HISTORICAL_PRIOR"
+        except PriorEngineError as exc:
+            return {
+                "status": "MISSING",
+                "reason": "BAYESIAN_PRIOR_UNAVAILABLE",
+                "detail": str(exc),
+                "top3": [],
+                "no_market_only_fallback": True,
+            }
+
     if prior_packet is None:
         return {
             "status": "MISSING",
@@ -50,7 +85,7 @@ def automatic_top3(
             "top3": [],
             "no_market_only_fallback": True,
         }
-    return build_stage14_score_packet(
+    out = build_stage14_score_packet(
         quant_packet,
         prior_packet,
         context_updates=context_updates,
@@ -60,3 +95,5 @@ def automatic_top3(
         max_goals=max_goals,
         draws=draws,
     )
+    out["prior_resolution"] = resolution
+    return out
