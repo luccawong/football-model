@@ -57,7 +57,11 @@ def run(football_model_root: Path, config_path: Path | None = None) -> dict:
         report_path = root / "reports" / "daily" / f"{manifest['date']}.md"
         if promote or not report_path.exists():
             report_path = write_qc(root, manifest, summary)
-        if promote:
+        index_path = root / "index.json"
+        needs_index_upgrade = not index_path.exists() or json.loads(
+            index_path.read_text(encoding="utf-8")
+        ).get("schema_version") != "3.0"
+        if promote or needs_index_upgrade:
             rebuild_index(root)
         foreign_keys = connection.execute("PRAGMA foreign_key_check").fetchall()
     finally:

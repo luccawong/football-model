@@ -17,10 +17,10 @@ def qc_summary(manifest: dict) -> dict:
     conflicts = list(manifest.get("forensic_conflicts", []))
     by_research: dict[str, set[int]] = {}
     for row in rows:
-        by_research.setdefault(row["research_match_id"], set()).add(row["external_draw_exclusion_label"])
+        by_research.setdefault((row["research_match_id"], row["source_market"]), set()).add(row["external_draw_exclusion_label"])
     for research_id, labels in by_research.items():
         if len(labels) > 1:
-            conflicts.append({"research_match_id": research_id, "labels": sorted(labels)})
+            conflicts.append({"research_match_id": research_id[0], "source_market": research_id[1], "labels": sorted(labels)})
     unknown = sum(row["external_draw_exclusion_label"] is None for row in rows)
     missing_identity = sum(
         not row["competition"]["raw_name"] or not row["home_team"]["raw_name"]

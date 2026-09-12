@@ -98,3 +98,31 @@ SELECT *,
         ELSE NULL
     END AS research_bucket
 FROM research_evaluation;
+
+-- Existing compound primary keys remain intact. These views expose explicit
+-- market fields while retaining every historical snapshot and Titan mapping.
+CREATE VIEW IF NOT EXISTS jc_layer AS
+SELECT e.research_match_id, e.research_match_id || '|JC' AS market_key,
+       e.titan_match_id, e.external_draw_exclusion_label AS jc_draw_exclusion_label,
+       CASE e.external_draw_exclusion_label WHEN 1 THEN 'MATCHED_EXCLUDED'
+            WHEN 0 THEN 'MATCHED_NOT_EXCLUDED' ELSE 'UNKNOWN' END AS jc_status,
+       s.snapshot_id AS jc_snapshot_id, e.external_label_snapshot_time AS jc_snapshot_time,
+       s.source_url AS jc_source,
+       json_object('label_origin', e.label_origin, 'snapshot_id', s.snapshot_id,
+                   'sha256', s.sha256, 'source_url', s.source_url) AS jc_provenance
+FROM research_evaluation e
+LEFT JOIN website_snapshots s ON s.snapshot_time_beijing = e.external_label_snapshot_time
+WHERE e.source_market = 'JC';
+
+CREATE VIEW IF NOT EXISTS bd_layer AS
+SELECT e.research_match_id, e.research_match_id || '|BD' AS market_key,
+       e.titan_match_id, e.external_draw_exclusion_label AS bd_draw_exclusion_label,
+       CASE e.external_draw_exclusion_label WHEN 1 THEN 'MATCHED_EXCLUDED'
+            WHEN 0 THEN 'MATCHED_NOT_EXCLUDED' ELSE 'UNKNOWN' END AS bd_status,
+       s.snapshot_id AS bd_snapshot_id, e.external_label_snapshot_time AS bd_snapshot_time,
+       s.source_url AS bd_source,
+       json_object('label_origin', e.label_origin, 'snapshot_id', s.snapshot_id,
+                   'sha256', s.sha256, 'source_url', s.source_url) AS bd_provenance
+FROM research_evaluation e
+LEFT JOIN website_snapshots s ON s.snapshot_time_beijing = e.external_label_snapshot_time
+WHERE e.source_market = 'BD';

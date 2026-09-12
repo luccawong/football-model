@@ -179,6 +179,14 @@ Test start: 2026-09-09.
 Authoritative source: `draw_exclusion/latest.json` -> referenced `draw_exclusion/daily/YYYY-MM-DD.json`.
 Legacy research labels are not the execution source.
 
+Market isolation: query `draw_exclusion/index.json` separately through
+`by_market.JC.by_titan_match_id` and `by_market.BD.by_titan_match_id`.
+JC is PRIMARY_LAYER; BD is SECONDARY_VALIDATION_LAYER. All execution rules in
+this section apply to JC only. JC=1/BD=1 strengthens the signal; JC=1/BD=0
+follows JC with BD counterevidence; JC=0/BD=1 does not exclude and records a BD
+risk hint; JC=0/BD=0 has no exclusion signal. Missing JC remains UNKNOWN even
+when BD excludes. Keep both layers' labels and evidence independently.
+
 ### EXCLUDED = 1
 
 - Hard execution constraint for this one-month test.

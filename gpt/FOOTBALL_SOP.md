@@ -83,7 +83,10 @@ This is the mandatory full-analysis order. Do not reorder or compress these stag
    - assess favourite heat and weak-side betting story/public attraction;
    - use attraction as context for interpreting protection/rejection, never as standalone proof.
 12. **External Draw-Exclusion Website + Winner Audit**
-   - authoritative source: `draw_exclusion/latest.json` -> referenced daily file;
+   - query `draw_exclusion/index.json` separately at `by_market.JC.by_titan_match_id` and `by_market.BD.by_titan_match_id`; fall back to `latest.json` -> referenced daily file, filtering the selected market;
+   - JC is PRIMARY_LAYER and BD is SECONDARY_VALIDATION_LAYER. All execution constraints below apply only to JC;
+   - JC=1/BD=1: strong exclusion signal; JC=1/BD=0: follow JC and preserve BD counterevidence; JC=0/BD=1: do not exclude, retain BD risk hint; JC=0/BD=0: no exclusion signal;
+   - missing JC stays UNKNOWN; BD never substitutes for JC. Preserve both layer labels, statuses, snapshot IDs/times, sources and provenance;
    - during the one-month test beginning 2026-09-09, `EXCLUDED=1` is a hard execution constraint: remove draw immediately and open HOME WIN vs AWAY WIN audit;
    - do not independently veto the website's draw exclusion during the test;
    - `NOT_EXCLUDED=0` is not a draw prediction, but requires enhanced draw audit: WH/Lad draw position, all core-company de-vig draw probabilities, draw lifecycle, same-time divergence, AH/1X2/OU coherence and draw score mass;

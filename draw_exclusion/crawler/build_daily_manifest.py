@@ -7,6 +7,7 @@ from pathlib import Path
 from draw_exclusion_research.crawler.draw_site_parser import ParsedPage
 
 from draw_exclusion.aliases import AliasRegistry
+from draw_exclusion.markets import MARKETS, layer, market_key
 from draw_exclusion.crawler.snapshot_manager import StoredSnapshot, atomic_json
 
 
@@ -15,9 +16,10 @@ def _research_id(competition_id: str, home_id: str, away_id: str, kickoff: str) 
     return "drm_" + hashlib.sha256(identity.encode("utf-8")).hexdigest()
 
 
-def _manual_labels(root: Path) -> dict[str, dict]:
+def _manual_labels(root: Path) -> dict[tuple[str, str], dict]:
     payload = json.loads((root / "manual_labels.json").read_text(encoding="utf-8"))
-    return {item["research_match_id"]: item for item in payload.get("labels", []) if item.get("active", True)}
+    return {(item["research_match_id"], item.get("source_market")): item
+            for item in payload.get("labels", []) if item.get("active", True)}
 
 
 def _forensic_claims(root: Path) -> dict[str, list[dict]]:
@@ -51,7 +53,9 @@ def build_manifest(
         )
         resolution = resolutions.get((match.research_match_id, match.source_market), {})
         website_label = match.website_draw_exclusion_label
-        manual_item = manual.get(research_id)
+        manual_item = manual.get((research_id, match.source_market))
+        if manual_item and manual_item.get("source_market") != match.source_market:
+            manual_item = None
         # A verified automatic snapshot has higher priority than a manual assertion.
         effective_label = website_label
         origin = "VERIFIED_AUTOMATIC_SNAPSHOT"
@@ -70,6 +74,8 @@ def build_manifest(
                 "superseded_by": origin,
             })
         for claim in forensic.get(research_id, []):
+            if claim.get("source_market") != match.source_market:
+                continue
             provenance.append({
                 "origin": "VERIFIED_MANUAL_SCREENSHOT",
                 "label": claim["claimed_label"],
@@ -87,6 +93,7 @@ def build_manifest(
                 })
         rows.append({
             "research_match_id": research_id,
+            "market_key": market_key(research_id, match.source_market),
             "source_research_match_id": match.research_match_id,
             "titan_match_id": resolution.get("match_id"),
             "source_market": match.source_market,
@@ -132,9 +139,21 @@ def build_manifest(
             },
             "provenance": provenance,
         })
+    from draw_exclusion.indexer import _select
     source_date = (page.page_reported_update_time or snapshot.snapshot_time_beijing)[:10]
+    context = {"date": source_date, "snapshot": snapshot.to_dict()}
+    fixtures = {}
+    for row in rows:
+        key = row["research_match_id"]
+        fixtures.setdefault(key, {m: [] for m in MARKETS})[row["source_market"]].append((row, context))
+    layers = {
+        key: {f"{m}_layer": layer(m, _select(groups[m]) if groups[m] else None) for m in MARKETS}
+        for key, groups in fixtures.items()
+    }
+    for row in rows:
+        row.update(layers[row["research_match_id"]])
     return {
-        "schema_version": "2.0",
+        "schema_version": "3.0",
         "date": source_date,
         "source": "external_draw_site",
         "source_status": source_status,
@@ -143,6 +162,7 @@ def build_manifest(
         "label_contract": {"1": "EXCLUDED", "0": "NOT_EXCLUDED", "null": "UNKNOWN"},
         "forensic_conflicts": forensic_conflicts,
         "matches": rows,
+        "by_research_match_id": layers,
     }
 
 

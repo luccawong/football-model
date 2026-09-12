@@ -65,11 +65,14 @@ def upsert_evaluation(connection: sqlite3.Connection, snapshot_time: str, row: d
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
     with connection:
         connection.execute(
-            """INSERT OR REPLACE INTO research_evaluation (
+            """INSERT INTO research_evaluation (
                 research_match_id, titan_match_id, competition, home_team, away_team,
                 kickoff_time, source_market, external_draw_exclusion_label,
                 external_label_snapshot_time, label_origin, updated_at
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ON CONFLICT(research_match_id, source_market, external_label_snapshot_time)
+            DO UPDATE SET titan_match_id=COALESCE(excluded.titan_match_id, research_evaluation.titan_match_id),
+                updated_at=excluded.updated_at""",
             (
                 row["research_match_id"], row.get("titan_match_id"), row["competition"]["raw_name"],
                 row["home_team"]["raw_name"], row["away_team"]["raw_name"], row["kickoff_time"],

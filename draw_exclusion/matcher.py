@@ -6,6 +6,7 @@ from difflib import SequenceMatcher
 
 from . import AMBIGUOUS_MATCH, MATCHED_EXCLUDED, MATCHED_NOT_EXCLUDED, MATCH_FAILED
 from .aliases import AliasRegistry, normalize
+from .markets import require_market, market_key
 
 
 @dataclass(frozen=True)
@@ -20,10 +21,12 @@ class MatchResult:
     candidate_count: int
     candidates: tuple[str, ...] = ()
     review_required: bool = False
+    market: str | None = None
 
     def to_dict(self) -> dict:
         result = asdict(self)
         result["candidates"] = list(self.candidates)
+        result["market_key"] = market_key(self.research_match_id, self.market) if self.research_match_id else None
         return result
 
 
@@ -40,22 +43,24 @@ class SourcePoolMatcher:
         status = MATCHED_EXCLUDED if label == 1 else MATCHED_NOT_EXCLUDED
         return MatchResult(
             status, label, row["research_match_id"], row.get("titan_match_id"), row.get("snapshot_id"),
-            matched_by, confidence, 1
+            matched_by, confidence, 1, market=row["source_market"]
         )
 
     def match(
         self,
         *,
+        market: str,
         date: str,
         home_team: str,
         away_team: str,
         kickoff_time: str | None = None,
         competition: str | None = None,
     ) -> MatchResult:
+        require_market(market)
         home_id = self.aliases.team(home_team).canonical_id
         away_id = self.aliases.team(away_team).canonical_id
         competition_id = self.aliases.competition(competition).canonical_id if competition else None
-        same_day = [row for row in self.rows if row["kickoff_time"][:10] == date]
+        same_day = [row for row in self.rows if row["source_market"] == market and row["kickoff_time"][:10] == date]
         team_matches = [
             row for row in same_day
             if row["home_team"]["canonical_id"] == home_id and row["away_team"]["canonical_id"] == away_id
@@ -80,7 +85,7 @@ class SourcePoolMatcher:
         if len(team_matches) > 1:
             return MatchResult(
                 AMBIGUOUS_MATCH, None, None, None, None, None, None, len(team_matches),
-                tuple(row["research_match_id"] for row in team_matches), True,
+                tuple(row["research_match_id"] for row in team_matches), True, market=market,
             )
 
         # Suggestions are intentionally non-authoritative and never generate 0/1.
@@ -95,5 +100,5 @@ class SourcePoolMatcher:
         return MatchResult(
             MATCH_FAILED, None, None, None, None, "FUZZY_SUGGESTION_ONLY" if suggestions else None,
             suggestions[0][0] if suggestions else None, len(suggestions),
-            tuple(item[1] for item in suggestions[:5]), bool(suggestions),
+            tuple(item[1] for item in suggestions[:5]), bool(suggestions), market=market,
         )

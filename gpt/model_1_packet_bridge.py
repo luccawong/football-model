@@ -7,6 +7,10 @@ MODEL_1 Bayesian posterior score engine; market reconstruction alone is research
 from __future__ import annotations
 
 from typing import Any, Mapping, Sequence
+from pathlib import Path
+
+from draw_exclusion.markets import model_1_reference
+from draw_exclusion.query_label import query_by_titan
 
 from gpt.feature_engine import module_gate
 from gpt.stage14_bayesian import build_stage14_score_packet
@@ -25,9 +29,15 @@ def build_feature_packet(
     stage_status: Mapping[str, str],
     missing_core_timelines: Sequence[str] | None = None,
     source_conflicts: Sequence[str] | None = None,
+    external_draw_root: Path | None = None,
 ) -> dict[str, Any]:
     """Create the MODEL_1 feature/QC packet without inventing missing evidence."""
     gate = module_gate(module_records)
+    root = external_draw_root or Path(__file__).resolve().parents[1] / "draw_exclusion"
+    teacher = model_1_reference(
+        query_by_titan(root, str(match_id), market="JC"),
+        query_by_titan(root, str(match_id), market="BD"),
+    )
     return {
         "packet_bridge_version": PACKET_BRIDGE_VERSION,
         "model_id": "MODEL_1",
@@ -45,6 +55,7 @@ def build_feature_packet(
         "missing_core_timelines": list(missing_core_timelines or []),
         "source_conflicts": list(source_conflicts or []),
         "missing_is_negative_evidence": False,
+        "external_draw_teacher": teacher,
     }
 
 

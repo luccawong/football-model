@@ -59,6 +59,7 @@ class ExternalLabelLayerTests(unittest.TestCase):
 
     def test_zero_requires_actual_source_pool_row(self):
         result = SourcePoolMatcher([row(label=0)]).match(
+            market="JC",
             date="2026-09-09", competition="EPL", home_team="Manchester City", away_team="Arsenal"
         )
         self.assertEqual(result.status, MATCHED_NOT_EXCLUDED)
@@ -67,7 +68,7 @@ class ExternalLabelLayerTests(unittest.TestCase):
     def test_missing_date_is_unknown_not_zero(self):
         with tempfile.TemporaryDirectory() as directory:
             result = query_by_fixture(
-                Path(directory), date="2026-09-08", league="英超", home="曼城", away="阿森纳", kickoff=None
+                Path(directory), market="JC", date="2026-09-08", league="英超", home="曼城", away="阿森纳", kickoff=None
             )
         self.assertEqual(result["status"], SOURCE_SNAPSHOT_MISSING)
         self.assertIsNone(result["external_draw_exclusion_label"])
@@ -80,13 +81,14 @@ class ExternalLabelLayerTests(unittest.TestCase):
                 json.dumps(manifest([row()])), encoding="utf-8"
             )
             result = query_by_fixture(
-                root, date="2026-09-09", league="英超", home="切尔西", away="利物浦", kickoff=None
+                root, market="JC", date="2026-09-09", league="英超", home="切尔西", away="利物浦", kickoff=None
             )
         self.assertEqual(result["status"], NOT_IN_SOURCE_POOL)
         self.assertIsNone(result["external_draw_exclusion_label"])
 
     def test_fuzzy_is_review_only_and_never_binary(self):
         result = SourcePoolMatcher([row(home="Manchester City", away="Arsenal")]).match(
+            market="JC",
             date="2026-09-09", home_team="Manchester Ctiy", away_team="Arsena1"
         )
         self.assertEqual(result.status, MATCH_FAILED)
@@ -95,6 +97,7 @@ class ExternalLabelLayerTests(unittest.TestCase):
 
     def test_conflicting_duplicate_is_ambiguous(self):
         result = SourcePoolMatcher([row("r1", 0), row("r2", 1)]).match(
+            market="JC",
             date="2026-09-09", home_team="曼城", away_team="阿森纳"
         )
         self.assertEqual(result.status, AMBIGUOUS_MATCH)
@@ -143,11 +146,10 @@ class ExternalLabelLayerTests(unittest.TestCase):
             indexed["titan_match_id"] = "3049507"
             (daily / "2026-09-09.json").write_text(json.dumps(manifest([indexed])), encoding="utf-8")
             rebuild_index(root)
-            result = query_by_titan(root, "3049507")
+            result = query_by_titan(root, "3049507", market="JC")
             self.assertEqual(result["external_draw_exclusion_label"], 0)
             self.assertEqual(result["status"], MATCHED_NOT_EXCLUDED)
 
 
 if __name__ == "__main__":
     unittest.main()
-
