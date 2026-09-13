@@ -58,6 +58,19 @@ def test_correct_score_bridge_refuses_market_only_fallback():
         )
 
 
+def test_correct_score_bridge_requires_ou_direction_before_formal_top3():
+    with pytest.raises(PacketBridgeError, match="OU_DIRECTION_REQUIRED"):
+        build_correct_score_quant_evidence(
+            quant_packet=_quant_packet(),
+            prior_packet=_prior_packet(),
+            execution_path={
+                "winner": "HOME",
+                "ah": {"backing": "HOME", "home_handicap": -0.5, "hard_gate": True},
+            },
+            draws=500,
+        )
+
+
 def test_correct_score_bridge_outputs_posterior_top3_and_tail():
     out = build_correct_score_quant_evidence(
         quant_packet=_quant_packet(),
@@ -65,15 +78,18 @@ def test_correct_score_bridge_outputs_posterior_top3_and_tail():
         execution_path={
             "winner": "HOME",
             "ah": {"backing": "HOME", "home_handicap": -0.5, "hard_gate": True},
-            "ou": {"side": "OVER", "line": 2.5, "hard_gate": False},
+            "ou": {"side": "OVER", "line": 2.5, "hard_gate": False, "ticket": False},
         },
         draws=500,
     )
     assert out["formal_stage"] == "correct_score_poisson_dixon_coles_bayesian"
     assert out["no_market_only_fallback"] is True
     assert out["score_grid_ref"]["any_team_five_plus_tail"] >= 0
+    assert out["OU_gate_status"] == "APPLIED_HARD_DIRECTION_ONLY"
+    assert out["execution_path"]["ou"]["hard_gate"] is True
     assert 1 <= len(out["top3_scores"]) <= 3
     assert all(int(score.split("-")[0]) > int(score.split("-")[1]) for score in out["top3_scores"])
+    assert all(sum(int(x) for x in score.split("-")) > 2.5 for score in out["top3_scores"])
 
 
 def test_runtime_packet_keeps_missing_explicit():
