@@ -10,4 +10,9 @@ During this window:
 - none of them has formal MODEL_1 ticket impact;
 - no idea is promoted into MODEL_1 merely because of a short winning or losing run.
 
+## Active high-priority research
+
+- `CROSS_MATCH_CROWD_STATE_WEEKEND_PROTOCOL.md` — cross-match bettor learning, crowd-demand/narrative repricing and weekend late-slot reversal candidates. HIGH priority after the 2026-09-12 EPL failure cluster. Research-only during MODEL_1 freeze.
+- `MODEL_1_20260912_MATCHDAY_FAILURE_AUDIT.md` — technical audit of the 2026-09-12 matchday-level correlated failure cluster.
+
 At the end of the freeze, review the accumulated evidence. If a structural rebuild is justified, create MODEL_2 with a separate effective date, config, validation sample and changelog. Do not rewrite MODEL_1 history.
