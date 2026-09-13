@@ -1,7 +1,7 @@
 {
-  "version": "MODEL_1-FREEZE-1.0.0",
+  "version": "MODEL_1-FREEZE-1.1.0",
   "model_id": "MODEL_1",
-  "status": "FROZEN_FORMAL_SEMANTICS",
+  "status": "FROZEN_FORMAL_SEMANTICS_WITH_TARGETED_OVERRIDES",
   "timezone": "Asia/Shanghai",
   "freeze_start_date": "2026-09-10",
   "freeze_end_date": "2026-10-10",
@@ -23,10 +23,10 @@
     "formal output format"
   ],
   "changes_forbidden_during_freeze": [
-    "new formal modules",
-    "new formal weights or fixed probability/goal/grade adjustments",
+    "new formal modules without an explicit targeted user override",
+    "new formal weights or fixed probability/goal/grade adjustments without an explicit targeted user override",
     "threshold tuning based on recent results",
-    "promotion of research/shadow features into formal decision authority",
+    "promotion of research/shadow features into formal decision authority without an explicit targeted user override",
     "reordering formal stages",
     "changing exactly-one-main/no-non-main/no-final-PASS policy",
     "changing Titan-only formal market-source policy"
@@ -41,10 +41,33 @@
     "repair documentation inconsistencies so they match the frozen current policy"
   ],
   "new_idea_policy": {
-    "during_freeze": "LOG_ONLY",
+    "during_freeze": "LOG_ONLY_UNLESS_EXPLICIT_USER_OVERRIDE",
     "preferred_destination": "research/pending_model_2/",
-    "formal_impact": "NONE",
+    "formal_impact": "NONE_WITHOUT_EXPLICIT_USER_OVERRIDE",
     "promotion_before_freeze_end": false
   },
-  "override": "Only an explicit user instruction to end/override the freeze may alter formal MODEL_1 semantics before 2026-10-10."
+  "explicit_overrides": [
+    {
+      "date": "2026-09-11",
+      "scope": "OU/correct-score recommendation consistency gate",
+      "reference": "models/MODEL_1_DEFAULT.md",
+      "global_freeze_ended": false
+    },
+    {
+      "date": "2026-09-12",
+      "scope": "game script / narrative / officiating overlay",
+      "reference": "docs/MODEL_1_GAME_SCRIPT_NARRATIVE_OFFICIATING_20260912.md",
+      "global_freeze_ended": false
+    },
+    {
+      "date": "2026-09-13",
+      "scope": "POST_EUROPE_MARKET_RESIDUAL_EFFECT / post_europe_residual_flag",
+      "reference": "models/MODEL_1_EXTENSION_20260913_POST_EUROPE_RESIDUAL.md",
+      "evidence": "research/post_europe_residual/",
+      "authorization": "explicit user instruction to proceed after V3.2 PASS and formal ADMIT decision",
+      "fixed_numeric_weight_authorized": false,
+      "global_freeze_ended": false
+    }
+  ],
+  "override": "Only an explicit user instruction may end the global freeze or authorize a targeted formal semantic override before 2026-10-10. Targeted overrides do not authorize unrelated changes."
 }

@@ -1,0 +1,70 @@
+{
+  "policy_id": "POST_EUROPE_MARKET_RESIDUAL_EFFECT",
+  "version": "1.0.0",
+  "effective_date": "2026-09-13",
+  "status": "ACTIVE_FORMAL_EXTENSION",
+  "model_id": "MODEL_1",
+  "interface_field": "post_europe_residual_flag",
+  "layer": "fundamentals_schedule_context",
+  "stage": "fundamentals",
+  "validated_scope": {
+    "domestic_leagues": ["英超", "西甲", "意甲", "德甲", "法甲"],
+    "european_competitions": ["欧冠", "欧罗巴", "欧协联"],
+    "study_seasons": ["2021-2022", "2022-2023", "2023-2024", "2024-2025", "2025-2026"],
+    "post_n": 1833,
+    "control_n": 8672,
+    "clubs": 59
+  },
+  "exposure_definition": {
+    "domestic_match": "first Big-Five league match after the eligible European match",
+    "min_hours_exclusive": 0,
+    "max_hours_inclusive": 168,
+    "requires_verified_identity_and_timestamps": true,
+    "point_in_time_only": true
+  },
+  "states": {
+    "ACTIVE": 1,
+    "INACTIVE": 0,
+    "UNKNOWN": "missing_or_ambiguous_schedule_identity_evidence",
+    "NOT_CALIBRATED": "outside_validated_big_five_scope"
+  },
+  "formal_use": {
+    "type": "validated_contextual_risk_feature",
+    "fixed_probability_adjustment": null,
+    "fixed_ppg_adjustment": null,
+    "fixed_grade_adjustment": null,
+    "fixed_ah_adjustment": null,
+    "mechanical_ticket_rule": false,
+    "opening_first_impression_contamination_allowed": false,
+    "bilateral_double_penalty_allowed": false
+  },
+  "research_calibration": {
+    "adjusted_nonwin_effect": 0.041,
+    "two_way_cluster_p": 0.0001,
+    "two_way_cluster_ci": [0.0205, 0.0615],
+    "gee_or": 1.204,
+    "gee_p": 0.0004,
+    "wild_cluster_p": "<0.0001",
+    "season_positive_sign_count": "4/5",
+    "league_positive_sign_count": "5/5",
+    "ppg_residual_diff": -0.0715,
+    "ppg_residual_p": 0.0014,
+    "ppg_season_negative_count": "5/5",
+    "ppg_league_negative_count": "5/5"
+  },
+  "non_promoted_findings": {
+    "shallow_favourite_ah": "WATCH_ONLY",
+    "true_retreat_post_europe_interaction": "UNRESOLVED_INSUFFICIENT_CONTROL_SAMPLE",
+    "europe_away_x_league_away": "REJECT_STANDALONE",
+    "uecl_sandwich": "REJECT_STANDALONE",
+    "rest_bucket": "REJECT_STANDALONE",
+    "xi_carryover_rotation_class": "NOT_VALIDATED_LINEUP_HISTORY_UNAVAILABLE"
+  },
+  "evidence_root": "research/post_europe_residual",
+  "formal_extension": "models/MODEL_1_EXTENSION_20260913_POST_EUROPE_RESIDUAL.md",
+  "freeze_override": {
+    "targeted": true,
+    "global_freeze_ended": false,
+    "authorization": "explicit user instruction on 2026-09-13 to proceed with formal GitHub integration after V3.2 PASS"
+  }
+}
