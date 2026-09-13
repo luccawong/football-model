@@ -1,11 +1,20 @@
 {
-  "policy_version": "MODEL_1-AH-DIVERGENCE-1.0.0",
+  "policy_version": "MODEL_1-AH-DIVERGENCE-1.0.1",
   "model_id": "MODEL_1",
   "effective_date": "2026-09-13",
-  "authorization": "Explicit user instruction to add AH opening-consistency / company-divergence audit into MODEL_1 during the formal freeze.",
+  "authorization": "Explicit user instruction to add AH opening-consistency / company-divergence audit into MODEL_1 during the formal freeze; 0.75/0.5/0.25 were examples only and the rule applies to every valid Asian handicap line.",
   "stage": "asian_handicap_europe_asia_conversion",
   "formal": true,
-  "purpose": "Detect genuine same-information-regime AH disagreement without letting isolated non-mainstream books distort the core market consensus.",
+  "scope": {
+    "all_valid_titan_ah_main_lines": true,
+    "both_home_and_away_favourite_or_underdog_orientation": true,
+    "include_level_ball": true,
+    "include_quarter_half_three_quarter_integer_and_split_lines": true,
+    "examples_only_not_scope_limits": ["0", "0/0.5", "0.5", "0.5/1", "1", "1/1.5", "1.5", "1.5/2", "2", "2/2.5", "2.5"],
+    "no_fixed_minimum_or_maximum_handicap_band": true,
+    "line_comparison_must_be_normalized_to_one_team_perspective": true
+  },
+  "purpose": "Detect genuine same-information-regime AH disagreement across the full handicap ladder without letting isolated non-mainstream books distort the core market consensus.",
   "principles": {
     "do_not_average_all_companies": true,
     "core_consensus_first_secondary_divergence_second": true,
@@ -20,11 +29,26 @@
     "single_company_outlier_is_not_automatically_information": true,
     "divergence_is_evidence_not_a_mechanical_result_rule": true
   },
+  "line_normalization": {
+    "canonical_view": "HOME_HANDICAP_SIGNED_NUMERIC",
+    "away_quote_must_be_sign_flipped_to_home_perspective": true,
+    "split_line_conversion": {
+      "0/0.5": 0.25,
+      "0.5/1": 0.75,
+      "1/1.5": 1.25,
+      "1.5/2": 1.75,
+      "2/2.5": 2.25,
+      "2.5/3": 2.75
+    },
+    "general_split_rule": "Any valid x/y quarter split is represented by its arithmetic midpoint only for line-distance/QC comparison; settlement remains on the original split handicap.",
+    "do_not_change_settlement_semantics": true,
+    "raw_line_text_must_be_preserved": true
+  },
   "core_consensus": {
     "primary_companies": ["Macau", "Pinnacle", "Bet365", "HKJC"],
     "minimum_valid_companies": 2,
     "representation": "CONSENSUS_BAND_FIRST_MEDIAN_LINE_SECOND",
-    "when_core_is_split_between_adjacent_quarter_lines": "Preserve the band, e.g. -0.5/-0.75, instead of pretending the market literally quoted -0.625.",
+    "when_core_is_split_across_adjacent_lines": "Preserve the observed band rather than inventing an unquoted synthetic main line.",
     "secondary_companies_do_not_move_core_consensus": true,
     "insufficient_core_status": "CONSENSUS_INSUFFICIENT"
   },
@@ -48,9 +72,13 @@
   },
   "deviation_measurement": {
     "unit": "quarter_goal_steps",
+    "formula": "normalized_company_home_handicap minus nearest boundary of the core consensus band",
     "record_raw_line_gap_from_core_band": true,
+    "record_absolute_goal_gap": true,
+    "record_quarter_step_gap": true,
     "record_price_context": true,
     "record_direction": ["SHALLOWER_THAN_CORE", "DEEPER_THAN_CORE", "WITHIN_CORE_BAND"],
+    "works_identically_at_every_handicap_level": true,
     "historical_company_bias_adjustment": "ONLY_IF_VALIDATED_CALIBRATION_EXISTS"
   },
   "persistence": {
@@ -66,14 +94,14 @@
     "core_reprice_follow_through_required": true
   },
   "grades": {
-    "D0": "No material divergence: within core band, <= one quarter-goal step with plausible price explanation, or data/QC prevents a genuine disagreement claim.",
-    "D1": "Mild/isolated divergence: typically one company, one slice, one-quarter to two-quarter step gap, or an outlier that quickly converges.",
-    "D2": "Material genuine divergence: verified MAIN line, same-time/same-regime gap of at least two quarter-goal steps (0.5 goal) that is not explained by water/ladder and persists across at least two comparable slices, or remains divergent through a core reprice.",
-    "D3": "Cluster split: at least two independent verified secondary companies each show persistent material divergence from the core cluster, or a verified secondary cluster reprices materially opposite to the core across multiple comparable slices. Operator independence must be known or D3 is not allowed."
+    "D0": "No material divergence: inside core band, or at most one quarter-goal step with plausible price/ladder explanation, or QC prevents a genuine disagreement claim.",
+    "D1": "Mild/isolated divergence: typically one company or one slice, or a one-to-two quarter-step gap that quickly converges or remains materially explained by price/ladder context.",
+    "D2": "Material genuine divergence: verified MAIN line, same-time/same-regime gap of at least two quarter-goal steps (0.5 goal) from the core band, not explained by price/ladder, persistent across at least two comparable slices or through a core reprice. Applies identically whether the core line is PK, -0.25, -0.75, -1.5, -2.25, +0.5 or any other valid AH line.",
+    "D3": "Cluster split: at least two independent verified secondary companies each show persistent D2-level divergence from the core cluster, or a verified secondary cluster reprices materially opposite to the core across multiple comparable slices. Operator independence must be known or D3 is not allowed."
   },
   "formal_interpretation": {
-    "persistent_shallow_vs_favourite": "Material counterevidence to favourite AH cover strength; must be explained against 1X2, OU, attraction and lifecycle.",
-    "persistent_deep_vs_favourite": "Material support for favourite AH cover strength only after attraction and price compensation are audited.",
+    "persistent_shallow_vs_selected_side": "Material counterevidence to the selected side's AH cover strength; must be explained against 1X2, OU, attraction and lifecycle.",
+    "persistent_deep_vs_selected_side": "Material support for the selected side's AH cover strength only after attraction and price compensation are audited.",
     "D2_or_D3_cannot_be_averaged_away": true,
     "D2_or_D3_must_enter_red_team": true,
     "D3_unresolved_requires_explicit_resolution_before_A_range_grade": true,
@@ -91,8 +119,9 @@
     "ah_divergence_interpretation"
   ],
   "anti_error_examples": {
-    "not_genuine_divergence": "Core -0.75 while a secondary book shows -0.25 hours earlier before a material information event, or its -0.25 is an ALT/display line.",
-    "genuine_candidate": "Core books remain around -0.5/-0.75 at the same time while a verified secondary book stays MAIN -0.25 without extreme price compensation across multiple slices.",
-    "cluster_split_candidate": "Two independent verified secondary books remain MAIN -0.25 while the core cluster moves from -0.5 to -0.75 and the secondary cluster refuses to follow or moves the other way."
+    "examples_are_non_exhaustive": true,
+    "not_genuine_divergence": "A secondary quote is hours earlier, belongs to another information regime, is ALT/display rather than MAIN, or is sufficiently compensated by price/ladder structure.",
+    "genuine_candidate": "At any AH level, a verified secondary MAIN line stays at least 0.5 goal away from the same-time core consensus band without sufficient price/ladder explanation across multiple comparable slices.",
+    "cluster_split_candidate": "At any AH level, two independent verified secondary books remain materially separated from the core while the core reprices and the secondary cluster refuses to follow or moves the other way."
   }
 }
