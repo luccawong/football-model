@@ -1,0 +1,98 @@
+{
+  "policy_version": "MODEL_1-AH-DIVERGENCE-1.0.0",
+  "model_id": "MODEL_1",
+  "effective_date": "2026-09-13",
+  "authorization": "Explicit user instruction to add AH opening-consistency / company-divergence audit into MODEL_1 during the formal freeze.",
+  "stage": "asian_handicap_europe_asia_conversion",
+  "formal": true,
+  "purpose": "Detect genuine same-information-regime AH disagreement without letting isolated non-mainstream books distort the core market consensus.",
+  "principles": {
+    "do_not_average_all_companies": true,
+    "core_consensus_first_secondary_divergence_second": true,
+    "same_time_slice_required": true,
+    "same_information_regime_required": true,
+    "main_line_required": true,
+    "line_and_water_must_be_read_together": true,
+    "alternate_or_display_line_must_not_be_treated_as_main": true,
+    "opening_validity_and_reopen_events_must_be_respected": true,
+    "company_identity_must_be_verified": true,
+    "unknown_company_cannot_drive_formal_divergence_grade": true,
+    "single_company_outlier_is_not_automatically_information": true,
+    "divergence_is_evidence_not_a_mechanical_result_rule": true
+  },
+  "core_consensus": {
+    "primary_companies": ["Macau", "Pinnacle", "Bet365", "HKJC"],
+    "minimum_valid_companies": 2,
+    "representation": "CONSENSUS_BAND_FIRST_MEDIAN_LINE_SECOND",
+    "when_core_is_split_between_adjacent_quarter_lines": "Preserve the band, e.g. -0.5/-0.75, instead of pretending the market literally quoted -0.625.",
+    "secondary_companies_do_not_move_core_consensus": true,
+    "insufficient_core_status": "CONSENSUS_INSUFFICIENT"
+  },
+  "secondary_divergence_set": {
+    "named_comparators": ["William Hill", "Interwetten", "Ladbrokes UK"],
+    "other_titan_companies_allowed_when_identity_verified": true,
+    "role": "DIVERGENCE_DETECTION_NOT_CORE_CENTER_FORMATION"
+  },
+  "price_and_ladder_qc": {
+    "water_can_explain_part_of_apparent_line_gap": true,
+    "no_arbitrary_water_to_quarter_line_conversion": true,
+    "adjacent_ah_ladder_may_be_used_when_available": true,
+    "if_ladder_missing": "Keep price compensation as uncertainty; do not manufacture an equivalent line.",
+    "extreme_price_compensation_downgrades_divergence_confidence": true
+  },
+  "time_alignment": {
+    "prefer_closest_common_timestamp": true,
+    "do_not_compare_quotes_separated_by_material_information_events": true,
+    "intervening_match_injury_lineup_transfer_or_reopen_breaks_direct_open_to_current_comparison": true,
+    "missing_timeline_nodes_are_not_interpolated": true
+  },
+  "deviation_measurement": {
+    "unit": "quarter_goal_steps",
+    "record_raw_line_gap_from_core_band": true,
+    "record_price_context": true,
+    "record_direction": ["SHALLOWER_THAN_CORE", "DEEPER_THAN_CORE", "WITHIN_CORE_BAND"],
+    "historical_company_bias_adjustment": "ONLY_IF_VALIDATED_CALIBRATION_EXISTS"
+  },
+  "persistence": {
+    "minimum_comparable_slices_for_persistent_label": 2,
+    "resolution_states": [
+      "CONVERGED_TO_CORE",
+      "PERSISTENT_SHALLOW",
+      "PERSISTENT_DEEP",
+      "OPPOSITE_REPRICE",
+      "UNRESOLVED",
+      "INSUFFICIENT_TIMELINE"
+    ],
+    "core_reprice_follow_through_required": true
+  },
+  "grades": {
+    "D0": "No material divergence: within core band, <= one quarter-goal step with plausible price explanation, or data/QC prevents a genuine disagreement claim.",
+    "D1": "Mild/isolated divergence: typically one company, one slice, one-quarter to two-quarter step gap, or an outlier that quickly converges.",
+    "D2": "Material genuine divergence: verified MAIN line, same-time/same-regime gap of at least two quarter-goal steps (0.5 goal) that is not explained by water/ladder and persists across at least two comparable slices, or remains divergent through a core reprice.",
+    "D3": "Cluster split: at least two independent verified secondary companies each show persistent material divergence from the core cluster, or a verified secondary cluster reprices materially opposite to the core across multiple comparable slices. Operator independence must be known or D3 is not allowed."
+  },
+  "formal_interpretation": {
+    "persistent_shallow_vs_favourite": "Material counterevidence to favourite AH cover strength; must be explained against 1X2, OU, attraction and lifecycle.",
+    "persistent_deep_vs_favourite": "Material support for favourite AH cover strength only after attraction and price compensation are audited.",
+    "D2_or_D3_cannot_be_averaged_away": true,
+    "D2_or_D3_must_enter_red_team": true,
+    "D3_unresolved_requires_explicit_resolution_before_A_range_grade": true,
+    "no_automatic_overturn": true,
+    "no_automatic_grade_penalty": true,
+    "late_convergence_can_reduce_opening_divergence_weight_but_does_not_erase_the_historical_signal": true
+  },
+  "required_outputs": [
+    "ah_core_consensus_opening_band",
+    "ah_core_companies_used",
+    "ah_secondary_company_deviations",
+    "ah_divergence_grade",
+    "ah_divergence_persistence",
+    "ah_divergence_resolution",
+    "ah_divergence_interpretation"
+  ],
+  "anti_error_examples": {
+    "not_genuine_divergence": "Core -0.75 while a secondary book shows -0.25 hours earlier before a material information event, or its -0.25 is an ALT/display line.",
+    "genuine_candidate": "Core books remain around -0.5/-0.75 at the same time while a verified secondary book stays MAIN -0.25 without extreme price compensation across multiple slices.",
+    "cluster_split_candidate": "Two independent verified secondary books remain MAIN -0.25 while the core cluster moves from -0.5 to -0.75 and the secondary cluster refuses to follow or moves the other way."
+  }
+}
