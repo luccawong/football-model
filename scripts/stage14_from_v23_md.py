@@ -57,6 +57,44 @@ def _load_json(value):
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def _formal_execution_path(execution_path):
+    path = dict(execution_path or {})
+    ou = path.get("ou")
+    if not isinstance(ou, dict):
+        raise ValueError(
+            "OU_DIRECTION_REQUIRED: formal MODEL_1 Top3 requires execution_path.ou "
+            "with side=OVER|UNDER and line; OU ticket may still be NO."
+        )
+    side = str(ou.get("side", "")).upper()
+    if side not in {"OVER", "UNDER"} or ou.get("line") is None:
+        raise ValueError(
+            "OU_DIRECTION_REQUIRED: execution_path.ou must contain side=OVER|UNDER and line."
+        )
+    ou = dict(ou)
+    ou["side"] = side
+    ou["line"] = float(ou["line"])
+    ou["hard_gate"] = True
+    path["ou"] = ou
+    return path
+
+
+def _enforce_ou_top3(score):
+    out = dict(score)
+    top3 = [dict(row) for row in out.get("top3", []) if bool(row.get("ou_ok", False))]
+    out["top3"] = top3
+    if "execution_filtered_top3" in out:
+        out["execution_filtered_top3"] = top3
+    if any(key in out for key in ("Top1", "Top2", "Top3")):
+        out["Top1"] = top3[0] if len(top3) > 0 else None
+        out["Top2"] = top3[1] if len(top3) > 1 else None
+        out["Top3"] = top3[2] if len(top3) > 2 else None
+    out["OU_gate_status"] = "APPLIED_HARD_DIRECTION_ONLY"
+    if not top3 and out.get("status") in {"FORMAL_SCORE_TOP3", "BAYESIAN_POSTERIOR_TOP3"}:
+        out["status"] = "SCORELINE_CONFLICT"
+        out["reason"] = "NO_SCORELINE_SATISFIES_HARD_WINNER_AH_OU_GATES"
+    return out
+
+
 def build_stage14(
     path,
     match_id,
@@ -72,6 +110,7 @@ def build_stage14(
     tables = read_markdown_tables(path)
     quant = build_quant_packet(build_payload(tables, match_id))
     context = dict(prior_context or {})
+    formal_execution = _formal_execution_path(execution_path)
     score = resolve_score_engine(
         str(context.get("competition") or context.get("league") or "UNKNOWN"),
         str(context.get("season") or "UNKNOWN"),
@@ -84,8 +123,9 @@ def build_stage14(
         prior_packet=prior_packet,
         prior_store=prior_store,
         context_updates=context_updates,
-        execution_path=execution_path,
+        execution_path=formal_execution,
     )
+    score = _enforce_ou_top3(score)
     research = {}
     for company in CORE:
         if company in quant.get("reconstruction", {}):
@@ -98,6 +138,7 @@ def build_stage14(
         "quant_engine_version": quant.get("engine_version"),
         "production_default_mode": "AUTO",
         "formal_correlated_market_model_enabled": True,
+        "formal_ou_direction_required": True,
     }
 
 
