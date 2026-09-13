@@ -19,11 +19,71 @@ from gpt.prior_runtime import resolve_prior
 from gpt.stage14_bayesian import build_stage14_score_packet
 from gpt.stage14_auto import resolve_score_engine
 
-PACKET_BRIDGE_VERSION = "MODEL_1-PACKET-BRIDGE-1.4.0"
+PACKET_BRIDGE_VERSION = "MODEL_1-PACKET-BRIDGE-1.4.1"
 
 
 class PacketBridgeError(ValueError):
     pass
+
+
+def _require_formal_ou_direction(
+    execution_path: Mapping[str, Any] | None,
+) -> dict[str, Any]:
+    """Require an OU direction before any formal correct-score Top3 is emitted.
+
+    OU_DIRECTION is mandatory even when OU_TICKET is false/no-bet. The direction
+    is a score-selection constraint, not a requirement to issue an OU wager.
+    """
+    path = dict(execution_path or {})
+    ou = path.get("ou")
+    if not isinstance(ou, Mapping):
+        raise PacketBridgeError(
+            "OU_DIRECTION_REQUIRED: formal MODEL_1 Top3 requires execution_path.ou "
+            "with side=OVER|UNDER and line; OU ticket may still be NO."
+        )
+    side = str(ou.get("side", "")).upper()
+    if side not in {"OVER", "UNDER"} or ou.get("line") is None:
+        raise PacketBridgeError(
+            "OU_DIRECTION_REQUIRED: execution_path.ou must contain side=OVER|UNDER and line."
+        )
+    try:
+        line = float(ou["line"])
+    except (TypeError, ValueError) as exc:
+        raise PacketBridgeError("OU_DIRECTION_REQUIRED: execution_path.ou.line must be numeric.") from exc
+
+    ou_path = dict(ou)
+    ou_path["side"] = side
+    ou_path["line"] = line
+    ou_path["hard_gate"] = True
+    ou_path.setdefault("formal_direction", True)
+    path["ou"] = ou_path
+    return path
+
+
+def _hard_filter_ou_top3(stage14: Mapping[str, Any]) -> dict[str, Any]:
+    """Remove every final scoreline that conflicts with the mandatory OU direction.
+
+    The raw predictive distribution/raw_top10 is never modified. This closes the
+    legacy selector fallback that could refill Top3 with OU-inconsistent scores.
+    """
+    out = dict(stage14)
+    top3 = [dict(row) for row in out.get("top3", []) if bool(row.get("ou_ok", False))]
+    out["top3"] = top3
+    if "execution_filtered_top3" in out:
+        out["execution_filtered_top3"] = top3
+    if "Top1" in out or "Top2" in out or "Top3" in out:
+        out["Top1"] = top3[0] if len(top3) > 0 else None
+        out["Top2"] = top3[1] if len(top3) > 1 else None
+        out["Top3"] = top3[2] if len(top3) > 2 else None
+    out["OU_gate_status"] = "APPLIED_HARD_DIRECTION_ONLY"
+    out["ou_is_auxiliary"] = False
+    out["ranking_policy"] = (
+        "HARD_1X2_AH_OU_DIRECTION_GATE_THEN_POSTERIOR_PROBABILITY_AND_ROBUSTNESS"
+    )
+    if not top3 and out.get("status") in {"FORMAL_SCORE_TOP3", "BAYESIAN_POSTERIOR_TOP3"}:
+        out["status"] = "SCORELINE_CONFLICT"
+        out["reason"] = "NO_SCORELINE_SATISFIES_HARD_WINNER_AH_OU_GATES"
+    return out
 
 
 def build_feature_packet(
@@ -111,16 +171,18 @@ def build_correct_score_quant_evidence(
             "market-only fallback is forbidden."
         )
 
+    formal_execution_path = _require_formal_ou_direction(execution_path)
     stage14 = build_stage14_score_packet(
         quant_packet,
         prior_packet,
         context_updates=context_updates,
-        execution_path=execution_path,
+        execution_path=formal_execution_path,
         market_absorbed_fraction=market_absorbed_fraction,
         market_sigma_floor=market_sigma_floor,
         max_goals=max_goals,
         draws=draws,
     )
+    stage14 = _hard_filter_ou_top3(stage14)
     if stage14.get("status") not in {"BAYESIAN_POSTERIOR_TOP3", "SCORELINE_CONFLICT"}:
         raise PacketBridgeError(
             f"Formal Stage14 unavailable: {stage14.get('reason', stage14.get('status'))}"
@@ -159,6 +221,7 @@ def build_correct_score_quant_evidence(
         "top3_rows": top3_rows,
         "direction_consistency_gate": stage14.get("status") != "SCORELINE_CONFLICT",
         "execution_path": stage14.get("execution_path"),
+        "OU_gate_status": stage14.get("OU_gate_status"),
         "market_reconstruction_role": "LIKELIHOOD_OR_MARKET_REFERENCE_ONLY",
         "no_market_only_fallback": True,
         "legacy_manual_top3_ignored": final_top3 is not None,
@@ -207,6 +270,7 @@ def build_production_correct_score_evidence(
     draws: int = 4000,
 ) -> dict[str, Any]:
     """Production bridge whose default AUTO mode always chooses a formal model."""
+    formal_execution_path = _require_formal_ou_direction(execution_path)
     stage14 = resolve_score_engine(
         competition, season, home_team, away_team, kickoff, quant_packet,
         snapshot_phase=snapshot_phase,
@@ -215,11 +279,12 @@ def build_production_correct_score_evidence(
         prior_store=prior_store,
         runtime_metadata=runtime_metadata,
         context_updates=context_updates,
-        execution_path=execution_path,
+        execution_path=formal_execution_path,
         market_sigma_floor=market_sigma_floor,
         max_goals=max_goals,
         draws=draws,
     )
+    stage14 = _hard_filter_ou_top3(stage14)
     if stage14.get("status") not in {
         "FORMAL_SCORE_TOP3", "BAYESIAN_POSTERIOR_TOP3", "SCORELINE_CONFLICT"
     }:
@@ -237,5 +302,6 @@ def build_production_correct_score_evidence(
         "top3_scores": [row["score"] for row in stage14.get("top3", [])],
         "top3_rows": list(stage14.get("top3", [])),
         "execution_path": stage14.get("execution_path", {}),
+        "OU_gate_status": stage14.get("OU_gate_status"),
         "no_fake_historical_prior": stage14.get("no_fake_historical_prior", False),
     }
