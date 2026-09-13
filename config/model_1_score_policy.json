@@ -1,5 +1,5 @@
 {
-  "policy_version": "MODEL_1-SCORE-POLICY-2.0.0",
+  "policy_version": "MODEL_1-SCORE-POLICY-2.0.1",
   "model_id": "MODEL_1",
   "formal_stage14": "AUTO_CORRELATED_SCORE_ENGINE",
   "score_engine_modes": {
@@ -60,12 +60,18 @@
       "favorite_minus_1": "1-0, 2-1, 3-2 are ineligible because they only push",
       "favorite_minus_1_75": "2-1 is ineligible because it loses the selected AH side"
     },
-    "ou_consistency": "AUXILIARY unless execution_path.ou.hard_gate=true",
+    "ou_direction_required_before_final_top3": true,
+    "ou_ticket_optional": true,
+    "ou_direction_contract": "execution_path.ou must contain side=OVER|UNDER and line even when OU is not a formal betting ticket",
+    "ou_consistency": "HARD for final Top3 once OU direction is set",
+    "ou_hard_gate_required": true,
+    "ou_push_allowed_in_final_top3": false,
+    "ou_missing_action": "OU_DIRECTION_REQUIRED_NO_FORMAL_TOP3_RAW_TOP10_ONLY",
     "ou_must_not_flip_formal_ticket": true,
     "manual_reordering": false,
     "raw_top10_preserved": true,
     "robustness_frequency_required": true,
-    "pipeline": "raw posterior score distribution -> execution consistency filter -> final Top3"
+    "pipeline": "raw posterior score distribution -> winner/AH decision -> mandatory independent OU direction -> hard execution consistency filter -> final Top3"
   },
   "fallback": {
     "market_only_formal_stage14": true,
