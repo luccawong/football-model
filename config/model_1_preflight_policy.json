@@ -1,0 +1,43 @@
+{
+  "version": "MODEL_1-PREFLIGHT-POLICY-1.0.0",
+  "model_id": "MODEL_1",
+  "effective_date": "2026-09-13",
+  "authorization": "Explicit user instruction to harden execution so already-approved rules cannot be silently skipped before formal output.",
+  "formal": true,
+  "stage_role": "PRE_TICKET_HARD_GATE_OUTSIDE_18_STAGE_ORDER",
+  "failure_status": "PRECHECK_BLOCKED_NO_TICKET",
+  "failure_is_not_pass": true,
+  "purpose": "Stop formal output until the current MODEL_1 contract has actually been executed for the match.",
+  "required_checks": [
+    "current MODEL_1 policy loaded",
+    "Titan match identity verified",
+    "opening-only first impression completed",
+    "same-time-slice market audit completed",
+    "AH all-valid-MAIN-line company divergence audit completed",
+    "AH line and water lifecycle completed",
+    "1X2-to-AH coherence audit completed",
+    "independent OU direction plus reference line completed even when OU is not a ticket",
+    "correct-score direction consistency gate passed",
+    "draw-exclusion state loaded",
+    "independent Red Team H2 completed with formal verdict",
+    "no unresolved critical execution conflict",
+    "ticket-lock mechanism ready"
+  ],
+  "missing_data": {
+    "noncritical_missing_allowed": true,
+    "missing_core_data_must_be_disclosed": true,
+    "missing_is_not_negative_evidence": true,
+    "critical_execution_conflict_blocks_output": true
+  },
+  "output_semantics": {
+    "formal_ticket_before_preflight_pass_forbidden": true,
+    "A_range_or_B_range_grade_before_preflight_pass_forbidden": true,
+    "preflight_failure_requires_finishing_missing_work_not_switching_to_PASS": true,
+    "formal_trace_must_store_preflight_result": true
+  },
+  "implementation": {
+    "validator": "gpt/preflight_gate.py",
+    "formal_trace_integration": "gpt/formal_trace.py",
+    "tests": ["tests/test_preflight_gate.py", "tests/test_formal_trace.py"]
+  }
+}
