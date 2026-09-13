@@ -1,5 +1,5 @@
 {
-  "version": "MODEL_1-SUPPORTING-CONTRACTS-1.2.0",
+  "version": "MODEL_1-SUPPORTING-CONTRACTS-1.3.0",
   "model_id": "MODEL_1",
   "formal_runtime": {
     "sop": "gpt/FOOTBALL_SOP.md",
@@ -8,10 +8,12 @@
     "source_policy": "config/model_1_source_policy.json",
     "opening_baseline_policy": "config/opening_baseline_policy.json",
     "ah_opening_divergence_policy": "config/ah_opening_divergence_policy.json",
+    "preflight_policy": "config/model_1_preflight_policy.json",
     "off_field_weather_policy": "config/off_field_weather_policy.json",
     "freeze_contract": "config/model_1_freeze.json",
     "trace_contract": "config/model_1_trace_contract.json",
     "decision_engine": "gpt/decision_engine.py",
+    "preflight_engine": "gpt/preflight_gate.py",
     "formal_trace_engine": "gpt/formal_trace.py"
   },
   "supporting_memory": [
@@ -53,7 +55,7 @@
     "end_date_beijing": "2026-10-10",
     "new_formal_rule_changes_allowed": "ONLY_WITH_EXPLICIT_TARGETED_USER_OVERRIDE",
     "new_ideas_during_freeze": "LOG_ONLY_UNLESS_EXPLICIT_TARGETED_USER_OVERRIDE",
-    "latest_targeted_override": "2026-09-13 AH opening consensus / cluster divergence audit"
+    "latest_targeted_override": "2026-09-13 hard pre-ticket MODEL_1 preflight execution gate"
   },
   "conflict_rule": "Newest explicit user instruction and current formal MODEL_1 policy outrank legacy/supporting research. Conflicts must be surfaced and versioned, never silently resolved by older artifacts."
 }
