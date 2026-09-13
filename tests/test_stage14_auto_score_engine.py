@@ -1,6 +1,6 @@
 import pytest
 
-from gpt.model_1_packet_bridge import build_production_correct_score_evidence
+from gpt.model_1_packet_bridge import PacketBridgeError, build_production_correct_score_evidence
 from gpt.stage14_auto import prior_usefulness_gate, resolve_score_engine
 
 
@@ -135,10 +135,20 @@ def test_usefulness_gate_rejects_runtime_target_fields():
                               prior_packet=prior(),snapshot_phase="current")
 
 
-def test_production_bridge_defaults_to_auto_market_formal():
+def test_production_bridge_rejects_missing_ou_direction():
+    with pytest.raises(PacketBridgeError, match="OU_DIRECTION_REQUIRED"):
+        build_production_correct_score_evidence(
+            quant_packet=quant(),competition="英超",season="2026-27",home_team="A",away_team="B",
+            kickoff="2026-08-15",prior_store={"competition_status":{"英超":{"activation":"SHADOW"}}},draws=500)
+
+
+def test_production_bridge_defaults_to_auto_market_formal_with_ou_direction():
     out=build_production_correct_score_evidence(
         quant_packet=quant(),competition="英超",season="2026-27",home_team="A",away_team="B",
-        kickoff="2026-08-15",prior_store={"competition_status":{"英超":{"activation":"SHADOW"}}},draws=500)
+        kickoff="2026-08-15",prior_store={"competition_status":{"英超":{"activation":"SHADOW"}}},draws=500,
+        execution_path={"winner":"HOME","ou":{"side":"OVER","line":2.5,"ticket":False}})
     assert out["score_engine_mode"]=="MARKET_ONLY_FORMAL"
-    assert len(out["top3_scores"])==3
+    assert 1 <= len(out["top3_scores"]) <= 3
+    assert out["OU_gate_status"]=="APPLIED_HARD_DIRECTION_ONLY"
+    assert all(sum(int(x) for x in score.split("-"))>2.5 for score in out["top3_scores"])
     assert out["no_fake_historical_prior"] is True
