@@ -1,5 +1,5 @@
 {
-  "version": "MODEL_1-FREEZE-1.1.1",
+  "version": "MODEL_1-FREEZE-1.1.2",
   "model_id": "MODEL_1",
   "status": "FROZEN_FORMAL_SEMANTICS_WITH_TARGETED_OVERRIDES",
   "timezone": "Asia/Shanghai",
@@ -73,6 +73,14 @@
       "scope": "AH opening consensus / company and cluster divergence audit across ALL valid Asian handicap lines",
       "reference": "config/ah_opening_divergence_policy.json",
       "authorization": "explicit user instruction; earlier 0.75/0.5/0.25 values were examples only and do not limit scope",
+      "fixed_numeric_weight_authorized": false,
+      "global_freeze_ended": false
+    },
+    {
+      "date": "2026-09-13",
+      "scope": "hard pre-ticket MODEL_1 execution preflight gate",
+      "reference": "config/model_1_preflight_policy.json",
+      "authorization": "explicit user instruction after repeated cross-chat execution drift; incomplete required work must block formal output until completed",
       "fixed_numeric_weight_authorized": false,
       "global_freeze_ended": false
     }
