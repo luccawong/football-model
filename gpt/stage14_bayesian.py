@@ -19,7 +19,7 @@ from typing import Any, Mapping, Sequence
 
 import numpy as np
 
-from gpt.quant_core import correct_score_probabilities, probabilities_1x2, score_grid
+from gpt.quant_core import correct_score_probabilities, probabilities_1x2, score_grid, total_settlement
 
 ENGINE_VERSION = "MODEL_1-STAGE14-BAYES-1.0.0"
 CORE_MARKET_COMPANIES = ("Pinnacle", "Bet365", "Macau")
@@ -395,8 +395,9 @@ def posterior_predictive_grid(
     max_goals: int = 12,
     draws: int = 4000,
 ) -> dict[str, Any]:
-    if posterior.get("status") != "BAYESIAN_POSTERIOR":
-        return {"status": "MISSING", "reason": "VALID_BAYESIAN_POSTERIOR_REQUIRED"}
+    distribution_status = posterior.get("status")
+    if distribution_status not in {"BAYESIAN_POSTERIOR", "FORMAL_MARKET_SCORE_DISTRIBUTION"}:
+        return {"status": "MISSING", "reason": "VALID_SCORE_DISTRIBUTION_REQUIRED"}
     if max_goals < 6:
         raise BayesianScoreError("max_goals must be >= 6.")
     if draws < 500:
@@ -429,7 +430,12 @@ def posterior_predictive_grid(
         row["robustness_top3_frequency"] = float(robustness[h, a])
 
     return {
-        "status": "BAYESIAN_POSTERIOR_PREDICTIVE",
+        "status": (
+            "BAYESIAN_POSTERIOR_PREDICTIVE"
+            if distribution_status == "BAYESIAN_POSTERIOR"
+            else "FORMAL_MARKET_SCORE_PREDICTIVE"
+        ),
+        "score_distribution_status": distribution_status,
         "engine_version": ENGINE_VERSION,
         "draws": int(draws),
         "seed": int(seed),
@@ -528,7 +534,9 @@ def select_direction_consistent_top3(
     *,
     execution_path: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
-    if predictive.get("status") != "BAYESIAN_POSTERIOR_PREDICTIVE":
+    if predictive.get("status") not in {
+        "BAYESIAN_POSTERIOR_PREDICTIVE", "FORMAL_MARKET_SCORE_PREDICTIVE"
+    }:
         return {"status": "MISSING", "reason": "POSTERIOR_PREDICTIVE_REQUIRED", "top3": []}
 
     rows = []
@@ -549,7 +557,11 @@ def select_direction_consistent_top3(
             reverse=True,
         )
     top3 = (ou_preferred + ou_fallback)[:3]
-    status = "BAYESIAN_POSTERIOR_TOP3" if top3 else "SCORELINE_CONFLICT"
+    status = (
+        "FORMAL_SCORE_TOP3"
+        if top3 and predictive.get("status") == "FORMAL_MARKET_SCORE_PREDICTIVE"
+        else "BAYESIAN_POSTERIOR_TOP3" if top3 else "SCORELINE_CONFLICT"
+    )
     return {
         "status": status,
         "top3": top3,
@@ -612,4 +624,122 @@ def build_stage14_score_packet(
         "ranking_policy": selected["ranking_policy"],
         "market_reconstruction_role": "LIKELIHOOD_OR_MARKET_REFERENCE_ONLY",
         "no_market_only_fallback": True,
+    }
+
+
+def _ou_references(grid: Sequence[Sequence[float]]) -> dict[str, Any]:
+    matrix = np.asarray(grid, dtype=float)
+    return {
+        str(line): {
+            "over": total_settlement(matrix, line, "over"),
+            "under": total_settlement(matrix, line, "under"),
+        }
+        for line in (2.0, 2.25, 2.5, 2.75, 3.0, 3.25, 3.5)
+    }
+
+
+def build_formal_market_score_packet(
+    quant_packet: Mapping[str, Any],
+    *,
+    execution_path: Mapping[str, Any] | None = None,
+    historical_prior_activation: str = "UNAVAILABLE",
+    snapshot_phase: str = "current",
+    market_sigma_floor: float = 0.12,
+    max_goals: int = 12,
+    draws: int = 4000,
+) -> dict[str, Any]:
+    """Build formal scores directly from the correlated core-market cluster.
+
+    This distribution is deliberately not represented as a historical prior or
+    as a historical Bayesian posterior. It reuses the exact Stage14 lognormal
+    predictive integration and execution filter used by the Bayesian path.
+    """
+    market = build_market_cluster_likelihood(
+        quant_packet, log_lambda_sigma_floor=market_sigma_floor
+    )
+    if market.get("status") != "VALID":
+        return {
+            "status": "MISSING",
+            "reason": "MISSING_CORE_MARKET",
+            "score_engine_mode": "MARKET_ONLY_FORMAL",
+            "prior_used": False,
+            "historical_prior_activation": historical_prior_activation,
+            "market_cluster_status": market.get("status", "MISSING"),
+            "market_companies_used": list(market.get("companies_used", [])),
+            "snapshot_phase": snapshot_phase,
+            "top3": [],
+            "execution_filtered_top3": [],
+            "no_fake_historical_prior": True,
+        }
+
+    mean = _as_vec2(market["mean_log_lambda"], "market.mean_log_lambda")
+    covariance = _as_cov2(market["cov_log_lambda"], "market.cov_log_lambda")
+    rho = float(np.clip(float(market["rho_market_median"]), -0.249, 0.249))
+    distribution = {
+        "status": "FORMAL_MARKET_SCORE_DISTRIBUTION",
+        "mean_log_lambda": mean.tolist(),
+        "cov_log_lambda": covariance.tolist(),
+        "median_lambda": np.exp(mean).tolist(),
+        "mean_lambda_lognormal": np.exp(mean + 0.5 * np.diag(covariance)).tolist(),
+        "rho": rho,
+        "rho_source": "CORE_MARKET_RECONSTRUCTION_MEDIAN",
+        "market_likelihood": market,
+        "historical_prior": None,
+    }
+    predictive = posterior_predictive_grid(
+        distribution,
+        match_id=str(quant_packet.get("match_id", "")),
+        max_goals=max_goals,
+        draws=draws,
+    )
+    selected = select_direction_consistent_top3(
+        predictive, execution_path=execution_path
+    )
+    top3 = list(selected.get("top3", []))
+    median_lambda = distribution["median_lambda"]
+    return {
+        "status": selected["status"],
+        "engine_version": ENGINE_VERSION,
+        "match_id": str(quant_packet.get("match_id", "")),
+        "score_engine_mode": "MARKET_ONLY_FORMAL",
+        "prior_used": False,
+        "historical_prior_activation": historical_prior_activation,
+        "historical_prior": None,
+        "market_cluster_status": "VALID",
+        "market_cluster_used": True,
+        "market_companies_used": list(market["companies_used"]),
+        "score_distribution": distribution,
+        "posterior_predictive": predictive,
+        "mean_log_lambda": distribution["mean_log_lambda"],
+        "cov_log_lambda": distribution["cov_log_lambda"],
+        "lambda_home": float(median_lambda[0]),
+        "lambda_away": float(median_lambda[1]),
+        "lambda_semantics": "MEDIAN_OF_LOGNORMAL_RATE_DISTRIBUTION",
+        "rho": rho,
+        "raw_top10": selected.get("raw_top10", []),
+        "execution_filtered_top3": top3,
+        "top3": top3,
+        "Top1": top3[0] if len(top3) > 0 else None,
+        "Top2": top3[1] if len(top3) > 1 else None,
+        "Top3": top3[2] if len(top3) > 2 else None,
+        "model_1x2": predictive["model_1x2"],
+        "OU_references": _ou_references(predictive["grid"]),
+        "five_plus_home_tail": predictive["five_plus_home_tail"],
+        "five_plus_away_tail": predictive["five_plus_away_tail"],
+        "execution_path": selected.get("execution_path", {}),
+        "AH_gate_status": (
+            "APPLIED_POSITIVE_SETTLEMENT_ONLY"
+            if isinstance(selected.get("execution_path", {}).get("ah"), Mapping)
+            and selected["execution_path"]["ah"].get("hard_gate")
+            else "NOT_REQUESTED"
+        ),
+        "snapshot_phase": snapshot_phase,
+        "provenance": "FORMAL_CORRELATED_MARKET_SCORE_MODEL_POISSON_DIXON_COLES",
+        "no_fake_historical_prior": True,
+        "anti_double_counting": {
+            "market_cluster_is_one_correlated_likelihood": True,
+            "independent_bookmaker_votes": False,
+            "historical_prior_used": False,
+            "prior_market_overlap": False,
+        },
     }
