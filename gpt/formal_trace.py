@@ -20,8 +20,9 @@ from gpt.decision_engine import (
     validate_formal_ticket,
     validate_red_team_verdict,
 )
+from gpt.preflight_gate import packet_from_stage_evidence, require_preflight_pass
 
-TRACE_ENGINE_VERSION = "MODEL_1-TRACE-1.0.0"
+TRACE_ENGINE_VERSION = "MODEL_1-TRACE-1.1.0"
 ALLOWED_STAGE_STATUS = {"COMPLETE", "COMPLETE_WITH_MISSING", "CONFLICT", "BLOCKED"}
 
 
@@ -64,21 +65,15 @@ def _nonempty(value: Any) -> bool:
     return True
 
 
-def validate_stage_records(
-    records: Sequence[StageRecord],
-    required_fields: Mapping[str, Sequence[str]],
-) -> None:
+def validate_stage_records(records: Sequence[StageRecord], required_fields: Mapping[str, Sequence[str]]) -> None:
     stages = tuple(r.stage for r in records)
     if stages != MODEL_1_STAGE_ORDER:
         raise DecisionPolicyError(
             "Formal trace stage order mismatch. Expected: " + " -> ".join(MODEL_1_STAGE_ORDER)
         )
-
     for record in records:
         if record.status not in ALLOWED_STAGE_STATUS:
-            raise DecisionPolicyError(
-                f"Invalid stage status {record.status!r} for {record.stage}."
-            )
+            raise DecisionPolicyError(f"Invalid stage status {record.status!r} for {record.stage}.")
         expected = required_fields.get(record.stage, ())
         missing = [field for field in expected if not _nonempty(record.evidence.get(field))]
         if missing and record.status == "COMPLETE":
@@ -94,7 +89,6 @@ def validate_stage_records(
 def validate_draw_stage(record: StageRecord) -> None:
     label = record.evidence.get("authoritative_draw_label")
     branch = resolve_draw_branch(label)
-
     if branch.label == "EXCLUDED":
         if not record.evidence.get("winner_only_audit_completed"):
             raise DecisionPolicyError("EXCLUDED requires winner-only HOME-vs-AWAY audit.")
@@ -112,12 +106,7 @@ def validate_draw_stage(record: StageRecord) -> None:
             raise DecisionPolicyError("UNKNOWN draw status cannot hard-remove draw.")
 
 
-def validate_underdog_stage(
-    record: StageRecord,
-    *,
-    favourite_handicap: float | None,
-    draw_label: object,
-) -> None:
+def validate_underdog_stage(record: StageRecord, *, favourite_handicap: float | None, draw_label: object) -> None:
     branch = resolve_draw_branch(draw_label)
     required = underdog_outright_audit_required(
         favourite_handicap,
@@ -125,9 +114,7 @@ def validate_underdog_stage(
     )
     stated_required = bool(record.evidence.get("audit_required"))
     if required != stated_required:
-        raise DecisionPolicyError(
-            f"Underdog audit required={required} but trace states {stated_required}."
-        )
+        raise DecisionPolicyError(f"Underdog audit required={required} but trace states {stated_required}.")
     if required and not record.evidence.get("audit_completed"):
         raise DecisionPolicyError("Mandatory underdog outright audit not completed.")
     if required and not record.evidence.get("outright_vs_cover_separated"):
@@ -147,11 +134,16 @@ def build_formal_trace(
     h1: FrozenH1,
     red_team: RedTeamRecord,
     ticket: TicketDecision,
+    current_model_1_policy_loaded: bool,
+    unresolved_critical_execution_conflict: bool = False,
     non_main_count: int = 0,
     created_at: str | None = None,
 ) -> dict[str, Any]:
-    """Validate and return one immutable pre-match MODEL_1 trace packet."""
+    """Validate and return one immutable pre-match MODEL_1 trace packet.
 
+    The formal ticket is unreachable until the hard preflight gate passes. A failed
+    preflight is an incomplete analysis (PRECHECK_BLOCKED), not a betting PASS.
+    """
     validate_stage_records(records, required_fields)
     by_stage = {r.stage: r for r in records}
 
@@ -163,8 +155,16 @@ def build_formal_trace(
         favourite_handicap=favourite_handicap,
         draw_label=draw_label,
     )
-
     validate_red_team_verdict(red_team.verdict)
+
+    stage_evidence = {stage: record.evidence for stage, record in by_stage.items()}
+    preflight_packet = packet_from_stage_evidence(
+        stage_evidence,
+        current_model_1_policy_loaded=current_model_1_policy_loaded,
+        unresolved_critical_execution_conflict=unresolved_critical_execution_conflict,
+    )
+    preflight = require_preflight_pass(preflight_packet)
+
     validate_formal_ticket(ticket, non_main_count=non_main_count)
 
     freeze_record = by_stage["freeze_h1"]
@@ -207,6 +207,8 @@ def build_formal_trace(
         "match_id": str(match_id),
         "created_at": created_at or _utc_now(),
         "prematch_frozen": True,
+        "preflight": preflight.to_dict(),
+        "preflight_packet": preflight_packet,
         "stage_order": list(MODEL_1_STAGE_ORDER),
         "stage_status_counts": status_counts,
         "stages": [asdict(r) for r in records],
@@ -216,10 +218,7 @@ def build_formal_trace(
         "red_team": asdict(red_team),
         "formal_main": asdict(ticket),
         "non_main_count": non_main_count,
-        "engines": {
-            "quant": quant_engine_version,
-            "feature": feature_engine_version,
-        },
+        "engines": {"quant": quant_engine_version, "feature": feature_engine_version},
         "immutability": {
             "post_result_backfill_forbidden": True,
             "ticket_change_requires_explicit_correction": True,
