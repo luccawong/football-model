@@ -1,0 +1,193 @@
+{
+  "engine_version": "DOMESTIC-PRIOR-V2",
+  "competition": "英超",
+  "selected": {
+    "hyperparameters": {
+      "structure": "monthly",
+      "half_life_days": 365.0,
+      "team_sd": 0.35,
+      "transition_sd": 0.08
+    },
+    "metrics": {
+      "n": 760,
+      "correct_score_NLL": 3.0563063804676687,
+      "Top1_exact_score_hit_rate": 0.11578947368421053,
+      "Top3_coverage": 0.29473684210526313,
+      "1X2_Brier": 0.576778424725284,
+      "RPS": 0.2021844687104903,
+      "OU_over2_5_Brier": 0.23727630034574268,
+      "OU_over2_5_logloss": 0.66723586462021,
+      "OU_over2_5_calibration": {
+        "n": 760,
+        "brier": 0.23727630034574268,
+        "ece": 0.03879305195166393,
+        "bins": [
+          {
+            "lo": 0.30000000000000004,
+            "hi": 0.4,
+            "n": 31,
+            "pred": 0.3689987558111897,
+            "actual": 0.5806451612903226
+          },
+          {
+            "lo": 0.4,
+            "hi": 0.5,
+            "n": 185,
+            "pred": 0.456447102080003,
+            "actual": 0.4702702702702703
+          },
+          {
+            "lo": 0.5,
+            "hi": 0.6000000000000001,
+            "n": 328,
+            "pred": 0.5516438081408127,
+            "actual": 0.5823170731707317
+          },
+          {
+            "lo": 0.6000000000000001,
+            "hi": 0.7000000000000001,
+            "n": 180,
+            "pred": 0.6396833774401302,
+            "actual": 0.6888888888888889
+          },
+          {
+            "lo": 0.7000000000000001,
+            "hi": 0.8,
+            "n": 34,
+            "pred": 0.7374884133194681,
+            "actual": 0.7058823529411765
+          },
+          {
+            "lo": 0.8,
+            "hi": 0.9,
+            "n": 2,
+            "pred": 0.8140171226199467,
+            "actual": 1.0
+          }
+        ]
+      },
+      "AH_settlement_aware_Brier": null,
+      "AH_cover_equivalent_calibration": {
+        "n": 0,
+        "brier": null,
+        "ece": null,
+        "bins": []
+      }
+    },
+    "rho": 0.0,
+    "rho_shrinkage": 0.0,
+    "rho_first_fold": 0.02699993788095666,
+    "selection_objective": "CORRECT_SCORE_PREDICTIVE_NLL",
+    "boundary": [],
+    "scope": "TRAIN_2021_2022_2023_ONLY",
+    "folds": [
+      {
+        "fit": [
+          2021
+        ],
+        "validate": 2022
+      },
+      {
+        "fit": [
+          2021,
+          2022
+        ],
+        "validate": 2023
+      }
+    ],
+    "candidate_count": 89,
+    "structure_winners": [
+      {
+        "structure": "monthly",
+        "half_life_days": 365.0,
+        "team_sd": 0.35,
+        "transition_sd": 0.08
+      },
+      {
+        "structure": "rolling30",
+        "half_life_days": 365.0,
+        "team_sd": 0.35,
+        "transition_sd": 0.08
+      },
+      {
+        "structure": "rolling60",
+        "half_life_days": 180.0,
+        "team_sd": 0.35,
+        "transition_sd": 0.08
+      },
+      {
+        "structure": "rolling90",
+        "half_life_days": 45.0,
+        "team_sd": 0.5,
+        "transition_sd": 0.2
+      }
+    ]
+  },
+  "promoted": {
+    "status": "ESTIMATED",
+    "mean": [
+      -0.13545956587385727,
+      -0.19381168679272212
+    ],
+    "covariance": [
+      [
+        0.04625999902586396,
+        0.013631383629633695
+      ],
+      [
+        0.013631383629633695,
+        0.05396858229178283
+      ]
+    ],
+    "n": 6,
+    "scope": "TRAIN_DOMESTIC_ENTRANTS_ONLY"
+  },
+  "trust": {
+    "opening": {
+      "kappa": 0.6917325121180522,
+      "objective": 3.024759145799329,
+      "n": 760,
+      "boundary": false,
+      "bounds": [
+        0.01,
+        1000.0
+      ],
+      "scope": "TRAIN_INNER_OOS_CORRECT_SCORE_NLL",
+      "process_covariance": [
+        [
+          0.008389454794912347,
+          -0.01262199684095501
+        ],
+        [
+          -0.01262199684095501,
+          0.01898988768014964
+        ]
+      ],
+      "rho": 0.0,
+      "ref": "DOMESTIC-PRIOR-V2"
+    },
+    "closing": {
+      "kappa": 1.3525734596829944,
+      "objective": 3.0080405798846663,
+      "n": 760,
+      "boundary": false,
+      "bounds": [
+        0.01,
+        1000.0
+      ],
+      "scope": "TRAIN_INNER_OOS_CORRECT_SCORE_NLL",
+      "process_covariance": [
+        [
+          0.008389454794912347,
+          -0.01262199684095501
+        ],
+        [
+          -0.01262199684095501,
+          0.01898988768014964
+        ]
+      ],
+      "rho": 0.0,
+      "ref": "DOMESTIC-PRIOR-V2"
+    }
+  }
+}

@@ -1,0 +1,350 @@
+{
+  "store_version": "MODEL_1-TITAN-PRIOR-STORE-2.1.0-COMPACT",
+  "status": "VALID",
+  "created_from": "TITAN_HISTORICAL_MATCH_RESULTS_ONLY",
+  "as_of": "2026-05-31 00:00:01",
+  "dataset_audit": {
+    "dataset_sha256": "cb409b3ceb882491671c08abbf6815fdfbaa398010de0377ad1d7bcf0d1531a7",
+    "matches_count": 13090,
+    "date_min": "2021-06-23 02:00:00",
+    "date_max": "2026-05-31 00:00:00",
+    "competitions": [
+      "德甲",
+      "意甲",
+      "欧冠",
+      "欧协联",
+      "欧罗巴",
+      "法甲",
+      "英超",
+      "西甲"
+    ],
+    "seasons": [
+      "2021-2022",
+      "2022-2023",
+      "2023-2024",
+      "2024-2025",
+      "2025-2026"
+    ]
+  },
+  "competition_status": {
+    "德甲": {
+      "activation": "SHADOW",
+      "reason": "DOMESTIC_V2_OOS_GATE",
+      "opening": {
+        "status": "SHADOW",
+        "reasons": [
+          "UNRESOLVED_TRAIN_BOUNDARY",
+          "validation:TOP3_HARM",
+          "test:SCORE_NLL_WORSE"
+        ]
+      },
+      "closing": {
+        "status": "SHADOW",
+        "reasons": [
+          "UNRESOLVED_TRAIN_BOUNDARY",
+          "validation:RPS_HARM",
+          "test:SCORE_NLL_WORSE",
+          "test:1X2_Brier_HARM",
+          "test:RPS_HARM"
+        ]
+      },
+      "lifecycle": "SHADOW"
+    },
+    "意甲": {
+      "activation": "SHADOW",
+      "reason": "DOMESTIC_V2_OOS_GATE",
+      "opening": {
+        "status": "SHADOW",
+        "reasons": [
+          "UNRESOLVED_TRAIN_BOUNDARY",
+          "validation:SCORE_NLL_WORSE",
+          "validation:1X2_Brier_HARM",
+          "validation:RPS_HARM",
+          "validation:TOP3_HARM",
+          "test:1X2_Brier_HARM",
+          "test:RPS_HARM",
+          "test:TOP3_HARM"
+        ]
+      },
+      "closing": {
+        "status": "SHADOW",
+        "reasons": [
+          "UNRESOLVED_TRAIN_BOUNDARY",
+          "validation:SCORE_NLL_WORSE",
+          "validation:1X2_Brier_HARM",
+          "validation:RPS_HARM",
+          "validation:TOP3_HARM",
+          "test:SCORE_NLL_WORSE",
+          "test:1X2_Brier_HARM",
+          "test:RPS_HARM",
+          "test:TOP3_HARM"
+        ]
+      },
+      "lifecycle": "SHADOW"
+    },
+    "欧冠": {
+      "activation": "ACTIVE",
+      "reason": "SCORE_OOS_GATE_PASS",
+      "failed_checks": [],
+      "gate": {
+        "primary": "C score_NLL <= A in both validation and test",
+        "top3_noninferiority_margin": 0.01,
+        "secondary_brier_rps_harm_margin": 0.005
+      }
+    },
+    "欧协联": {
+      "activation": "SHADOW",
+      "reason": "UNRESOLVED_HYPERPARAMETER_BOUNDARY"
+    },
+    "欧罗巴": {
+      "activation": "SHADOW",
+      "reason": "UNRESOLVED_HYPERPARAMETER_BOUNDARY"
+    },
+    "法甲": {
+      "activation": "SHADOW",
+      "reason": "DOMESTIC_V2_OOS_GATE",
+      "opening": {
+        "status": "SHADOW",
+        "reasons": [
+          "validation:SCORE_NLL_WORSE",
+          "validation:1X2_Brier_HARM",
+          "validation:RPS_HARM",
+          "test:SCORE_NLL_WORSE",
+          "test:1X2_Brier_HARM",
+          "test:RPS_HARM"
+        ]
+      },
+      "closing": {
+        "status": "SHADOW",
+        "reasons": [
+          "validation:SCORE_NLL_WORSE",
+          "validation:RPS_HARM"
+        ]
+      },
+      "lifecycle": "SHADOW"
+    },
+    "英超": {
+      "activation": "SHADOW",
+      "reason": "DOMESTIC_V2_OOS_GATE",
+      "opening": {
+        "status": "SHADOW",
+        "reasons": [
+          "validation:SCORE_NLL_WORSE",
+          "test:SCORE_NLL_WORSE",
+          "test:1X2_Brier_HARM",
+          "test:RPS_HARM",
+          "test:TOP3_HARM"
+        ]
+      },
+      "closing": {
+        "status": "SHADOW",
+        "reasons": [
+          "validation:SCORE_NLL_WORSE",
+          "validation:1X2_Brier_HARM",
+          "validation:RPS_HARM",
+          "test:SCORE_NLL_WORSE",
+          "test:1X2_Brier_HARM",
+          "test:RPS_HARM",
+          "test:TOP3_HARM"
+        ]
+      },
+      "lifecycle": "SHADOW"
+    },
+    "西甲": {
+      "activation": "SHADOW",
+      "reason": "DOMESTIC_V2_OOS_GATE",
+      "opening": {
+        "status": "SHADOW",
+        "reasons": [
+          "UNRESOLVED_TRAIN_BOUNDARY",
+          "validation:SCORE_NLL_WORSE",
+          "validation:1X2_Brier_HARM",
+          "validation:RPS_HARM",
+          "test:SCORE_NLL_WORSE",
+          "test:1X2_Brier_HARM",
+          "test:RPS_HARM",
+          "test:TOP3_HARM"
+        ]
+      },
+      "closing": {
+        "status": "SHADOW",
+        "reasons": [
+          "UNRESOLVED_TRAIN_BOUNDARY",
+          "validation:1X2_Brier_HARM",
+          "validation:RPS_HARM",
+          "test:SCORE_NLL_WORSE",
+          "test:1X2_Brier_HARM",
+          "test:RPS_HARM",
+          "test:TOP3_HARM"
+        ]
+      },
+      "lifecycle": "SHADOW"
+    }
+  },
+  "legacy_field_semantics": {
+    "league": "competition",
+    "mu_league": "competition-specific scoring baseline",
+    "hfa_league": "competition-specific home-field advantage"
+  },
+  "anti_double_counting": {
+    "market_inputs_in_prior": false,
+    "context_inputs_in_prior": false
+  },
+  "calibration": {
+    "split": "2021-22..2023-24 train / 2024-25 validation / 2025-26 test",
+    "process_covariance": "TRAIN_ONLY_SEASON_FORWARD_RESIDUAL_METHOD_OF_MOMENTS",
+    "oos_report": "docs/MODEL_1_TITAN_PRIOR_VALIDATION_20260912.md"
+  },
+  "calibration_ref": "MODEL_1-TITAN-PRIOR-20260912",
+  "competition_models": {},
+  "packed_store": {
+    "encoding": "LZMA_BASE85_JSON",
+    "decoded_sha256": "4d7b556e0c714f07056f501f8dbaa25959cd6ab2330104fea2e6b919d18a560d",
+    "decoded_bytes": 1147112,
+    "parts": [
+      {
+        "path": "packed/model.part01.b85",
+        "bytes": 15000,
+        "sha256": "e15e6374a9668c9ae16b48111dbbe2d012b6cc0e6117e9d80b01b3d019e32b76"
+      },
+      {
+        "path": "packed/model.part02.b85",
+        "bytes": 15000,
+        "sha256": "e08fef0d225a2e8d655e07ee229bb521603d724f04897db60bb6b99982ff09f8"
+      },
+      {
+        "path": "packed/model.part03.b85",
+        "bytes": 15000,
+        "sha256": "9f159596e369122774ab87b93cd9ab0d82b0124cd027e15151245052acd0ce1a"
+      },
+      {
+        "path": "packed/model.part04.b85",
+        "bytes": 15000,
+        "sha256": "313b15345fac930f75e0189f5914a755fad7ab192e85a2f611c73848e1b92797"
+      },
+      {
+        "path": "packed/model.part05.b85",
+        "bytes": 15000,
+        "sha256": "da2727ad27cc79a652084d2682169a33292d60ba6e1087d508de1032ebf84ea7"
+      },
+      {
+        "path": "packed/model.part06.b85",
+        "bytes": 15000,
+        "sha256": "747be7e93f25cb18743fd067300a78fc5bb983a801375f6e2c3d7856fa5bb357"
+      },
+      {
+        "path": "packed/model.part07.b85",
+        "bytes": 15000,
+        "sha256": "0f1360f92eb60ce01202de2b883d79f1dea065aa5f30f59a0bea2b6486358008"
+      },
+      {
+        "path": "packed/model.part08.b85",
+        "bytes": 15000,
+        "sha256": "f727f55b5162a48e9da3543a2d4b6b4af708725c21dbf8212367046e3d109eaf"
+      },
+      {
+        "path": "packed/model.part09.b85",
+        "bytes": 15000,
+        "sha256": "7e4f29eb7a8704d7896eefc8db2c3b9775cd458f1b833f688a36108deb80e3b1"
+      },
+      {
+        "path": "packed/model.part10.b85",
+        "bytes": 15000,
+        "sha256": "6d0777fa8c663e59f32d5e80bd9bbd8d60cfeea16cb95a5524370cd54a29ee73"
+      },
+      {
+        "path": "packed/model.part11.b85",
+        "bytes": 15000,
+        "sha256": "36c664d0c6adf5a849573a7fbbfeef096358c8ec91d8245d3bec7a3a6d28b7cd"
+      },
+      {
+        "path": "packed/model.part12.b85",
+        "bytes": 15000,
+        "sha256": "9cb5ae8665e960b5f089fde5183b2cc3a4fc30914a199913632acaae18265fa3"
+      },
+      {
+        "path": "packed/model.part13.b85",
+        "bytes": 15000,
+        "sha256": "7924033a32486c5518029accf3ec941ec35fd52a97544a6835a88c938171964e"
+      },
+      {
+        "path": "packed/model.part14.b85",
+        "bytes": 15000,
+        "sha256": "ebcfc29e22c50c33a52bdd29c5473195aab87ed1b4d994bbf1ca7dc6b62c47de"
+      },
+      {
+        "path": "packed/model.part15.b85",
+        "bytes": 15000,
+        "sha256": "98ed11495ffbc29164dc28bf3c64b20a135111331cdd9d8045df426ba9c135db"
+      },
+      {
+        "path": "packed/model.part16.b85",
+        "bytes": 15000,
+        "sha256": "e81871241b66a8a23e80832069ad7e01f2cffd32c528d650893a090d5c3a4ff4"
+      },
+      {
+        "path": "packed/model.part17.b85",
+        "bytes": 15000,
+        "sha256": "4da8c8bd04288dac7d1f92af97a8d8ed2b250c20b6f46c3ae2c3b7b541553bdc"
+      },
+      {
+        "path": "packed/model.part18.b85",
+        "bytes": 15000,
+        "sha256": "ea7be8505ca63f8cc51bc2b4557c4cd8fe8aa6619b581993681965c74b1f6f13"
+      },
+      {
+        "path": "packed/model.part19.b85",
+        "bytes": 15000,
+        "sha256": "25940c1d40d323628083fb0c13f2e8a17793822710b0cc6d2ea391c724c0a8bd"
+      },
+      {
+        "path": "packed/model.part20.b85",
+        "bytes": 15000,
+        "sha256": "24b73eaef38e62768dc87f024c5c300619dadf038d33403dd37d3523e5b148bf"
+      },
+      {
+        "path": "packed/model.part21.b85",
+        "bytes": 15000,
+        "sha256": "c7ef9607a50fc41203b160ec37c7a9ab3989afd47534c664eef976546777b95c"
+      },
+      {
+        "path": "packed/model.part22.b85",
+        "bytes": 15000,
+        "sha256": "2b1b385d4b104c600625708de842835ad22146ae81a6790d6103be3f0620a256"
+      },
+      {
+        "path": "packed/model.part23.b85",
+        "bytes": 15000,
+        "sha256": "6bca457a9635b592400c3d05d17d1f893902106581d27e07e6f69635619008ba"
+      },
+      {
+        "path": "packed/model.part24.b85",
+        "bytes": 2190,
+        "sha256": "8bfc47b6eb2bade949279d438044c926a15d3b9d1322d9fc360e72edeff976ce"
+      }
+    ]
+  },
+  "storage_format": "FULL_STORE_LZMA_BASE85_CHUNKS_V1",
+  "domestic_v2": {
+    "英超": {
+      "path": "domestic_v2/epl.json",
+      "sha256": "423f20f51bae6c3e41cd306c1b897e30403639ab191de481475cdbe25f371625"
+    },
+    "西甲": {
+      "path": "domestic_v2/laliga.json",
+      "sha256": "c03cf6dcb316a3299eb69fe7f67a18077fd947ba9993bfef1a8af086dc46208e"
+    },
+    "意甲": {
+      "path": "domestic_v2/seriea.json",
+      "sha256": "63b95f1ac1e59b161bd636e199bb2daeb5f94b6abf513d972c0b304d0202a9ea"
+    },
+    "德甲": {
+      "path": "domestic_v2/bundesliga.json",
+      "sha256": "7dd675c2bf27a2908d6e57d012ab6ce7dcaa7ba84ed9b9fd67b1b4e430e5b982"
+    },
+    "法甲": {
+      "path": "domestic_v2/ligue1.json",
+      "sha256": "908bc0fb76f76379c7b78f42a163b716c5b2ad7764b25614022afa83741366ee"
+    }
+  }
+}

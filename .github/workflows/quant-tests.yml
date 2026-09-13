@@ -7,6 +7,7 @@ on:
       - 'gpt/**'
       - 'exchange_bridge/**'
       - 'config/**'
+      - 'scripts/**'
       - 'tests/**'
       - 'requirements.txt'
       - 'requirements-dev.txt'
@@ -16,9 +17,11 @@ on:
       - 'gpt/**'
       - 'exchange_bridge/**'
       - 'config/**'
+      - 'scripts/**'
       - 'tests/**'
       - 'requirements.txt'
       - 'requirements-dev.txt'
+      - '.github/workflows/quant-tests.yml'
 
 jobs:
   test:
@@ -34,5 +37,11 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements-dev.txt
+      - name: Compile prior tooling
+        run: |
+          python -m py_compile gpt/prior_engine.py gpt/prior_competition.py gpt/stage14_auto.py gpt/model_1_packet_bridge.py
+          python -m py_compile scripts/build_titan_prior.py scripts/validate_model_1_prior.py scripts/stage14_from_v23_md.py
+          python -m py_compile gpt/domestic_prior.py gpt/domestic_gate.py gpt/prior_runtime.py scripts/validate_domestic_prior_v2.py
+          python -m py_compile scripts/package_domestic_prior_v2.py
       - name: Run quant integrity tests
         run: python -m pytest tests -v

@@ -575,6 +575,9 @@ def build_stage14_score_packet(
     draws: int = 4000,
 ) -> dict[str, Any]:
     match_id = str(quant_packet.get("match_id", ""))
+    if prior_packet.get("activation") in {"SHADOW", "DISABLED", "INSUFFICIENT_HISTORY"}:
+        return {"status": "MISSING", "reason": "BAYESIAN_PRIOR_UNAVAILABLE", "top3": [],
+                "no_market_only_fallback": True}
     posterior = build_lambda_posterior(
         quant_packet,
         prior_packet,

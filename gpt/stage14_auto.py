@@ -1,7 +1,10 @@
 from __future__ import annotations
 
+from pathlib import Path
 from typing import Any, Mapping, Sequence
 
+from gpt.prior_engine import PriorEngineError
+from gpt.prior_runtime import resolve_prior
 from gpt.quant_core import score_grid, correct_score_probabilities
 from gpt.stage14_bayesian import build_stage14_score_packet
 
@@ -29,8 +32,8 @@ def _formal_execution_path(execution_path: Mapping[str, Any] | None) -> Mapping[
     """Enforce MODEL_1's formal AH scoreline gate on Stage14 output.
 
     If a formal AH path is supplied, every displayed scoreline must settle the
-    selected AH side positively (> 0 payoff). Push/half-loss/full-loss scorelines
-    are therefore ineligible. The underlying posterior distribution is untouched.
+    selected AH side positively. The posterior distribution itself remains
+    untouched; only final scoreline eligibility is filtered.
     """
     if execution_path is None:
         return None
@@ -51,6 +54,8 @@ def automatic_top3(
     company: str | None = None,
     *,
     prior_packet: Mapping[str, Any] | None = None,
+    prior_context: Mapping[str, Any] | None = None,
+    prior_store: Mapping[str, Any] | str | Path | None = None,
     context_updates: Sequence[Mapping[str, Any]] | None = None,
     execution_path: Mapping[str, Any] | None = None,
     market_absorbed_fraction: float = 0.0,
@@ -60,10 +65,42 @@ def automatic_top3(
 ) -> dict[str, Any]:
     """Formal MODEL_1 automatic Stage14 entry point.
 
-    A validated Bayesian prior is mandatory. `company` is accepted only for backward
-    call compatibility and is not used to select a single bookmaker for the formal
-    posterior. Pinnacle/Bet365/Macau are fused as one correlated market cluster.
+    A validated Bayesian prior is mandatory. Callers may still pass a pre-built
+    ``prior_packet``. Alternatively ``prior_context`` + a calibrated Titan
+    ``prior_store`` resolve the packet automatically. The preferred metadata key
+    is ``competition``; legacy ``league`` remains accepted. The resolver admits
+    only competitions whose OOS activation is ACTIVE. SHADOW, DISABLED and
+    INSUFFICIENT_HISTORY cannot silently become formal priors.
+
+    ``company`` is accepted only for backward call compatibility and is not used
+    to select a single bookmaker for the formal posterior. Pinnacle/Bet365/Macau
+    are fused later as one correlated market likelihood cluster.
     """
+    resolution = "EXPLICIT_PRIOR_PACKET"
+    if prior_packet is None and prior_store is not None:
+        context = prior_context
+        if context is None:
+            embedded = quant_packet.get("prior_context") or quant_packet.get("match_context")
+            context = embedded if isinstance(embedded, Mapping) else None
+        if context is None:
+            return {
+                "status": "MISSING",
+                "reason": "BAYESIAN_PRIOR_CONTEXT_REQUIRED",
+                "top3": [],
+                "no_market_only_fallback": True,
+            }
+        try:
+            prior_packet = resolve_prior(context, prior_store, require_active=True)
+            resolution = "AUTO_TITAN_HISTORICAL_PRIOR"
+        except PriorEngineError as exc:
+            return {
+                "status": "MISSING",
+                "reason": "BAYESIAN_PRIOR_UNAVAILABLE",
+                "detail": str(exc),
+                "top3": [],
+                "no_market_only_fallback": True,
+            }
+
     if prior_packet is None:
         return {
             "status": "MISSING",
@@ -71,7 +108,7 @@ def automatic_top3(
             "top3": [],
             "no_market_only_fallback": True,
         }
-    return build_stage14_score_packet(
+    out = build_stage14_score_packet(
         quant_packet,
         prior_packet,
         context_updates=context_updates,
@@ -81,3 +118,5 @@ def automatic_top3(
         max_goals=max_goals,
         draws=draws,
     )
+    out["prior_resolution"] = resolution
+    return out

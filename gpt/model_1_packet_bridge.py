@@ -1,8 +1,9 @@
 """MODEL_1 packet bridge.
 
 Maps validated Quant/Feature outputs into the 18-stage formal trace without
-changing the underlying mathematical engines. Formal Stage14 now requires the
-MODEL_1 Bayesian posterior score engine; market reconstruction alone is research-only.
+changing the underlying mathematical engines. Formal Stage14 requires the
+MODEL_1 Bayesian posterior score engine; market reconstruction alone remains
+research-only.
 """
 from __future__ import annotations
 
@@ -13,9 +14,11 @@ from draw_exclusion.markets import model_1_reference
 from draw_exclusion.query_label import query_by_titan
 
 from gpt.feature_engine import module_gate
+from gpt.prior_engine import PriorEngineError
+from gpt.prior_runtime import resolve_prior
 from gpt.stage14_bayesian import build_stage14_score_packet
 
-PACKET_BRIDGE_VERSION = "MODEL_1-PACKET-BRIDGE-1.1.0"
+PACKET_BRIDGE_VERSION = "MODEL_1-PACKET-BRIDGE-1.3.0"
 
 
 class PacketBridgeError(ValueError):
@@ -63,14 +66,14 @@ def build_correct_score_quant_evidence(
     *,
     quant_packet: Mapping[str, Any],
     prior_packet: Mapping[str, Any] | None = None,
+    prior_context: Mapping[str, Any] | None = None,
+    prior_store: Mapping[str, Any] | str | Path | None = None,
     context_updates: Sequence[Mapping[str, Any]] | None = None,
     execution_path: Mapping[str, Any] | None = None,
     market_absorbed_fraction: float = 0.0,
     market_sigma_floor: float = 0.12,
     max_goals: int = 12,
     draws: int = 4000,
-    # Legacy arguments are retained only so old callers fail clearly instead of
-    # silently producing a market-only score packet.
     company: str | None = None,
     bayesian_context_update: Mapping[str, Any] | None = None,
     final_top3: Sequence[str] | None = None,
@@ -78,13 +81,33 @@ def build_correct_score_quant_evidence(
 ) -> dict[str, Any]:
     """Build formal MODEL_1 Stage14 evidence from a true Bayesian posterior.
 
-    A validated prior is mandatory. Pinnacle/Bet365/Macau reconstructions are
-    consumed jointly by the posterior engine as a correlated market cluster.
-    The bridge never promotes single-company market reconstruction to formal Top3.
+    A validated prior is mandatory. The bridge accepts either an explicit prior
+    packet or resolves one from ``prior_context`` + a calibrated Titan prior
+    store. The preferred metadata key is ``competition``; legacy ``league`` is
+    accepted. Only ACTIVE competition priors can enter formal Stage14.
+    Pinnacle/Bet365/Macau are consumed only afterwards as the existing correlated
+    market likelihood cluster.
     """
+    prior_resolution = "EXPLICIT_PRIOR_PACKET"
+    if prior_packet is None and prior_store is not None:
+        context = prior_context
+        if context is None:
+            embedded = quant_packet.get("prior_context") or quant_packet.get("match_context")
+            context = embedded if isinstance(embedded, Mapping) else None
+        if context is None:
+            raise PacketBridgeError(
+                "Formal MODEL_1 Stage14 auto-prior requires prior_context with competition, season and teams."
+            )
+        try:
+            prior_packet = resolve_prior(context, prior_store, require_active=True)
+            prior_resolution = "AUTO_TITAN_HISTORICAL_PRIOR"
+        except PriorEngineError as exc:
+            raise PacketBridgeError(f"Formal MODEL_1 Titan prior unavailable: {exc}") from exc
+
     if prior_packet is None:
         raise PacketBridgeError(
-            "Formal MODEL_1 Stage14 requires prior_packet; market-only fallback is forbidden."
+            "Formal MODEL_1 Stage14 requires prior_packet or a calibrated prior_store + prior_context; "
+            "market-only fallback is forbidden."
         )
 
     stage14 = build_stage14_score_packet(
@@ -108,6 +131,7 @@ def build_correct_score_quant_evidence(
         "packet_bridge_version": PACKET_BRIDGE_VERSION,
         "model_id": "MODEL_1",
         "formal_stage": "correct_score_poisson_dixon_coles_bayesian",
+        "prior_resolution": prior_resolution,
         "quant_engine_version": quant_packet.get("engine_version"),
         "stage14_engine_version": stage14.get("engine_version"),
         "quant_packet_ref": {

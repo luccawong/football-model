@@ -1,0 +1,4 @@
+# Checked payloads/certificates must hash identically on Windows and Linux.
+database/priors/domestic_v2/*.json -text
+docs/data/domestic_prior_v2/*.json -text
+docs/data/domestic_prior_v2/*.gz binary
