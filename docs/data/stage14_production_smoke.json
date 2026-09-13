@@ -1,0 +1,2791 @@
+{
+  "artifact_version": "MODEL_1-STAGE14-PRODUCTION-SMOKE-1.0.0",
+  "source_sha256": "cb409b3ceb882491671c08abbf6815fdfbaa398010de0377ad1d7bcf0d1531a7",
+  "source_raw_matches": 13090,
+  "result_fields_excluded": [
+    "home_score",
+    "away_score",
+    "actual_score",
+    "actual_result"
+  ],
+  "routing_smoke_not_historical_accuracy_evaluation": true,
+  "draws": 4000,
+  "cases": [
+    {
+      "competition": "英超",
+      "match_id": "2789129",
+      "season": "2025-2026",
+      "kickoff": "2025-08-16 03:00",
+      "home_team": "利物浦",
+      "away_team": "伯恩茅斯",
+      "snapshot_phase": "closing",
+      "market_payload": {
+        "match_id": "2789129",
+        "companies": {
+          "Pinnacle": {
+            "one_x_two": [
+              1.3,
+              6.25,
+              9.75
+            ],
+            "ou": {
+              "line": 3.5,
+              "over": 2.0300000000000002,
+              "under": 1.88,
+              "role": "dynamic"
+            }
+          },
+          "Bet365": {
+            "one_x_two": [
+              1.28,
+              6.25,
+              9.0
+            ],
+            "ou": {
+              "line": 3.5,
+              "over": 1.97,
+              "under": 1.87,
+              "role": "dynamic"
+            }
+          },
+          "Macau": {
+            "one_x_two": [
+              1.3,
+              5.3,
+              6.6
+            ],
+            "ou": {
+              "line": 3.5,
+              "over": 1.92,
+              "under": 1.88,
+              "role": "dynamic"
+            }
+          }
+        }
+      },
+      "market_packet_provenance": "TITAN_ARCHIVED_CLOSING_1X2_OU",
+      "archived_ah_reference": 1.5,
+      "formal_execution_path": {
+        "winner": "HOME",
+        "ah": {
+          "formal": true,
+          "backing": "HOME",
+          "home_handicap": -1.5
+        }
+      },
+      "formal_execution_path_source": "PREGAME_MARKET_FAVORITE_AND_ARCHIVED_AH_MAGNITUDE",
+      "historical_prior_packet": null,
+      "historical_prior_state_not_later_than_kickoff": true,
+      "result": {
+        "status": "FORMAL_SCORE_TOP3",
+        "score_engine_mode": "MARKET_ONLY_FORMAL",
+        "prior_used": false,
+        "historical_prior_activation": "SHADOW",
+        "market_cluster_status": "VALID",
+        "market_companies_used": [
+          "Pinnacle",
+          "Bet365",
+          "Macau"
+        ],
+        "mean_log_lambda": [
+          0.9975294182196567,
+          -0.10525608596213759
+        ],
+        "cov_log_lambda": [
+          [
+            0.014522910931924687,
+            -0.0006032117719384299
+          ],
+          [
+            -0.0006032117719384299,
+            0.018177121444981396
+          ]
+        ],
+        "lambda_home": 2.7115743799615704,
+        "lambda_away": 0.9000939916337933,
+        "rho": 0.01952547540130725,
+        "raw_top10": [
+          {
+            "score": "2-0",
+            "probability": 0.09754421077708486,
+            "robustness_top3_frequency": 0.94475,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "3-0",
+            "probability": 0.0879390821997976,
+            "robustness_top3_frequency": 0.67875,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "2-1",
+            "probability": 0.08726225574170178,
+            "robustness_top3_frequency": 0.746,
+            "winner_ok": true,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "3-1",
+            "probability": 0.07864539599835993,
+            "robustness_top3_frequency": 0.2965,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "1-0",
+            "probability": 0.07443000347536867,
+            "robustness_top3_frequency": 0.2385,
+            "winner_ok": true,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "1-1",
+            "probability": 0.06418167620503287,
+            "robustness_top3_frequency": 0.032,
+            "winner_ok": false,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "4-0",
+            "probability": 0.06029839739775678,
+            "robustness_top3_frequency": 0.05825,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "4-1",
+            "probability": 0.05390822491390782,
+            "robustness_top3_frequency": 0.00525,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "2-2",
+            "probability": 0.03973145956872855,
+            "robustness_top3_frequency": 0.0,
+            "winner_ok": false,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "3-2",
+            "probability": 0.035797740826062144,
+            "robustness_top3_frequency": 0.0,
+            "winner_ok": true,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          }
+        ],
+        "execution_filtered_top3": [
+          {
+            "score": "2-0",
+            "probability": 0.09754421077708486,
+            "robustness_top3_frequency": 0.94475,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "3-0",
+            "probability": 0.0879390821997976,
+            "robustness_top3_frequency": 0.67875,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "3-1",
+            "probability": 0.07864539599835993,
+            "robustness_top3_frequency": 0.2965,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          }
+        ],
+        "Top1": {
+          "score": "2-0",
+          "probability": 0.09754421077708486,
+          "robustness_top3_frequency": 0.94475,
+          "winner_ok": true,
+          "ah_ok": true,
+          "ou_ok": true,
+          "ah_payoff": 1.0,
+          "ou_relation": null,
+          "hard_direction_ok": true
+        },
+        "Top2": {
+          "score": "3-0",
+          "probability": 0.0879390821997976,
+          "robustness_top3_frequency": 0.67875,
+          "winner_ok": true,
+          "ah_ok": true,
+          "ou_ok": true,
+          "ah_payoff": 1.0,
+          "ou_relation": null,
+          "hard_direction_ok": true
+        },
+        "Top3": {
+          "score": "3-1",
+          "probability": 0.07864539599835993,
+          "robustness_top3_frequency": 0.2965,
+          "winner_ok": true,
+          "ah_ok": true,
+          "ou_ok": true,
+          "ah_payoff": 1.0,
+          "ou_relation": null,
+          "hard_direction_ok": true
+        },
+        "model_1x2": {
+          "home": 0.7532866236327067,
+          "draw": 0.14350017569622608,
+          "away": 0.10321320067106719
+        },
+        "OU_references": {
+          "2.0": {
+            "over": {
+              "full_win": 0.6997838589115042,
+              "half_win": 0.0,
+              "push": 0.17306874345202045,
+              "half_loss": 0.0,
+              "full_loss": 0.12714739763647526
+            },
+            "under": {
+              "full_win": 0.12714739763647526,
+              "half_win": 0.0,
+              "push": 0.17306874345202045,
+              "half_loss": 0.0,
+              "full_loss": 0.6997838589115042
+            }
+          },
+          "2.25": {
+            "over": {
+              "full_win": 0.6997838589115042,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.17306874345202045,
+              "full_loss": 0.12714739763647526
+            },
+            "under": {
+              "full_win": 0.12714739763647526,
+              "half_win": 0.17306874345202045,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.6997838589115042
+            }
+          },
+          "2.5": {
+            "over": {
+              "full_win": 0.6997838589115042,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.3002161410884957
+            },
+            "under": {
+              "full_win": 0.3002161410884957,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.6997838589115042
+            }
+          },
+          "2.75": {
+            "over": {
+              "full_win": 0.4912639196031444,
+              "half_win": 0.20851993930835994,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.3002161410884957
+            },
+            "under": {
+              "full_win": 0.3002161410884957,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.20851993930835994,
+              "full_loss": 0.4912639196031444
+            }
+          },
+          "3.0": {
+            "over": {
+              "full_win": 0.4912639196031444,
+              "half_win": 0.0,
+              "push": 0.20851993930835994,
+              "half_loss": 0.0,
+              "full_loss": 0.3002161410884957
+            },
+            "under": {
+              "full_win": 0.3002161410884957,
+              "half_win": 0.0,
+              "push": 0.20851993930835994,
+              "half_loss": 0.0,
+              "full_loss": 0.4912639196031444
+            }
+          },
+          "3.25": {
+            "over": {
+              "full_win": 0.4912639196031444,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.20851993930835994,
+              "full_loss": 0.3002161410884957
+            },
+            "under": {
+              "full_win": 0.3002161410884957,
+              "half_win": 0.20851993930835994,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.4912639196031444
+            }
+          },
+          "3.5": {
+            "over": {
+              "full_win": 0.4912639196031444,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.5087360803968556
+            },
+            "under": {
+              "full_win": 0.5087360803968556,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.4912639196031444
+            }
+          }
+        },
+        "five_plus_home_tail": 0.14560072025464155,
+        "five_plus_away_tail": 0.002745635169211357,
+        "execution_path": {
+          "winner": "HOME",
+          "ah": {
+            "formal": true,
+            "backing": "HOME",
+            "home_handicap": -1.5,
+            "hard_gate": true,
+            "positive_settlement_required": true,
+            "push_allowed": false
+          }
+        },
+        "AH_gate_status": "APPLIED_POSITIVE_SETTLEMENT_ONLY",
+        "snapshot_phase": "closing",
+        "provenance": "FORMAL_CORRELATED_MARKET_SCORE_MODEL_POISSON_DIXON_COLES",
+        "no_fake_historical_prior": true,
+        "anti_double_counting": {
+          "market_cluster_is_one_correlated_likelihood": true,
+          "independent_bookmaker_votes": false,
+          "historical_prior_used": false,
+          "prior_market_overlap": false
+        },
+        "prior_usefulness_gate": {
+          "gate_version": "MODEL_1-PRIOR-USEFULNESS-1.0.0",
+          "decision": "USE_MARKET_ONLY",
+          "reason": "CONSERVATIVE_NO_APPROVED_PRIOR_SUBSET",
+          "runtime_target_fields_used": false,
+          "threshold_source": "FROZEN_COMPETITION_OOS_ACTIVATION_NOT_FINAL_TEST_RETUNING",
+          "features": {
+            "market_cluster_covariance": [
+              [
+                0.014522910931924687,
+                -0.0006032117719384299
+              ],
+              [
+                -0.0006032117719384299,
+                0.018177121444981396
+              ]
+            ],
+            "core_market_lambda_dispersion": [
+              0.0300465550637026,
+              0.05633387172900828
+            ],
+            "market_reconstruction_residual": 1.2135662845006814e-13,
+            "snapshot_phase": "closing",
+            "season_progress": null,
+            "promoted_or_new_team": null,
+            "historical_prior_covariance": null,
+            "historical_market_log_lambda_distance": null,
+            "team_historical_effective_sample_size": null,
+            "home_away_prior_uncertainty": null
+          }
+        }
+      }
+    },
+    {
+      "competition": "西甲",
+      "match_id": "2804299",
+      "season": "2025-2026",
+      "kickoff": "2025-08-16 01:00",
+      "home_team": "赫罗纳",
+      "away_team": "巴列卡诺",
+      "snapshot_phase": "closing",
+      "market_payload": {
+        "match_id": "2804299",
+        "companies": {
+          "Pinnacle": {
+            "one_x_two": [
+              2.53,
+              3.15,
+              3.18
+            ],
+            "ou": {
+              "line": 2.25,
+              "over": 2.0,
+              "under": 1.9100000000000001,
+              "role": "dynamic"
+            }
+          },
+          "Bet365": {
+            "one_x_two": [
+              2.45,
+              3.2,
+              3.1
+            ],
+            "ou": {
+              "line": 2.25,
+              "over": 2.0,
+              "under": 1.85,
+              "role": "dynamic"
+            }
+          },
+          "Macau": {
+            "one_x_two": [
+              2.28,
+              3.0,
+              3.0
+            ],
+            "ou": {
+              "line": 2.25,
+              "over": 1.95,
+              "under": 1.85,
+              "role": "dynamic"
+            }
+          }
+        }
+      },
+      "market_packet_provenance": "TITAN_ARCHIVED_CLOSING_1X2_OU",
+      "archived_ah_reference": 0.25,
+      "formal_execution_path": {
+        "winner": "HOME",
+        "ah": {
+          "formal": true,
+          "backing": "HOME",
+          "home_handicap": -0.25
+        }
+      },
+      "formal_execution_path_source": "PREGAME_MARKET_FAVORITE_AND_ARCHIVED_AH_MAGNITUDE",
+      "historical_prior_packet": null,
+      "historical_prior_state_not_later_than_kickoff": true,
+      "result": {
+        "status": "FORMAL_SCORE_TOP3",
+        "score_engine_mode": "MARKET_ONLY_FORMAL",
+        "prior_used": false,
+        "historical_prior_activation": "SHADOW",
+        "market_cluster_status": "VALID",
+        "market_companies_used": [
+          "Pinnacle",
+          "Bet365",
+          "Macau"
+        ],
+        "mean_log_lambda": [
+          0.2360997576228175,
+          0.0781338627792923
+        ],
+        "cov_log_lambda": [
+          [
+            0.014577220180700056,
+            -9.442519360412431e-05
+          ],
+          [
+            -9.442519360412431e-05,
+            0.014550397964894749
+          ]
+        ],
+        "lambda_home": 1.2663006270065638,
+        "lambda_away": 1.081267390440811,
+        "rho": -0.07884647966107736,
+        "raw_top10": [
+          {
+            "score": "1-1",
+            "probability": 0.1388692178127683,
+            "robustness_top3_frequency": 1.0,
+            "winner_ok": false,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -0.5,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "1-0",
+            "probability": 0.10984900230117521,
+            "robustness_top3_frequency": 0.81575,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "0-0",
+            "probability": 0.10591179792950532,
+            "robustness_top3_frequency": 0.80275,
+            "winner_ok": false,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -0.5,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "0-1",
+            "probability": 0.09260573165770702,
+            "robustness_top3_frequency": 0.18375,
+            "winner_ok": false,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "2-1",
+            "probability": 0.08177506782291602,
+            "robustness_top3_frequency": 0.14625,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "2-0",
+            "probability": 0.0762519273162876,
+            "robustness_top3_frequency": 0.022,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "1-2",
+            "probability": 0.07007432548953982,
+            "robustness_top3_frequency": 0.0295,
+            "winner_ok": false,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "0-2",
+            "probability": 0.055957974195648574,
+            "robustness_top3_frequency": 0.0,
+            "winner_ok": false,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "2-2",
+            "probability": 0.04450633451144539,
+            "robustness_top3_frequency": 0.0,
+            "winner_ok": false,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -0.5,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "3-1",
+            "probability": 0.03512965950404572,
+            "robustness_top3_frequency": 0.0,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          }
+        ],
+        "execution_filtered_top3": [
+          {
+            "score": "1-0",
+            "probability": 0.10984900230117521,
+            "robustness_top3_frequency": 0.81575,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "2-1",
+            "probability": 0.08177506782291602,
+            "robustness_top3_frequency": 0.14625,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "2-0",
+            "probability": 0.0762519273162876,
+            "robustness_top3_frequency": 0.022,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          }
+        ],
+        "Top1": {
+          "score": "1-0",
+          "probability": 0.10984900230117521,
+          "robustness_top3_frequency": 0.81575,
+          "winner_ok": true,
+          "ah_ok": true,
+          "ou_ok": true,
+          "ah_payoff": 1.0,
+          "ou_relation": null,
+          "hard_direction_ok": true
+        },
+        "Top2": {
+          "score": "2-1",
+          "probability": 0.08177506782291602,
+          "robustness_top3_frequency": 0.14625,
+          "winner_ok": true,
+          "ah_ok": true,
+          "ou_ok": true,
+          "ah_payoff": 1.0,
+          "ou_relation": null,
+          "hard_direction_ok": true
+        },
+        "Top3": {
+          "score": "2-0",
+          "probability": 0.0762519273162876,
+          "robustness_top3_frequency": 0.022,
+          "winner_ok": true,
+          "ah_ok": true,
+          "ou_ok": true,
+          "ah_payoff": 1.0,
+          "ou_relation": null,
+          "hard_direction_ok": true
+        },
+        "model_1x2": {
+          "home": 0.39625447553494825,
+          "draw": 0.29701108497145823,
+          "away": 0.3067344394935935
+        },
+        "OU_references": {
+          "2.0": {
+            "over": {
+              "full_win": 0.42055434878690806,
+              "half_win": 0.0,
+              "push": 0.27107911932470447,
+              "half_loss": 0.0,
+              "full_loss": 0.3083665318883876
+            },
+            "under": {
+              "full_win": 0.3083665318883876,
+              "half_win": 0.0,
+              "push": 0.27107911932470447,
+              "half_loss": 0.0,
+              "full_loss": 0.42055434878690806
+            }
+          },
+          "2.25": {
+            "over": {
+              "full_win": 0.42055434878690806,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.27107911932470447,
+              "full_loss": 0.3083665318883876
+            },
+            "under": {
+              "full_win": 0.3083665318883876,
+              "half_win": 0.27107911932470447,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.42055434878690806
+            }
+          },
+          "2.5": {
+            "over": {
+              "full_win": 0.42055434878690806,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.5794456512130921
+            },
+            "under": {
+              "full_win": 0.5794456512130921,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.42055434878690806
+            }
+          },
+          "2.75": {
+            "over": {
+              "full_win": 0.21532130005915823,
+              "half_win": 0.20523304872774978,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.5794456512130921
+            },
+            "under": {
+              "full_win": 0.5794456512130921,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.20523304872774978,
+              "full_loss": 0.21532130005915823
+            }
+          },
+          "3.0": {
+            "over": {
+              "full_win": 0.21532130005915823,
+              "half_win": 0.0,
+              "push": 0.20523304872774978,
+              "half_loss": 0.0,
+              "full_loss": 0.5794456512130921
+            },
+            "under": {
+              "full_win": 0.5794456512130921,
+              "half_win": 0.0,
+              "push": 0.20523304872774978,
+              "half_loss": 0.0,
+              "full_loss": 0.21532130005915823
+            }
+          },
+          "3.25": {
+            "over": {
+              "full_win": 0.21532130005915823,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.20523304872774978,
+              "full_loss": 0.5794456512130921
+            },
+            "under": {
+              "full_win": 0.5794456512130921,
+              "half_win": 0.20523304872774978,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.21532130005915823
+            }
+          },
+          "3.5": {
+            "over": {
+              "full_win": 0.21532130005915823,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.7846786999408418
+            },
+            "under": {
+              "full_win": 0.7846786999408418,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.21532130005915823
+            }
+          }
+        },
+        "five_plus_home_tail": 0.010685412166386087,
+        "five_plus_away_tail": 0.005730657649984223,
+        "execution_path": {
+          "winner": "HOME",
+          "ah": {
+            "formal": true,
+            "backing": "HOME",
+            "home_handicap": -0.25,
+            "hard_gate": true,
+            "positive_settlement_required": true,
+            "push_allowed": false
+          }
+        },
+        "AH_gate_status": "APPLIED_POSITIVE_SETTLEMENT_ONLY",
+        "snapshot_phase": "closing",
+        "provenance": "FORMAL_CORRELATED_MARKET_SCORE_MODEL_POISSON_DIXON_COLES",
+        "no_fake_historical_prior": true,
+        "anti_double_counting": {
+          "market_cluster_is_one_correlated_likelihood": true,
+          "independent_bookmaker_votes": false,
+          "historical_prior_used": false,
+          "prior_market_overlap": false
+        },
+        "prior_usefulness_gate": {
+          "gate_version": "MODEL_1-PRIOR-USEFULNESS-1.0.0",
+          "decision": "USE_MARKET_ONLY",
+          "reason": "CONSERVATIVE_NO_APPROVED_PRIOR_SUBSET",
+          "runtime_target_fields_used": false,
+          "threshold_source": "FROZEN_COMPETITION_OOS_ACTIVATION_NOT_FINAL_TEST_RETUNING",
+          "features": {
+            "market_cluster_covariance": [
+              [
+                0.014577220180700056,
+                -9.442519360412431e-05
+              ],
+              [
+                -9.442519360412431e-05,
+                0.014550397964894749
+              ]
+            ],
+            "core_market_lambda_dispersion": [
+              0.016905592957275586,
+              0.013285022777582412
+            ],
+            "market_reconstruction_residual": 2.4517425127138875e-13,
+            "snapshot_phase": "closing",
+            "season_progress": null,
+            "promoted_or_new_team": null,
+            "historical_prior_covariance": null,
+            "historical_market_log_lambda_distance": null,
+            "team_historical_effective_sample_size": null,
+            "home_away_prior_uncertainty": null
+          }
+        }
+      }
+    },
+    {
+      "competition": "意甲",
+      "match_id": "2784485",
+      "season": "2025-2026",
+      "kickoff": "2025-08-24 00:30",
+      "home_team": "热那亚",
+      "away_team": "莱切",
+      "snapshot_phase": "closing",
+      "market_payload": {
+        "match_id": "2784485",
+        "companies": {
+          "Pinnacle": {
+            "one_x_two": [
+              1.77,
+              3.36,
+              5.88
+            ],
+            "ou": {
+              "line": 2.0,
+              "over": 1.88,
+              "under": 2.02,
+              "role": "dynamic"
+            }
+          },
+          "Bet365": {
+            "one_x_two": [
+              1.75,
+              3.4,
+              5.25
+            ],
+            "ou": {
+              "line": 2.0,
+              "over": 1.87,
+              "under": 1.97,
+              "role": "dynamic"
+            }
+          },
+          "Macau": {
+            "one_x_two": [
+              1.7,
+              3.1,
+              5.2
+            ],
+            "ou": {
+              "line": 2.0,
+              "over": 1.76,
+              "under": 2.04,
+              "role": "dynamic"
+            }
+          }
+        }
+      },
+      "market_packet_provenance": "TITAN_ARCHIVED_CLOSING_1X2_OU",
+      "archived_ah_reference": 0.75,
+      "formal_execution_path": {
+        "winner": "HOME",
+        "ah": {
+          "formal": true,
+          "backing": "HOME",
+          "home_handicap": -0.75
+        }
+      },
+      "formal_execution_path_source": "PREGAME_MARKET_FAVORITE_AND_ARCHIVED_AH_MAGNITUDE",
+      "historical_prior_packet": null,
+      "historical_prior_state_not_later_than_kickoff": true,
+      "result": {
+        "status": "FORMAL_SCORE_TOP3",
+        "score_engine_mode": "MARKET_ONLY_FORMAL",
+        "prior_used": false,
+        "historical_prior_activation": "SHADOW",
+        "market_cluster_status": "VALID",
+        "market_companies_used": [
+          "Pinnacle",
+          "Bet365",
+          "Macau"
+        ],
+        "mean_log_lambda": [
+          0.41330184883028515,
+          -0.34085724025017744
+        ],
+        "cov_log_lambda": [
+          [
+            0.014801918791056747,
+            0.00029696239118138097
+          ],
+          [
+            0.00029696239118138097,
+            0.014820978759913988
+          ]
+        ],
+        "lambda_home": 1.5118012925205326,
+        "lambda_away": 0.7111604260444125,
+        "rho": -0.10673678656588223,
+        "raw_top10": [
+          {
+            "score": "1-0",
+            "probability": 0.1493921808288058,
+            "robustness_top3_frequency": 0.999,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 0.5,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "1-1",
+            "probability": 0.12716554598104143,
+            "robustness_top3_frequency": 0.864,
+            "winner_ok": false,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "2-0",
+            "probability": 0.12207001592372291,
+            "robustness_top3_frequency": 0.60625,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "0-0",
+            "probability": 0.12091426696685376,
+            "robustness_top3_frequency": 0.5245,
+            "winner_ok": false,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "2-1",
+            "probability": 0.08679306380755693,
+            "robustness_top3_frequency": 0.0025,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 0.5,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "0-1",
+            "probability": 0.06493942569173011,
+            "robustness_top3_frequency": 0.0,
+            "winner_ok": false,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "3-0",
+            "probability": 0.062372697636998084,
+            "robustness_top3_frequency": 0.00375,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "3-1",
+            "probability": 0.044364047565432344,
+            "robustness_top3_frequency": 0.0,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "1-2",
+            "probability": 0.0414485212066653,
+            "robustness_top3_frequency": 0.0,
+            "winner_ok": false,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "2-2",
+            "probability": 0.03131914587717102,
+            "robustness_top3_frequency": 0.0,
+            "winner_ok": false,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          }
+        ],
+        "execution_filtered_top3": [
+          {
+            "score": "1-0",
+            "probability": 0.1493921808288058,
+            "robustness_top3_frequency": 0.999,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 0.5,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "2-0",
+            "probability": 0.12207001592372291,
+            "robustness_top3_frequency": 0.60625,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "2-1",
+            "probability": 0.08679306380755693,
+            "robustness_top3_frequency": 0.0025,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 0.5,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          }
+        ],
+        "Top1": {
+          "score": "1-0",
+          "probability": 0.1493921808288058,
+          "robustness_top3_frequency": 0.999,
+          "winner_ok": true,
+          "ah_ok": true,
+          "ou_ok": true,
+          "ah_payoff": 0.5,
+          "ou_relation": null,
+          "hard_direction_ok": true
+        },
+        "Top2": {
+          "score": "2-0",
+          "probability": 0.12207001592372291,
+          "robustness_top3_frequency": 0.60625,
+          "winner_ok": true,
+          "ah_ok": true,
+          "ou_ok": true,
+          "ah_payoff": 1.0,
+          "ou_relation": null,
+          "hard_direction_ok": true
+        },
+        "Top3": {
+          "score": "2-1",
+          "probability": 0.08679306380755693,
+          "robustness_top3_frequency": 0.0025,
+          "winner_ok": true,
+          "ah_ok": true,
+          "ou_ok": true,
+          "ah_payoff": 0.5,
+          "ou_relation": null,
+          "hard_direction_ok": true
+        },
+        "model_1x2": {
+          "home": 0.5513456453964797,
+          "draw": 0.28360834011439545,
+          "away": 0.16504601448912498
+        },
+        "OU_references": {
+          "2.0": {
+            "over": {
+              "full_win": 0.38767645731908246,
+              "half_win": 0.0,
+              "push": 0.27707766919352805,
+              "half_loss": 0.0,
+              "full_loss": 0.33524587348738966
+            },
+            "under": {
+              "full_win": 0.33524587348738966,
+              "half_win": 0.0,
+              "push": 0.27707766919352805,
+              "half_loss": 0.0,
+              "full_loss": 0.38767645731908246
+            }
+          },
+          "2.25": {
+            "over": {
+              "full_win": 0.38767645731908246,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.27707766919352805,
+              "full_loss": 0.33524587348738966
+            },
+            "under": {
+              "full_win": 0.33524587348738966,
+              "half_win": 0.27707766919352805,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.38767645731908246
+            }
+          },
+          "2.5": {
+            "over": {
+              "full_win": 0.38767645731908246,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.6123235426809177
+            },
+            "under": {
+              "full_win": 0.6123235426809177,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.38767645731908246
+            }
+          },
+          "2.75": {
+            "over": {
+              "full_win": 0.19026762295984656,
+              "half_win": 0.197408834359236,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.6123235426809177
+            },
+            "under": {
+              "full_win": 0.6123235426809177,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.197408834359236,
+              "full_loss": 0.19026762295984656
+            }
+          },
+          "3.0": {
+            "over": {
+              "full_win": 0.19026762295984656,
+              "half_win": 0.0,
+              "push": 0.197408834359236,
+              "half_loss": 0.0,
+              "full_loss": 0.6123235426809177
+            },
+            "under": {
+              "full_win": 0.6123235426809177,
+              "half_win": 0.0,
+              "push": 0.197408834359236,
+              "half_loss": 0.0,
+              "full_loss": 0.19026762295984656
+            }
+          },
+          "3.25": {
+            "over": {
+              "full_win": 0.19026762295984656,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.197408834359236,
+              "full_loss": 0.6123235426809177
+            },
+            "under": {
+              "full_win": 0.6123235426809177,
+              "half_win": 0.197408834359236,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.19026762295984656
+            }
+          },
+          "3.5": {
+            "over": {
+              "full_win": 0.19026762295984656,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.8097323770401537
+            },
+            "under": {
+              "full_win": 0.8097323770401537,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.19026762295984656
+            }
+          }
+        },
+        "five_plus_home_tail": 0.0210764346737448,
+        "five_plus_away_tail": 0.0009831469890762656,
+        "execution_path": {
+          "winner": "HOME",
+          "ah": {
+            "formal": true,
+            "backing": "HOME",
+            "home_handicap": -0.75,
+            "hard_gate": true,
+            "positive_settlement_required": true,
+            "push_allowed": false
+          }
+        },
+        "AH_gate_status": "APPLIED_POSITIVE_SETTLEMENT_ONLY",
+        "snapshot_phase": "closing",
+        "provenance": "FORMAL_CORRELATED_MARKET_SCORE_MODEL_POISSON_DIXON_COLES",
+        "no_fake_historical_prior": true,
+        "anti_double_counting": {
+          "market_cluster_is_one_correlated_likelihood": true,
+          "independent_bookmaker_votes": false,
+          "historical_prior_used": false,
+          "prior_market_overlap": false
+        },
+        "prior_usefulness_gate": {
+          "gate_version": "MODEL_1-PRIOR-USEFULNESS-1.0.0",
+          "decision": "USE_MARKET_ONLY",
+          "reason": "CONSERVATIVE_NO_APPROVED_PRIOR_SUBSET",
+          "runtime_target_fields_used": false,
+          "threshold_source": "FROZEN_COMPETITION_OOS_ACTIVATION_NOT_FINAL_TEST_RETUNING",
+          "features": {
+            "market_cluster_covariance": [
+              [
+                0.014801918791056747,
+                0.00029696239118138097
+              ],
+              [
+                0.00029696239118138097,
+                0.014820978759913988
+              ]
+            ],
+            "core_market_lambda_dispersion": [
+              0.030417343946638694,
+              0.014609552809677606
+            ],
+            "market_reconstruction_residual": 6.143863195973154e-12,
+            "snapshot_phase": "closing",
+            "season_progress": null,
+            "promoted_or_new_team": null,
+            "historical_prior_covariance": null,
+            "historical_market_log_lambda_distance": null,
+            "team_historical_effective_sample_size": null,
+            "home_away_prior_uncertainty": null
+          }
+        }
+      }
+    },
+    {
+      "competition": "德甲",
+      "match_id": "2799407",
+      "season": "2025-2026",
+      "kickoff": "2025-08-23 02:30",
+      "home_team": "拜仁慕尼黑",
+      "away_team": "RB莱比锡",
+      "snapshot_phase": "closing",
+      "market_payload": {
+        "match_id": "2799407",
+        "companies": {
+          "Pinnacle": {
+            "one_x_two": [
+              1.25,
+              7.18,
+              10.25
+            ],
+            "ou": {
+              "line": 4.0,
+              "over": 1.99,
+              "under": 1.9,
+              "role": "dynamic"
+            }
+          },
+          "Bet365": {
+            "one_x_two": [
+              1.22,
+              7.0,
+              11.0
+            ],
+            "ou": {
+              "line": 4.0,
+              "over": 1.97,
+              "under": 1.87,
+              "role": "dynamic"
+            }
+          },
+          "Macau": {
+            "one_x_two": [
+              1.18,
+              6.5,
+              9.5
+            ],
+            "ou": {
+              "line": 4.0,
+              "over": 1.95,
+              "under": 1.85,
+              "role": "dynamic"
+            }
+          }
+        }
+      },
+      "market_packet_provenance": "TITAN_ARCHIVED_CLOSING_1X2_OU",
+      "archived_ah_reference": 2.0,
+      "formal_execution_path": {
+        "winner": "HOME",
+        "ah": {
+          "formal": true,
+          "backing": "HOME",
+          "home_handicap": -2.0
+        }
+      },
+      "formal_execution_path_source": "PREGAME_MARKET_FAVORITE_AND_ARCHIVED_AH_MAGNITUDE",
+      "historical_prior_packet": null,
+      "historical_prior_state_not_later_than_kickoff": true,
+      "result": {
+        "status": "FORMAL_SCORE_TOP3",
+        "score_engine_mode": "MARKET_ONLY_FORMAL",
+        "prior_used": false,
+        "historical_prior_activation": "SHADOW",
+        "market_cluster_status": "VALID",
+        "market_companies_used": [
+          "Pinnacle",
+          "Bet365",
+          "Macau"
+        ],
+        "mean_log_lambda": [
+          1.1503659860070925,
+          -0.06706975314652225
+        ],
+        "cov_log_lambda": [
+          [
+            0.014639647607010925,
+            -0.000875772701115762
+          ],
+          [
+            -0.000875772701115762,
+            0.017600994410751015
+          ]
+        ],
+        "lambda_home": 3.1593489756414894,
+        "lambda_away": 0.9351299708039147,
+        "rho": -0.011591154570235214,
+        "raw_top10": [
+          {
+            "score": "3-0",
+            "probability": 0.08551881238429977,
+            "robustness_top3_frequency": 0.85175,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "2-0",
+            "probability": 0.0821642787776521,
+            "robustness_top3_frequency": 0.68675,
+            "winner_ok": true,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": 0.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "3-1",
+            "probability": 0.07943303986114131,
+            "robustness_top3_frequency": 0.65,
+            "winner_ok": true,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": 0.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "2-1",
+            "probability": 0.07639604019217813,
+            "robustness_top3_frequency": 0.46475,
+            "winner_ok": true,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "4-0",
+            "probability": 0.06773174574066376,
+            "robustness_top3_frequency": 0.2255,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "4-1",
+            "probability": 0.06284743711458478,
+            "robustness_top3_frequency": 0.079,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "1-0",
+            "probability": 0.052826275024903564,
+            "robustness_top3_frequency": 0.01975,
+            "winner_ok": true,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "1-1",
+            "probability": 0.050281497436765084,
+            "robustness_top3_frequency": 0.01225,
+            "winner_ok": false,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "5-0",
+            "probability": 0.04353559612510321,
+            "robustness_top3_frequency": 0.009,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "5-1",
+            "probability": 0.04035504027394921,
+            "robustness_top3_frequency": 0.00125,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          }
+        ],
+        "execution_filtered_top3": [
+          {
+            "score": "3-0",
+            "probability": 0.08551881238429977,
+            "robustness_top3_frequency": 0.85175,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "4-0",
+            "probability": 0.06773174574066376,
+            "robustness_top3_frequency": 0.2255,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "4-1",
+            "probability": 0.06284743711458478,
+            "robustness_top3_frequency": 0.079,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          }
+        ],
+        "Top1": {
+          "score": "3-0",
+          "probability": 0.08551881238429977,
+          "robustness_top3_frequency": 0.85175,
+          "winner_ok": true,
+          "ah_ok": true,
+          "ou_ok": true,
+          "ah_payoff": 1.0,
+          "ou_relation": null,
+          "hard_direction_ok": true
+        },
+        "Top2": {
+          "score": "4-0",
+          "probability": 0.06773174574066376,
+          "robustness_top3_frequency": 0.2255,
+          "winner_ok": true,
+          "ah_ok": true,
+          "ou_ok": true,
+          "ah_payoff": 1.0,
+          "ou_relation": null,
+          "hard_direction_ok": true
+        },
+        "Top3": {
+          "score": "4-1",
+          "probability": 0.06284743711458478,
+          "robustness_top3_frequency": 0.079,
+          "winner_ok": true,
+          "ah_ok": true,
+          "ou_ok": true,
+          "ah_payoff": 1.0,
+          "ou_relation": null,
+          "hard_direction_ok": true
+        },
+        "model_1x2": {
+          "home": 0.8011270412170155,
+          "draw": 0.11926260510010622,
+          "away": 0.07961035368287835
+        },
+        "OU_references": {
+          "2.0": {
+            "over": {
+              "full_win": 0.7729275409107043,
+              "half_win": 0.0,
+              "push": 0.14022387763695718,
+              "half_loss": 0.0,
+              "full_loss": 0.08684858145233862
+            },
+            "under": {
+              "full_win": 0.08684858145233862,
+              "half_win": 0.0,
+              "push": 0.14022387763695718,
+              "half_loss": 0.0,
+              "full_loss": 0.7729275409107043
+            }
+          },
+          "2.25": {
+            "over": {
+              "full_win": 0.7729275409107043,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.14022387763695718,
+              "full_loss": 0.08684858145233862
+            },
+            "under": {
+              "full_win": 0.08684858145233862,
+              "half_win": 0.14022387763695718,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.7729275409107043
+            }
+          },
+          "2.5": {
+            "over": {
+              "full_win": 0.7729275409107043,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.2270724590892958
+            },
+            "under": {
+              "full_win": 0.2270724590892958,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.7729275409107043
+            }
+          },
+          "2.75": {
+            "over": {
+              "full_win": 0.584979263459795,
+              "half_win": 0.18794827745090936,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.2270724590892958
+            },
+            "under": {
+              "full_win": 0.2270724590892958,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.18794827745090936,
+              "full_loss": 0.584979263459795
+            }
+          },
+          "3.0": {
+            "over": {
+              "full_win": 0.584979263459795,
+              "half_win": 0.0,
+              "push": 0.18794827745090936,
+              "half_loss": 0.0,
+              "full_loss": 0.2270724590892958
+            },
+            "under": {
+              "full_win": 0.2270724590892958,
+              "half_win": 0.0,
+              "push": 0.18794827745090936,
+              "half_loss": 0.0,
+              "full_loss": 0.584979263459795
+            }
+          },
+          "3.25": {
+            "over": {
+              "full_win": 0.584979263459795,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.18794827745090936,
+              "full_loss": 0.2270724590892958
+            },
+            "under": {
+              "full_win": 0.2270724590892958,
+              "half_win": 0.18794827745090936,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.584979263459795
+            }
+          },
+          "3.5": {
+            "over": {
+              "full_win": 0.584979263459795,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.41502073654020516
+            },
+            "under": {
+              "full_win": 0.41502073654020516,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.584979263459795
+            }
+          }
+        },
+        "five_plus_home_tail": 0.2179184917959822,
+        "five_plus_away_tail": 0.0032066556691965225,
+        "execution_path": {
+          "winner": "HOME",
+          "ah": {
+            "formal": true,
+            "backing": "HOME",
+            "home_handicap": -2.0,
+            "hard_gate": true,
+            "positive_settlement_required": true,
+            "push_allowed": false
+          }
+        },
+        "AH_gate_status": "APPLIED_POSITIVE_SETTLEMENT_ONLY",
+        "snapshot_phase": "closing",
+        "provenance": "FORMAL_CORRELATED_MARKET_SCORE_MODEL_POISSON_DIXON_COLES",
+        "no_fake_historical_prior": true,
+        "anti_double_counting": {
+          "market_cluster_is_one_correlated_likelihood": true,
+          "independent_bookmaker_votes": false,
+          "historical_prior_used": false,
+          "prior_market_overlap": false
+        },
+        "prior_usefulness_gate": {
+          "gate_version": "MODEL_1-PRIOR-USEFULNESS-1.0.0",
+          "decision": "USE_MARKET_ONLY",
+          "reason": "CONSERVATIVE_NO_APPROVED_PRIOR_SUBSET",
+          "runtime_target_fields_used": false,
+          "threshold_source": "FROZEN_COMPETITION_OOS_ACTIVATION_NOT_FINAL_TEST_RETUNING",
+          "features": {
+            "market_cluster_covariance": [
+              [
+                0.014639647607010925,
+                -0.000875772701115762
+              ],
+              [
+                -0.000875772701115762,
+                0.017600994410751015
+              ]
+            ],
+            "core_market_lambda_dispersion": [
+              0.04887857838465975,
+              0.05310369634911481
+            ],
+            "market_reconstruction_residual": 1.2933635643956146e-13,
+            "snapshot_phase": "closing",
+            "season_progress": null,
+            "promoted_or_new_team": null,
+            "historical_prior_covariance": null,
+            "historical_market_log_lambda_distance": null,
+            "team_historical_effective_sample_size": null,
+            "home_away_prior_uncertainty": null
+          }
+        }
+      }
+    },
+    {
+      "competition": "法甲",
+      "match_id": "2800027",
+      "season": "2025-2026",
+      "kickoff": "2025-08-16 02:45",
+      "home_team": "雷恩",
+      "away_team": "马赛",
+      "snapshot_phase": "closing",
+      "market_payload": {
+        "match_id": "2800027",
+        "companies": {
+          "Pinnacle": {
+            "one_x_two": [
+              4.06,
+              3.77,
+              1.92
+            ],
+            "ou": {
+              "line": 2.75,
+              "over": 2.04,
+              "under": 1.87,
+              "role": "dynamic"
+            }
+          },
+          "Bet365": {
+            "one_x_two": [
+              3.9,
+              3.6,
+              1.9
+            ],
+            "ou": {
+              "line": 2.75,
+              "over": 2.02,
+              "under": 1.8199999999999998,
+              "role": "dynamic"
+            }
+          },
+          "Macau": {
+            "one_x_two": [
+              3.4,
+              3.45,
+              1.9
+            ],
+            "ou": {
+              "line": 2.5,
+              "over": 1.75,
+              "under": 1.95,
+              "role": "dynamic"
+            }
+          }
+        }
+      },
+      "market_packet_provenance": "TITAN_ARCHIVED_CLOSING_1X2_OU",
+      "archived_ah_reference": -0.5,
+      "formal_execution_path": {
+        "winner": "AWAY",
+        "ah": {
+          "formal": true,
+          "backing": "AWAY",
+          "home_handicap": 0.5
+        }
+      },
+      "formal_execution_path_source": "PREGAME_MARKET_FAVORITE_AND_ARCHIVED_AH_MAGNITUDE",
+      "historical_prior_packet": null,
+      "historical_prior_state_not_later_than_kickoff": true,
+      "result": {
+        "status": "FORMAL_SCORE_TOP3",
+        "score_engine_mode": "MARKET_ONLY_FORMAL",
+        "prior_used": false,
+        "historical_prior_activation": "SHADOW",
+        "market_cluster_status": "VALID",
+        "market_companies_used": [
+          "Pinnacle",
+          "Bet365",
+          "Macau"
+        ],
+        "mean_log_lambda": [
+          0.1679557642585909,
+          0.5746504368812216
+        ],
+        "cov_log_lambda": [
+          [
+            0.015786843651229822,
+            0.0023452989584428472
+          ],
+          [
+            0.0023452989584428472,
+            0.018369808820059154
+          ]
+        ],
+        "lambda_home": 1.1828842837271676,
+        "lambda_away": 1.7765094161895998,
+        "rho": -0.12801996865997897,
+        "raw_top10": [
+          {
+            "score": "1-1",
+            "probability": 0.12019839698804749,
+            "robustness_top3_frequency": 0.99825,
+            "winner_ok": false,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "1-2",
+            "probability": 0.09441056052167446,
+            "robustness_top3_frequency": 0.8845,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "0-2",
+            "probability": 0.08053789739363759,
+            "robustness_top3_frequency": 0.5425,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "0-1",
+            "probability": 0.07750982703973378,
+            "robustness_top3_frequency": 0.31125,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "0-0",
+            "probability": 0.06615877297248748,
+            "robustness_top3_frequency": 0.08475,
+            "winner_ok": false,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "2-1",
+            "probability": 0.06326698885193807,
+            "robustness_top3_frequency": 0.1365,
+            "winner_ok": false,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "1-3",
+            "probability": 0.05678173239752856,
+            "robustness_top3_frequency": 0.02425,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "2-2",
+            "probability": 0.05621182727956784,
+            "robustness_top3_frequency": 0.01675,
+            "winner_ok": false,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "0-3",
+            "probability": 0.048305389425832526,
+            "robustness_top3_frequency": 0.00025,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "1-0",
+            "probability": 0.047580999802478936,
+            "robustness_top3_frequency": 0.001,
+            "winner_ok": false,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          }
+        ],
+        "execution_filtered_top3": [
+          {
+            "score": "1-2",
+            "probability": 0.09441056052167446,
+            "robustness_top3_frequency": 0.8845,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "0-2",
+            "probability": 0.08053789739363759,
+            "robustness_top3_frequency": 0.5425,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "0-1",
+            "probability": 0.07750982703973378,
+            "robustness_top3_frequency": 0.31125,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          }
+        ],
+        "Top1": {
+          "score": "1-2",
+          "probability": 0.09441056052167446,
+          "robustness_top3_frequency": 0.8845,
+          "winner_ok": true,
+          "ah_ok": true,
+          "ou_ok": true,
+          "ah_payoff": 1.0,
+          "ou_relation": null,
+          "hard_direction_ok": true
+        },
+        "Top2": {
+          "score": "0-2",
+          "probability": 0.08053789739363759,
+          "robustness_top3_frequency": 0.5425,
+          "winner_ok": true,
+          "ah_ok": true,
+          "ou_ok": true,
+          "ah_payoff": 1.0,
+          "ou_relation": null,
+          "hard_direction_ok": true
+        },
+        "Top3": {
+          "score": "0-1",
+          "probability": 0.07750982703973378,
+          "robustness_top3_frequency": 0.31125,
+          "winner_ok": true,
+          "ah_ok": true,
+          "ou_ok": true,
+          "ah_payoff": 1.0,
+          "ou_relation": null,
+          "hard_direction_ok": true
+        },
+        "model_1x2": {
+          "home": 0.24114111869804292,
+          "draw": 0.25843104827761726,
+          "away": 0.5004278330243399
+        },
+        "OU_references": {
+          "2.0": {
+            "over": {
+              "full_win": 0.5717660438080561,
+              "half_win": 0.0,
+              "push": 0.2369843563772436,
+              "half_loss": 0.0,
+              "full_loss": 0.1912495998147002
+            },
+            "under": {
+              "full_win": 0.1912495998147002,
+              "half_win": 0.0,
+              "push": 0.2369843563772436,
+              "half_loss": 0.0,
+              "full_loss": 0.5717660438080561
+            }
+          },
+          "2.25": {
+            "over": {
+              "full_win": 0.5717660438080561,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.2369843563772436,
+              "full_loss": 0.1912495998147002
+            },
+            "under": {
+              "full_win": 0.1912495998147002,
+              "half_win": 0.2369843563772436,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.5717660438080561
+            }
+          },
+          "2.5": {
+            "over": {
+              "full_win": 0.5717660438080561,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.4282339561919438
+            },
+            "under": {
+              "full_win": 0.4282339561919438,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.5717660438080561
+            }
+          },
+          "2.75": {
+            "over": {
+              "full_win": 0.35125069195794867,
+              "half_win": 0.22051535185010757,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.4282339561919438
+            },
+            "under": {
+              "full_win": 0.4282339561919438,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.22051535185010757,
+              "full_loss": 0.35125069195794867
+            }
+          },
+          "3.0": {
+            "over": {
+              "full_win": 0.35125069195794867,
+              "half_win": 0.0,
+              "push": 0.22051535185010757,
+              "half_loss": 0.0,
+              "full_loss": 0.4282339561919438
+            },
+            "under": {
+              "full_win": 0.4282339561919438,
+              "half_win": 0.0,
+              "push": 0.22051535185010757,
+              "half_loss": 0.0,
+              "full_loss": 0.35125069195794867
+            }
+          },
+          "3.25": {
+            "over": {
+              "full_win": 0.35125069195794867,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.22051535185010757,
+              "full_loss": 0.4282339561919438
+            },
+            "under": {
+              "full_win": 0.4282339561919438,
+              "half_win": 0.22051535185010757,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.35125069195794867
+            }
+          },
+          "3.5": {
+            "over": {
+              "full_win": 0.35125069195794867,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.6487493080420513
+            },
+            "under": {
+              "full_win": 0.6487493080420513,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.35125069195794867
+            }
+          }
+        },
+        "five_plus_home_tail": 0.008287200515835287,
+        "five_plus_away_tail": 0.03907144364682737,
+        "execution_path": {
+          "winner": "AWAY",
+          "ah": {
+            "formal": true,
+            "backing": "AWAY",
+            "home_handicap": 0.5,
+            "hard_gate": true,
+            "positive_settlement_required": true,
+            "push_allowed": false
+          }
+        },
+        "AH_gate_status": "APPLIED_POSITIVE_SETTLEMENT_ONLY",
+        "snapshot_phase": "closing",
+        "provenance": "FORMAL_CORRELATED_MARKET_SCORE_MODEL_POISSON_DIXON_COLES",
+        "no_fake_historical_prior": true,
+        "anti_double_counting": {
+          "market_cluster_is_one_correlated_likelihood": true,
+          "independent_bookmaker_votes": false,
+          "historical_prior_used": false,
+          "prior_market_overlap": false
+        },
+        "prior_usefulness_gate": {
+          "gate_version": "MODEL_1-PRIOR-USEFULNESS-1.0.0",
+          "decision": "USE_MARKET_ONLY",
+          "reason": "CONSERVATIVE_NO_APPROVED_PRIOR_SUBSET",
+          "runtime_target_fields_used": false,
+          "threshold_source": "FROZEN_COMPETITION_OOS_ACTIVATION_NOT_FINAL_TEST_RETUNING",
+          "features": {
+            "market_cluster_covariance": [
+              [
+                0.015786843651229822,
+                0.0023452989584428472
+              ],
+              [
+                0.0023452989584428472,
+                0.018369808820059154
+              ]
+            ],
+            "core_market_lambda_dispersion": [
+              0.04359070752557908,
+              0.11001245139251846
+            ],
+            "market_reconstruction_residual": 7.500888798972483e-12,
+            "snapshot_phase": "closing",
+            "season_progress": null,
+            "promoted_or_new_team": null,
+            "historical_prior_covariance": null,
+            "historical_market_log_lambda_distance": null,
+            "team_historical_effective_sample_size": null,
+            "home_away_prior_uncertainty": null
+          }
+        }
+      }
+    },
+    {
+      "competition": "欧冠",
+      "match_id": "2788747",
+      "season": "2025-2026",
+      "kickoff": "2025-07-08 23:00",
+      "home_team": "古比斯",
+      "away_team": "米沙米",
+      "snapshot_phase": "closing",
+      "market_payload": {
+        "match_id": "2788747",
+        "companies": {
+          "Pinnacle": {
+            "one_x_two": [
+              1.32,
+              5.12,
+              9.26
+            ],
+            "ou": {
+              "line": 3.0,
+              "over": 1.88,
+              "under": 1.96,
+              "role": "dynamic"
+            }
+          },
+          "Bet365": {
+            "one_x_two": [
+              1.28,
+              4.75,
+              9.0
+            ],
+            "ou": {
+              "line": 3.0,
+              "over": 1.92,
+              "under": 1.87,
+              "role": "dynamic"
+            }
+          },
+          "Macau": {
+            "one_x_two": [
+              1.25,
+              4.5,
+              8.0
+            ],
+            "ou": {
+              "line": 3.25,
+              "over": 2.0,
+              "under": 1.6,
+              "role": "dynamic"
+            }
+          }
+        }
+      },
+      "market_packet_provenance": "TITAN_ARCHIVED_CLOSING_1X2_OU",
+      "archived_ah_reference": 1.5,
+      "formal_execution_path": {
+        "winner": "HOME",
+        "ah": {
+          "formal": true,
+          "backing": "HOME",
+          "home_handicap": -1.5
+        }
+      },
+      "formal_execution_path_source": "PREGAME_MARKET_FAVORITE_AND_ARCHIVED_AH_MAGNITUDE",
+      "historical_prior_packet": {
+        "status": "VALID",
+        "engine_version": "MODEL_1-TITAN-PRIOR-1.0.0",
+        "mean_log_lambda": [
+          0.4955774541894814,
+          0.22812918492203718
+        ],
+        "cov_log_lambda": [
+          [
+            0.4017881542461703,
+            -0.0688416011504587
+          ],
+          [
+            -0.0688416011504587,
+            0.42625213715905075
+          ]
+        ],
+        "mean_lambda": [
+          1.6414458252054887,
+          1.2562476031988767
+        ],
+        "source_groups": [
+          "TEAM_DATA"
+        ],
+        "calibration_ref": "MODEL_1-TITAN-PRIOR-20260912:POINT_IN_TIME_SMOKE",
+        "state_as_of": "2025-07-08 23:00:00",
+        "components": {
+          "mu_league": 0.22812918492203718,
+          "hfa_league": 0.2674482692674442,
+          "attack_home": 0.0,
+          "defense_home": 0.0,
+          "attack_away": 0.0,
+          "defense_away": 0.0,
+          "x_beta_home": 0.0,
+          "x_beta_away": 0.0
+        },
+        "fixture": {
+          "league": "欧冠",
+          "home_team": "古比斯",
+          "away_team": "米沙米",
+          "season": "2025-2026",
+          "season_start": 2025,
+          "match_date": "2025-07-08 23:00:00"
+        },
+        "hierarchy": {
+          "home_team_fallback": "LEAGUE_BASELINE_NEW_OR_PROMOTED_TEAM",
+          "away_team_fallback": "LEAGUE_BASELINE_NEW_OR_PROMOTED_TEAM",
+          "half_life_days": 270.0,
+          "team_sd": 0.35,
+          "transition_sd": 0.12,
+          "opponent_adjusted": true,
+          "partial_pooling": true,
+          "league_specific_baseline": true
+        },
+        "uncertainty": {
+          "method": "LAPLACE_FULL_PARAMETER_COVARIANCE_PROPAGATION",
+          "numerical_pd_jitter": 0.0,
+          "fixed_score_covariance_forbidden": true,
+          "process_cov_log_lambda": [
+            [
+              0.15052611594626936,
+              -0.07234992840084413
+            ],
+            [
+              -0.07234992840084413,
+              0.17416236866224732
+            ]
+          ],
+          "process_covariance_train_only": true
+        },
+        "anti_double_counting": {
+          "market_inputs_used": false,
+          "external_draw_label_used": false,
+          "context_inputs_used": false
+        },
+        "activation": "ACTIVE"
+      },
+      "historical_prior_state_not_later_than_kickoff": true,
+      "result": {
+        "status": "BAYESIAN_POSTERIOR_TOP3",
+        "score_engine_mode": "HISTORICAL_BAYESIAN",
+        "prior_used": true,
+        "historical_prior_activation": "ACTIVE",
+        "market_cluster_status": "VALID",
+        "market_companies_used": [
+          "Pinnacle",
+          "Bet365",
+          "Macau"
+        ],
+        "mean_log_lambda": [
+          0.8863845338579553,
+          -0.3206802207301474
+        ],
+        "cov_log_lambda": [
+          [
+            0.013941419442295348,
+            -0.00018610038510274515
+          ],
+          [
+            -0.00018610038510274515,
+            0.016696877126558502
+          ]
+        ],
+        "lambda_home": 2.4263414188356065,
+        "lambda_away": 0.7256552634020796,
+        "rho": -0.07895556716798469,
+        "raw_top10": [
+          {
+            "score": "2-0",
+            "probability": 0.12354813170868545,
+            "robustness_top3_frequency": 0.999,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "3-0",
+            "probability": 0.0999584789653331,
+            "robustness_top3_frequency": 0.758,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "1-0",
+            "probability": 0.09731796045238696,
+            "robustness_top3_frequency": 0.65025,
+            "winner_ok": true,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "2-1",
+            "probability": 0.08949250270334684,
+            "robustness_top3_frequency": 0.36925,
+            "winner_ok": true,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "1-1",
+            "probability": 0.08068974918755253,
+            "robustness_top3_frequency": 0.162,
+            "winner_ok": false,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "3-1",
+            "probability": 0.07239227995480833,
+            "robustness_top3_frequency": 0.01075,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "4-0",
+            "probability": 0.06149759652309981,
+            "robustness_top3_frequency": 0.05075,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "0-0",
+            "probability": 0.049627413906364146,
+            "robustness_top3_frequency": 0.0,
+            "winner_ok": false,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          },
+          {
+            "score": "4-1",
+            "probability": 0.04453110502261183,
+            "robustness_top3_frequency": 0.0,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "2-2",
+            "probability": 0.03296684046340601,
+            "robustness_top3_frequency": 0.0,
+            "winner_ok": false,
+            "ah_ok": false,
+            "ou_ok": true,
+            "ah_payoff": -1.0,
+            "ou_relation": null,
+            "hard_direction_ok": false
+          }
+        ],
+        "execution_filtered_top3": [
+          {
+            "score": "2-0",
+            "probability": 0.12354813170868545,
+            "robustness_top3_frequency": 0.999,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "3-0",
+            "probability": 0.0999584789653331,
+            "robustness_top3_frequency": 0.758,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          },
+          {
+            "score": "3-1",
+            "probability": 0.07239227995480833,
+            "robustness_top3_frequency": 0.01075,
+            "winner_ok": true,
+            "ah_ok": true,
+            "ou_ok": true,
+            "ah_payoff": 1.0,
+            "ou_relation": null,
+            "hard_direction_ok": true
+          }
+        ],
+        "Top1": {
+          "score": "2-0",
+          "probability": 0.12354813170868545,
+          "robustness_top3_frequency": 0.999,
+          "winner_ok": true,
+          "ah_ok": true,
+          "ou_ok": true,
+          "ah_payoff": 1.0,
+          "ou_relation": null,
+          "hard_direction_ok": true
+        },
+        "Top2": {
+          "score": "3-0",
+          "probability": 0.0999584789653331,
+          "robustness_top3_frequency": 0.758,
+          "winner_ok": true,
+          "ah_ok": true,
+          "ou_ok": true,
+          "ah_payoff": 1.0,
+          "ou_relation": null,
+          "hard_direction_ok": true
+        },
+        "Top3": {
+          "score": "3-1",
+          "probability": 0.07239227995480833,
+          "robustness_top3_frequency": 0.01075,
+          "winner_ok": true,
+          "ah_ok": true,
+          "ou_ok": true,
+          "ah_payoff": 1.0,
+          "ou_relation": null,
+          "hard_direction_ok": true
+        },
+        "model_1x2": {
+          "home": 0.7404717722545667,
+          "draw": 0.17078760186033987,
+          "away": 0.08874062588509332
+        },
+        "OU_references": {
+          "2.0": {
+            "over": {
+              "full_win": 0.6113600800055061,
+              "half_win": 0.0,
+              "push": 0.21591456886295207,
+              "half_loss": 0.0,
+              "full_loss": 0.1727253511315413
+            },
+            "under": {
+              "full_win": 0.1727253511315413,
+              "half_win": 0.0,
+              "push": 0.21591456886295207,
+              "half_loss": 0.0,
+              "full_loss": 0.6113600800055061
+            }
+          },
+          "2.25": {
+            "over": {
+              "full_win": 0.6113600800055061,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.21591456886295207,
+              "full_loss": 0.1727253511315413
+            },
+            "under": {
+              "full_win": 0.1727253511315413,
+              "half_win": 0.21591456886295207,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.6113600800055061
+            }
+          },
+          "2.5": {
+            "over": {
+              "full_win": 0.6113600800055061,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.3886399199944934
+            },
+            "under": {
+              "full_win": 0.3886399199944934,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.6113600800055061
+            }
+          },
+          "2.75": {
+            "over": {
+              "full_win": 0.391437020261225,
+              "half_win": 0.21992305974428172,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.3886399199944934
+            },
+            "under": {
+              "full_win": 0.3886399199944934,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.21992305974428172,
+              "full_loss": 0.391437020261225
+            }
+          },
+          "3.0": {
+            "over": {
+              "full_win": 0.391437020261225,
+              "half_win": 0.0,
+              "push": 0.21992305974428172,
+              "half_loss": 0.0,
+              "full_loss": 0.3886399199944934
+            },
+            "under": {
+              "full_win": 0.3886399199944934,
+              "half_win": 0.0,
+              "push": 0.21992305974428172,
+              "half_loss": 0.0,
+              "full_loss": 0.391437020261225
+            }
+          },
+          "3.25": {
+            "over": {
+              "full_win": 0.391437020261225,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.21992305974428172,
+              "full_loss": 0.3886399199944934
+            },
+            "under": {
+              "full_win": 0.3886399199944934,
+              "half_win": 0.21992305974428172,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.391437020261225
+            }
+          },
+          "3.5": {
+            "over": {
+              "full_win": 0.391437020261225,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.608562979738775
+            },
+            "under": {
+              "full_win": 0.608562979738775,
+              "half_win": 0.0,
+              "push": 0.0,
+              "half_loss": 0.0,
+              "full_loss": 0.391437020261225
+            }
+          }
+        },
+        "five_plus_home_tail": 0.10464896388566663,
+        "five_plus_away_tail": 0.0010910793534949304,
+        "execution_path": {
+          "winner": "HOME",
+          "ah": {
+            "formal": true,
+            "backing": "HOME",
+            "home_handicap": -1.5,
+            "hard_gate": true,
+            "positive_settlement_required": true,
+            "push_allowed": false
+          }
+        },
+        "AH_gate_status": "APPLIED_POSITIVE_SETTLEMENT_ONLY",
+        "snapshot_phase": "closing",
+        "provenance": "BAYESIAN_POSTERIOR_POISSON_DIXON_COLES",
+        "no_fake_historical_prior": true,
+        "anti_double_counting": {
+          "market_cluster_is_one_correlated_likelihood": true,
+          "independent_bookmaker_votes": false,
+          "historical_prior_is_market_blind": true,
+          "prior_market_overlap": false
+        },
+        "prior_usefulness_gate": {
+          "gate_version": "MODEL_1-PRIOR-USEFULNESS-1.0.0",
+          "decision": "USE_HISTORICAL_PRIOR",
+          "reason": "ACTIVE_OOS_APPROVED_PRIOR",
+          "runtime_target_fields_used": false,
+          "threshold_source": "FROZEN_COMPETITION_OOS_ACTIVATION_NOT_FINAL_TEST_RETUNING",
+          "features": {
+            "market_cluster_covariance": [
+              [
+                0.014455654684280067,
+                -9.711034224054261e-05
+              ],
+              [
+                -9.711034224054261e-05,
+                0.01739572148280641
+              ]
+            ],
+            "core_market_lambda_dispersion": [
+              0.0183266948531574,
+              0.03954286484420442
+            ],
+            "market_reconstruction_residual": 3.3088531914415853e-12,
+            "snapshot_phase": "closing",
+            "season_progress": null,
+            "promoted_or_new_team": null,
+            "historical_prior_covariance": [
+              [
+                0.4017881542461703,
+                -0.0688416011504587
+              ],
+              [
+                -0.0688416011504587,
+                0.42625213715905075
+              ]
+            ],
+            "historical_market_log_lambda_distance": 0.6968286087461132,
+            "team_historical_effective_sample_size": null,
+            "home_away_prior_uncertainty": [
+              0.4017881542461703,
+              0.42625213715905075
+            ]
+          }
+        }
+      }
+    }
+  ]
+}

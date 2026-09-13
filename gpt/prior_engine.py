@@ -28,6 +28,7 @@ import sqlite3
 from typing import Any, Iterable, Mapping, Sequence
 
 import numpy as np
+from scipy import sparse
 from scipy.special import gammaln
 
 PRIOR_ENGINE_VERSION = "MODEL_1-TITAN-PRIOR-1.0.0"
@@ -259,6 +260,7 @@ def fit_league_model(
     min_matches: int = 80,
     max_iter: int = 80,
     tol: float = 1e-8,
+    include_precision_csc: bool = False,
 ) -> dict[str, Any]:
     """Fit one league using only matches strictly before ``as_of``."""
     hyperparameters.validate()
@@ -386,7 +388,7 @@ def fit_league_model(
     if float(np.min(eig)) <= 0.0:
         raise PriorEngineError(f"Non-positive parameter covariance for {league}.")
 
-    return {
+    result = {
         "engine_version": PRIOR_ENGINE_VERSION,
         "status": "FITTED",
         "league": league,
@@ -416,6 +418,15 @@ def fit_league_model(
         },
         "objective": objective(theta),
     }
+    if include_precision_csc:
+        precision = sparse.csc_matrix(final_hessian)
+        result["precision_csc"] = {
+            "data": precision.data.tolist(),
+            "indices": precision.indices.tolist(),
+            "indptr": precision.indptr.tolist(),
+            "shape": list(precision.shape),
+        }
+    return result
 
 
 def _model_arrays(model: Mapping[str, Any]) -> tuple[np.ndarray, np.ndarray, dict[tuple[str, int], int]]:
@@ -481,6 +492,9 @@ def build_prior_packet_from_model(
     """Propagate one fitted historical league model to a fixture prior packet."""
     if any(k.lower() in FORBIDDEN_PRIOR_KEYS for k in model.keys()):
         raise PriorEngineError("Prior model contains a forbidden market-derived top-level key.")
+    if match_date is not None and model.get("as_of") is not None:
+        if _utc_naive(model["as_of"]) > _utc_naive(match_date):
+            raise PriorEngineError("Prior model state is later than the requested fixture.")
     target_season = _season_start(season)
     theta, parameter_cov, state_map = _model_arrays(model)
     layout = model["parameter_layout"]
@@ -531,6 +545,7 @@ def build_prior_packet_from_model(
         "mean_lambda": [float(exp(mean[0])), float(exp(mean[1]))],
         "source_groups": ["TEAM_DATA"],
         "calibration_ref": calibration_ref,
+        "state_as_of": model.get("as_of"),
         "components": {
             "mu_league": float(theta[int(layout["mu_league"])]),
             "hfa_league": float(theta[int(layout["hfa_league"])]),

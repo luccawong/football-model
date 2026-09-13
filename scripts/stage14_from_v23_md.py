@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 
 from gpt.quant_core import build_quant_packet
-from gpt.stage14_auto import automatic_top3, market_reconstruction_top3
+from gpt.stage14_auto import market_reconstruction_top3, resolve_score_engine
 from src.parser.titan_md import read_markdown_tables
 
 
@@ -66,14 +66,23 @@ def build_stage14(
     prior_context=None,
     context_updates=None,
     execution_path=None,
+    mode="AUTO",
+    snapshot_phase=None,
 ):
     tables = read_markdown_tables(path)
     quant = build_quant_packet(build_payload(tables, match_id))
-    score = automatic_top3(
+    context = dict(prior_context or {})
+    score = resolve_score_engine(
+        str(context.get("competition") or context.get("league") or "UNKNOWN"),
+        str(context.get("season") or "UNKNOWN"),
+        str(context.get("home_team") or "UNKNOWN"),
+        str(context.get("away_team") or "UNKNOWN"),
+        str(context.get("kickoff") or context.get("match_date") or quant.get("snapshot_time") or "UNKNOWN"),
         quant,
+        snapshot_phase=snapshot_phase,
+        mode=mode,
         prior_packet=prior_packet,
         prior_store=prior_store,
-        prior_context=prior_context,
         context_updates=context_updates,
         execution_path=execution_path,
     )
@@ -87,7 +96,8 @@ def build_stage14(
         "formal_stage14": score,
         "research_market_reconstruction": research,
         "quant_engine_version": quant.get("engine_version"),
-        "no_market_only_fallback": True,
+        "production_default_mode": "AUTO",
+        "formal_correlated_market_model_enabled": True,
     }
 
 
@@ -95,7 +105,7 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("markdown")
     parser.add_argument("match_id")
-    source = parser.add_mutually_exclusive_group(required=True)
+    source = parser.add_mutually_exclusive_group(required=False)
     source.add_argument("--prior-json", help="Pre-built validated prior packet JSON")
     source.add_argument("--prior-store", help="Calibrated Titan historical prior store JSON")
     parser.add_argument(
@@ -104,13 +114,15 @@ def main():
     )
     parser.add_argument("--context-json")
     parser.add_argument("--execution-json")
+    parser.add_argument("--mode", choices=("AUTO", "HISTORICAL_BAYESIAN", "MARKET_ONLY_FORMAL"), default="AUTO")
+    parser.add_argument("--snapshot-phase", choices=("opening", "closing", "current"))
     args = parser.parse_args()
 
     prior = _load_json(args.prior_json)
     store = args.prior_store
     prior_context = _load_json(args.prior_context_json)
-    if store is not None and prior_context is None:
-        parser.error("--prior-store requires --prior-context-json; season is never inferred from kickoff date.")
+    if store is not None and prior_context is None and args.mode == "HISTORICAL_BAYESIAN":
+        parser.error("Explicit historical mode with --prior-store requires --prior-context-json.")
     context = _load_json(args.context_json)
     execution = _load_json(args.execution_json)
     print(
@@ -123,6 +135,8 @@ def main():
                 prior_context=prior_context,
                 context_updates=context,
                 execution_path=execution,
+                mode=args.mode,
+                snapshot_phase=args.snapshot_phase,
             ),
             ensure_ascii=False,
             indent=2,

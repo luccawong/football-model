@@ -1,9 +1,15 @@
 {
-  "policy_version": "MODEL_1-SCORE-POLICY-1.2.0",
+  "policy_version": "MODEL_1-SCORE-POLICY-2.0.0",
   "model_id": "MODEL_1",
-  "formal_stage14": "BAYESIAN_POSTERIOR_DIXON_COLES",
+  "formal_stage14": "AUTO_CORRELATED_SCORE_ENGINE",
+  "score_engine_modes": {
+    "default": "AUTO",
+    "HISTORICAL_BAYESIAN": "active historical prior + correlated market likelihood -> Bayesian posterior predictive",
+    "MARKET_ONLY_FORMAL": "correlated market cluster log-rate distribution -> formal predictive",
+    "AUTO": "ACTIVE approved prior uses HISTORICAL_BAYESIAN; otherwise MARKET_ONLY_FORMAL"
+  },
   "prior": {
-    "required": true,
+    "required": "ONLY_WHEN_MODE_IS_HISTORICAL_BAYESIAN",
     "engine": "gpt.prior_engine + gpt.prior_competition",
     "policy_ref": "config/model_1_prior_policy.json",
     "formal_source": "TITAN_HISTORICAL_MATCH_RESULTS_ONLY",
@@ -44,7 +50,7 @@
     "five_plus_tail_report": true
   },
   "top3": {
-    "formal_source": "BAYESIAN_POSTERIOR_PREDICTIVE_GRID",
+    "formal_source": "SELECTED_FORMAL_SCORE_ENGINE_PREDICTIVE_GRID",
     "raw_posterior_distribution_must_not_be_deleted": true,
     "winner_consistency": "HARD",
     "ah_consistency": "HARD when execution_path.ah is formal",
@@ -62,10 +68,21 @@
     "pipeline": "raw posterior score distribution -> execution consistency filter -> final Top3"
   },
   "fallback": {
-    "market_only_formal_stage14": false,
+    "market_only_formal_stage14": true,
+    "market_only_identity": "FORMAL_CORRELATED_MARKET_SCORE_MODEL",
     "market_reconstruction_research_only": true,
-    "missing_prior_action": "BAYESIAN_PRIOR_REQUIRED",
-    "missing_context_for_auto_prior_action": "BAYESIAN_PRIOR_CONTEXT_REQUIRED"
+    "single_company_market_reconstruction_is_never_formal": true,
+    "explicit_historical_missing_prior_action": "BAYESIAN_PRIOR_REQUIRED",
+    "auto_shadow_prior_action": "MARKET_ONLY_FORMAL",
+    "missing_core_market_action": "MISSING_CORE_MARKET",
+    "market_must_never_be_labeled_historical_prior": true
+  },
+  "prior_usefulness_gate": {
+    "version": "MODEL_1-PRIOR-USEFULNESS-1.0.0",
+    "runtime_target_fields_forbidden": true,
+    "domestic_default": "USE_MARKET_ONLY_UNTIL_TRAIN_ONLY_SUBSET_IS_APPROVED",
+    "test_retuning_forbidden": true,
+    "cannot_block_formal_market_score_output": true
   },
   "validation": {
     "required_metrics": [

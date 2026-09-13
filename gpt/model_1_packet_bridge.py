@@ -17,8 +17,9 @@ from gpt.feature_engine import module_gate
 from gpt.prior_engine import PriorEngineError
 from gpt.prior_runtime import resolve_prior
 from gpt.stage14_bayesian import build_stage14_score_packet
+from gpt.stage14_auto import resolve_score_engine
 
-PACKET_BRIDGE_VERSION = "MODEL_1-PACKET-BRIDGE-1.3.0"
+PACKET_BRIDGE_VERSION = "MODEL_1-PACKET-BRIDGE-1.4.0"
 
 
 class PacketBridgeError(ValueError):
@@ -183,4 +184,58 @@ def build_runtime_packet(
         "feature_packet": dict(feature_packet) if feature_packet is not None else {"status": "MISSING"},
         "formal_trace": dict(formal_trace) if formal_trace is not None else {"status": "MISSING"},
         "no_silent_substitution": True,
+    }
+
+
+def build_production_correct_score_evidence(
+    *,
+    quant_packet: Mapping[str, Any],
+    competition: str,
+    season: str,
+    home_team: str,
+    away_team: str,
+    kickoff: str,
+    snapshot_phase: str | None = None,
+    mode: str = "AUTO",
+    prior_packet: Mapping[str, Any] | None = None,
+    prior_store: Mapping[str, Any] | str | Path | None = None,
+    runtime_metadata: Mapping[str, Any] | None = None,
+    context_updates: Sequence[Mapping[str, Any]] | None = None,
+    execution_path: Mapping[str, Any] | None = None,
+    market_sigma_floor: float = 0.12,
+    max_goals: int = 12,
+    draws: int = 4000,
+) -> dict[str, Any]:
+    """Production bridge whose default AUTO mode always chooses a formal model."""
+    stage14 = resolve_score_engine(
+        competition, season, home_team, away_team, kickoff, quant_packet,
+        snapshot_phase=snapshot_phase,
+        mode=mode,
+        prior_packet=prior_packet,
+        prior_store=prior_store,
+        runtime_metadata=runtime_metadata,
+        context_updates=context_updates,
+        execution_path=execution_path,
+        market_sigma_floor=market_sigma_floor,
+        max_goals=max_goals,
+        draws=draws,
+    )
+    if stage14.get("status") not in {
+        "FORMAL_SCORE_TOP3", "BAYESIAN_POSTERIOR_TOP3", "SCORELINE_CONFLICT"
+    }:
+        raise PacketBridgeError(
+            f"Formal Stage14 unavailable: {stage14.get('reason', stage14.get('status'))}"
+        )
+    return {
+        "packet_bridge_version": PACKET_BRIDGE_VERSION,
+        "model_id": "MODEL_1",
+        "formal_stage": "correct_score_auto_poisson_dixon_coles",
+        "stage14": stage14,
+        "score_engine_mode": stage14["score_engine_mode"],
+        "prior_used": stage14["prior_used"],
+        "historical_prior_activation": stage14["historical_prior_activation"],
+        "top3_scores": [row["score"] for row in stage14.get("top3", [])],
+        "top3_rows": list(stage14.get("top3", [])),
+        "execution_path": stage14.get("execution_path", {}),
+        "no_fake_historical_prior": stage14.get("no_fake_historical_prior", False),
     }

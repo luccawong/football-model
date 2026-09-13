@@ -322,7 +322,9 @@
         "bytes": 2190,
         "sha256": "8bfc47b6eb2bade949279d438044c926a15d3b9d1322d9fc360e72edeff976ce"
       }
-    ]
+    ],
+    "availability": "INCOMPLETE_LEGACY_ARCHIVE",
+    "runtime_precedence": "MODEL_FILES_FIRST"
   },
   "storage_format": "FULL_STORE_LZMA_BASE85_CHUNKS_V1",
   "domestic_v2": {
@@ -345,6 +347,14 @@
     "法甲": {
       "path": "domestic_v2/ligue1.json",
       "sha256": "908bc0fb76f76379c7b78f42a163b716c5b2ad7764b25614022afa83741366ee"
+    }
+  },
+  "model_files": {
+    "欧冠": {
+      "path": "european_runtime/ucl.json",
+      "sha256": "0b66307b834faa0fff938b84201488055a46e1a8fa2c055fa28b998bb54b6b08",
+      "format": "SPARSE_PRECISION_JSON",
+      "purpose": "ACTIVE_UCL_RUNTIME_RECOVERY"
     }
   }
 }

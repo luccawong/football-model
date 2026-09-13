@@ -361,8 +361,31 @@ This section supersedes the domestic V1 results above; the three European models
 ### Evidence and limitations
 
 - `docs/data/domestic_prior_v2/` contains every Train search result, the frozen Train certificates, full OOS metrics/calibration bins, and compressed match-level predictions with both market phases. The paired bootstrap uses 5,000 match resamples with seed 20260912. Intervals are not adjusted for within-week/team dependence or multiple comparisons.
-- OOS Top1/Top3 measure the raw predictive distribution. Archived fixtures have no formal MODEL_1 execution ticket, so execution Top3 is not fabricated from a bookmaker handicap. The existing AH hard-gate tests still apply to formal runtime.
+- OOS Top1/Top3 above measure the raw predictive distribution. The separate production smoke artifact uses a pregame market-favorite execution path and archived AH magnitude to exercise the formal positive-settlement hard gate; it is a routing/output smoke, not an accuracy re-evaluation.
 - Rho, process uncertainty and kappa are estimated from the limited two Train inner-OOS seasons. Train search is finite; boundary winners stay SHADOW and are not evidence of a resolved optimum.
-- The production resolver requires kickoff, rejects a model containing future results, verifies the packaged model hash, and rechecks phase-specific OOS evidence before ACTIVE. `DomesticPriorResolver(store).resolve_prior(competition, season, home_team, away_team, kickoff)` defaults to the conservative closing phase; explicit `snapshot_phase='opening'` is supported. There is no inferred early/late time decay or market-prior fallback.
+- The historical-prior resolver requires kickoff, rejects a model containing future results, verifies packaged model hashes, and rechecks phase-specific OOS evidence before ACTIVE. `DomesticPriorResolver(store).resolve_prior(competition, season, home_team, away_team, kickoff)` defaults to the conservative closing phase; explicit `snapshot_phase='opening'` is supported. The production score resolver preserves explicit opening/closing metadata and otherwise reports `current`.
 - The packaged state includes completed results through May 2026. New results require a new historical-state build with the frozen Train parameters; this package does not scrape live results.
-- **All five domestic competitions remain SHADOW.** Test observations above are evaluation evidence only and must not be recycled into parameter tuning. European ACTIVE/SHADOW states and packed numerical data are unchanged.
+- **All five domestic competitions remain SHADOW.** Test observations above are evaluation evidence only and must not be recycled into parameter tuning. European ACTIVE/SHADOW decisions and frozen parameters are unchanged. The missing legacy full-store chunks are marked as an incomplete archive; the ACTIVE UCL final runtime state is reproducibly rebuilt from the frozen UCL hyperparameters and frozen Train-only process covariance, with its own checked sparse-precision artifact.
+
+## Stage14 production score engine
+
+Stage14 now has three explicit production modes. `AUTO` is the default. An ACTIVE historical prior routes to `HISTORICAL_BAYESIAN`; SHADOW, DISABLED, INSUFFICIENT_HISTORY, or an unavailable historical model routes to `MARKET_ONLY_FORMAL`. Explicit `HISTORICAL_BAYESIAN` calls still fail with `BAYESIAN_PRIOR_REQUIRED` when no approved prior is available. Only an insufficient Pinnacle/Bet365/Macau core cluster may make the AUTO score model missing.
+
+`MARKET_ONLY_FORMAL` uses `build_market_cluster_likelihood()` as one correlated log-rate likelihood and then reuses the same lognormal predictive integration, Dixon-Coles grid, Top10, 1X2/OU derivation, and execution filter as the Bayesian path. It emits `prior_used=false`, keeps `historical_prior=null`, and never labels the market distribution as a historical Bayesian prior. Both modes require strictly positive AH settlement for final Top3 when a formal AH path is supplied; raw score probabilities and lambdas remain unchanged by AH or OU filtering.
+
+The first prior-usefulness gate is conservative. It exposes only pregame covariance, dispersion, reconstruction, phase, season-progress, entrant, prior-distance, sample-size, and uncertainty features. Runtime score/result/Test/JCB/post-kickoff fields are rejected recursively. No final Test target was used to tune the gate; domestic competitions continue to choose the formal market model.
+
+### Real Titan closing-market production smoke
+
+Source: `docs/data/stage14_production_smoke.json`. The artifact contains market packets, fixture metadata, and a kickoff-cutoff UCL prior packet; actual scores/results are excluded. The UCL historical state uses only matches strictly before kickoff. Its AH path is derived from the pregame market favorite and archived AH magnitude solely to exercise the production gate.
+
+| Competition | Match | Mode | Prior | Lambda H/A | Rho | Formal Top3 | AH gate |
+|---|---|---|---|---:|---:|---|---|
+| 英超 | 2789129 利物浦–伯恩茅斯 | MARKET_ONLY_FORMAL | SHADOW / unused | 2.711574 / 0.900094 | 0.019525 | 2-0, 3-0, 3-1 | positive settlement |
+| 西甲 | 2804299 赫罗纳–巴列卡诺 | MARKET_ONLY_FORMAL | SHADOW / unused | 1.266301 / 1.081267 | -0.078846 | 1-0, 2-1, 2-0 | positive settlement |
+| 意甲 | 2784485 热那亚–莱切 | MARKET_ONLY_FORMAL | SHADOW / unused | 1.511801 / 0.711160 | -0.106737 | 1-0, 2-0, 2-1 | positive settlement |
+| 德甲 | 2799407 拜仁慕尼黑–RB莱比锡 | MARKET_ONLY_FORMAL | SHADOW / unused | 3.159349 / 0.935130 | -0.011591 | 3-0, 4-0, 4-1 | positive settlement |
+| 法甲 | 2800027 雷恩–马赛 | MARKET_ONLY_FORMAL | SHADOW / unused | 1.182884 / 1.776509 | -0.128020 | 1-2, 0-2, 0-1 | positive settlement |
+| 欧冠 | 2788747 古比斯–米沙米 | HISTORICAL_BAYESIAN | ACTIVE / used | 2.426341 / 0.725655 | -0.078956 | 2-0, 3-0, 3-1 | positive settlement |
+
+Full release validation: **194 passed**.

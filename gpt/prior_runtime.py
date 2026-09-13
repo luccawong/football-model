@@ -68,9 +68,15 @@ def _decode_external_model(root: Path, competition: str, ref: Mapping[str, Any])
     if ref.get("path"):
         model_path = (root / str(ref["path"])).resolve()
         try:
-            payload = json.loads(model_path.read_text(encoding="utf-8"))
+            raw = model_path.read_bytes()
         except OSError as exc:
             raise PriorEngineError(f"Prior model file unavailable for {competition}: {model_path}") from exc
+        if ref.get("sha256") and sha256(raw).hexdigest() != str(ref["sha256"]):
+            raise PriorEngineError(f"Prior model file checksum mismatch: {competition}")
+        try:
+            payload = json.loads(raw.decode("utf-8"))
+        except (UnicodeDecodeError, json.JSONDecodeError) as exc:
+            raise PriorEngineError(f"Prior model file decode failed for {competition}.") from exc
     elif ref.get("encoding") == "ZLIB_BASE85_JSON" and isinstance(ref.get("parts"), list):
         try:
             raw = zlib.decompress(_read_checked_chunks(root, ref["parts"], competition))
@@ -120,6 +126,11 @@ def _load_store_and_model(value: Mapping[str, Any] | str | Path, competition: st
     if isinstance(model, Mapping):
         return store, model
 
+    refs = store.get("model_files") or {}
+    ref = refs.get(competition) if isinstance(refs, Mapping) else None
+    if isinstance(ref, Mapping):
+        return store, _decode_external_model(path.parent, competition, ref)
+
     packed = store.get("packed_store")
     if isinstance(packed, Mapping):
         decoded = _decode_full_store(path.parent, packed)
@@ -128,11 +139,6 @@ def _load_store_and_model(value: Mapping[str, Any] | str | Path, competition: st
         # Activation/status stays authoritative from the small manifest; decoded
         # payload supplies numerical model state only.
         return store, model if isinstance(model, Mapping) else None
-
-    refs = store.get("model_files") or {}
-    ref = refs.get(competition) if isinstance(refs, Mapping) else None
-    if isinstance(ref, Mapping):
-        return store, _decode_external_model(path.parent, competition, ref)
     return store, None
 
 
@@ -169,6 +175,10 @@ def _resolve_compact(context: Mapping[str, Any], store: Mapping[str, Any], model
         raise PriorEngineError(f"Unknown prior activation for {competition}: {activation}")
     if require_active and activation != "ACTIVE":
         raise PriorEngineError(f"Competition prior is not formally active: {competition} ({activation})")
+    fixture_date = context.get("match_date") or context.get("kickoff")
+    if fixture_date is not None and model.get("as_of") is not None:
+        if _utc_naive(model["as_of"]) > _utc_naive(fixture_date):
+            raise PriorEngineError("Prior model state is later than the requested fixture.")
 
     precision = model.get("precision_csc")
     if not isinstance(precision, Mapping):
@@ -224,6 +234,7 @@ def _resolve_compact(context: Mapping[str, Any], store: Mapping[str, Any], model
         "mean_lambda": [float(exp(mean[0])), float(exp(mean[1]))],
         "source_groups": ["TEAM_DATA"],
         "calibration_ref": store.get("calibration_ref"),
+        "state_as_of": model.get("as_of"),
         "activation": activation,
         "components": {"mu_league": mu, "mu_competition": mu, "hfa_league": hfa, "hfa_competition": hfa, "attack_home": sv(hr, ao), "defense_home": sv(hr, do), "attack_away": sv(ar, ao), "defense_away": sv(ar, do), "x_beta_home": 0.0, "x_beta_away": 0.0},
         "fixture": {"competition": competition, "league": competition, "home_team": str(context["home_team"]), "away_team": str(context["away_team"]), "season": str(context["season"]), "season_start": target_season, "match_date": _utc_naive(context.get("match_date") or context.get("kickoff")).isoformat(sep=" ") if (context.get("match_date") or context.get("kickoff")) is not None else None},
