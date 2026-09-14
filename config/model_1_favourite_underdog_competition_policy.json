@@ -1,0 +1,133 @@
+{
+  "version": "MODEL_1-FAVOURITE-UNDERDOG-COMPETITION-1.0.0",
+  "model_id": "MODEL_1",
+  "effective_date": "2026-09-14",
+  "status": "ACTIVE_FORMAL_AUDIT_NO_FIXED_NUMERIC_WEIGHT",
+  "authorization": "Explicit targeted user instruction on 2026-09-14 to remove structural favourite-side bias by making favourite and underdog hypotheses compete under the same evidentiary standard before H1 is frozen.",
+  "global_freeze_ended": false,
+  "fixed_numeric_weight_authorized": false,
+  "purpose": "Prevent MODEL_1 from generating a favourite-anchored H1 and then requiring the underdog to clear a materially higher burden of proof. Preserve upset, favourite-win-no-cover and underdog-cover paths as genuine competing hypotheses.",
+  "core_principles": {
+    "favourite_base_rate_is_not_prediction": true,
+    "probability_rank_cannot_choose_the_side": true,
+    "equal_evidentiary_burden": true,
+    "underdog_is_not_required_to_produce_more_categories_of_evidence_than_favourite": true,
+    "favourite_is_not_required_to_lose_for_underdog_ah_to_be_correct": true,
+    "upset_existence_does_not_force_an_underdog_ticket": true,
+    "no_direction_quota": true,
+    "no_forced_contrarianism": true
+  },
+  "relationship_to_18_stage_sop": {
+    "preserve_existing_stage_count": 18,
+    "preserve_existing_stage_order": true,
+    "scope": "Stages 13 through 17 are hardened without renaming or reordering the canonical stages.",
+    "stage_13_underdog_outright_audit": "Construct H_FAV and H_DOG independently from the same evidence table. H_DOG must include outright and AH-cover routes; H_FAV must separate win from cover. Neither side may cite raw probability rank as positive evidence.",
+    "stage_14_correct_score_poisson_bayesian": "Use score distributions to test settlement paths for both hypotheses, not to select the favourite because its aggregate probability is larger.",
+    "stage_15_uncertainty_audit": "Assign missing-data, schedule, lineup, market-ceiling and tactical uncertainty symmetrically to both hypotheses and identify which uncertainty would most likely reverse the current comparison.",
+    "stage_16_freeze_h1": "Freeze H1 only after H_FAV versus H_DOG competition is complete. H1 may be favourite-side, underdog-side, or an independently established OU market if the OU dominance test passes.",
+    "stage_17_independent_red_team_h2": "Attack the frozen H1 using the strongest losing hypothesis from the competition, plus the strongest non-intent explanation for market behaviour. Red Team may CONFIRM, DOWNGRADE, UPGRADE or OVERTURN."
+  },
+  "symmetric_evidence_table": {
+    "required": true,
+    "same_fields_for_both_hypotheses": true,
+    "fields": [
+      "fundamental_matchup_beyond_reputation",
+      "opening_rationality_vs_expected_band",
+      "same_time_1x2_divergence",
+      "1x2_lifecycle",
+      "ah_line_and_water_lifecycle",
+      "ah_vs_1x2_margin_consistency",
+      "ou_match_state_implication",
+      "lineup_and_tactical_matchup",
+      "schedule_rotation_and_expected_minutes",
+      "market_attraction_and_price_tax",
+      "bookmaker_counterfactual_price_question",
+      "market_ceiling_or_failed_upgrade",
+      "draw_path_when_live",
+      "outright_upset_path",
+      "favourite_win_no_cover_path",
+      "missing_or_conflicting_data"
+    ],
+    "forbidden_asymmetry": [
+      "favourite accepted from generic market strengthening while underdog requires multiple extraordinary signals",
+      "underdog rejected only because its absolute probability is low",
+      "favourite credited twice for strength already embedded in opening price and again for being the favourite",
+      "favourite AH upgraded from strong 1X2 without independent margin evidence",
+      "draw exclusion treated as pro-favourite evidence"
+    ]
+  },
+  "favourite_incremental_evidence_gate": {
+    "required_if_h1_is_favourite_side": true,
+    "rule": "A favourite-side H1 must identify an explicit match-specific structural evidence chain that remains after removing team reputation, ranking, generic strength, low 1X2 price and the fact that the favourite is already laying a handicap.",
+    "baseline_items_contribute_zero_incremental_evidence": [
+      "stronger_team_identity",
+      "higher_table_position",
+      "higher_raw_win_probability",
+      "lower_1x2_price_by_itself",
+      "existing_favourite_handicap_by_itself",
+      "greater_public_popularity"
+    ],
+    "failure_action": "FAVOURITE_H1_CANNOT_BE_FROZEN; rebuild competition without probability shortcut."
+  },
+  "underdog_hypothesis_requirements": {
+    "must_be_constructed_even_if_absolute_probability_is_low": true,
+    "must_separate_outright_from_ah_cover": true,
+    "allowed_valid_routes": [
+      "UNDERDOG_OUTRIGHT_WIN",
+      "UNDERDOG_COVER_VIA_DRAW_WHEN_DRAW_IS_LIVE",
+      "UNDERDOG_COVER_VIA_FAVOURITE_ONE_GOAL_WIN",
+      "UNDERDOG_COVER_VIA_LOW_EVENT_MATCH",
+      "UNDERDOG_COVER_VIA_MARKET_CEILING",
+      "UNDERDOG_COVER_VIA_ROTATION_OR_MINUTE_MANAGEMENT"
+    ],
+    "rejection_rule": "Reject H_DOG by match-specific contrary evidence, not by small absolute probability or team-name strength."
+  },
+  "draw_exclusion_firewall": {
+    "forward_test_semantics_unchanged": true,
+    "jc_excluded_removes_draw_from_execution_winner_branch": true,
+    "jc_excluded_does_not_add_evidence_to_favourite": true,
+    "winner_audit_after_exclusion_must_rebuild_home_vs_away_structurally": true,
+    "ah_cover_audit_remains_independent_of_winner_choice": true
+  },
+  "ou_escape_hatch_control": {
+    "purpose": "Prevent MODEL_1 from avoiding a difficult favourite-versus-underdog decision by automatically switching to OU.",
+    "ou_may_be_formal_h1": true,
+    "requirements": [
+      "OU was established independently at Stage 9 before side competition outcome was known",
+      "OU has a clearer cross-market evidence chain than both side hypotheses",
+      "the analysis explicitly states why neither H_FAV nor H_DOG has superior execution clarity",
+      "OU selection is not justified merely because the underdog case became uncomfortable for the favourite H1"
+    ],
+    "failure_action": "Do not use OU as an escape; finish side-hypothesis competition and select the best valid market only after comparison."
+  },
+  "blind_probability_shortcut_test": {
+    "required": true,
+    "question": "If team labels, displayed model probabilities and raw favourite/underdog tags were hidden, would the same hypothesis still win from opening structure, lifecycle, cross-market pricing, lineup, schedule and tactical evidence?",
+    "if_no": "Mark the selection FAVOURITE_ANCHOR_CONTAMINATED and rebuild before H1 freeze."
+  },
+  "concentration_monitor": {
+    "enabled": true,
+    "rolling_window_directional_tickets": 20,
+    "track_fields": [
+      "favourite_side_ticket_count",
+      "underdog_side_ticket_count",
+      "ou_or_non_side_ticket_count",
+      "favourite_side_share_among_side_tickets",
+      "red_team_overturn_to_underdog_count",
+      "red_team_overturn_to_ou_count"
+    ],
+    "formal_direction_effect": false,
+    "rule": "Concentration is a bias diagnostic only. It never creates a quota or forces an underdog selection, but elevated favourite concentration requires explicit audit of candidate-generation bias, unequal burden of proof, duplicated favourite evidence and OU escape behaviour."
+  },
+  "formal_trace_requirements": [
+    "H_FAV evidence table",
+    "H_DOG evidence table",
+    "evidentiary-burden symmetry check",
+    "favourite incremental evidence gate result",
+    "blind probability-shortcut test result",
+    "OU escape-hatch check when OU becomes H1",
+    "competition winner before H1 freeze",
+    "strongest losing hypothesis passed to Red Team"
+  ],
+  "formal_use": "This targeted audit extension changes hypothesis generation and comparison, not calibrated probability engines or fixed market weights. It is intended to remove favourite-side anchoring while preserving the ability to select a favourite when match-specific incremental evidence genuinely wins the symmetric comparison."
+}
