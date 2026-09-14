@@ -1,20 +1,21 @@
 {
-  "registry_version": "FOOTBALL-MODEL-REGISTRY-1.2.0",
+  "registry_version": "FOOTBALL-MODEL-REGISTRY-1.2.1",
   "default_model_id": "MODEL_1",
   "selection_policy": "USE_DEFAULT_UNLESS_USER_EXPLICITLY_SELECTS_OR_CREATES_ANOTHER_MODEL",
   "models": [
     {
       "model_id": "MODEL_1",
       "name": "Current Full SOP Model",
-      "status": "ACTIVE_DEFAULT_FROZEN_FORMAL_SEMANTICS",
+      "status": "ACTIVE_DEFAULT_FROZEN_FORMAL_SEMANTICS_WITH_TARGETED_OVERRIDES",
       "effective_date": "2026-09-09",
       "freeze_contract": "config/model_1_freeze.json",
+      "active_override_manifest": "config/model_1_active_overrides_20260914.json",
       "freeze_window": {
         "timezone": "Asia/Shanghai",
         "start_date": "2026-09-10",
         "end_date": "2026-10-10"
       },
-      "description": "Current user-approved full football SOP with Titan-only formal market source, hard draw-exclusion forward test, enhanced draw audit, underdog outright audit, explicit off-field/weather audit, independent Red Team, formal Bayesian-Poisson/Dixon-Coles Stage14 and exactly one formal main ticket.",
+      "description": "Current user-approved full football SOP with Titan-only formal market source, draw-exclusion forward test, explicit off-field/weather audit, independent Red Team, formal Bayesian-Poisson/Dixon-Coles Stage14 and one formal main output. Targeted user-authorized overrides are loaded from active_override_manifest.",
       "canonical_memory": "gpt/FOOTBALL_CANONICAL_MEMORY.md",
       "sop": "gpt/FOOTBALL_SOP.md",
       "decision_policy": "config/active_decision_policy.json",
