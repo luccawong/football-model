@@ -1,0 +1,94 @@
+{
+  "version": "MODEL_1-BOOKMAKER-RISK-1.0.0",
+  "model_id": "MODEL_1",
+  "effective_date": "2026-09-14",
+  "status": "ACTIVE_FORMAL_AUDIT_NO_FIXED_NUMERIC_WEIGHT",
+  "authorization": "Explicit targeted user instruction on 2026-09-14 to analyse from bookmaker/market-maker perspective rather than bettor-first perspective.",
+  "global_freeze_ended": false,
+  "fixed_numeric_weight_authorized": false,
+  "purpose": "Reframe market interpretation around price formation, bettor attraction, liability transfer and result-path exposure while preserving MODEL_1 source, draw-exclusion and ticket rules.",
+  "core_principle": "Do not ask only which side is stronger. Ask why the market is willing to sell each side at the observed price, which bettor narrative is easiest to attract, and which result path creates or relieves bookmaker liability.",
+  "draw_exclusion_forward_test_firewall": {
+    "authoritative_policy": "config/active_decision_policy.json#draw_exclusion_forward_test",
+    "unchanged": true,
+    "jc_excluded_1_remains_hard_execution_constraint": true,
+    "jc_excluded_1_remove_draw_from_execution_branch": true,
+    "jc_excluded_1_no_bookmaker_audit_veto_during_test": true,
+    "bookmaker_audit_may_record_draw_risk_for_research": true,
+    "jc_not_excluded_0_keeps_draw_path_live": true,
+    "jc_unknown_stays_unknown": true,
+    "reason": "The one-month draw-exclusion experiment must continue under its frozen execution semantics so its forward-test result is not contaminated by post-hoc discretionary overrides."
+  },
+  "formal_placement_without_stage_reorder": {
+    "stage_3_opening_first_impression": "Record the raw market geometry before narrative contamination.",
+    "stage_4_opening_rationality_lifecycle": "Estimate a reasonable price/line band and audit why the actual opener differs from adjacent counterfactuals.",
+    "stage_7_one_x_two": "Map outright win/draw/loss liability and same-time company divergence.",
+    "stage_8_asian_handicap": "Separate win probability from margin/cover liability; inspect line-versus-water risk transfer.",
+    "stage_9_totals": "Treat Over/Under demand and liability as a separate book from side markets.",
+    "stage_10_cross_market_coherence": "Test whether 1X2, AH and OU imply the same or different protected result paths.",
+    "stage_11_market_attraction": "Identify which side/result narrative is naturally easiest to sell and whether price movement supports, resists or taxes that demand.",
+    "stage_17_red_team_h2": "Construct the strongest alternative market-making explanation and the strongest non-intent explanation for every claimed bookmaker pattern."
+  },
+  "required_bookmaker_questions": [
+    "What would a reasonable neutral opening band be before sentiment and current demand are considered?",
+    "Which side, total, score narrative or favourite identity is naturally easiest for bettors to buy?",
+    "Is the market making that popular path cheaper, more expensive, or structurally harder to cash?",
+    "Did the market reprice via line movement, water movement, 1X2 probability, or a combination, and what exposure does each mechanism shift?",
+    "If the favourite fails, is the main liability path outright loss, draw, or win-without-cover?",
+    "For deep favourites, is the book selling a team-win story or a large-margin story?",
+    "Do 1X2, AH and OU all protect the same outcome path, or is one market accepting liability that another market is taxing?",
+    "Would the same observed move be explainable by ordinary market-making, information arrival, liquidity or stale quotes without assuming deliberate trapping?"
+  ],
+  "result_path_decomposition": {
+    "required": true,
+    "favourite_paths": [
+      "FAVOURITE_OUTRIGHT_LOSS",
+      "DRAW",
+      "FAVOURITE_WIN_NO_COVER",
+      "FAVOURITE_COVER"
+    ],
+    "deep_favourite_rule": "Victory and margin must be modelled separately. Strong 1X2 support cannot by itself justify a deep AH ticket.",
+    "totals_separate_book": true,
+    "do_not_merge": "Do not collapse draw, outright upset and win-without-cover into one generic favourite-failure bucket when interpreting bookmaker exposure."
+  },
+  "liability_map_fields": [
+    "neutral_fair_band",
+    "narrative_attraction_side",
+    "narrative_attraction_reason",
+    "price_tax_or_subsidy",
+    "one_x_two_liability_shape",
+    "asian_handicap_margin_liability_shape",
+    "ou_liability_shape",
+    "cross_market_protected_path",
+    "market_ceiling_or_failed_upgrade",
+    "stale_quote_or_timing_risk",
+    "bookmaker_view_conclusion",
+    "non_intent_alternative_explanation"
+  ],
+  "allowed_labels": [
+    "POPULAR_SIDE_TAXED",
+    "POPULAR_SIDE_SUBSIDISED",
+    "POPULAR_SIDE_PRICE_RESISTS",
+    "LOW_ATTRACTION_SIDE_STRENGTHENS",
+    "WIN_SUPPORTED_MARGIN_NOT_SUPPORTED",
+    "WIN_AND_MARGIN_SUPPORTED",
+    "OUTRIGHT_RISK_PROTECTED",
+    "DRAW_RISK_PROTECTED",
+    "WIN_NO_COVER_PATH_PROTECTED",
+    "OU_RIGHT_TAIL_PROTECTED",
+    "CROSS_MARKET_MIXED",
+    "STALE_OR_ASYNCHRONOUS_QUOTES",
+    "UNKNOWN"
+  ],
+  "forbidden_shortcuts": [
+    "bookmaker knows the result",
+    "popular side automatically loses",
+    "line rise automatically means true support",
+    "line drop automatically means rejection",
+    "one company divergence proves inside information",
+    "closing line is automatically truth",
+    "bookmaker intent is treated as an observed fact",
+    "draw risk may override JC EXCLUDED during the active forward-test period"
+  ],
+  "formal_use": "This is an interpretation and audit extension. It may change H1/H2 only through explicit pre-match evidence chains already permitted by MODEL_1; it introduces no fixed probability, goal, grade or handicap coefficient."
+}
