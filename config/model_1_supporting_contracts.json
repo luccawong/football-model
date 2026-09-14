@@ -1,5 +1,5 @@
 {
-  "version": "MODEL_1-SUPPORTING-CONTRACTS-1.4.0",
+  "version": "MODEL_1-SUPPORTING-CONTRACTS-1.5.0",
   "model_id": "MODEL_1",
   "formal_runtime": {
     "sop": "gpt/FOOTBALL_SOP.md",
@@ -11,6 +11,7 @@
     "preflight_policy": "config/model_1_preflight_policy.json",
     "off_field_weather_policy": "config/off_field_weather_policy.json",
     "context_utility_market_policy": "config/model_1_context_utility_market_policy.json",
+    "bookmaker_risk_policy": "config/model_1_bookmaker_risk_policy.json",
     "freeze_contract": "config/model_1_freeze.json",
     "trace_contract": "config/model_1_trace_contract.json",
     "decision_engine": "gpt/decision_engine.py",
@@ -23,6 +24,13 @@
       "authority": "TARGETED_USER_AUTHORIZED_FORMAL_AUDIT_EXTENSION",
       "fixed_numeric_weight": false,
       "global_freeze_ended": false
+    },
+    {
+      "path": "config/model_1_bookmaker_risk_policy.json",
+      "authority": "TARGETED_USER_AUTHORIZED_FORMAL_AUDIT_EXTENSION",
+      "fixed_numeric_weight": false,
+      "global_freeze_ended": false,
+      "draw_exclusion_forward_test_unchanged": true
     }
   ],
   "supporting_memory": [
@@ -54,6 +62,12 @@
       "path": "research/context_utility_market/RESEARCH_PROTOCOL.md",
       "authority": "RESEARCH_AND_PROMOTION_SUPPORT",
       "formal_effect": "Supports the 2026-09-14 audit extension; does not authorize fixed numeric weights."
+    },
+    {
+      "path": "research/team_goal_baseline/RESEARCH_PROTOCOL.md",
+      "authority": "RESEARCH_ONLY_UNCALIBRATED",
+      "formal_effect": "NONE_UNTIL_PROMOTED_AFTER_OUT_OF_SAMPLE_VALIDATION",
+      "codex_task": "codex_tasks/FIVE_LEAGUE_TEAM_GOAL_BASELINE_2021_2026.md"
     }
   ],
   "disabled_archives": [
@@ -69,7 +83,7 @@
     "end_date_beijing": "2026-10-10",
     "new_formal_rule_changes_allowed": "ONLY_WITH_EXPLICIT_TARGETED_USER_OVERRIDE",
     "new_ideas_during_freeze": "LOG_ONLY_UNLESS_EXPLICIT_TARGETED_USER_OVERRIDE",
-    "latest_targeted_override": "2026-09-14 context utility / market distortion audit extension"
+    "latest_targeted_override": "2026-09-14 bookmaker / market-maker risk-view audit extension; draw-exclusion forward-test semantics unchanged"
   },
   "conflict_rule": "Newest explicit user instruction and current formal MODEL_1 policy outrank legacy/supporting research. Conflicts must be surfaced and versioned, never silently resolved by older artifacts."
 }
