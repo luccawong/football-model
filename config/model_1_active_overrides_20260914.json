@@ -1,0 +1,25 @@
+{
+  "version": "MODEL_1-ACTIVE-OVERRIDES-2026-09-14.1",
+  "model_id": "MODEL_1",
+  "status": "ACTIVE_TARGETED_USER_OVERRIDE",
+  "effective_date": "2026-09-14",
+  "policy_files": [
+    "config/model_1_probability_non_edge_policy.json",
+    "config/model_1_favourite_underdog_competition_policy.json"
+  ],
+  "preflight_extension": {
+    "preserve_18_stage_order": true,
+    "required_before_freeze_h1": [
+      "symmetric_hypothesis_comparison_completed",
+      "equal_evidentiary_burden_check_passed",
+      "incremental_evidence_gate_passed_if_applicable",
+      "blind_probability_shortcut_test_passed",
+      "ou_escape_hatch_check_passed_if_applicable",
+      "competition_winner_selected_before_h1_freeze"
+    ],
+    "missing_any_required_check": "PRECHECK_BLOCKED_NO_TICKET"
+  },
+  "draw_exclusion_forward_test_unchanged": true,
+  "fixed_numeric_weight_added": false,
+  "note": "Targeted user-authorized overlay. It supplements the frozen MODEL_1 runtime without changing the canonical 18-stage order."
+}
