@@ -1,5 +1,5 @@
 {
-  "version": "MODEL_1-SUPPORTING-CONTRACTS-1.3.0",
+  "version": "MODEL_1-SUPPORTING-CONTRACTS-1.4.0",
   "model_id": "MODEL_1",
   "formal_runtime": {
     "sop": "gpt/FOOTBALL_SOP.md",
@@ -10,12 +10,21 @@
     "ah_opening_divergence_policy": "config/ah_opening_divergence_policy.json",
     "preflight_policy": "config/model_1_preflight_policy.json",
     "off_field_weather_policy": "config/off_field_weather_policy.json",
+    "context_utility_market_policy": "config/model_1_context_utility_market_policy.json",
     "freeze_contract": "config/model_1_freeze.json",
     "trace_contract": "config/model_1_trace_contract.json",
     "decision_engine": "gpt/decision_engine.py",
     "preflight_engine": "gpt/preflight_gate.py",
     "formal_trace_engine": "gpt/formal_trace.py"
   },
+  "formal_extensions": [
+    {
+      "path": "models/MODEL_1_EXTENSION_20260914_CONTEXT_UTILITY_MARKET.md",
+      "authority": "TARGETED_USER_AUTHORIZED_FORMAL_AUDIT_EXTENSION",
+      "fixed_numeric_weight": false,
+      "global_freeze_ended": false
+    }
+  ],
   "supporting_memory": [
     {
       "path": "gpt/MEMORY_GAP_AUDIT_2026-09-09.md",
@@ -40,6 +49,11 @@
       "path": "draw_exclusion_research/MODEL_FAMILY_PROTOCOL.md",
       "authority": "RESEARCH_VALIDATION_SUPPORT",
       "formal_effect": "Does not replace authoritative daily execution label contract."
+    },
+    {
+      "path": "research/context_utility_market/RESEARCH_PROTOCOL.md",
+      "authority": "RESEARCH_AND_PROMOTION_SUPPORT",
+      "formal_effect": "Supports the 2026-09-14 audit extension; does not authorize fixed numeric weights."
     }
   ],
   "disabled_archives": [
@@ -55,7 +69,7 @@
     "end_date_beijing": "2026-10-10",
     "new_formal_rule_changes_allowed": "ONLY_WITH_EXPLICIT_TARGETED_USER_OVERRIDE",
     "new_ideas_during_freeze": "LOG_ONLY_UNLESS_EXPLICIT_TARGETED_USER_OVERRIDE",
-    "latest_targeted_override": "2026-09-13 hard pre-ticket MODEL_1 preflight execution gate"
+    "latest_targeted_override": "2026-09-14 context utility / market distortion audit extension"
   },
   "conflict_rule": "Newest explicit user instruction and current formal MODEL_1 policy outrank legacy/supporting research. Conflicts must be surfaced and versioned, never silently resolved by older artifacts."
 }
