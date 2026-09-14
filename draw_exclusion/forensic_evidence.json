@@ -1,4 +1,19 @@
 {
   "schema_version": "1.0",
-  "items": []
+  "items": [
+    {
+      "date_beijing": "2026-09-14",
+      "source_market": "JC",
+      "evidence_type": "USER_SUPPLIED_VERIFIED_SCREENSHOT",
+      "image_path": "draw_exclusion/screenshots/2026-09-14/jc_draw_exclusion_screenshot.webp",
+      "metadata_path": "draw_exclusion/screenshots/2026-09-14/metadata.json",
+      "titan_match_id": "3085206",
+      "home_team": "图尔库国际",
+      "away_team": "VPS瓦萨",
+      "visible_label": 1,
+      "visible_status": "EXCLUDED",
+      "source_row_code": "周一002",
+      "note": "Automatic daily update failed after the website added a new module. This item records screenshot evidence only and does not rewrite latest.json or the automatic daily manifest chain."
+    }
+  ]
 }
