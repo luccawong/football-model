@@ -1,0 +1,236 @@
+{
+  "version": "MODEL_1-CONTEXT-UTILITY-MARKET-1.0.0",
+  "model_id": "MODEL_1",
+  "effective_date": "2026-09-14",
+  "status": "ACTIVE_FORMAL_AUDIT_NO_FIXED_NUMERIC_WEIGHT",
+  "authorization": "Explicit targeted user instruction on 2026-09-14 to deeply research and incorporate the six new rules into MODEL_1.",
+  "global_freeze_ended": false,
+  "fixed_numeric_weight_authorized": false,
+  "purpose": "Convert market-heat, competitive incentives, schedule priority, financial incentives and club-relationship narratives into falsifiable, auditable pre-match evidence rather than post-hoc storytelling.",
+  "placement": {
+    "historical_prior": "FORBIDDEN",
+    "opening_first_impression": "NO_CONTAMINATION",
+    "stage_1_fundamentals": [
+      "competitive_incentive_state",
+      "schedule_priority_resource_allocation"
+    ],
+    "stage_5_off_field_weather": [
+      "financial_marginal_match_value",
+      "relationship_integrity_risk"
+    ],
+    "stage_11_market_attraction": [
+      "price_popularity_distortion",
+      "bookmaker_pattern_audit"
+    ],
+    "stage_17_red_team_h2": "MANDATORY_CHALLENGE_OF_ALL_CONTEXT_NARRATIVES"
+  },
+  "global_rules": {
+    "fact_inference_assumption_conclusion_separation": true,
+    "missing_is_not_negative_evidence": true,
+    "post_result_evidence_forbidden": true,
+    "no_single_factor_override": true,
+    "no_universal_fixed_probability_goal_grade_or_handicap_shift": true,
+    "anti_double_counting_required": true,
+    "bookmaker_intent_cannot_be_inferred_from_price_move_alone": true,
+    "season_phase_is_descriptive_not_causal": true,
+    "relationship_is_not_coordination": true,
+    "financial_reward_is_not_automatic_effort": true,
+    "schedule_congestion_is_not_automatic_underperformance": true
+  },
+  "price_popularity_distortion": {
+    "maps_user_rules": [1, 3],
+    "formal_status": "ACTIVE_AUDIT",
+    "principle": "Ask whether the market is pricing into, resisting or diverging from observable/narrative popularity. Do not label a bookmaker as intentionally creating heat or cold without direct evidence of intent.",
+    "required_inputs": [
+      "Titan de-vigged 1X2 opening and same-time comparison",
+      "Titan AH line and water lifecycle",
+      "cross-company divergence",
+      "opening rationality and adjacent counterfactual prices",
+      "team/form/name/scoreline narratives that can create attraction",
+      "cross-market 1X2-AH-OU coherence"
+    ],
+    "market_separation": {
+      "one_x_two": "Evaluate favorite-longshot, sentiment and hot-hand style distortions separately.",
+      "asian_handicap": "Do not import 1X2 favorite-longshot conclusions mechanically into AH.",
+      "totals": "Treat public Over attraction separately from side-market attraction."
+    },
+    "public_betting_data": {
+      "formal_status_under_current_titan_only_policy": "NOT_FORMAL_UNLESS_TITAN_OR_FUTURE_EXPLICIT_SOURCE_OVERRIDE",
+      "external_ticket_or_handle_percentages": "SHADOW_CONTEXT_ONLY",
+      "if_unavailable": "UNKNOWN",
+      "forbidden": "Do not manufacture a public betting percentage from odds movement or media narrative.",
+      "terminology_without_observed_bet_share": "NARRATIVE_ATTRACTION_ESTIMATE_NOT_PUBLIC_BETTING_PROBABILITY"
+    },
+    "allowed_states": [
+      "POPULARITY_AND_PRICE_SUPPORT_ALIGNED",
+      "POPULARITY_HIGH_PRICE_RESISTS",
+      "LOW_NARRATIVE_ATTRACTION_PRICE_STRENGTHENS",
+      "PRICE_MOVE_WITHOUT_DEMAND_EVIDENCE",
+      "CROSS_BOOK_MIXED",
+      "UNKNOWN"
+    ],
+    "formal_use": "May alter interpretation of market attraction and favorite-failure/upset paths when supported by same-time, cross-market evidence. No fixed coefficient."
+  },
+  "bookmaker_pattern_audit": {
+    "maps_user_rules": [1, 3],
+    "formal_status": "ACTIVE_AUDIT",
+    "principle": "Treat bookmaker behavior as repeated observable quote geometry, not anthropomorphic intent.",
+    "required_checks": [
+      "company-specific opening position",
+      "same-time de-vig probability differences",
+      "line-versus-water repricing",
+      "whether divergence is led or followed by peers",
+      "failed upgrades and reversals",
+      "whether the same signal exists in 1X2, AH and OU",
+      "whether a proposed pattern survives adjacent-price counterfactuals"
+    ],
+    "forbidden_shortcuts": [
+      "one low favorite price equals bookmaker confidence",
+      "one line drop equals rejection of that side",
+      "one company divergence equals inside information",
+      "closing move equals truth",
+      "historical pattern may be cited without matched league/line/time-slice controls"
+    ]
+  },
+  "competitive_incentive_state": {
+    "maps_user_rules": [2, 5],
+    "formal_status": "ACTIVE_CONTEXT",
+    "principle": "Replace vague motivation labels with the marginal sporting and financial value of the current match under W/D/L counterfactuals.",
+    "season_phase": {
+      "early_mid_late": "DESCRIPTIVE_ONLY",
+      "primary_driver": "REMAINING_OPPORTUNITY_SET_AND_MARGINAL_VALUE"
+    },
+    "competition_specific_targets": [
+      "title",
+      "automatic promotion",
+      "playoff qualification or seeding",
+      "Champions League qualification",
+      "Europa League qualification",
+      "Conference League qualification",
+      "relegation survival",
+      "cup or knockout qualification",
+      "league-phase seeding/byes/home-leg advantages when competition rules make them material"
+    ],
+    "required_fields": [
+      "remaining_matches",
+      "current_points_and_table_position",
+      "reachable_targets",
+      "target_probability_or_feasibility_before_match",
+      "target_probability_or_feasibility_if_win_draw_loss",
+      "marginal_sporting_value",
+      "verified_marginal_financial_value_when_available"
+    ],
+    "midtable_rule": "Do not label a midtable team unmotivated merely from rank. A dead-rubber/low-marginal-value state requires all meaningful sporting endpoints to be near-saturated or unreachable, followed by checks for derby, coach/contract, bonus and other verified incentives.",
+    "dominant_leader_rule": "For breakaway leaders such as Bayern/PSG-type cases, model domestic objective saturation and resource allocation separately. A nearly secured title can raise rotation propensity before a high-priority European match, but it does not imply deliberate point dropping or automatic non-cover.",
+    "formal_use": "May affect rotation/resource-allocation hypotheses and interpretation of economic-win versus cover paths. No fixed points or grade shift."
+  },
+  "schedule_priority_resource_allocation": {
+    "maps_user_rules": [2, 4],
+    "formal_status": "ACTIVE_CONTEXT_WITH_PARTIAL_VALIDATED_EXTENSION",
+    "principle": "Fixture density changes recovery, injury exposure, selection and resource allocation; it does not have one universal result sign.",
+    "required_inputs": [
+      "hours_since_previous_match",
+      "hours_to_next_match",
+      "previous_and_next_competition_importance",
+      "domestic_match_venue",
+      "European_match_venue",
+      "travel_distance_and_timezones_when_material",
+      "14_day_and_21_day_player_minute_load_when_available",
+      "expected_core_starters_and_rotation",
+      "squad_depth_and_replacement_quality"
+    ],
+    "venue_quadrants": [
+      "DOMESTIC_HOME_EUROPE_AWAY",
+      "DOMESTIC_AWAY_EUROPE_HOME",
+      "DOMESTIC_HOME_EUROPE_HOME",
+      "DOMESTIC_AWAY_EUROPE_AWAY"
+    ],
+    "sequence_required": [
+      "PRE_EUROPE",
+      "POST_EUROPE"
+    ],
+    "standalone_venue_quadrant_effect": "NOT_AUTHORIZED",
+    "existing_validated_post_europe_module": "config/post_europe_residual_policy.json",
+    "post_europe_anti_double_counting": "If post_europe_residual_flag applies, do not add a second generic fatigue or venue-quadrant penalty for the same exposure.",
+    "rotation_model": {
+      "rotation_propensity": "Can rise when next-match importance exceeds current-match importance and schedule stress is high.",
+      "rotation_cost": "Falls when squad depth/replacement quality is strong; deep squads can rotate without the same performance loss.",
+      "separate_propensity_from_cost": true
+    },
+    "formal_use": "Current validated post-Europe residual keeps its own authority. New pre-Europe/venue-quadrant interactions remain qualitative/shadow until historical and forward validation."
+  },
+  "financial_marginal_match_value": {
+    "maps_user_rules": [2, 5],
+    "formal_status": "ACTIVE_CONTEXT",
+    "principle": "Use verified marginal cash stakes, not headline prize pools. Money matters through the change in expected club value caused by W/D/L and through the club's financial constraints.",
+    "components": [
+      "rank_based_distribution_delta",
+      "promotion_or_relegation_value_delta",
+      "UEFA_qualification_value_delta",
+      "knockout_or_advancement_prize_delta",
+      "verified_match_or_player_bonus",
+      "verified_liquidity_distress_wage_arrears_sanctions_or_ownership_constraints"
+    ],
+    "source_rule": "Use current season official league/competition regulations or circulars where available; do not hard-code stale prize amounts across seasons.",
+    "scaling": "Where comparison is needed, consider the cash delta relative to club revenue/wage bill/liquidity, but do not use an arbitrary universal multiplier before calibration.",
+    "forbidden_shortcuts": [
+      "large nominal prize equals maximum effort",
+      "small nominal prize equals no motivation",
+      "financial distress automatically improves effort",
+      "unverified bonus rumor receives formal weight"
+    ],
+    "formal_use": "Supports competitive-incentive and rotation analysis; no direct probability shift until calibrated."
+  },
+  "relationship_integrity_risk": {
+    "maps_user_rules": [6],
+    "formal_status": "ACTIVE_CONTEXT_HIGH_FALSE_POSITIVE_GUARD",
+    "principle": "Map relationships and conflicts of interest, but keep a strict firewall between evidence of a relationship and evidence of match coordination/reciprocity.",
+    "evidence_tiers": {
+      "A_VERIFIED_CONTROL_OR_REGULATORY": [
+        "official common ownership/control or multi-club group",
+        "shared directors or decisive influence documented by official filings/regulator",
+        "official disciplinary, court or integrity finding",
+        "documented financial dependency"
+      ],
+      "B_VERIFIED_OPERATIONAL_NETWORK": [
+        "repeated loans/transfers or academy/satellite arrangement",
+        "documented management/coaching/agent network",
+        "documented commercial/local institutional relationship"
+      ],
+      "C_REPUTABLE_REPORTING": [
+        "specific reputable media reporting with named mechanism or evidence"
+      ],
+      "D_RUMOR": [
+        "anonymous social-media claim",
+        "fan narrative",
+        "historical score pattern without controls"
+      ]
+    },
+    "relationship_state": [
+      "VERIFIED_RELATIONSHIP_NO_COORDINATION_EVIDENCE",
+      "VERIFIED_RELATIONSHIP_PLUS_SPECIFIC_RECIPROCITY_EVIDENCE",
+      "REPUTABLE_HYPOTHESIS_ONLY",
+      "RUMOR_ONLY",
+      "NONE_FOUND",
+      "UNKNOWN"
+    ],
+    "coordination_claim_rule": "A relationship, common ownership, transfer history or asymmetric table need does not prove a planned result. Explicit coordination language is forbidden without direct case-specific evidence.",
+    "market_cross_check": "If a relationship hypothesis exists, test whether Titan pricing shows an otherwise-unexplained residual anomaly after strength, incentive, lineup and schedule controls. Market confirmation still does not prove coordination.",
+    "formal_use": "Verified relationships can raise integrity/context review and Red Team attention. Reciprocity remains hypothesis-only unless case-specific evidence is unusually strong; no automatic bet direction or grade."
+  },
+  "anti_double_counting": {
+    "market_heat_vs_market_attraction": "One evidence item may support only one primary narrative/market demand channel.",
+    "motivation_vs_finance": "Financial stakes are a component of marginal match value, not a second independent bonus.",
+    "schedule_vs_post_europe": "Validated post-Europe residual and generic schedule fatigue cannot both penalize the same exposure.",
+    "schedule_vs_lineup": "Expected rotation is a schedule mechanism; actual confirmed lineup impact belongs to Stage 6 and supersedes speculative rotation.",
+    "relationship_vs_motivation": "Asymmetric table need and club relationship are separate facts; do not multiply them into a coordination conclusion."
+  },
+  "red_team_requirements": [
+    "For every claimed heat/cold state, construct a non-intent market-making explanation.",
+    "For every motivation claim, test whether the target was already priced into Titan odds.",
+    "For every schedule claim, test deep-squad and opponent-quality counterexamples.",
+    "For every finance claim, test whether sporting utility or prestige dominates cash utility.",
+    "For every relationship claim, state the strongest non-coordination explanation and evidence tier."
+  ],
+  "research_promotion_rule": "Any future fixed coefficient, threshold or automatic grade/probability/handicap adjustment requires time-safe historical validation plus forward validation and a new explicit user authorization."
+}
