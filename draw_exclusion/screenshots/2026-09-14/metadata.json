@@ -1,0 +1,26 @@
+{
+  "schema_version": "manual_screenshot_audit_v1",
+  "date_beijing": "2026-09-14",
+  "source_market": "JC",
+  "provenance": "USER_SUPPLIED_VERIFIED_SCREENSHOT",
+  "authoritative_daily_manifest_override": false,
+  "note": "Website added a new module and the automatic Codex update failed. Preserve this screenshot as forensic evidence for later audit; do not rewrite latest.json or the automatic daily chain from this file alone.",
+  "archived_image": "jc_draw_exclusion_screenshot.webp",
+  "source_upload_sha256_png": "478908a42f6d2fb2e1c2ce5a8c16b2f60a1828abe06739c01c9e453567185525",
+  "archived_webp_sha256": "08562e3f443452e54ca5a6378e1c00c3739e431e007e9d44dec476e6866ba335",
+  "visible_rows": 11,
+  "visible_excluded_rows": 8,
+  "rows": [
+    {"code":"周一002","kickoff":"2026-09-14 23:00","league":"芬兰超级联赛","home":"国际图尔","away":"瓦萨","display_mark":"排平","excluded_visible":true,"titan_match_id":"3085206","matched_fixture":"图尔库国际 vs VPS瓦萨"},
+    {"code":"周一003","kickoff":"2026-09-15 00:30","league":"意甲","home":"科莫","away":"帕尔马","display_mark":"排平","excluded_visible":true},
+    {"code":"周一004","kickoff":"2026-09-15 00:30","league":"意甲","home":"都灵","away":"罗马","display_mark":"排平","excluded_visible":true},
+    {"code":"周一005","kickoff":"2026-09-15 01:00","league":"瑞超","home":"佐加顿斯","away":"盖斯","display_mark":"排平","excluded_visible":true},
+    {"code":"周一006","kickoff":"2026-09-15 01:00","league":"挪超","home":"博德闪耀","away":"桑纳菲","display_mark":"-","excluded_visible":false},
+    {"code":"周一007","kickoff":"2026-09-15 02:15","league":"亚冠","home":"吉达国民","away":"棉农","display_mark":"-","excluded_visible":false},
+    {"code":"周一008","kickoff":"2026-09-15 02:45","league":"意甲","home":"国际米兰","away":"乌迪内斯","display_mark":"排平","excluded_visible":true},
+    {"code":"周一009","kickoff":"2026-09-15 02:45","league":"法乙","home":"圣红星","away":"梅斯","display_mark":"排平","excluded_visible":true},
+    {"code":"周一010","kickoff":"2026-09-15 03:00","league":"英超","home":"利兹联","away":"纽卡斯尔","display_mark":"-","excluded_visible":false},
+    {"code":"周一011","kickoff":"2026-09-15 03:00","league":"西甲","home":"比利亚雷","away":"贝蒂斯","display_mark":"排平","excluded_visible":true},
+    {"code":"周一012","kickoff":"2026-09-15 03:45","league":"葡超","home":"布拉加","away":"埃斯托里","display_mark":"排平","excluded_visible":true}
+  ]
+}
