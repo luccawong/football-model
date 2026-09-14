@@ -1,12 +1,20 @@
 {
-  "version": "MODEL_1-PROBABILITY-NON-EDGE-1.0.0",
+  "version": "MODEL_1-PROBABILITY-NON-EDGE-1.1.0",
   "model_id": "MODEL_1",
   "effective_date": "2026-09-14",
   "status": "ACTIVE_FORMAL_AUDIT_NO_FIXED_NUMERIC_WEIGHT",
-  "authorization": "Explicit targeted user instruction on 2026-09-14: strong favourites naturally have high win probability, so raw probability must not be used as the main reason to select them; upset paths must remain actively testable.",
+  "authorization": "Explicit targeted user instruction on 2026-09-14: strong-side victory is a high-base-rate event rather than prediction skill; upset paths must be explicitly audited instead of being dismissed by low probability.",
   "global_freeze_ended": false,
   "fixed_numeric_weight_authorized": false,
   "core_rule": "Probability is a baseline accounting tool, not a directional edge. A favourite having the highest win probability is expected by definition and contributes zero positive evidence by itself.",
+  "prediction_task_definition": {
+    "required": true,
+    "principle": "Strong-side victory is a high-base-rate event, not prediction skill by itself.",
+    "real_prediction_task": "Determine whether this exact match contains a structurally credible low-base-rate path that is under-recognised or differently priced by the market, including underdog outright win, draw when live, and favourite win without AH cover.",
+    "anti_tautology": "MODEL_1 must not call 'the stronger team is more likely to win' a predictive conclusion.",
+    "football_world_constraint": "The model must preserve real upset branches. It must not collapse football into only favourite-win or draw outcomes simply because those paths carry more prior probability.",
+    "favoured_side_still_allowed": "The strong side may remain the formal ticket, but only after the upset and win-no-cover branches are rejected by match-specific evidence rather than by probability rank."
+  },
   "probability_allowed_uses": [
     "describe prior/base-rate result mass",
     "de-vig bookmaker prices",
@@ -20,7 +28,8 @@
     "reject an underdog outright path merely because its absolute probability is low",
     "treat a post-draw-exclusion renormalised favourite probability as new evidence",
     "upgrade an Asian-handicap favourite because its 1X2 win probability is high",
-    "use historical league or team base rates as a substitute for match-specific price-formation analysis"
+    "use historical league or team base rates as a substitute for match-specific price-formation analysis",
+    "treat favourite-win probability as proof that an upset path is not analytically relevant"
   ],
   "favourite_baseline_normalisation": {
     "required": true,
