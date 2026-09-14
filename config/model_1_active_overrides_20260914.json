@@ -1,5 +1,5 @@
 {
-  "version": "MODEL_1-ACTIVE-OVERRIDES-2026-09-14.2",
+  "version": "MODEL_1-ACTIVE-OVERRIDES-2026-09-14.3",
   "model_id": "MODEL_1",
   "status": "ACTIVE_TARGETED_USER_OVERRIDE",
   "effective_date": "2026-09-14",
@@ -8,6 +8,7 @@
     "config/model_1_favourite_underdog_competition_policy.json"
   ],
   "preflight_extension": {
+    "combined_preflight_engine": "gpt/model_1_preflight.py",
     "validator": "gpt/preflight_competition_gate.py",
     "preserve_18_stage_order": true,
     "required_before_freeze_h1": [
