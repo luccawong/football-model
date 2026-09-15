@@ -3,11 +3,23 @@ from __future__ import annotations
 
 import json
 import math
+from datetime import datetime
+from contextlib import contextmanager
 from pathlib import Path
 import sqlite3
 from typing import Any, Mapping
 
 from .engine import BaselineError, classify_team_goal_market_deviation, compare_market_lambda
+
+
+def _parse_kickoff(value: Any) -> datetime | None:
+    if value is None or str(value).strip() == "":
+        return None
+    raw = str(value).strip().replace("Z", "+00:00")
+    try:
+        return datetime.fromisoformat(raw)
+    except ValueError as exc:
+        raise BaselineError(f"Invalid kickoff datetime: {value}") from exc
 
 
 class TeamGoalBaselineStore:
@@ -16,10 +28,14 @@ class TeamGoalBaselineStore:
         if not self.path.exists():
             raise BaselineError(f"Baseline database not found: {self.path}")
 
-    def _connect(self) -> sqlite3.Connection:
+    @contextmanager
+    def _connect(self):
         con = sqlite3.connect(f"file:{self.path.resolve()}?mode=ro", uri=True)
         con.row_factory = sqlite3.Row
-        return con
+        try:
+            yield con
+        finally:
+            con.close()
 
     def resolve_team(self, competition_id: str, name_or_id: str) -> str:
         value = str(name_or_id)
@@ -69,12 +85,20 @@ class TeamGoalBaselineStore:
             strict_row = None
             if match_id is not None:
                 strict_row = con.execute(
-                    "SELECT * FROM backtest_predictions WHERE match_id=? AND competition_id=? AND variant=?",
-                    (str(match_id), cid, variant),
+                    "SELECT * FROM backtest_predictions WHERE match_id=? AND competition_id=? AND variant=? "
+                    "AND home_team_id=? AND away_team_id=?",
+                    (str(match_id), cid, variant, hid, aid),
                 ).fetchone()
         if league is None:
             raise BaselineError(f"No latest baseline: {cid} / {variant}")
-        if kickoff is not None and match_id is None and latest_as_of is not None and str(kickoff) < latest_as_of:
+        requested_dt = _parse_kickoff(kickoff)
+        latest_dt = _parse_kickoff(latest_as_of)
+        historical_request = requested_dt is not None and latest_dt is not None and requested_dt < latest_dt
+        if strict_row is not None and requested_dt is not None:
+            strict_dt = _parse_kickoff(strict_row["kickoff"])
+            if strict_dt is None or strict_dt != requested_dt:
+                strict_row = None
+        if historical_request and strict_row is None:
             raise BaselineError("NO_STRICT_PRE_KICKOFF_SNAPSHOT")
         by_id = {str(r["team_id"]): dict(r) for r in teams}
         home = by_id.get(hid, {})
@@ -148,14 +172,12 @@ class TeamGoalBaselineStore:
             selected = recon.get(company)
             companies = [company]
         else:
-            valid = [(name, row) for name, row in recon.items() if isinstance(row, Mapping) and "lambda_home" in row and "lambda_away" in row]
-            if not valid:
-                raise BaselineError("Quant packet has no usable market lambda")
-            selected = {
-                "lambda_home": math.exp(sum(math.log(float(r["lambda_home"])) for _, r in valid) / len(valid)),
-                "lambda_away": math.exp(sum(math.log(float(r["lambda_away"])) for _, r in valid) / len(valid)),
-            }
-            companies = [name for name, _ in valid]
+            from gpt.stage14_bayesian import build_market_cluster_likelihood
+            cluster = build_market_cluster_likelihood(quant_packet)
+            if cluster.get("status") != "VALID":
+                raise BaselineError("Quant packet has no usable core market cluster")
+            selected = {"lambda_home": float(cluster["mean_lambda"][0]), "lambda_away": float(cluster["mean_lambda"][1])}
+            companies = list(cluster.get("companies_used", []))
         if not isinstance(selected, Mapping):
             raise BaselineError(f"Company reconstruction unavailable: {company}")
         result = compare_market_lambda(historical, selected)
@@ -168,7 +190,7 @@ class TeamGoalBaselineStore:
         result["interpretation"] = classify_team_goal_market_deviation(result, self._calibration(str(historical["competition_id"]))) if "competition_id" in historical else classify_team_goal_market_deviation(result)
         result.update({
             "market_companies": companies,
-            "market_aggregation": "SINGLE_COMPANY" if company is not None else "CORRELATED_CLUSTER_LOG_RATE_CENTER",
+            "market_aggregation": "SINGLE_COMPANY_OVERRIDE" if company is not None else "CORRELATED_MARKET_CLUSTER_LOG_RATE_CENTER",
             "research_only": True,
         })
         return result

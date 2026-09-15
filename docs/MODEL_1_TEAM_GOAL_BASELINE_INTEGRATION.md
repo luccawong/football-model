@@ -37,4 +37,4 @@ Train-only, league-specific Pinnacle/Bet365/Macau closing log-rate cluster resid
 
 ## Independence and future work
 
-`independent_from_domestic_prior=true` and `overlap_scope=RESULT_HISTORY` are explicit. The layer must not be entered as a second Bayesian prior alongside Domestic Prior V2. Any future promotion requires incremental, correlation-aware, season-forward OOS validation and an explicit model-version decision.
+The packet now distinguishes `pipeline_independent_from_domestic_prior=true` from `evidence_independent_from_domestic_prior=false`; both layers overlap on Titan `RESULT_HISTORY`. The baseline must not be entered as a second Bayesian prior alongside Domestic Prior V2. Any future promotion requires incremental, correlation-aware, season-forward OOS validation and an explicit model-version decision.

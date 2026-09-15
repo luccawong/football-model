@@ -379,7 +379,8 @@ def classify_team_goal_market_deviation(
             standardized["z_robust_" + axis] = None
             magnitude[axis] = "UNSTANDARDIZED"
             continue
-        z = value / float(row["robust_sd"])
+        median = float(row.get("median", 0.0))
+        z = (value - median) / float(row["robust_sd"])
         standardized["z_robust_" + axis] = z
         az = abs(z)
         magnitude[axis] = "EXTREME" if az >= 3.0 else "LARGE" if az >= 2.0 else "MODERATE" if az >= 1.0 else "SMALL"
@@ -388,23 +389,20 @@ def classify_team_goal_market_deviation(
     away = float(packet["market_away_lambda_residual"])
     total = float(packet["market_total_residual"])
     margin = float(packet["market_goal_residual"])
-    if home > 0:
-        labels.append("HOME_ATTACK_MARKUP")
-    elif home < 0:
-        labels.append("HOME_ATTACK_DISCOUNT")
-    if away > 0:
-        labels.append("AWAY_ATTACK_MARKUP")
-    elif away < 0:
-        labels.append("AWAY_ATTACK_DISCOUNT")
-    if total > 0:
-        labels.append("TOTAL_MARKUP")
-    elif total < 0:
-        labels.append("TOTAL_DISCOUNT")
-    if margin > 0:
-        labels.append("HOME_MARGIN_MARKUP")
-    elif margin < 0:
-        labels.append("AWAY_MARGIN_MARKUP")
+    def _direction(axis: str, positive: str, negative: str) -> None:
+        z = standardized.get("z_robust_" + axis)
+        if z is None:
+            return
+        if abs(float(z)) >= 1.0:
+            labels.append(positive if float(z) > 0 else negative)
+
+    _direction("home", "HOME_ATTACK_MARKUP", "HOME_ATTACK_DISCOUNT")
+    _direction("away", "AWAY_ATTACK_MARKUP", "AWAY_ATTACK_DISCOUNT")
+    _direction("total", "TOTAL_MARKUP", "TOTAL_DISCOUNT")
+    _direction("margin", "HOME_MARGIN_MARKUP", "AWAY_MARGIN_MARKUP")
     if not labels:
+        labels.append("NEAR_BASELINE")
+    elif all(magnitude.get(axis) == "SMALL" for axis in raw_keys):
         labels.append("NEAR_BASELINE")
     return {
         "labels": labels,

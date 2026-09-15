@@ -74,7 +74,11 @@ def build_team_goal_baseline_packet(
         "fallback_reason": {"home": historical.get("home_history_class"), "away": historical.get("away_history_class")},
         "provenance": {"source": "TITAN_COMPLETED_RESULTS", "source_sha256": historical.get("source_sha256"),
                         "baseline_fit_market_blind": True, "no_future_leakage": True,
-                        "independent_from_domestic_prior": True, "overlap_scope": "RESULT_HISTORY"},
+                        "pipeline_independent_from_domestic_prior": True,
+                        "evidence_independent_from_domestic_prior": False,
+                        "independent_from_domestic_prior": False,
+                        "overlap_scope": "RESULT_HISTORY",
+                        "do_not_double_count_as_independent_prior": True},
         "historical_matchup": historical,
     }
     if quant_packet is not None:
