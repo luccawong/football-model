@@ -69,7 +69,7 @@ def automatic_top3(
     prior_packet: Mapping[str, Any] | None = None,
     prior_context: Mapping[str, Any] | None = None,
     prior_store: Mapping[str, Any] | str | Path | None = None,
-    context_updates: Sequence[Mapping[str, Any]] | None = None,
+    context_updates: Sequence[Mapping[str, Any]] | Mapping[str, Any] | None = None,
     execution_path: Mapping[str, Any] | None = None,
     market_absorbed_fraction: float = 0.0,
     market_sigma_floor: float = 0.12,
@@ -408,6 +408,7 @@ def resolve_score_engine(
 
     out = build_formal_market_score_packet(
         quant_packet,
+        context_updates=context_updates,
         execution_path=_formal_execution_path(execution_path),
         historical_prior_activation=activation,
         snapshot_phase=phase,

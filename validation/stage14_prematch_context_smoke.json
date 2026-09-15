@@ -1,0 +1,105 @@
+{
+  "status": "PASS",
+  "draws": 500,
+  "context_model_version": "MODEL_1-PREMATCH-CONTEXT-1.0.0",
+  "real_titan_cases": [
+    {
+      "competition": "英超",
+      "match_id": "2789129",
+      "context_status": {
+        "RECENT_FORM": "INSUFFICIENT_DATA",
+        "LINEUP": "INSUFFICIENT_DATA",
+        "PLAYER_STATE": "INSUFFICIENT_DATA",
+        "SCHEDULE": "INSUFFICIENT_DATA"
+      },
+      "real_titan_calibration": "NONE_RESULT_ONLY_DATASET",
+      "raw_top10_unchanged": true,
+      "top3_unchanged": true,
+      "lambda_unchanged": true,
+      "ah_gate_unchanged": true,
+      "ou_unchanged": true
+    },
+    {
+      "competition": "西甲",
+      "match_id": "2804299",
+      "context_status": {
+        "RECENT_FORM": "INSUFFICIENT_DATA",
+        "LINEUP": "INSUFFICIENT_DATA",
+        "PLAYER_STATE": "INSUFFICIENT_DATA",
+        "SCHEDULE": "INSUFFICIENT_DATA"
+      },
+      "real_titan_calibration": "NONE_RESULT_ONLY_DATASET",
+      "raw_top10_unchanged": true,
+      "top3_unchanged": true,
+      "lambda_unchanged": true,
+      "ah_gate_unchanged": true,
+      "ou_unchanged": true
+    },
+    {
+      "competition": "意甲",
+      "match_id": "2784485",
+      "context_status": {
+        "RECENT_FORM": "INSUFFICIENT_DATA",
+        "LINEUP": "INSUFFICIENT_DATA",
+        "PLAYER_STATE": "INSUFFICIENT_DATA",
+        "SCHEDULE": "INSUFFICIENT_DATA"
+      },
+      "real_titan_calibration": "NONE_RESULT_ONLY_DATASET",
+      "raw_top10_unchanged": true,
+      "top3_unchanged": true,
+      "lambda_unchanged": true,
+      "ah_gate_unchanged": true,
+      "ou_unchanged": true
+    },
+    {
+      "competition": "德甲",
+      "match_id": "2799407",
+      "context_status": {
+        "RECENT_FORM": "INSUFFICIENT_DATA",
+        "LINEUP": "INSUFFICIENT_DATA",
+        "PLAYER_STATE": "INSUFFICIENT_DATA",
+        "SCHEDULE": "INSUFFICIENT_DATA"
+      },
+      "real_titan_calibration": "NONE_RESULT_ONLY_DATASET",
+      "raw_top10_unchanged": true,
+      "top3_unchanged": true,
+      "lambda_unchanged": true,
+      "ah_gate_unchanged": true,
+      "ou_unchanged": true
+    },
+    {
+      "competition": "法甲",
+      "match_id": "2800027",
+      "context_status": {
+        "RECENT_FORM": "INSUFFICIENT_DATA",
+        "LINEUP": "INSUFFICIENT_DATA",
+        "PLAYER_STATE": "INSUFFICIENT_DATA",
+        "SCHEDULE": "INSUFFICIENT_DATA"
+      },
+      "real_titan_calibration": "NONE_RESULT_ONLY_DATASET",
+      "raw_top10_unchanged": true,
+      "top3_unchanged": true,
+      "lambda_unchanged": true,
+      "ah_gate_unchanged": true,
+      "ou_unchanged": true
+    },
+    {
+      "competition": "欧冠",
+      "match_id": "2788747",
+      "context_status": {
+        "RECENT_FORM": "INSUFFICIENT_DATA",
+        "LINEUP": "INSUFFICIENT_DATA",
+        "PLAYER_STATE": "INSUFFICIENT_DATA",
+        "SCHEDULE": "INSUFFICIENT_DATA"
+      },
+      "real_titan_calibration": "NONE_RESULT_ONLY_DATASET",
+      "raw_top10_unchanged": true,
+      "top3_unchanged": true,
+      "lambda_unchanged": true,
+      "ah_gate_unchanged": true,
+      "ou_unchanged": true
+    }
+  ],
+  "synthetic_quantified_status": "VALIDATED",
+  "synthetic_quantified_no_future_leakage": true
+}
