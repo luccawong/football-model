@@ -1,7 +1,7 @@
 {
-  "contract_version": "MODEL_1-TRACE-CONTRACT-1.2.1",
+  "contract_version": "MODEL_1-TRACE-CONTRACT-1.3.0",
   "model_id": "MODEL_1",
-  "purpose": "Machine-auditable record that every full analysis completed the user-approved 18-stage MODEL_1 sequence without silent omission or reordering.",
+  "purpose": "Machine-auditable record that every full analysis completed the effective 18-stage MODEL_1 sequence, bookmaker-intent audit, draw-branch handling, single-H1 falsification and exactly-one-main output discipline.",
   "stage_status_values": ["COMPLETE", "COMPLETE_WITH_MISSING", "CONFLICT", "BLOCKED"],
   "execution_order": [
     "fundamentals",
@@ -20,7 +20,7 @@
     "correct_score_poisson_bayesian",
     "uncertainty_audit",
     "freeze_h1",
-    "red_team_h2",
+    "single_h1_falsification_audit",
     "formal_main_exactly_one"
   ],
   "required_stage_fields": {
@@ -39,7 +39,11 @@
       "hfa_double_counting_check",
       "opening_validity",
       "lifecycle_events",
-      "counterfactual_opening_check"
+      "counterfactual_opening_check",
+      "bookmaker_intent_policy_loaded",
+      "bookmaker_profiles_priors_only_acknowledged",
+      "lead_follow_audit_completed",
+      "material_move_competing_explanations_completed"
     ],
     "off_field_weather": [
       "official_information",
@@ -55,17 +59,57 @@
       "weather_tactical_path_impact"
     ],
     "lineup_tactics": ["lineup_status", "injury_suspension_review", "formation_matchup"],
-    "one_x_two_real_vs_camouflage_open": ["real_decimal_odds", "devig_probabilities", "same_time_slice_comparison", "company_divergence_pp", "real_vs_camouflage_open_audited"],
-    "asian_handicap_europe_asia_conversion": ["ah_lifecycle", "water_lifecycle", "europe_asia_conversion_audited", "win_vs_cover_separated"],
+    "one_x_two_real_vs_camouflage_open": [
+      "real_decimal_odds",
+      "devig_probabilities",
+      "same_time_slice_comparison",
+      "company_divergence_pp",
+      "real_vs_camouflage_open_audited",
+      "bookmaker_role_map",
+      "same_time_slice_company_divergence_completed"
+    ],
+    "asian_handicap_europe_asia_conversion": [
+      "ah_lifecycle",
+      "water_lifecycle",
+      "europe_asia_conversion_audited",
+      "win_vs_cover_separated",
+      "ah_all_main_lines_divergence_audited"
+    ],
     "totals": ["dynamic_ou_structure", "base_2_5_anchor", "ou_reference_line", "ou_direction", "ou_direction_confidence", "ou_independent_conclusion"],
-    "cross_market_coherence": ["one_x_two_ah_ou_coherence", "conflicts_explained"],
-    "market_attraction": ["favourite_attraction", "underdog_attraction", "attraction_interpretation"],
+    "cross_market_coherence": ["one_x_two_ah_ou_coherence", "conflicts_explained", "cross_market_correlation_guard_completed"],
+    "market_attraction": [
+      "favourite_attraction",
+      "underdog_attraction",
+      "attraction_interpretation",
+      "blocking_inducement_hot_cold_audit_completed",
+      "popular_side_default_forbidden_acknowledged",
+      "operator_intent_conclusion",
+      "operator_intent_counterinterpretation"
+    ],
     "draw_exclusion_winner_audit": ["authoritative_draw_label", "draw_branch", "draw_audit_completed"],
     "underdog_outright_audit": ["audit_required", "audit_completed", "u_grade", "outright_vs_cover_separated"],
     "correct_score_poisson_bayesian": ["quant_packet_ref", "score_grid_ref", "bayesian_context_update", "top3_scores", "direction_consistency_gate"],
-    "uncertainty_audit": ["missingness", "company_disagreement", "model_uncertainty", "execution_sensitivity"],
+    "uncertainty_audit": [
+      "missingness",
+      "company_disagreement",
+      "model_uncertainty",
+      "execution_sensitivity",
+      "neutral_evidence_ledger_complete",
+      "h1_contradictions_recorded",
+      "market_rationalization_guard_complete"
+    ],
     "freeze_h1": ["h1_direction", "h1_market", "h1_line", "h1_grade", "h1_frozen_at"],
-    "red_team_h2": ["h2_alternative", "red_team_verdict", "strongest_counterevidence"],
+    "single_h1_falsification_audit": [
+      "falsification_audit_completed",
+      "falsification_verdict",
+      "strongest_counterevidence",
+      "h1_failure_conditions",
+      "h1_failure_conditions_recorded",
+      "counterevidence_tested",
+      "alternative_match_paths_tested",
+      "drift_mode_acknowledged",
+      "final_direction_survives_falsification"
+    ],
     "formal_main_exactly_one": ["ticket_market", "ticket_line", "ticket_direction", "ticket_grade", "actionable_price", "ticket_locked"]
   },
   "conditional_rules": {
@@ -73,6 +117,15 @@
       "policy_file": "config/opening_baseline_policy.json",
       "if_league_calibration_missing_mark_uncalibrated": true,
       "no_precise_fair_line_fabrication": true
+    },
+    "bookmaker_intent": {
+      "policy_file": "config/model_1_bookmaker_intent_policy.json",
+      "profiles_are_priors_only": true,
+      "per_match_role_map_required": true,
+      "allowed_roles": ["LEADER", "CONFIRMER", "FOLLOWER", "DIVERGENT", "STALE_OR_ASYNCHRONOUS", "UNKNOWN"],
+      "competing_explanations_per_material_move_required": true,
+      "cross_market_correlation_guard_required": true,
+      "popular_side_default_forbidden": true
     },
     "weather": {
       "missing_weather_is_allowed_only_if_explicitly_disclosed": true,
@@ -89,13 +142,28 @@
       "score_stage_must_use_ou_direction_in_bayesian_context_and_direction_consistency_gate": true
     },
     "draw_exclusion": {
-      "EXCLUDED": ["winner_only_audit_completed", "draw_removed_from_execution"],
+      "EXCLUDED": [
+        "winner_only_audit_completed",
+        "draw_removed_from_execution",
+        "draw_excluded_binary_winner_audit_completed",
+        "popular_side_default_forbidden_acknowledged",
+        "more_protected_side",
+        "more_sold_side",
+        "operator_intent_conclusion",
+        "operator_intent_counterinterpretation",
+        "winner_choice_after_intent_audit"
+      ],
       "NOT_EXCLUDED": ["enhanced_draw_audit_completed", "draw_retained_as_active_path"],
       "UNKNOWN": ["unknown_disclosed", "draw_not_forcibly_removed"]
     },
     "underdog_outright": {
       "required_if_favourite_handicap_le": -0.75,
       "required_if_draw_excluded": true
+    },
+    "single_h1_falsification": {
+      "policy_file": "config/model_1_single_h1_falsification_policy.json",
+      "second_formal_candidate_forbidden": true,
+      "allowed_verdicts": ["SURVIVES", "DOWNGRADE", "UPGRADE", "OVERTURN_AND_REBUILD"]
     },
     "ticket": {
       "exactly_one_formal_main": true,
@@ -107,15 +175,19 @@
     "quant_packet": "gpt/quant_core.py output or explicit MISSING",
     "feature_packet": "gpt/feature_engine.py evidence/QC output or explicit MISSING",
     "decision_validation": "gpt/decision_engine.py",
+    "preflight_validation": "gpt/preflight_gate.py",
     "trace_validation": "gpt/formal_trace.py",
     "opening_baseline_policy": "config/opening_baseline_policy.json",
-    "off_field_weather_policy": "config/off_field_weather_policy.json"
+    "off_field_weather_policy": "config/off_field_weather_policy.json",
+    "single_h1_falsification_policy": "config/model_1_single_h1_falsification_policy.json",
+    "bookmaker_intent_policy": "config/model_1_bookmaker_intent_policy.json"
   },
   "immutability": {
     "prematch_freeze_required": true,
     "post_result_backfill_forbidden": true,
     "ticket_change_requires_explicit_correction": true,
     "historical_model_1_trace_must_not_be_rewritten_by_future_models": true,
-    "formal_model_semantics_frozen_until": "2026-10-10 Asia/Shanghai"
+    "formal_model_semantics_frozen_until": "2026-10-10 Asia/Shanghai",
+    "targeted_user_overrides_during_freeze_are_versioned_not_silent": true
   }
 }
