@@ -31,6 +31,10 @@ def build(database: str, output: str, draws: int = 500) -> dict:
         after = resolve_score_engine(**args, team_goal_baseline_database=database)
         before_top3 = [r["score"] for r in before.get("top3", [])]
         after_top3 = [r["score"] for r in after.get("top3", [])]
+        raw_top10_unchanged = before.get("raw_top10") == after.get("raw_top10")
+        lambda_unchanged = (before.get("lambda_home"), before.get("lambda_away")) == (after.get("lambda_home"), after.get("lambda_away"))
+        ah_unchanged = before.get("AH_gate_status") == after.get("AH_gate_status")
+        ou_unchanged = before.get("OU_references") == after.get("OU_references")
         audit = after.get("team_goal_baseline_audit", {})
         rows.append({
             "competition": case["competition"], "match_id": case["match_id"],
@@ -47,9 +51,13 @@ def build(database: str, output: str, draws: int = 500) -> dict:
             "baseline_status": audit.get("status"),
             "stage14_top3_before": before_top3, "stage14_top3_after": after_top3,
             "stage14_top3_unchanged": before_top3 == after_top3,
+            "stage14_raw_top10_unchanged": raw_top10_unchanged,
+            "stage14_lambda_unchanged": lambda_unchanged,
+            "stage14_ah_gate_unchanged": ah_unchanged,
+            "stage14_ou_unchanged": ou_unchanged,
             "formal_model_1_weight_impact": audit.get("formal_model_1_weight_impact"),
         })
-    payload = {"status": "PASS" if all(r["stage14_top3_unchanged"] for r in rows) else "FAIL",
+    payload = {"status": "PASS" if all(r["stage14_top3_unchanged"] and r["stage14_raw_top10_unchanged"] and r["stage14_lambda_unchanged"] and r["stage14_ah_gate_unchanged"] and r["stage14_ou_unchanged"] for r in rows) else "FAIL",
                "draws": draws, "research_only": True, "cases": rows}
     path = Path(output); path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")

@@ -15,16 +15,13 @@
       "market_total_residual": 0.14609652482724433,
       "market_goal_residual": 0.4431249149319618,
       "standardized_residuals": {
-        "z_robust_home": 0.864376314058114,
-        "z_robust_away": -0.4937932184856032,
-        "z_robust_total": 0.3788162192779808,
-        "z_robust_margin": 0.8352776310609435
+        "z_robust_home": 0.824355057659095,
+        "z_robust_away": -0.7519453653715842,
+        "z_robust_total": -0.0008182224334635401,
+        "z_robust_margin": 0.9295104273803719
       },
       "deviation_labels": [
-        "HOME_ATTACK_MARKUP",
-        "AWAY_ATTACK_DISCOUNT",
-        "TOTAL_MARKUP",
-        "HOME_MARGIN_MARKUP"
+        "NEAR_BASELINE"
       ],
       "baseline_status": "AVAILABLE",
       "stage14_top3_before": [
@@ -38,6 +35,10 @@
         "3-1"
       ],
       "stage14_top3_unchanged": true,
+      "stage14_raw_top10_unchanged": true,
+      "stage14_lambda_unchanged": true,
+      "stage14_ah_gate_unchanged": true,
+      "stage14_ou_unchanged": true,
       "formal_model_1_weight_impact": "NONE"
     },
     {
@@ -52,16 +53,13 @@
       "market_total_residual": -0.1760892008665289,
       "market_goal_residual": -0.3298378154139412,
       "standardized_residuals": {
-        "z_robust_home": -0.9488753046523531,
-        "z_robust_away": 0.37534337375158816,
-        "z_robust_total": -0.47153609091911214,
-        "z_robust_margin": -0.8642741633505203
+        "z_robust_home": -1.1136176229312709,
+        "z_robust_away": 0.24128919176494662,
+        "z_robust_total": -0.8055824269519787,
+        "z_robust_margin": -0.9709138288598366
       },
       "deviation_labels": [
-        "HOME_ATTACK_DISCOUNT",
-        "AWAY_ATTACK_MARKUP",
-        "TOTAL_DISCOUNT",
-        "AWAY_MARGIN_MARKUP"
+        "HOME_ATTACK_DISCOUNT"
       ],
       "baseline_status": "AVAILABLE",
       "stage14_top3_before": [
@@ -75,6 +73,10 @@
         "2-0"
       ],
       "stage14_top3_unchanged": true,
+      "stage14_raw_top10_unchanged": true,
+      "stage14_lambda_unchanged": true,
+      "stage14_ah_gate_unchanged": true,
+      "stage14_ou_unchanged": true,
       "formal_model_1_weight_impact": "NONE"
     },
     {
@@ -89,15 +91,13 @@
       "market_total_residual": 0.1211395174769132,
       "market_goal_residual": 0.46500600740351805,
       "standardized_residuals": {
-        "z_robust_home": 1.0998571805183683,
-        "z_robust_away": -0.8731362183213895,
-        "z_robust_total": 0.35699358514783147,
-        "z_robust_margin": 1.2534630077436584
+        "z_robust_home": 1.0176671773793877,
+        "z_robust_away": -0.7311609024745269,
+        "z_robust_total": 0.24546925408643233,
+        "z_robust_margin": 1.0869794838350442
       },
       "deviation_labels": [
         "HOME_ATTACK_MARKUP",
-        "AWAY_ATTACK_DISCOUNT",
-        "TOTAL_MARKUP",
         "HOME_MARGIN_MARKUP"
       ],
       "baseline_status": "AVAILABLE",
@@ -112,6 +112,10 @@
         "2-1"
       ],
       "stage14_top3_unchanged": true,
+      "stage14_raw_top10_unchanged": true,
+      "stage14_lambda_unchanged": true,
+      "stage14_ah_gate_unchanged": true,
+      "stage14_ou_unchanged": true,
       "formal_model_1_weight_impact": "NONE"
     },
     {
@@ -126,14 +130,13 @@
       "market_total_residual": 0.5757348116656527,
       "market_goal_residual": 0.7995010570117742,
       "standardized_residuals": {
-        "z_robust_home": 2.2221928651004923,
-        "z_robust_away": -0.3924326362519727,
-        "z_robust_total": 1.6806408145010343,
-        "z_robust_margin": 1.6489557665395913
+        "z_robust_home": 2.545837756029726,
+        "z_robust_away": -0.3646925823760768,
+        "z_robust_total": 1.7979533756233794,
+        "z_robust_margin": 1.8509254872363436
       },
       "deviation_labels": [
         "HOME_ATTACK_MARKUP",
-        "AWAY_ATTACK_DISCOUNT",
         "TOTAL_MARKUP",
         "HOME_MARGIN_MARKUP"
       ],
@@ -149,6 +152,10 @@
         "4-1"
       ],
       "stage14_top3_unchanged": true,
+      "stage14_raw_top10_unchanged": true,
+      "stage14_lambda_unchanged": true,
+      "stage14_ah_gate_unchanged": true,
+      "stage14_ou_unchanged": true,
       "formal_model_1_weight_impact": "NONE"
     },
     {
@@ -163,15 +170,14 @@
       "market_total_residual": 0.030940204132655413,
       "market_goal_residual": -0.8351848163260753,
       "standardized_residuals": {
-        "z_robust_home": -1.46075937494308,
-        "z_robust_away": 1.8012977300541662,
-        "z_robust_total": 0.08861626367234782,
-        "z_robust_margin": -1.9454744203785344
+        "z_robust_home": -1.7529339207653782,
+        "z_robust_away": 1.820286640550362,
+        "z_robust_total": -0.22622724393996965,
+        "z_robust_margin": -2.096149889299751
       },
       "deviation_labels": [
         "HOME_ATTACK_DISCOUNT",
         "AWAY_ATTACK_MARKUP",
-        "TOTAL_MARKUP",
         "AWAY_MARGIN_MARKUP"
       ],
       "baseline_status": "AVAILABLE",
@@ -186,6 +192,10 @@
         "0-1"
       ],
       "stage14_top3_unchanged": true,
+      "stage14_raw_top10_unchanged": true,
+      "stage14_lambda_unchanged": true,
+      "stage14_ah_gate_unchanged": true,
+      "stage14_ou_unchanged": true,
       "formal_model_1_weight_impact": "NONE"
     }
   ]
