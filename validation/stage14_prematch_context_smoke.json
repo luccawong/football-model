@@ -6,6 +6,9 @@
     {
       "competition": "英超",
       "match_id": "2789129",
+      "score_engine_mode": "MARKET_ONLY_FORMAL",
+      "prior_used": false,
+      "historical_prior_activation": "SHADOW",
       "context_status": {
         "RECENT_FORM": "INSUFFICIENT_DATA",
         "LINEUP": "INSUFFICIENT_DATA",
@@ -13,15 +16,138 @@
         "SCHEDULE": "INSUFFICIENT_DATA"
       },
       "real_titan_calibration": "NONE_RESULT_ONLY_DATASET",
-      "raw_top10_unchanged": true,
-      "top3_unchanged": true,
-      "lambda_unchanged": true,
-      "ah_gate_unchanged": true,
-      "ou_unchanged": true
+      "base_lambda_home": 2.7115743799615704,
+      "base_lambda_away": 0.9000939916337933,
+      "final_lambda_home": 2.7115743799615704,
+      "final_lambda_away": 0.9000939916337933,
+      "context_delta": [
+        0.0,
+        0.0
+      ],
+      "raw_top10_unchanged_when_no_context": true,
+      "top3_unchanged_when_no_context": true,
+      "AH_gate": "APPLIED_POSITIVE_SETTLEMENT_ONLY",
+      "OU_gate": {
+        "2.0": {
+          "over": {
+            "full_win": 0.6954237071327217,
+            "half_win": 0.0,
+            "push": 0.1751571235154078,
+            "half_loss": 0.0,
+            "full_loss": 0.12941916935187087
+          },
+          "under": {
+            "full_win": 0.12941916935187087,
+            "half_win": 0.0,
+            "push": 0.1751571235154078,
+            "half_loss": 0.0,
+            "full_loss": 0.6954237071327217
+          }
+        },
+        "2.25": {
+          "over": {
+            "full_win": 0.6954237071327217,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.1751571235154078,
+            "full_loss": 0.12941916935187087
+          },
+          "under": {
+            "full_win": 0.12941916935187087,
+            "half_win": 0.1751571235154078,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.6954237071327217
+          }
+        },
+        "2.5": {
+          "over": {
+            "full_win": 0.6954237071327217,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.30457629286727866
+          },
+          "under": {
+            "full_win": 0.30457629286727866,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.6954237071327217
+          }
+        },
+        "2.75": {
+          "over": {
+            "full_win": 0.48560367711746466,
+            "half_win": 0.2098200300152568,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.30457629286727866
+          },
+          "under": {
+            "full_win": 0.30457629286727866,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.2098200300152568,
+            "full_loss": 0.48560367711746466
+          }
+        },
+        "3.0": {
+          "over": {
+            "full_win": 0.48560367711746466,
+            "half_win": 0.0,
+            "push": 0.2098200300152568,
+            "half_loss": 0.0,
+            "full_loss": 0.30457629286727866
+          },
+          "under": {
+            "full_win": 0.30457629286727866,
+            "half_win": 0.0,
+            "push": 0.2098200300152568,
+            "half_loss": 0.0,
+            "full_loss": 0.48560367711746466
+          }
+        },
+        "3.25": {
+          "over": {
+            "full_win": 0.48560367711746466,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.2098200300152568,
+            "full_loss": 0.30457629286727866
+          },
+          "under": {
+            "full_win": 0.30457629286727866,
+            "half_win": 0.2098200300152568,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.48560367711746466
+          }
+        },
+        "3.5": {
+          "over": {
+            "full_win": 0.48560367711746466,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.5143963228825355
+          },
+          "under": {
+            "full_win": 0.5143963228825355,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.48560367711746466
+          }
+        }
+      }
     },
     {
       "competition": "西甲",
       "match_id": "2804299",
+      "score_engine_mode": "MARKET_ONLY_FORMAL",
+      "prior_used": false,
+      "historical_prior_activation": "SHADOW",
       "context_status": {
         "RECENT_FORM": "INSUFFICIENT_DATA",
         "LINEUP": "INSUFFICIENT_DATA",
@@ -29,15 +155,138 @@
         "SCHEDULE": "INSUFFICIENT_DATA"
       },
       "real_titan_calibration": "NONE_RESULT_ONLY_DATASET",
-      "raw_top10_unchanged": true,
-      "top3_unchanged": true,
-      "lambda_unchanged": true,
-      "ah_gate_unchanged": true,
-      "ou_unchanged": true
+      "base_lambda_home": 1.2663006270065638,
+      "base_lambda_away": 1.081267390440811,
+      "final_lambda_home": 1.2663006270065638,
+      "final_lambda_away": 1.081267390440811,
+      "context_delta": [
+        0.0,
+        0.0
+      ],
+      "raw_top10_unchanged_when_no_context": true,
+      "top3_unchanged_when_no_context": true,
+      "AH_gate": "APPLIED_POSITIVE_SETTLEMENT_ONLY",
+      "OU_gate": {
+        "2.0": {
+          "over": {
+            "full_win": 0.41846190170620207,
+            "half_win": 0.0,
+            "push": 0.2714467507793257,
+            "half_loss": 0.0,
+            "full_loss": 0.3100913475144723
+          },
+          "under": {
+            "full_win": 0.3100913475144723,
+            "half_win": 0.0,
+            "push": 0.2714467507793257,
+            "half_loss": 0.0,
+            "full_loss": 0.41846190170620207
+          }
+        },
+        "2.25": {
+          "over": {
+            "full_win": 0.41846190170620207,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.2714467507793257,
+            "full_loss": 0.3100913475144723
+          },
+          "under": {
+            "full_win": 0.3100913475144723,
+            "half_win": 0.2714467507793257,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.41846190170620207
+          }
+        },
+        "2.5": {
+          "over": {
+            "full_win": 0.41846190170620207,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.5815380982937981
+          },
+          "under": {
+            "full_win": 0.5815380982937981,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.41846190170620207
+          }
+        },
+        "2.75": {
+          "over": {
+            "full_win": 0.21362390505360512,
+            "half_win": 0.20483799665259694,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.5815380982937981
+          },
+          "under": {
+            "full_win": 0.5815380982937981,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.20483799665259694,
+            "full_loss": 0.21362390505360512
+          }
+        },
+        "3.0": {
+          "over": {
+            "full_win": 0.21362390505360512,
+            "half_win": 0.0,
+            "push": 0.20483799665259694,
+            "half_loss": 0.0,
+            "full_loss": 0.5815380982937981
+          },
+          "under": {
+            "full_win": 0.5815380982937981,
+            "half_win": 0.0,
+            "push": 0.20483799665259694,
+            "half_loss": 0.0,
+            "full_loss": 0.21362390505360512
+          }
+        },
+        "3.25": {
+          "over": {
+            "full_win": 0.21362390505360512,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.20483799665259694,
+            "full_loss": 0.5815380982937981
+          },
+          "under": {
+            "full_win": 0.5815380982937981,
+            "half_win": 0.20483799665259694,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.21362390505360512
+          }
+        },
+        "3.5": {
+          "over": {
+            "full_win": 0.21362390505360512,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.7863760949463948
+          },
+          "under": {
+            "full_win": 0.7863760949463948,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.21362390505360512
+          }
+        }
+      }
     },
     {
       "competition": "意甲",
       "match_id": "2784485",
+      "score_engine_mode": "MARKET_ONLY_FORMAL",
+      "prior_used": false,
+      "historical_prior_activation": "SHADOW",
       "context_status": {
         "RECENT_FORM": "INSUFFICIENT_DATA",
         "LINEUP": "INSUFFICIENT_DATA",
@@ -45,15 +294,138 @@
         "SCHEDULE": "INSUFFICIENT_DATA"
       },
       "real_titan_calibration": "NONE_RESULT_ONLY_DATASET",
-      "raw_top10_unchanged": true,
-      "top3_unchanged": true,
-      "lambda_unchanged": true,
-      "ah_gate_unchanged": true,
-      "ou_unchanged": true
+      "base_lambda_home": 1.5118012925205326,
+      "base_lambda_away": 0.7111604260444125,
+      "final_lambda_home": 1.5118012925205326,
+      "final_lambda_away": 0.7111604260444125,
+      "context_delta": [
+        0.0,
+        0.0
+      ],
+      "raw_top10_unchanged_when_no_context": true,
+      "top3_unchanged_when_no_context": true,
+      "AH_gate": "APPLIED_POSITIVE_SETTLEMENT_ONLY",
+      "OU_gate": {
+        "2.0": {
+          "over": {
+            "full_win": 0.3845737571694662,
+            "half_win": 0.0,
+            "push": 0.2774689911653776,
+            "half_loss": 0.0,
+            "full_loss": 0.3379572516651559
+          },
+          "under": {
+            "full_win": 0.3379572516651559,
+            "half_win": 0.0,
+            "push": 0.2774689911653776,
+            "half_loss": 0.0,
+            "full_loss": 0.3845737571694662
+          }
+        },
+        "2.25": {
+          "over": {
+            "full_win": 0.3845737571694662,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.2774689911653776,
+            "full_loss": 0.3379572516651559
+          },
+          "under": {
+            "full_win": 0.3379572516651559,
+            "half_win": 0.2774689911653776,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.3845737571694662
+          }
+        },
+        "2.5": {
+          "over": {
+            "full_win": 0.3845737571694662,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.6154262428305334
+          },
+          "under": {
+            "full_win": 0.6154262428305334,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.3845737571694662
+          }
+        },
+        "2.75": {
+          "over": {
+            "full_win": 0.18789043161973315,
+            "half_win": 0.1966833255497333,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.6154262428305334
+          },
+          "under": {
+            "full_win": 0.6154262428305334,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.1966833255497333,
+            "full_loss": 0.18789043161973315
+          }
+        },
+        "3.0": {
+          "over": {
+            "full_win": 0.18789043161973315,
+            "half_win": 0.0,
+            "push": 0.1966833255497333,
+            "half_loss": 0.0,
+            "full_loss": 0.6154262428305334
+          },
+          "under": {
+            "full_win": 0.6154262428305334,
+            "half_win": 0.0,
+            "push": 0.1966833255497333,
+            "half_loss": 0.0,
+            "full_loss": 0.18789043161973315
+          }
+        },
+        "3.25": {
+          "over": {
+            "full_win": 0.18789043161973315,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.1966833255497333,
+            "full_loss": 0.6154262428305334
+          },
+          "under": {
+            "full_win": 0.6154262428305334,
+            "half_win": 0.1966833255497333,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.18789043161973315
+          }
+        },
+        "3.5": {
+          "over": {
+            "full_win": 0.18789043161973315,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.8121095683802667
+          },
+          "under": {
+            "full_win": 0.8121095683802667,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.18789043161973315
+          }
+        }
+      }
     },
     {
       "competition": "德甲",
       "match_id": "2799407",
+      "score_engine_mode": "MARKET_ONLY_FORMAL",
+      "prior_used": false,
+      "historical_prior_activation": "SHADOW",
       "context_status": {
         "RECENT_FORM": "INSUFFICIENT_DATA",
         "LINEUP": "INSUFFICIENT_DATA",
@@ -61,15 +433,138 @@
         "SCHEDULE": "INSUFFICIENT_DATA"
       },
       "real_titan_calibration": "NONE_RESULT_ONLY_DATASET",
-      "raw_top10_unchanged": true,
-      "top3_unchanged": true,
-      "lambda_unchanged": true,
-      "ah_gate_unchanged": true,
-      "ou_unchanged": true
+      "base_lambda_home": 3.1593489756414894,
+      "base_lambda_away": 0.9351299708039147,
+      "final_lambda_home": 3.1593489756414894,
+      "final_lambda_away": 0.9351299708039147,
+      "context_delta": [
+        0.0,
+        0.0
+      ],
+      "raw_top10_unchanged_when_no_context": true,
+      "top3_unchanged_when_no_context": true,
+      "AH_gate": "APPLIED_POSITIVE_SETTLEMENT_ONLY",
+      "OU_gate": {
+        "2.0": {
+          "over": {
+            "full_win": 0.7756017230807438,
+            "half_win": 0.0,
+            "push": 0.13889599051522258,
+            "half_loss": 0.0,
+            "full_loss": 0.08550228640403379
+          },
+          "under": {
+            "full_win": 0.08550228640403379,
+            "half_win": 0.0,
+            "push": 0.13889599051522258,
+            "half_loss": 0.0,
+            "full_loss": 0.7756017230807438
+          }
+        },
+        "2.25": {
+          "over": {
+            "full_win": 0.7756017230807438,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.13889599051522258,
+            "full_loss": 0.08550228640403379
+          },
+          "under": {
+            "full_win": 0.08550228640403379,
+            "half_win": 0.13889599051522258,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.7756017230807438
+          }
+        },
+        "2.5": {
+          "over": {
+            "full_win": 0.7756017230807438,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.22439827691925637
+          },
+          "under": {
+            "full_win": 0.22439827691925637,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.7756017230807438
+          }
+        },
+        "2.75": {
+          "over": {
+            "full_win": 0.5885400793498613,
+            "half_win": 0.1870616437308826,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.22439827691925637
+          },
+          "under": {
+            "full_win": 0.22439827691925637,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.1870616437308826,
+            "full_loss": 0.5885400793498613
+          }
+        },
+        "3.0": {
+          "over": {
+            "full_win": 0.5885400793498613,
+            "half_win": 0.0,
+            "push": 0.1870616437308826,
+            "half_loss": 0.0,
+            "full_loss": 0.22439827691925637
+          },
+          "under": {
+            "full_win": 0.22439827691925637,
+            "half_win": 0.0,
+            "push": 0.1870616437308826,
+            "half_loss": 0.0,
+            "full_loss": 0.5885400793498613
+          }
+        },
+        "3.25": {
+          "over": {
+            "full_win": 0.5885400793498613,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.1870616437308826,
+            "full_loss": 0.22439827691925637
+          },
+          "under": {
+            "full_win": 0.22439827691925637,
+            "half_win": 0.1870616437308826,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.5885400793498613
+          }
+        },
+        "3.5": {
+          "over": {
+            "full_win": 0.5885400793498613,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.41145992065013903
+          },
+          "under": {
+            "full_win": 0.41145992065013903,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.5885400793498613
+          }
+        }
+      }
     },
     {
       "competition": "法甲",
       "match_id": "2800027",
+      "score_engine_mode": "MARKET_ONLY_FORMAL",
+      "prior_used": false,
+      "historical_prior_activation": "SHADOW",
       "context_status": {
         "RECENT_FORM": "INSUFFICIENT_DATA",
         "LINEUP": "INSUFFICIENT_DATA",
@@ -77,15 +572,138 @@
         "SCHEDULE": "INSUFFICIENT_DATA"
       },
       "real_titan_calibration": "NONE_RESULT_ONLY_DATASET",
-      "raw_top10_unchanged": true,
-      "top3_unchanged": true,
-      "lambda_unchanged": true,
-      "ah_gate_unchanged": true,
-      "ou_unchanged": true
+      "base_lambda_home": 1.1828842837271676,
+      "base_lambda_away": 1.7765094161895998,
+      "final_lambda_home": 1.1828842837271676,
+      "final_lambda_away": 1.7765094161895998,
+      "context_delta": [
+        0.0,
+        0.0
+      ],
+      "raw_top10_unchanged_when_no_context": true,
+      "top3_unchanged_when_no_context": true,
+      "AH_gate": "APPLIED_POSITIVE_SETTLEMENT_ONLY",
+      "OU_gate": {
+        "2.0": {
+          "over": {
+            "full_win": 0.5739497701500716,
+            "half_win": 0.0,
+            "push": 0.23616220851253616,
+            "half_loss": 0.0,
+            "full_loss": 0.18988802133739227
+          },
+          "under": {
+            "full_win": 0.18988802133739227,
+            "half_win": 0.0,
+            "push": 0.23616220851253616,
+            "half_loss": 0.0,
+            "full_loss": 0.5739497701500716
+          }
+        },
+        "2.25": {
+          "over": {
+            "full_win": 0.5739497701500716,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.23616220851253616,
+            "full_loss": 0.18988802133739227
+          },
+          "under": {
+            "full_win": 0.18988802133739227,
+            "half_win": 0.23616220851253616,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.5739497701500716
+          }
+        },
+        "2.5": {
+          "over": {
+            "full_win": 0.5739497701500716,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.42605022984992846
+          },
+          "under": {
+            "full_win": 0.42605022984992846,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.5739497701500716
+          }
+        },
+        "2.75": {
+          "over": {
+            "full_win": 0.35349737130757913,
+            "half_win": 0.22045239884249238,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.42605022984992846
+          },
+          "under": {
+            "full_win": 0.42605022984992846,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.22045239884249238,
+            "full_loss": 0.35349737130757913
+          }
+        },
+        "3.0": {
+          "over": {
+            "full_win": 0.35349737130757913,
+            "half_win": 0.0,
+            "push": 0.22045239884249238,
+            "half_loss": 0.0,
+            "full_loss": 0.42605022984992846
+          },
+          "under": {
+            "full_win": 0.42605022984992846,
+            "half_win": 0.0,
+            "push": 0.22045239884249238,
+            "half_loss": 0.0,
+            "full_loss": 0.35349737130757913
+          }
+        },
+        "3.25": {
+          "over": {
+            "full_win": 0.35349737130757913,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.22045239884249238,
+            "full_loss": 0.42605022984992846
+          },
+          "under": {
+            "full_win": 0.42605022984992846,
+            "half_win": 0.22045239884249238,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.35349737130757913
+          }
+        },
+        "3.5": {
+          "over": {
+            "full_win": 0.35349737130757913,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.6465026286924208
+          },
+          "under": {
+            "full_win": 0.6465026286924208,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.35349737130757913
+          }
+        }
+      }
     },
     {
       "competition": "欧冠",
       "match_id": "2788747",
+      "score_engine_mode": "HISTORICAL_BAYESIAN",
+      "prior_used": true,
+      "historical_prior_activation": "ACTIVE",
       "context_status": {
         "RECENT_FORM": "INSUFFICIENT_DATA",
         "LINEUP": "INSUFFICIENT_DATA",
@@ -93,13 +711,135 @@
         "SCHEDULE": "INSUFFICIENT_DATA"
       },
       "real_titan_calibration": "NONE_RESULT_ONLY_DATASET",
-      "raw_top10_unchanged": true,
-      "top3_unchanged": true,
-      "lambda_unchanged": true,
-      "ah_gate_unchanged": true,
-      "ou_unchanged": true
+      "base_lambda_home": 2.4263414188356065,
+      "base_lambda_away": 0.7256552634020796,
+      "final_lambda_home": 2.4263414188356065,
+      "final_lambda_away": 0.7256552634020796,
+      "context_delta": [
+        0.0,
+        0.0
+      ],
+      "raw_top10_unchanged_when_no_context": true,
+      "top3_unchanged_when_no_context": true,
+      "AH_gate": "APPLIED_POSITIVE_SETTLEMENT_ONLY",
+      "OU_gate": {
+        "2.0": {
+          "over": {
+            "full_win": 0.610962737413615,
+            "half_win": 0.0,
+            "push": 0.2161765307357346,
+            "half_loss": 0.0,
+            "full_loss": 0.1728607318506506
+          },
+          "under": {
+            "full_win": 0.1728607318506506,
+            "half_win": 0.0,
+            "push": 0.2161765307357346,
+            "half_loss": 0.0,
+            "full_loss": 0.610962737413615
+          }
+        },
+        "2.25": {
+          "over": {
+            "full_win": 0.610962737413615,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.2161765307357346,
+            "full_loss": 0.1728607318506506
+          },
+          "under": {
+            "full_win": 0.1728607318506506,
+            "half_win": 0.2161765307357346,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.610962737413615
+          }
+        },
+        "2.5": {
+          "over": {
+            "full_win": 0.610962737413615,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.38903726258638516
+          },
+          "under": {
+            "full_win": 0.38903726258638516,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.610962737413615
+          }
+        },
+        "2.75": {
+          "over": {
+            "full_win": 0.39079308233887466,
+            "half_win": 0.22016965507474,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.38903726258638516
+          },
+          "under": {
+            "full_win": 0.38903726258638516,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.22016965507474,
+            "full_loss": 0.39079308233887466
+          }
+        },
+        "3.0": {
+          "over": {
+            "full_win": 0.39079308233887466,
+            "half_win": 0.0,
+            "push": 0.22016965507474,
+            "half_loss": 0.0,
+            "full_loss": 0.38903726258638516
+          },
+          "under": {
+            "full_win": 0.38903726258638516,
+            "half_win": 0.0,
+            "push": 0.22016965507474,
+            "half_loss": 0.0,
+            "full_loss": 0.39079308233887466
+          }
+        },
+        "3.25": {
+          "over": {
+            "full_win": 0.39079308233887466,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.22016965507474,
+            "full_loss": 0.38903726258638516
+          },
+          "under": {
+            "full_win": 0.38903726258638516,
+            "half_win": 0.22016965507474,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.39079308233887466
+          }
+        },
+        "3.5": {
+          "over": {
+            "full_win": 0.39079308233887466,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.6092069176611252
+          },
+          "under": {
+            "full_win": 0.6092069176611252,
+            "half_win": 0.0,
+            "push": 0.0,
+            "half_loss": 0.0,
+            "full_loss": 0.39079308233887466
+          }
+        }
+      }
     }
   ],
   "synthetic_quantified_status": "VALIDATED",
-  "synthetic_quantified_no_future_leakage": true
+  "synthetic_quantified_no_future_leakage": true,
+  "synthetic_historical_mode": "HISTORICAL_BAYESIAN",
+  "synthetic_historical_overlap_effective_fraction": 1.0
 }
