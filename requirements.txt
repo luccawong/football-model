@@ -4,3 +4,4 @@ beautifulsoup4>=4.12,<5
 PyYAML>=6.0,<7
 numpy>=1.26
 scipy>=1.11
+tzdata>=2024.1
