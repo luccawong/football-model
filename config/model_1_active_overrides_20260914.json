@@ -1,16 +1,25 @@
 {
-  "version": "MODEL_1-ACTIVE-OVERRIDES-2026-09-14.3",
+  "version": "MODEL_1-ACTIVE-OVERRIDES-2026-09-16.1",
   "model_id": "MODEL_1",
   "status": "ACTIVE_TARGETED_USER_OVERRIDE",
-  "effective_date": "2026-09-14",
+  "effective_date": "2026-09-16",
   "policy_files": [
     "config/model_1_probability_non_edge_policy.json",
-    "config/model_1_favourite_underdog_competition_policy.json"
+    "config/model_1_favourite_underdog_competition_policy.json",
+    "config/model_1_single_h1_falsification_policy.json"
   ],
+  "agent_operating_manual": "gpt/MODEL_1_AGENT_HANDOFF_20260916.md",
   "preflight_extension": {
     "combined_preflight_engine": "gpt/model_1_preflight.py",
     "validator": "gpt/preflight_competition_gate.py",
-    "preserve_18_stage_order": true,
+    "base_gate": "gpt/preflight_gate.py",
+    "preserve_18_stage_slot_count": true,
+    "stage_17_replacement": {
+      "old": "independent_red_team_h2",
+      "new": "single_h1_falsification_audit",
+      "mandatory_h2_candidate": false,
+      "mandatory_second_direction": false
+    },
     "required_before_freeze_h1": [
       "symmetric_hypothesis_comparison_completed",
       "equal_evidentiary_burden_check_passed",
@@ -19,9 +28,32 @@
       "ou_escape_hatch_check_passed_if_applicable",
       "competition_winner_selected_before_h1_freeze"
     ],
+    "required_after_freeze_h1_before_ticket": [
+      "neutral_evidence_ledger_complete",
+      "h1_contradictions_recorded",
+      "h1_failure_conditions_recorded",
+      "counterevidence_tested",
+      "alternative_match_paths_tested",
+      "market_rationalization_guard_complete",
+      "competition_rules_gate_passed",
+      "single_h1_falsification_audit_completed",
+      "final_direction_survives_falsification"
+    ],
     "missing_any_required_check": "PRECHECK_BLOCKED_NO_TICKET"
+  },
+  "drift_mode": {
+    "active": true,
+    "repeated_correlated_errors_default_to_model_or_execution_failure_until_disproven": true,
+    "no_post_result_excuse_first_behavior": true,
+    "no_small_sample_numeric_parameter_recalibration": true
+  },
+  "user_challenge": {
+    "mode": "SHADOW_DIAGNOSTIC_ONLY",
+    "formal_weight": "NONE",
+    "real_money_testing_not_required": true
   },
   "draw_exclusion_forward_test_unchanged": true,
   "fixed_numeric_weight_added": false,
-  "note": "Targeted user-authorized overlay. It supplements the frozen MODEL_1 runtime without changing the canonical 18-stage order."
+  "company_weight_changed": false,
+  "note": "User-authorized targeted override. H2 is removed as a mandatory second prediction. Stage 17 remains adversarial but is now a single-H1 falsification audit that can directly overturn and rebuild H1 before the only formal ticket."
 }
