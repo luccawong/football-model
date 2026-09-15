@@ -123,6 +123,41 @@ def test_recursive_leakage_fields_are_blocked(payload):
         validate_prematch_context_payload(payload, kickoff="2026-01-01T15:00:00Z")
 
 
+@pytest.mark.parametrize("nested", [
+    {"provenance": {"actual_score": "2-1"}},
+    {"metadata": {"future_result": "1-0"}},
+    {"payload": {"post_kickoff": True}},
+])
+def test_direct_raw_context_nested_leakage_is_fail_closed(nested):
+    raw = {
+        "source_group": "RECENT_FORM", "validated": True, "effect_mode": "QUANTIFIED_OBSERVATION",
+        "mean_log_lambda": [1.0, 1.0], "cov_log_lambda": np.eye(2).tolist(),
+        "calibration_ref": "abc", "calibration_status": "APPROVED_TRAIN_ONLY", "calibration_version": "v1",
+        "evidence_timestamp": "2026-01-01T10:00:00Z", "context_snapshot_timestamp": "2026-01-01T12:00:00Z",
+        "provenance": {"source": "train"}, **nested,
+    }
+    mu, _, applied = apply_validated_context_updates(np.zeros(2), np.eye(2), [raw])
+    assert mu == pytest.approx(np.zeros(2))
+    assert applied[0]["status"] == "REJECTED_PREMATCH_VALIDATION"
+
+
+def test_future_fixture_schedule_is_allowed_but_future_outcome_is_blocked():
+    allowed = validate_prematch_context_payload(
+        {"source_group": "SCHEDULE", "next_fixture": {"match_date": "2026-02-01T15:00:00Z", "competition": "UCL"}},
+        kickoff="2026-01-01T15:00:00Z", context_snapshot_timestamp="2026-01-01T12:00:00Z",
+    )
+    assert allowed["status"] == "VALIDATED_PREMATCH_PAYLOAD"
+    with pytest.raises(PrematchContextError, match="PREMATCH_LEAKAGE_FIELD"):
+        validate_prematch_context_payload(
+            {"source_group": "SCHEDULE", "next_fixture": {"match_date": "2026-02-01T15:00:00Z", "future_result": "W"}},
+            kickoff="2026-01-01T15:00:00Z", context_snapshot_timestamp="2026-01-01T12:00:00Z",
+        )
+    with pytest.raises(PrematchContextError, match="HISTORICAL_FIELD_NOT_BEFORE_KICKOFF"):
+        validate_prematch_context_payload(
+            {"previous_match_timestamp": "2026-01-01T16:00:00Z"}, kickoff="2026-01-01T15:00:00Z",
+        )
+
+
 def test_timestamp_and_lineup_gates():
     with pytest.raises(PrematchContextError, match="EVIDENCE_AFTER_CONTEXT_SNAPSHOT"):
         validate_prematch_context_payload({"evidence_timestamp": "2026-01-01T16:00:00Z"}, kickoff="2026-01-01T17:00:00Z", context_snapshot_timestamp="2026-01-01T15:00:00Z")
@@ -180,6 +215,24 @@ def test_historical_overlap_is_fail_safe_but_market_only_is_not_overconstrained(
     assert mu[0] > 0.0 and applied[0]["status"] == "APPLIED"
 
 
+def test_partial_historical_overlap_monotonically_reduces_effective_precision():
+    base = {
+        "source_group": "RECENT_FORM", "validated": True, "effect_mode": "QUANTIFIED_OBSERVATION",
+        "mean_log_lambda": [1.0, 1.0], "cov_log_lambda": [[0.1, 0], [0, 0.1]],
+        "absorbed_fraction": 0.0, "calibration_ref": "abc", "calibration_status": "APPROVED_TRAIN_ONLY",
+        "calibration_version": "v1", "evidence_timestamp": "2026-01-01T10:00:00Z",
+        "context_snapshot_timestamp": "2026-01-01T12:00:00Z", "provenance": {"source": "train"},
+    }
+    values = []
+    fractions = []
+    for overlap in (0.0, 0.5, 1.0):
+        raw = dict(base, historical_overlap_fraction=overlap)
+        out, _, applied = apply_validated_context_updates(np.zeros(2), np.eye(2), [raw], score_engine_mode="HISTORICAL_BAYESIAN")
+        values.append(float(out[0])); fractions.append(applied[0].get("effective_fraction"))
+    assert fractions == pytest.approx([1.0, 0.5, 0.0])
+    assert values[0] > values[1] > values[2] == pytest.approx(0.0)
+
+
 def test_default_real_titan_context_is_non_blocking_and_no_mean_shift():
     packet = build_prematch_context_updates(kickoff="2026-01-01T15:00:00Z")
     assert packet["real_titan_calibration"] == "NONE_RESULT_ONLY_DATASET"
@@ -191,10 +244,11 @@ def test_default_real_titan_context_is_non_blocking_and_no_mean_shift():
 
 
 def test_context_cannot_reintroduce_market_source_groups():
-    with pytest.raises(BayesianScoreError, match="Unknown source_group"):
-        apply_validated_context_updates(np.zeros(2), np.eye(2), [{
-            "source_group": "1X2", "validated": True, "mean_log_lambda": [0, 0], "cov_log_lambda": np.eye(2).tolist(),
-        }])
+    out, _, applied = apply_validated_context_updates(np.zeros(2), np.eye(2), [{
+        "source_group": "1X2", "validated": True, "mean_log_lambda": [0, 0], "cov_log_lambda": np.eye(2).tolist(),
+    }])
+    assert out == pytest.approx(np.zeros(2))
+    assert applied[0]["status"] == "REJECTED_PREMATCH_VALIDATION"
 
 
 def test_historical_path_keeps_audit_and_context_is_not_team_goal_baseline():

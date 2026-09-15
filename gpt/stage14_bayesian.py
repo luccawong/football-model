@@ -20,6 +20,7 @@ from typing import Any, Mapping, Sequence
 import numpy as np
 
 from gpt.quant_core import correct_score_probabilities, probabilities_1x2, score_grid, total_settlement
+from gpt.prematch_context import PrematchContextError, validate_prematch_context_payload
 
 ENGINE_VERSION = "MODEL_1-STAGE14-BAYES-1.0.0"
 CORE_MARKET_COMPANIES = ("Pinnacle", "Bet365", "Macau")
@@ -307,17 +308,19 @@ def apply_validated_context_updates(
             applied.append({"status": "IGNORED_INVALID_CONTEXT"})
             continue
         try:
-            from gpt.prematch_context import validate_prematch_context_payload
             validate_prematch_context_payload(
                 raw,
                 kickoff=raw.get("kickoff"),
                 context_snapshot_timestamp=raw.get("context_snapshot_timestamp"),
                 market_snapshot_timestamp=raw.get("market_snapshot_timestamp"),
             )
-        except Exception as exc:
-            if any(str(key).lower() in {"actual_score", "actual_result", "final_score", "home_score", "away_score", "post_match_result", "post_kickoff", "future_result", "result_of_next_match", "test_target", "jcb_result", "evidence_timestamp", "context_snapshot_timestamp", "market_snapshot_timestamp"} for key in raw):
-                applied.append({"source_group": raw.get("source_group"), "status": "REJECTED_PREMATCH_VALIDATION", "reason": str(exc)})
-                continue
+        except PrematchContextError as exc:
+            applied.append({
+                "source_group": raw.get("source_group"),
+                "status": "REJECTED_PREMATCH_VALIDATION",
+                "reason": str(exc),
+            })
+            continue
         if raw.get("status") == "REJECTED_UNCALIBRATED":
             applied.append({
                 "source_group": raw.get("source_group"),
@@ -341,7 +344,7 @@ def apply_validated_context_updates(
         effect_mode = str(raw.get("effect_mode", "QUANTIFIED_OBSERVATION")).upper()
         if effect_mode == "QUANTIFIED_OBSERVATION":
             calibration_status = str(raw.get("calibration_status", "")).upper()
-            approved = {"APPROVED_TRAIN_ONLY", "APPROVED_PRODUCTION", "APPROVED"}
+            approved = {"APPROVED_TRAIN_ONLY", "APPROVED_PRODUCTION"}
             required = ("calibration_ref", "calibration_version", "evidence_timestamp",
                         "context_snapshot_timestamp", "provenance")
             if calibration_status == "TEST_ONLY" and allow_test_calibration:
