@@ -1,0 +1,188 @@
+{
+  "version": "MODEL_1-BOOKMAKER-INTENT-1.0.0",
+  "model_id": "MODEL_1",
+  "status": "ACTIVE_TARGETED_USER_OVERRIDE",
+  "effective_date": "2026-09-16",
+  "authority": "USER_EXPLICIT_INSTRUCTION",
+  "formal": true,
+  "global_freeze_ended": false,
+  "fixed_numeric_weight_authorized": false,
+  "company_accuracy_rank_authorized": false,
+  "purpose": "Prevent MODEL_1 from collapsing toward the favourite after draw exclusion by separating bookmaker prior profiles from each match's actual lead/follow/divergence behavior, and by forcing blocking/inducement/hot/cold counter-interpretations before a home-vs-away winner decision.",
+  "core_principles": [
+    "Bookmaker profiles are priors, not truth tables or fixed accuracy rankings.",
+    "The current match timeline determines whether a bookmaker is a leader, confirmer, follower, divergent source, stale/asynchronous quote, or unknown.",
+    "A low favourite price, stronger team, deeper handicap, or multi-market popular narrative cannot by itself decide the winner after draw exclusion.",
+    "Cross-market agreement is not automatically independent confirmation because correlated pricing and arbitrage can transmit the same popular narrative across 1X2, AH and OU.",
+    "When draw is excluded, the task becomes a true home-vs-away binary winner audit; the favourite receives no default priority.",
+    "Bookmaker intent remains an inference. Deliberate trapping or manipulation must never be stated as fact without direct evidence."
+  ],
+  "bookmaker_prior_profiles": {
+    "Macau": {
+      "prior_position": "ASIAN_STRUCTURAL_ANCHOR",
+      "typical_open_timing": "RELATIVELY_LATE",
+      "user_prior": "Asian authoritative bookmaker; especially informative for Asian competition handicap structure.",
+      "formal_use": "Inspect line choice, line-vs-water transfer, late entry into a more mature market, and whether Macau leads or merely confirms the prevailing Asian structure.",
+      "guardrail": "Later opening does not mean superior information and Macau never receives automatic veto or truth status."
+    },
+    "HKJC": {
+      "prior_position": "ASIAN_LOCAL_RISK_REFERENCE",
+      "typical_open_timing": "RELATIVELY_LATE",
+      "user_prior": "Strong local Asian-market reference with useful regional risk sensitivity.",
+      "formal_use": "Compare local Asian risk posture with Macau, European 1X2 and high-liquidity market prices.",
+      "guardrail": "Following the market is not independent predictive confirmation."
+    },
+    "William Hill": {
+      "prior_position": "EUROPEAN_1X2_BENCHMARK",
+      "typical_open_timing": "EARLY",
+      "user_prior": "Traditional European benchmark; useful for result-price location and draw protection/inducement structure.",
+      "formal_use": "Primary European 1X2 reference, especially home/draw/away relative pricing and draw-price treatment.",
+      "guardrail": "Historical prestige does not create automatic correctness."
+    },
+    "Ladbrokes UK": {
+      "prior_position": "EUROPEAN_RISK_CONTROL_REFERENCE",
+      "typical_open_timing": "1X2_EARLY_AH_RELATIVELY_LATE",
+      "user_prior": "European market-direction and payout-control reference; often useful for win/loss-side discrimination.",
+      "formal_use": "Read together with William Hill for European result pricing, while separately auditing its AH timing and whether it leads or follows.",
+      "guardrail": "Strong signal prior is not a fixed strongest-signal rule and does not override contradictory same-time evidence."
+    },
+    "Vcbet": {
+      "prior_position": "EURO_ASIA_BRIDGE_CONFIRM",
+      "typical_open_timing": "RELATIVELY_FAST",
+      "user_prior": "Euro-Asian bridge reference with useful Asian-line convergence behavior.",
+      "formal_use": "Secondary confirmation/divergence source for how European result views are translated into Asian handicap pricing.",
+      "guardrail": "Lower formal authority than the core anchors; mainly useful through timing and divergence."
+    },
+    "Pinnacle": {
+      "prior_position": "HIGH_LIQUIDITY_PRICE_ANCHOR",
+      "typical_open_timing": "EARLY",
+      "user_prior": "High-return, high-limit market that accepts professional and large action.",
+      "formal_use": "Capital/liquidity anchor and timing source; track whether high-liquidity repricing leads or follows other books.",
+      "guardrail": "Never equate Pinnacle movement with smart-money truth, insider information, or an automatic result signal."
+    },
+    "Bet365": {
+      "prior_position": "BROAD_MARKET_AUTOMATION_AND_FLOW_ANCHOR",
+      "typical_open_timing": "EARLY",
+      "user_prior": "Broad coverage, strong in-play infrastructure and high automation.",
+      "formal_use": "Key comparator for broad market repricing and OU/AH ladders; explicitly separate information repricing from retail/popular-flow pressure.",
+      "guardrail": "Favourite-side movement can reflect demand management and must not automatically be read as true directional information."
+    }
+  },
+  "per_match_role_labels": [
+    "LEADER",
+    "CONFIRMER",
+    "FOLLOWER",
+    "DIVERGENT",
+    "STALE_OR_ASYNCHRONOUS",
+    "UNKNOWN"
+  ],
+  "lead_follow_audit": {
+    "mandatory": true,
+    "same_time_slice_required": true,
+    "opening_timestamp_order_required": true,
+    "first_material_move_source_required": true,
+    "follow_sequence_required": true,
+    "non_followers_and_divergences_required": true,
+    "stale_quote_detection_required": true,
+    "opening_validity_required": true,
+    "team_information_events_between_open_and_move_required": true,
+    "company_profile_cannot_override_actual_timeline": true
+  },
+  "intent_hypotheses": [
+    "TRUE_INFORMATION_REPRICING",
+    "PASSIVE_DEMAND_OR_LIABILITY_ADJUSTMENT",
+    "FAVOURITE_BLOCKING_OR_PRICE_TAX",
+    "FAVOURITE_INDUCEMENT_OR_PRICE_SUBSIDY",
+    "POPULAR_SIDE_HEAT_AMPLIFICATION",
+    "POPULAR_SIDE_COOLING_OR_DOUBT_CREATION",
+    "LOW_ATTRACTION_SIDE_PROTECTION",
+    "LIQUIDITY_OR_ARBITRAGE_TRANSMISSION",
+    "STALE_OR_ASYNCHRONOUS_QUOTE",
+    "UNKNOWN"
+  ],
+  "material_move_interpretation_gate": {
+    "minimum_competing_explanations": 2,
+    "must_include_non_intent_explanation": true,
+    "must_record_falsifier_for_selected_explanation": true,
+    "must_record_why_rejected_explanations_fail": true,
+    "cannot_use_same_market_move_as_both_thesis_and_independent_confirmation": true,
+    "narrative_fit_without_discriminating_evidence_is_insufficient": true
+  },
+  "blocking_inducement_hot_cold_audit": {
+    "mandatory_when_market_is_directionally_complex": true,
+    "questions": [
+      "Is the popular side being made cheaper/easier to buy, or more expensive/harder to cash?",
+      "If the book truly feared the popular side, why was the adjacent deeper/shorter counterfactual not used?",
+      "If the book truly wanted to attract the popular side, is the price/line actually convenient enough to support that claim?",
+      "Does 1X2 strengthen while AH refuses to upgrade, or does AH deepen while 1X2 refuses to confirm?",
+      "Which company moved first and which companies did not follow at the closest common time slice?",
+      "Is the weak side being made attractive to bettors or quietly protected through price compression/resistance?",
+      "Does the total/team-goal structure confirm the implied winning-margin path or contradict it?"
+    ],
+    "adjacent_counterfactual_required": true,
+    "one_x_two_ah_ou_divergence_is_high_value_evidence": true,
+    "surface_consensus_is_not_sufficient": true
+  },
+  "draw_excluded_binary_winner_gate": {
+    "trigger": "authoritative_draw_label == EXCLUDED",
+    "mandatory": true,
+    "remove_draw_from_execution_branch": true,
+    "home_vs_away_binary_audit_required": true,
+    "favourite_default_forbidden": true,
+    "stronger_team_default_forbidden": true,
+    "lower_odds_default_forbidden": true,
+    "deeper_handicap_default_forbidden": true,
+    "absolute_underdog_probability_is_not_a_rejection_rule": true,
+    "must_identify_more_protected_side": true,
+    "must_identify_more_sold_or_attracted_side": true,
+    "must_state_operator_intent_conclusion": true,
+    "must_state_counterinterpretation": true,
+    "must_state_winner_choice_after_intent_audit": true,
+    "failure_action": "PRECHECK_BLOCKED_NO_TICKET"
+  },
+  "required_trace_fields": [
+    "bookmaker_intent_policy_loaded",
+    "bookmaker_prior_profiles_applied_as_priors_only",
+    "bookmaker_role_map",
+    "lead_follow_audit_completed",
+    "same_time_slice_company_divergence_completed",
+    "material_move_competing_explanations_completed",
+    "blocking_inducement_hot_cold_audit_completed",
+    "cross_market_correlation_guard_completed",
+    "draw_excluded_binary_winner_audit_completed_when_required",
+    "popular_side_default_forbidden_acknowledged",
+    "more_protected_side",
+    "more_sold_side",
+    "operator_intent_conclusion",
+    "operator_intent_counterinterpretation",
+    "winner_choice_after_intent_audit"
+  ],
+  "forbidden_shortcuts": [
+    "five of six companies support the favourite therefore favourite",
+    "cross-market agreement automatically means independent confirmation",
+    "Pinnacle move equals smart money",
+    "Macau late opener equals most informed truth",
+    "William Hill or Ladbrokes signal automatically overrides contradictory structure",
+    "draw excluded therefore choose the stronger or more popular side",
+    "line rise automatically equals blocking",
+    "line drop automatically equals rejection",
+    "hot favourite automatically loses",
+    "cold favourite automatically wins",
+    "bookmaker knows the result"
+  ],
+  "formal_placement_without_stage_reorder": {
+    "stage_3_opening_first_impression": "Capture company opening times and raw opening geometry without using later information.",
+    "stage_4_opening_rationality_lifecycle": "Run adjacent counterfactual and opening-validity tests; identify first material mover and follow sequence.",
+    "stage_7_one_x_two": "Assign per-match bookmaker roles and audit European result-side pricing/divergence.",
+    "stage_8_asian_handicap": "Audit line-vs-water transfer and Asian lead/follow behavior, keeping win and cover separate.",
+    "stage_9_totals": "Check whether OU and team-goal structure supports or contradicts the implied winner/margin story.",
+    "stage_10_cross_market_coherence": "Apply correlation guard; prioritize meaningful divergences over surface consensus.",
+    "stage_11_market_attraction": "Classify popular-side tax/subsidy, blocking/inducement and hot/cold construction with competing explanations.",
+    "stage_12_draw_exclusion_and_winner_audit": "If draw is EXCLUDED, run mandatory binary home-vs-away bookmaker-intent audit with no favourite default.",
+    "stage_17_single_h1_falsification_audit": "Try to falsify the selected operator-intent interpretation and overturn/rebuild H1 if material counterevidence survives."
+  },
+  "formal_weight_changes": false,
+  "company_weight_changes": false,
+  "numeric_threshold_changes": false,
+  "draw_exclusion_label_semantics_changed": false
+}
