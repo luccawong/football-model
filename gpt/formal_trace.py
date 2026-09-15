@@ -2,8 +2,8 @@
 
 This module does not predict football outcomes. It records and validates the
 user-approved 18-stage MODEL_1 workflow so every full analysis can be audited for
-omissions, reordering, draw-branch handling, Red Team execution and exactly-one-main
-output discipline.
+omissions, reordering, draw-branch handling, bookmaker-intent execution,
+single-H1 falsification, and exactly-one-main output discipline.
 """
 from __future__ import annotations
 
@@ -18,11 +18,11 @@ from gpt.decision_engine import (
     resolve_draw_branch,
     underdog_outright_audit_required,
     validate_formal_ticket,
-    validate_red_team_verdict,
+    validate_falsification_verdict,
 )
 from gpt.preflight_gate import packet_from_stage_evidence, require_preflight_pass
 
-TRACE_ENGINE_VERSION = "MODEL_1-TRACE-1.1.0"
+TRACE_ENGINE_VERSION = "MODEL_1-TRACE-1.2.0"
 ALLOWED_STAGE_STATUS = {"COMPLETE", "COMPLETE_WITH_MISSING", "CONFLICT", "BLOCKED"}
 
 
@@ -45,7 +45,15 @@ class FrozenH1:
 
 
 @dataclass(frozen=True)
+class FalsificationRecord:
+    verdict: str
+    strongest_counterevidence: Sequence[str]
+    h1_failure_conditions: Sequence[str]
+
+
+@dataclass(frozen=True)
 class RedTeamRecord:
+    """Deprecated audit-history structure for pre-2026-09-16 traces only."""
     h2_alternative: str
     verdict: str
     strongest_counterevidence: Sequence[str]
@@ -94,6 +102,19 @@ def validate_draw_stage(record: StageRecord) -> None:
             raise DecisionPolicyError("EXCLUDED requires winner-only HOME-vs-AWAY audit.")
         if not record.evidence.get("draw_removed_from_execution"):
             raise DecisionPolicyError("EXCLUDED requires draw removed from execution branch.")
+        if not record.evidence.get("draw_excluded_binary_winner_audit_completed"):
+            raise DecisionPolicyError("EXCLUDED requires bookmaker-intent binary winner audit.")
+        if not record.evidence.get("popular_side_default_forbidden_acknowledged"):
+            raise DecisionPolicyError("EXCLUDED cannot default to favourite/stronger/lower-odds side.")
+        for field in (
+            "more_protected_side",
+            "more_sold_side",
+            "operator_intent_conclusion",
+            "operator_intent_counterinterpretation",
+            "winner_choice_after_intent_audit",
+        ):
+            if not _nonempty(record.evidence.get(field)):
+                raise DecisionPolicyError(f"EXCLUDED binary winner audit missing {field}.")
     elif branch.label == "NOT_EXCLUDED":
         if not record.evidence.get("enhanced_draw_audit_completed"):
             raise DecisionPolicyError("NOT_EXCLUDED requires enhanced draw audit.")
@@ -132,18 +153,14 @@ def build_formal_trace(
     required_fields: Mapping[str, Sequence[str]],
     favourite_handicap: float | None,
     h1: FrozenH1,
-    red_team: RedTeamRecord,
+    falsification: FalsificationRecord,
     ticket: TicketDecision,
     current_model_1_policy_loaded: bool,
     unresolved_critical_execution_conflict: bool = False,
     non_main_count: int = 0,
     created_at: str | None = None,
 ) -> dict[str, Any]:
-    """Validate and return one immutable pre-match MODEL_1 trace packet.
-
-    The formal ticket is unreachable until the hard preflight gate passes. A failed
-    preflight is an incomplete analysis (PRECHECK_BLOCKED), not a betting PASS.
-    """
+    """Validate and return one immutable pre-match MODEL_1 trace packet."""
     validate_stage_records(records, required_fields)
     by_stage = {r.stage: r for r in records}
 
@@ -155,7 +172,7 @@ def build_formal_trace(
         favourite_handicap=favourite_handicap,
         draw_label=draw_label,
     )
-    validate_red_team_verdict(red_team.verdict)
+    validate_falsification_verdict(falsification.verdict)
 
     stage_evidence = {stage: record.evidence for stage, record in by_stage.items()}
     preflight_packet = packet_from_stage_evidence(
@@ -177,9 +194,13 @@ def build_formal_trace(
     if freeze_record.evidence.get("h1_grade") != h1.grade:
         raise DecisionPolicyError("Frozen H1 grade mismatch between trace and H1 object.")
 
-    red_record = by_stage["red_team_h2"]
-    if red_record.evidence.get("red_team_verdict") != red_team.verdict:
-        raise DecisionPolicyError("Red Team verdict mismatch between trace and RedTeamRecord.")
+    falsification_record = by_stage["single_h1_falsification_audit"]
+    if falsification_record.evidence.get("falsification_verdict") != falsification.verdict:
+        raise DecisionPolicyError("Falsification verdict mismatch between trace and FalsificationRecord.")
+    if list(falsification_record.evidence.get("strongest_counterevidence", [])) != list(falsification.strongest_counterevidence):
+        raise DecisionPolicyError("Strongest counterevidence mismatch between trace and FalsificationRecord.")
+    if list(falsification_record.evidence.get("h1_failure_conditions", [])) != list(falsification.h1_failure_conditions):
+        raise DecisionPolicyError("H1 failure conditions mismatch between trace and FalsificationRecord.")
 
     ticket_record = by_stage["formal_main_exactly_one"]
     expected_ticket = {
@@ -215,7 +236,7 @@ def build_formal_trace(
         "draw_branch": asdict(resolve_draw_branch(draw_label)),
         "favourite_handicap": favourite_handicap,
         "h1": asdict(h1),
-        "red_team": asdict(red_team),
+        "falsification": asdict(falsification),
         "formal_main": asdict(ticket),
         "non_main_count": non_main_count,
         "engines": {"quant": quant_engine_version, "feature": feature_engine_version},
