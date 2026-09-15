@@ -1,0 +1,102 @@
+{
+  "version": "MODEL_1-SINGLE-H1-FALSIFICATION-2026-09-16.1",
+  "model_id": "MODEL_1",
+  "status": "ACTIVE_TARGETED_USER_OVERRIDE",
+  "effective_date": "2026-09-16",
+  "authority": "USER_EXPLICIT_INSTRUCTION",
+  "purpose": "Remove the mandatory independent H2/counter-ticket construction while preserving a hard adversarial falsification layer before the only formal ticket.",
+  "stage_replacement": {
+    "base_stage": "independent_red_team_h2",
+    "replacement_stage": "single_h1_falsification_audit",
+    "keep_analysis_slot_count": 18,
+    "h2_candidate_required": false,
+    "second_direction_ticket_required": false,
+    "second_model_required": false
+  },
+  "single_h1_contract": {
+    "one_working_hypothesis_only": true,
+    "h1_must_be_frozen_before_falsification": true,
+    "h1_must_not_receive_default_priority": true,
+    "falsification_is_not_a_second_prediction": true,
+    "falsification_must_try_to_break_h1": true,
+    "if_h1_is_invalidated_rebuild_h1_directly": true,
+    "rebuilt_h1_becomes_the_only_working_hypothesis": true,
+    "no_h2_label_after_rebuild": true,
+    "formal_output_remains_exactly_one_ticket": true
+  },
+  "mandatory_falsification_checks": [
+    "record_three_strongest_counterevidence_items_before_ticket",
+    "record_explicit_h1_failure_conditions",
+    "test_at_least_two plausible alternative_match_paths_without_turning_them_into_second_tickets",
+    "test_market_rationalization_or_story_fit_bias",
+    "test_win_probability_vs_cover_probability_confusion",
+    "test_draw_path_when_draw_is_not_excluded",
+    "test_underdog_outright_path_for_deep_favourites",
+    "test_opening_lifecycle_counterinterpretation",
+    "test_same_time_slice_company_divergence",
+    "test_1x2_ah_ou_conflicts",
+    "test_recent_form_vs_market_conflict",
+    "test_competition_rules_and_game_state_incentives",
+    "test_missing_or_low_quality_data_that_could_reverse_direction",
+    "test whether the thesis explains anomalies or merely narrates them away"
+  ],
+  "falsification_verdicts": [
+    "SURVIVES",
+    "DOWNGRADE",
+    "UPGRADE",
+    "OVERTURN_AND_REBUILD"
+  ],
+  "overturn_rule": {
+    "allowed": true,
+    "must_not_require_a_prebuilt_h2": true,
+    "trigger": "material_counterevidence_or_failed_failure_condition",
+    "action": "discard_old_h1_and_rebuild_from_stage_1_to_15_evidence_before_formal_ticket",
+    "silent_flip_forbidden": true,
+    "if_an_actionable_ticket_was_already_issued": "explicit_correction_old_to_new_required"
+  },
+  "drift_mode": {
+    "active": true,
+    "default_diagnostic_prior": "REPEATED_CORRELATED_ERRORS_ARE_MODEL_OR_EXECUTION_FAILURE_UNTIL_DISPROVEN",
+    "post_result_excuse_first_behavior_forbidden": true,
+    "variance_or_randomness_may_be_concluded_only_after_structural_error_checks": true,
+    "do_not_change_numeric_parameters_from_small_sample": true,
+    "do_not_protect_h1_because_the_model_is_frozen": true
+  },
+  "user_challenge_layer": {
+    "formal_weight": "NONE",
+    "role": "SHADOW_DIAGNOSTIC_INPUT",
+    "user_disagreement_does_not_automatically_flip_ticket": true,
+    "record_reason_for_disagreement_when_user_volunteers_it": true,
+    "compare_user_challenge_with_model_failure_modes_post_match": true,
+    "do_not_use_real_money_validation_as_a_requirement": true,
+    "purpose": "Identify recurring variables or logic failures that MODEL_1 fails to encode."
+  },
+  "competition_rules_gate": {
+    "mandatory_before_market_interpretation_when_cup_or_knockout": true,
+    "must_distinguish_single_leg_vs_two_leg": true,
+    "must_distinguish_90_minute_market_settlement_from_advancement": true,
+    "must_verify_extra_time_vs_direct_penalties": true,
+    "must_model_late_game_incentives_from_actual_rules": true,
+    "never_equate_must_produce_a_winner_with_90_minute_no_draw": true
+  },
+  "recent_failure_learning": {
+    "formal_parameter_change": false,
+    "lessons": [
+      "Do not let an early H1 turn later modules into supporting narration.",
+      "Market movement must be challenged with the opposite interpretation before being used as confirmation.",
+      "A low total line may encode probability mass near the line rather than a genuinely low-event match.",
+      "Favourite win probability and deep-handicap cover probability are separate questions.",
+      "A late synchronized buyback or retreat can invalidate an earlier lifecycle story and must be re-tested rather than explained away.",
+      "Repeated errors in the same structural direction are diagnostic evidence, not an excuse to invoke variance first."
+    ]
+  },
+  "anti_backfit": {
+    "no_result_aware_reconstruction_of_prematch_reasoning": true,
+    "live_or_unfinished_matches_are_not_final_failure_labels": true,
+    "record_what_was_known_before_kickoff": true,
+    "final_results_may_be_used_for_diagnostic_classification_only_after_settlement": true
+  },
+  "formal_weight_changes": false,
+  "company_weight_changes": false,
+  "numeric_threshold_changes": false
+}
