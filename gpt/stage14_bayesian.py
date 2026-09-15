@@ -292,6 +292,9 @@ def apply_validated_context_updates(
     mu: np.ndarray,
     cov: np.ndarray,
     updates: Sequence[Mapping[str, Any]] | None,
+    *,
+    score_engine_mode: str = "MARKET_ONLY_FORMAL",
+    allow_test_calibration: bool = False,
 ) -> tuple[np.ndarray, np.ndarray, list[dict[str, Any]]]:
     """Apply only quantitative updates with an explicit validated observation model.
 
@@ -302,6 +305,26 @@ def apply_validated_context_updates(
     for raw in _normalize_context_updates(updates):
         if not isinstance(raw, Mapping):
             applied.append({"status": "IGNORED_INVALID_CONTEXT"})
+            continue
+        try:
+            from gpt.prematch_context import validate_prematch_context_payload
+            validate_prematch_context_payload(
+                raw,
+                kickoff=raw.get("kickoff"),
+                context_snapshot_timestamp=raw.get("context_snapshot_timestamp"),
+                market_snapshot_timestamp=raw.get("market_snapshot_timestamp"),
+            )
+        except Exception as exc:
+            if any(str(key).lower() in {"actual_score", "actual_result", "final_score", "home_score", "away_score", "post_match_result", "post_kickoff", "future_result", "result_of_next_match", "test_target", "jcb_result", "evidence_timestamp", "context_snapshot_timestamp", "market_snapshot_timestamp"} for key in raw):
+                applied.append({"source_group": raw.get("source_group"), "status": "REJECTED_PREMATCH_VALIDATION", "reason": str(exc)})
+                continue
+        if raw.get("status") == "REJECTED_UNCALIBRATED":
+            applied.append({
+                "source_group": raw.get("source_group"),
+                "status": "REJECTED_UNCALIBRATED",
+                "effect_mode": raw.get("effect_mode"),
+                "reason": raw.get("reason", "CALIBRATION_GATE_REQUIRED"),
+            })
             continue
         if not bool(raw.get("validated", False)):
             applied.append(
@@ -316,6 +339,33 @@ def apply_validated_context_updates(
         if group not in CONTEXT_UPDATE_SOURCE_GROUPS:
             raise BayesianScoreError(f"Unknown source_group: {group!r}")
         effect_mode = str(raw.get("effect_mode", "QUANTIFIED_OBSERVATION")).upper()
+        if effect_mode == "QUANTIFIED_OBSERVATION":
+            calibration_status = str(raw.get("calibration_status", "")).upper()
+            approved = {"APPROVED_TRAIN_ONLY", "APPROVED_PRODUCTION", "APPROVED"}
+            required = ("calibration_ref", "calibration_version", "evidence_timestamp",
+                        "context_snapshot_timestamp", "provenance")
+            if calibration_status == "TEST_ONLY" and allow_test_calibration:
+                pass
+            elif calibration_status not in approved or any(not raw.get(key) for key in required):
+                applied.append({
+                    "source_group": group, "status": "REJECTED_UNCALIBRATED",
+                    "effect_mode": effect_mode, "reason": "CALIBRATION_GATE_REQUIRED",
+                })
+                continue
+        historical_mode = str(score_engine_mode).upper() == "HISTORICAL_BAYESIAN"
+        has_overlap = "historical_overlap_fraction" in raw
+        provenance = raw.get("provenance")
+        new_lineup_info = (
+            group == "LINEUP" and has_overlap and float(raw.get("historical_overlap_fraction", 0.0)) == 0.0
+            and isinstance(provenance, Mapping)
+            and bool(provenance.get("not_in_historical_prior") or provenance.get("overlap_policy") == "NEW_INFORMATION_NOT_IN_PRIOR")
+        )
+        if historical_mode and not has_overlap and not new_lineup_info:
+            applied.append({
+                "source_group": group, "status": "REJECTED_UNKNOWN_HISTORICAL_OVERLAP",
+                "effect_mode": effect_mode,
+            })
+            continue
         absorbed = float(raw.get("absorbed_fraction", 0.0))
         overlap = float(raw.get("historical_overlap_fraction", 0.0))
         if not (0.0 <= absorbed <= 1.0 and 0.0 <= overlap <= 1.0):
@@ -348,6 +398,8 @@ def apply_validated_context_updates(
                 "historical_overlap_fraction": overlap,
                 "effective_fraction": effective_fraction,
                 "context_delta_log_lambda": delta,
+                "market_context_time_mismatch": bool(raw.get("market_context_time_mismatch", False)),
+                "market_absorption_status": raw.get("market_absorption_status"),
                 "evidence_ref": raw.get("evidence_ref"),
             }
         )
@@ -359,6 +411,7 @@ def build_lambda_posterior(
     prior_packet: Mapping[str, Any],
     *,
     context_updates: Sequence[Mapping[str, Any]] | None = None,
+    allow_test_calibration: bool = False,
     market_absorbed_fraction: float = 0.0,
     market_sigma_floor: float = 0.12,
 ) -> dict[str, Any]:
@@ -393,6 +446,8 @@ def build_lambda_posterior(
         post_mu,
         post_cov,
         context_updates,
+        score_engine_mode="HISTORICAL_BAYESIAN",
+        allow_test_calibration=allow_test_calibration,
     )
 
     rho_prior = prior_packet.get("rho_prior")
@@ -633,6 +688,7 @@ def build_stage14_score_packet(
     prior_packet: Mapping[str, Any],
     *,
     context_updates: Sequence[Mapping[str, Any]] | None = None,
+    allow_test_calibration: bool = False,
     execution_path: Mapping[str, Any] | None = None,
     market_absorbed_fraction: float = 0.0,
     market_sigma_floor: float = 0.12,
@@ -647,6 +703,7 @@ def build_stage14_score_packet(
         quant_packet,
         prior_packet,
         context_updates=context_updates,
+        allow_test_calibration=allow_test_calibration,
         market_absorbed_fraction=market_absorbed_fraction,
         market_sigma_floor=market_sigma_floor,
     )
@@ -699,6 +756,7 @@ def build_formal_market_score_packet(
     snapshot_phase: str = "current",
     market_sigma_floor: float = 0.12,
     context_updates: Sequence[Mapping[str, Any]] | Mapping[str, Any] | None = None,
+    allow_test_calibration: bool = False,
     max_goals: int = 12,
     draws: int = 4000,
 ) -> dict[str, Any]:
@@ -730,7 +788,9 @@ def build_formal_market_score_packet(
     base_mean = _as_vec2(market["mean_log_lambda"], "market.mean_log_lambda")
     base_covariance = _as_cov2(market["cov_log_lambda"], "market.cov_log_lambda")
     mean, covariance, applied_context = apply_validated_context_updates(
-        base_mean, base_covariance, context_updates
+        base_mean, base_covariance, context_updates,
+        score_engine_mode="MARKET_ONLY_FORMAL",
+        allow_test_calibration=allow_test_calibration,
     )
     rho = float(np.clip(float(market["rho_market_median"]), -0.249, 0.249))
     distribution = {

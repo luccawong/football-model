@@ -9,11 +9,20 @@ covariance and leakage fields before an update can reach either formal score
 path.
 
 `MARKET_ONLY_FORMAL` and `HISTORICAL_BAYESIAN` use the same validated update
-contract. A quantified observation performs a normal log-rate Bayesian update;
-an `UNCERTAINTY_ONLY` observation leaves the mean unchanged and adds only a
+contract. A quantified observation performs a normal log-rate Bayesian update
+only after an approved calibration reference, status and version are present;
+`TEST_ONLY` calibration requires explicit test permission. An
+`UNCERTAINTY_ONLY` observation leaves the mean unchanged and adds only a
 positive-semidefinite covariance inflation. Historical overlap and market
 absorption reduce the effective fraction as
 `(1 - absorbed_fraction) * (1 - historical_overlap_fraction)`.
+
+Every supplied observation is cut at `context_snapshot_timestamp`, which must
+be no later than kickoff and no earlier than its `evidence_timestamp`.
+`market_snapshot_timestamp` is separate: it records whether the market could
+already have absorbed the evidence. Evidence newer than the market snapshot but
+older than the context snapshot is allowed and is marked
+`market_context_time_mismatch=true`.
 
 The current Titan archive is a result-only dataset. It has no production-
 calibrated lineup, player-state, schedule or recent-form effect estimates.

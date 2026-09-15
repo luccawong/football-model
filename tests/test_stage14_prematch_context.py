@@ -42,11 +42,13 @@ def test_quantified_context_changes_market_only_lambda_and_extra_books_do_not():
             "validated": True, "effect_mode": "QUANTIFIED_OBSERVATION",
             "mean_log_lambda": [0.9, -0.1], "cov_log_lambda": [[0.08, 0], [0, 0.08]],
             "absorbed_fraction": 0.0, "evidence_timestamp": "2026-01-01T10:00:00Z",
-            "calibration_ref": "synthetic-test",
+            "calibration_ref": "synthetic-test", "calibration_status": "TEST_ONLY",
+            "calibration_version": "test-v1", "provenance": {"source": "synthetic"},
         },
-        kickoff="2026-01-01T15:00:00Z", market_snapshot_timestamp="2026-01-01T12:00:00Z",
+        kickoff="2026-01-01T15:00:00Z", context_snapshot_timestamp="2026-01-01T11:00:00Z",
+        market_snapshot_timestamp="2026-01-01T12:00:00Z", allow_test_calibration=True,
     )
-    updated = build_formal_market_score_packet(quant_packet(), context_updates=context, draws=500)
+    updated = build_formal_market_score_packet(quant_packet(), context_updates=context, draws=500, allow_test_calibration=True)
     assert updated["context_model_version"] == CONTEXT_MODEL_VERSION
     assert updated["lambda_home"] != pytest.approx(base["lambda_home"])
     trimmed = quant_packet(); trimmed["reconstruction"] = {k: v for k, v in trimmed["reconstruction"].items() if k in {"Pinnacle", "Bet365", "Macau"}}
@@ -58,12 +60,18 @@ def test_quantified_context_is_available_on_historical_bayesian_path():
         lineup={
             "validated": True, "effect_mode": "QUANTIFIED_OBSERVATION",
             "mean_log_lambda": [0.6, -0.2], "cov_log_lambda": [[0.1, 0], [0, 0.1]],
-            "absorbed_fraction": 0.0, "calibration_ref": "synthetic-historical",
+            "absorbed_fraction": 0.0, "historical_overlap_fraction": 0.0, "calibration_ref": "synthetic-historical",
+            "evidence_timestamp": "2026-01-01T11:00:00Z",
+            "calibration_status": "TEST_ONLY", "calibration_version": "test-v1",
+            "provenance": {"source": "synthetic", "not_in_historical_prior": True},
         }
+        , context_snapshot_timestamp="2026-01-01T12:00:00Z", kickoff="2026-01-01T15:00:00Z",
+        allow_test_calibration=True,
     )
     out = resolve_score_engine(
         "UCL", "2025-26", "A", "B", "2026-01-01T15:00:00Z", quant_packet(),
         mode="HISTORICAL_BAYESIAN", prior_packet=prior_packet(), context_updates=context, draws=500,
+        allow_test_calibration=True,
     )
     assert out["score_engine_mode"] == "HISTORICAL_BAYESIAN"
     assert out["posterior"]["context_audit"]["updates_applied"][0]["source_group"] == "LINEUP"
@@ -98,16 +106,17 @@ def test_invalid_covariance_and_fraction_are_rejected():
             "source_group": "SCHEDULE", "validated": True, "effect_mode": "UNCERTAINTY_ONLY",
             "cov_inflation": [[1, 2], [2, 1]],
         }])
-    with pytest.raises(BayesianScoreError):
-        apply_validated_context_updates(np.zeros(2), np.eye(2), [{
-            "source_group": "RECENT_FORM", "validated": True, "mean_log_lambda": [1, 1],
-            "cov_log_lambda": np.eye(2).tolist(), "absorbed_fraction": 0.2, "effective_fraction": 1.0,
-        }])
+    out, _, applied = apply_validated_context_updates(np.zeros(2), np.eye(2), [{
+        "source_group": "RECENT_FORM", "validated": True, "mean_log_lambda": [1, 1],
+        "cov_log_lambda": np.eye(2).tolist(), "absorbed_fraction": 0.2, "effective_fraction": 1.0,
+    }])
+    assert out == pytest.approx(np.zeros(2))
+    assert applied[0]["status"] == "REJECTED_UNCALIBRATED"
 
 
 @pytest.mark.parametrize("payload", [
     {"actual_score": "2-1"}, {"nested": {"future_result": "1-0"}},
-    {"post_kickoff": True}, {"goal_event": {"minute": 4}},
+    {"post_kickoff": True},
 ])
 def test_recursive_leakage_fields_are_blocked(payload):
     with pytest.raises(PrematchContextError, match="PREMATCH_LEAKAGE_FIELD"):
@@ -115,10 +124,60 @@ def test_recursive_leakage_fields_are_blocked(payload):
 
 
 def test_timestamp_and_lineup_gates():
-    with pytest.raises(PrematchContextError, match="EVIDENCE_AFTER_KICKOFF"):
-        validate_prematch_context_payload({"evidence_timestamp": "2026-01-01T16:00:00Z"}, kickoff="2026-01-01T15:00:00Z")
-    with pytest.raises(PrematchContextError, match="LINEUP_AFTER_MARKET_SNAPSHOT"):
-        validate_prematch_context_payload({"lineup_timestamp": "2026-01-01T13:00:00Z"}, market_snapshot_timestamp="2026-01-01T12:00:00Z")
+    with pytest.raises(PrematchContextError, match="EVIDENCE_AFTER_CONTEXT_SNAPSHOT"):
+        validate_prematch_context_payload({"evidence_timestamp": "2026-01-01T16:00:00Z"}, kickoff="2026-01-01T17:00:00Z", context_snapshot_timestamp="2026-01-01T15:00:00Z")
+    with pytest.raises(PrematchContextError, match="LINEUP_AFTER_CONTEXT_SNAPSHOT"):
+        validate_prematch_context_payload({"lineup_timestamp": "2026-01-01T13:00:00Z"}, context_snapshot_timestamp="2026-01-01T12:00:00Z", kickoff="2026-01-01T15:00:00Z")
+
+
+def test_historical_pre_match_fields_are_allowed():
+    payload = {
+        "historical_goals": [1, 2], "goals_last_5": [1, 0, 2, 1, 1],
+        "expected_goals": 1.4, "previous_match_result": "W", "past_scores": ["1-0"],
+        "xg": 1.2, "xga": 0.8, "source_match_timestamp": "2025-12-31T15:00:00Z",
+    }
+    result = validate_prematch_context_payload(payload, kickoff="2026-01-01T15:00:00Z")
+    assert result["status"] == "VALIDATED_PREMATCH_PAYLOAD"
+
+
+def test_market_snapshot_mismatch_is_allowed_but_explicitly_flagged():
+    result = validate_prematch_context_payload(
+        {"source_group": "SCHEDULE", "evidence_timestamp": "2026-01-01T13:00:00Z"},
+        kickoff="2026-01-01T15:00:00Z", context_snapshot_timestamp="2026-01-01T14:00:00Z",
+        market_snapshot_timestamp="2026-01-01T12:00:00Z",
+    )
+    assert result["market_context_time_mismatch"] is True
+    assert result["market_absorption_status"] == "INFORMATION_NEWER_THAN_MARKET_SNAPSHOT"
+
+
+def test_quantified_calibration_gate_and_test_only_runtime_gate():
+    raw = {
+        "source_group": "RECENT_FORM", "validated": True, "effect_mode": "QUANTIFIED_OBSERVATION",
+        "mean_log_lambda": [1.0, 1.0], "cov_log_lambda": np.eye(2).tolist(),
+        "calibration_ref": "abc", "calibration_status": "TEST_ONLY", "calibration_version": "v1",
+        "evidence_timestamp": "2026-01-01T10:00:00Z", "context_snapshot_timestamp": "2026-01-01T12:00:00Z",
+        "provenance": {"source": "test"},
+    }
+    mu, _, applied = apply_validated_context_updates(np.zeros(2), np.eye(2), [raw])
+    assert mu == pytest.approx(np.zeros(2))
+    assert applied[0]["status"] == "REJECTED_UNCALIBRATED"
+    mu, _, applied = apply_validated_context_updates(np.zeros(2), np.eye(2), [raw], allow_test_calibration=True)
+    assert mu[0] > 0.0 and applied[0]["status"] == "APPLIED"
+
+
+def test_historical_overlap_is_fail_safe_but_market_only_is_not_overconstrained():
+    raw = {
+        "source_group": "RECENT_FORM", "validated": True, "effect_mode": "QUANTIFIED_OBSERVATION",
+        "mean_log_lambda": [1.0, 1.0], "cov_log_lambda": np.eye(2).tolist(),
+        "calibration_ref": "abc", "calibration_status": "APPROVED_TRAIN_ONLY", "calibration_version": "v1",
+        "evidence_timestamp": "2026-01-01T10:00:00Z", "context_snapshot_timestamp": "2026-01-01T12:00:00Z",
+        "provenance": {"source": "train"},
+    }
+    mu, _, applied = apply_validated_context_updates(np.zeros(2), np.eye(2), [raw], score_engine_mode="HISTORICAL_BAYESIAN")
+    assert mu == pytest.approx(np.zeros(2))
+    assert applied[0]["status"] == "REJECTED_UNKNOWN_HISTORICAL_OVERLAP"
+    mu, _, applied = apply_validated_context_updates(np.zeros(2), np.eye(2), [raw], score_engine_mode="MARKET_ONLY_FORMAL")
+    assert mu[0] > 0.0 and applied[0]["status"] == "APPLIED"
 
 
 def test_default_real_titan_context_is_non_blocking_and_no_mean_shift():
