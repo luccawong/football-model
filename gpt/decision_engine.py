@@ -1,14 +1,14 @@
 """Deterministic decision-policy validator for the football model.
 
 This module does not predict match outcomes. It enforces the user-approved MODEL_1
-workflow, hard draw-exclusion branch, underdog-audit gate, and exactly-one-main
-output policy so cross-chat execution cannot silently drift.
+workflow, hard draw-exclusion branch, underdog-audit gate, single-H1 falsification,
+and exactly-one-main output policy so cross-chat execution cannot silently drift.
 """
 
 from __future__ import annotations
 
 from dataclasses import dataclass
-from typing import Iterable, Mapping, Sequence
+from typing import Mapping, Sequence
 
 
 MODEL_ID = "MODEL_1"
@@ -30,7 +30,7 @@ MODEL_1_STAGE_ORDER: tuple[str, ...] = (
     "correct_score_poisson_bayesian",
     "uncertainty_audit",
     "freeze_h1",
-    "red_team_h2",
+    "single_h1_falsification_audit",
     "formal_main_exactly_one",
 )
 
@@ -57,12 +57,7 @@ class TicketDecision:
 
 
 def validate_stage_order(stages: Sequence[str]) -> None:
-    """Require the exact MODEL_1 full-analysis order.
-
-    Extra ad-hoc stages are not accepted inside the canonical sequence. Research or
-    shadow modules should run outside the frozen formal trace.
-    """
-
+    """Require the exact effective MODEL_1 full-analysis order."""
     if tuple(stages) != MODEL_1_STAGE_ORDER:
         raise DecisionPolicyError(
             "MODEL_1 stage order mismatch. Expected: "
@@ -71,14 +66,7 @@ def validate_stage_order(stages: Sequence[str]) -> None:
 
 
 def resolve_draw_branch(label: object) -> DrawBranch:
-    """Resolve the one-month external draw-exclusion execution branch.
-
-    Accepted execution labels:
-    - 1 / EXCLUDED / True: hard-remove draw and immediately audit HOME vs AWAY win.
-    - 0 / NOT_EXCLUDED / False: retain draw and require enhanced draw audit.
-    - None / UNKNOWN / absent: remain UNKNOWN; never coerce to NOT_EXCLUDED.
-    """
-
+    """Resolve the one-month external draw-exclusion execution branch."""
     if label in (1, True, "1", "EXCLUDED"):
         return DrawBranch(
             label="EXCLUDED",
@@ -106,12 +94,7 @@ def underdog_outright_audit_required(
     *,
     draw_excluded: bool = False,
 ) -> bool:
-    """Return whether the weak-side outright audit is mandatory.
-
-    It is mandatory for favourites -0.75 and deeper, and is always central to a
-    draw-excluded winner-only audit.
-    """
-
+    """Return whether the weak-side outright audit is mandatory."""
     if draw_excluded:
         return True
     if favourite_handicap is None:
@@ -120,12 +103,6 @@ def underdog_outright_audit_required(
 
 
 def validate_fundamentals_packet(packet: Mapping[str, object]) -> None:
-    """Validate presence of the minimum qualitative fundamentals fields.
-
-    Numeric opponent-quality weights are intentionally not required because MODEL_1
-    forbids inventing arbitrary weights before calibration.
-    """
-
     required = {
         "recent_match_by_match",
         "opponent_quality_review",
@@ -141,12 +118,6 @@ def validate_fundamentals_packet(packet: Mapping[str, object]) -> None:
 
 
 def validate_market_transition_flags(flags: Mapping[str, object]) -> None:
-    """Enforce the two user-specified market transition audits.
-
-    1X2 must include the post-fundamentals real-open/camouflage-open audit.
-    AH must include explicit European-to-Asian conversion/coherence review.
-    """
-
     if not flags.get("real_vs_camouflage_open_audited"):
         raise DecisionPolicyError("Missing 实开/韬开 audit after fundamentals in 1X2 stage.")
     if not flags.get("europe_asia_conversion_audited"):
@@ -155,7 +126,6 @@ def validate_market_transition_flags(flags: Mapping[str, object]) -> None:
 
 def validate_formal_ticket(ticket: TicketDecision | None, non_main_count: int = 0) -> None:
     """MODEL_1 requires exactly one formal main, no non-main and no final PASS."""
-
     if ticket is None:
         raise DecisionPolicyError("MODEL_1 requires exactly one formal main ticket.")
     if non_main_count != 0:
@@ -177,11 +147,20 @@ def validate_formal_ticket(ticket: TicketDecision | None, non_main_count: int = 
         )
 
 
+def validate_falsification_verdict(verdict: str) -> None:
+    allowed = {"SURVIVES", "DOWNGRADE", "UPGRADE", "OVERTURN_AND_REBUILD"}
+    if verdict not in allowed:
+        raise DecisionPolicyError(
+            f"Invalid falsification verdict {verdict!r}; allowed={sorted(allowed)}"
+        )
+
+
 def validate_red_team_verdict(verdict: str) -> None:
+    """Deprecated compatibility validator for archived pre-2026-09-16 traces only."""
     allowed = {"CONFIRM", "DOWNGRADE", "UPGRADE", "OVERTURN"}
     if verdict not in allowed:
         raise DecisionPolicyError(
-            f"Invalid Red Team verdict {verdict!r}; allowed={sorted(allowed)}"
+            f"Invalid legacy Red Team verdict {verdict!r}; allowed={sorted(allowed)}"
         )
 
 
@@ -193,12 +172,11 @@ def validate_full_analysis(
     draw_label: object,
     favourite_handicap: float | None,
     underdog_audit_completed: bool,
-    red_team_verdict: str,
+    falsification_verdict: str,
     ticket: TicketDecision | None,
     non_main_count: int = 0,
 ) -> DrawBranch:
-    """Validate a completed MODEL_1 analysis trace and return the draw branch."""
-
+    """Validate a completed effective MODEL_1 analysis trace and return the draw branch."""
     validate_stage_order(stages)
     validate_fundamentals_packet(fundamentals_packet)
     validate_market_transition_flags(transition_flags)
@@ -208,6 +186,10 @@ def validate_full_analysis(
         raise DecisionPolicyError("NOT_EXCLUDED requires enhanced draw audit.")
     if branch.winner_only_audit and not transition_flags.get("winner_only_audit_completed"):
         raise DecisionPolicyError("EXCLUDED requires immediate HOME-vs-AWAY winner audit.")
+    if branch.winner_only_audit and not transition_flags.get("draw_excluded_binary_winner_audit_completed"):
+        raise DecisionPolicyError("EXCLUDED requires bookmaker-intent binary winner audit.")
+    if branch.winner_only_audit and not transition_flags.get("popular_side_default_forbidden_acknowledged"):
+        raise DecisionPolicyError("EXCLUDED binary audit cannot default to the favourite/popular side.")
 
     if underdog_outright_audit_required(
         favourite_handicap,
@@ -215,6 +197,6 @@ def validate_full_analysis(
     ) and not underdog_audit_completed:
         raise DecisionPolicyError("Mandatory underdog outright audit was not completed.")
 
-    validate_red_team_verdict(red_team_verdict)
+    validate_falsification_verdict(falsification_verdict)
     validate_formal_ticket(ticket, non_main_count=non_main_count)
     return branch
