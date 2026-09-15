@@ -16,14 +16,20 @@ CONTEXT_MODEL_VERSION = "MODEL_1-PREMATCH-CONTEXT-1.0.0"
 ALLOWED_SOURCE_GROUPS = {"RECENT_FORM", "LINEUP", "PLAYER_STATE", "SCHEDULE"}
 _LEAKAGE_TOKENS = {
     "actual_score", "actual_result", "final_score", "home_score", "away_score",
-    "post_match_result", "post_kickoff", "red_card_after_kickoff",
-    "goal_event_current_match", "future_result", "result_of_next_match",
-    "test_target", "jcb_result",
+    "post_match", "post_match_result", "post_match_score", "post_match_outcome",
+    "post_match_home_score", "post_match_away_score", "post_kickoff",
+    "red_card_after_kickoff", "goal_event_current_match", "future_result",
+    "result_of_next_match", "future_score", "next_match_score",
+    "future_lineup_result", "test_target", "jcb_result",
 }
 _HISTORICAL_TIME_KEYS = {
     "source_match_timestamp", "historical_match_timestamp", "previous_match_timestamp",
-    "historical_as_of", "data_timestamp", "match_timestamp", "match_date",
+    "source_past_match_timestamp", "historical_as_of",
 }
+_SCHEDULE_TIME_KEYS = {"next_fixture_date", "fixture_date", "scheduled_kickoff", "next_match_kickoff"}
+_GENERIC_TIME_KEYS = {"match_date", "match_timestamp", "data_timestamp"}
+_FUTURE_PATH_MARKERS = {"next_fixture", "upcoming_fixture", "next_match", "scheduled_fixture", "future_fixture"}
+_PAST_PATH_MARKERS = {"previous_matches", "past_matches", "historical", "history", "recent_form"}
 
 
 class PrematchContextError(ValueError):
@@ -58,18 +64,35 @@ def _scan_leakage(value: Any, path: str = "payload") -> None:
             _scan_leakage(child, f"{path}[{idx}]")
 
 
-def _scan_historical_timestamps(value: Any, kickoff: datetime, path: str = "payload") -> None:
+def _scan_historical_timestamps(
+    value: Any,
+    kickoff: datetime,
+    context_snapshot: datetime | None,
+    path: str = "payload",
+) -> None:
     if isinstance(value, Mapping):
         for key, child in value.items():
             key_norm = str(key).strip().lower().replace("-", "_")
-            if key_norm in _HISTORICAL_TIME_KEYS:
+            segments = set(path.lower().replace("[", ".").replace("]", "").split("."))
+            if key_norm in _HISTORICAL_TIME_KEYS or (
+                key_norm in _GENERIC_TIME_KEYS and not segments.intersection(_FUTURE_PATH_MARKERS)
+            ):
                 historical_dt = _parse_dt(child, f"{path}.{key}")
                 if historical_dt >= kickoff:
                     raise PrematchContextError("HISTORICAL_FIELD_NOT_BEFORE_KICKOFF")
-            _scan_historical_timestamps(child, kickoff, f"{path}.{key}")
+            elif key_norm in _SCHEDULE_TIME_KEYS or (
+                key_norm in _GENERIC_TIME_KEYS and segments.intersection(_FUTURE_PATH_MARKERS)
+            ):
+                if context_snapshot is None:
+                    raise PrematchContextError("CONTEXT_SNAPSHOT_REQUIRED_FOR_SCHEDULE")
+                # The fixture date may be after kickoff; the publication/evidence
+                # timestamp (validated separately) determines whether it was known
+                # at the context snapshot.
+                _parse_dt(child, f"{path}.{key}")
+            _scan_historical_timestamps(child, kickoff, context_snapshot, f"{path}.{key}")
     elif isinstance(value, (list, tuple)):
         for idx, child in enumerate(value):
-            _scan_historical_timestamps(child, kickoff, f"{path}[{idx}]")
+            _scan_historical_timestamps(child, kickoff, context_snapshot, f"{path}[{idx}]")
 
 
 def validate_prematch_context_payload(
@@ -84,12 +107,12 @@ def validate_prematch_context_payload(
         raise PrematchContextError("context payload must be a mapping")
     _scan_leakage(payload)
     kick_dt = _parse_dt(kickoff, "kickoff") if kickoff is not None else None
-    if kick_dt is not None:
-        _scan_historical_timestamps(payload, kick_dt)
     context_dt = (
         _parse_dt(context_snapshot_timestamp, "context_snapshot_timestamp")
         if context_snapshot_timestamp is not None else None
     )
+    if kick_dt is not None:
+        _scan_historical_timestamps(payload, kick_dt, context_dt)
     snap_dt = (
         _parse_dt(market_snapshot_timestamp, "market_snapshot_timestamp")
         if market_snapshot_timestamp is not None else None
@@ -187,7 +210,7 @@ def _prepare_update(
             "provenance": provenance,
         }, "REJECTED_UNCALIBRATED"
     if mode == "QUANTIFIED_OBSERVATION":
-        approved = {"APPROVED_TRAIN_ONLY", "APPROVED_PRODUCTION", "APPROVED"}
+        approved = {"APPROVED_TRAIN_ONLY", "APPROVED_PRODUCTION"}
         calibration_status = str(payload.get("calibration_status", "")).upper()
         if calibration_status == "TEST_ONLY" and allow_test_calibration:
             pass
