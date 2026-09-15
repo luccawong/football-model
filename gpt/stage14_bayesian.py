@@ -26,12 +26,16 @@ CORE_MARKET_COMPANIES = ("Pinnacle", "Bet365", "Macau")
 SOURCE_GROUPS = {
     "TEAM_DATA",
     "LINEUP",
+    "RECENT_FORM",
+    "PLAYER_STATE",
+    "SCHEDULE",
     "1X2",
     "AH",
     "OU_MAIN",
     "OU_CURVE",
     "OFFFIELD",
 }
+CONTEXT_UPDATE_SOURCE_GROUPS = {"RECENT_FORM", "LINEUP", "PLAYER_STATE", "SCHEDULE", "TEAM_DATA", "OFFFIELD"}
 
 
 class BayesianScoreError(ValueError):
@@ -55,6 +59,26 @@ def _as_cov2(value: Sequence[Sequence[float]], name: str) -> np.ndarray:
     if np.min(eig) <= 0:
         raise BayesianScoreError(f"{name} must be positive definite.")
     return arr
+
+
+def _as_psd2(value: Sequence[Sequence[float]], name: str) -> np.ndarray:
+    arr = np.asarray(value, dtype=float)
+    if arr.shape != (2, 2) or not np.all(np.isfinite(arr)):
+        raise BayesianScoreError(f"{name} must be a finite 2x2 covariance matrix.")
+    if not np.allclose(arr, arr.T, atol=1e-10):
+        raise BayesianScoreError(f"{name} must be symmetric.")
+    if np.min(np.linalg.eigvalsh(arr)) < -1e-10:
+        raise BayesianScoreError(f"{name} must be positive semidefinite.")
+    return (arr + arr.T) / 2.0
+
+
+def _normalize_context_updates(updates: Any) -> list[Mapping[str, Any]]:
+    if updates is None:
+        return []
+    if isinstance(updates, Mapping):
+        nested = updates.get("updates", [])
+        return list(nested) if isinstance(nested, Sequence) and not isinstance(nested, (str, bytes)) else []
+    return list(updates)
 
 
 def build_log_rate_prior(components: Mapping[str, Any]) -> dict[str, Any]:
@@ -275,37 +299,55 @@ def apply_validated_context_updates(
     provide mean_log_lambda + cov_log_lambda and validated=True.
     """
     applied: list[dict[str, Any]] = []
-    for raw in updates or []:
+    for raw in _normalize_context_updates(updates):
+        if not isinstance(raw, Mapping):
+            applied.append({"status": "IGNORED_INVALID_CONTEXT"})
+            continue
         if not bool(raw.get("validated", False)):
             applied.append(
                 {
                     "source_group": raw.get("source_group"),
                     "status": "IGNORED_UNVALIDATED",
+                    "effect_mode": str(raw.get("effect_mode", "UNCERTAINTY_ONLY")).upper(),
                 }
             )
             continue
         group = str(raw.get("source_group", ""))
-        if group not in SOURCE_GROUPS:
+        if group not in CONTEXT_UPDATE_SOURCE_GROUPS:
             raise BayesianScoreError(f"Unknown source_group: {group!r}")
-        obs_mu = _as_vec2(raw.get("mean_log_lambda"), f"{group}.mean_log_lambda")
-        obs_cov = _as_cov2(raw.get("cov_log_lambda"), f"{group}.cov_log_lambda")
+        effect_mode = str(raw.get("effect_mode", "QUANTIFIED_OBSERVATION")).upper()
         absorbed = float(raw.get("absorbed_fraction", 0.0))
-        if not (0.0 <= absorbed <= 1.0):
+        overlap = float(raw.get("historical_overlap_fraction", 0.0))
+        if not (0.0 <= absorbed <= 1.0 and 0.0 <= overlap <= 1.0):
             raise BayesianScoreError("absorbed_fraction must be in [0,1].")
-        effective_fraction = 1.0 - absorbed
-        mu, cov = _normal_update(
-            mu,
-            cov,
-            obs_mu,
-            obs_cov,
-            effective_fraction=effective_fraction,
-        )
+        effective_fraction = float(raw.get("effective_fraction", (1.0 - absorbed) * (1.0 - overlap)))
+        if not (0.0 <= effective_fraction <= 1.0 and isfinite(effective_fraction)):
+            raise BayesianScoreError("effective_fraction must be in [0,1].")
+        expected_fraction = (1.0 - absorbed) * (1.0 - overlap)
+        if "effective_fraction" in raw and not np.isclose(effective_fraction, expected_fraction, atol=1e-9):
+            raise BayesianScoreError("effective_fraction must equal unabsorbed, non-overlapping evidence fraction.")
+        if effect_mode == "UNCERTAINTY_ONLY":
+            inflation = _as_psd2(raw.get("cov_inflation", raw.get("cov_log_lambda")), f"{group}.cov_inflation")
+            mu = mu.copy()
+            cov = _as_cov2(cov + effective_fraction * inflation, "context_uncertainty_covariance")
+            delta = [0.0, 0.0]
+        elif effect_mode == "QUANTIFIED_OBSERVATION":
+            obs_mu = _as_vec2(raw.get("mean_log_lambda"), f"{group}.mean_log_lambda")
+            obs_cov = _as_cov2(raw.get("cov_log_lambda"), f"{group}.cov_log_lambda")
+            before = mu.copy()
+            mu, cov = _normal_update(mu, cov, obs_mu, obs_cov, effective_fraction=effective_fraction)
+            delta = (mu - before).tolist()
+        else:
+            raise BayesianScoreError(f"Unknown effect_mode: {effect_mode!r}")
         applied.append(
             {
                 "source_group": group,
                 "status": "APPLIED",
+                "effect_mode": effect_mode,
                 "absorbed_fraction": absorbed,
+                "historical_overlap_fraction": overlap,
                 "effective_fraction": effective_fraction,
+                "context_delta_log_lambda": delta,
                 "evidence_ref": raw.get("evidence_ref"),
             }
         )
@@ -346,6 +388,7 @@ def build_lambda_posterior(
         market_cov,
         effective_fraction=1.0 - absorbed,
     )
+    pre_context_mu, pre_context_cov = post_mu.copy(), post_cov.copy()
     post_mu, post_cov, applied = apply_validated_context_updates(
         post_mu,
         post_cov,
@@ -379,6 +422,16 @@ def build_lambda_posterior(
         },
         "market_likelihood": market,
         "context_updates": applied,
+        "context_audit": {
+            "context_model_version": "MODEL_1-PREMATCH-CONTEXT-1.0.0",
+            "pre_context_mean_log_lambda": pre_context_mu.tolist(),
+            "pre_context_cov_log_lambda": pre_context_cov.tolist(),
+            "post_context_mean_log_lambda": post_mu.tolist(),
+            "post_context_cov_log_lambda": post_cov.tolist(),
+            "context_delta_log_lambda": (post_mu - pre_context_mu).tolist(),
+            "updates_applied": [x for x in applied if x.get("status") == "APPLIED"],
+            "updates_ignored": [x for x in applied if x.get("status") != "APPLIED"],
+        },
         "anti_double_counting": True,
     }
 
@@ -645,6 +698,7 @@ def build_formal_market_score_packet(
     historical_prior_activation: str = "UNAVAILABLE",
     snapshot_phase: str = "current",
     market_sigma_floor: float = 0.12,
+    context_updates: Sequence[Mapping[str, Any]] | Mapping[str, Any] | None = None,
     max_goals: int = 12,
     draws: int = 4000,
 ) -> dict[str, Any]:
@@ -665,6 +719,7 @@ def build_formal_market_score_packet(
             "prior_used": False,
             "historical_prior_activation": historical_prior_activation,
             "market_cluster_status": market.get("status", "MISSING"),
+            "market_aggregation": "CORRELATED_MARKET_CLUSTER_LOG_RATE_CENTER" if market.get("status") == "VALID" else "NO_VALID_CORE_MARKET_CLUSTER",
             "market_companies_used": list(market.get("companies_used", [])),
             "snapshot_phase": snapshot_phase,
             "top3": [],
@@ -672,8 +727,11 @@ def build_formal_market_score_packet(
             "no_fake_historical_prior": True,
         }
 
-    mean = _as_vec2(market["mean_log_lambda"], "market.mean_log_lambda")
-    covariance = _as_cov2(market["cov_log_lambda"], "market.cov_log_lambda")
+    base_mean = _as_vec2(market["mean_log_lambda"], "market.mean_log_lambda")
+    base_covariance = _as_cov2(market["cov_log_lambda"], "market.cov_log_lambda")
+    mean, covariance, applied_context = apply_validated_context_updates(
+        base_mean, base_covariance, context_updates
+    )
     rho = float(np.clip(float(market["rho_market_median"]), -0.249, 0.249))
     distribution = {
         "status": "FORMAL_MARKET_SCORE_DISTRIBUTION",
@@ -714,6 +772,16 @@ def build_formal_market_score_packet(
         "cov_log_lambda": distribution["cov_log_lambda"],
         "lambda_home": float(median_lambda[0]),
         "lambda_away": float(median_lambda[1]),
+        "base_market_mean_log_lambda": base_mean.tolist(),
+        "base_market_cov_log_lambda": base_covariance.tolist(),
+        "final_mean_log_lambda": mean.tolist(),
+        "final_cov_log_lambda": covariance.tolist(),
+        "context_model_version": "MODEL_1-PREMATCH-CONTEXT-1.0.0",
+        "context_updates_applied": [x for x in applied_context if x.get("status") == "APPLIED"],
+        "context_updates_ignored": [x for x in applied_context if x.get("status") != "APPLIED"],
+        "context_delta_log_lambda": (mean - base_mean).tolist(),
+        "context_layer_applied": bool(any(x.get("status") == "APPLIED" for x in applied_context)),
+        "market_aggregation": "CORRELATED_MARKET_CLUSTER_LOG_RATE_CENTER",
         "lambda_semantics": "MEDIAN_OF_LOGNORMAL_RATE_DISTRIBUTION",
         "rho": rho,
         "raw_top10": selected.get("raw_top10", []),
