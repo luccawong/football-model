@@ -10,8 +10,11 @@ from draw_exclusion_research.crawler.snapshot_manager import store_snapshot
 from draw_exclusion_research.database.repository import compare_and_store_snapshot_diff, connect, insert_snapshot
 
 
-def fixture_html(jc_labels=(0,), bd_labels=(1,)):
-    payload = json.dumps([list(jc_labels), list(bd_labels)], separators=(",", ":"))
+def fixture_html(jc_labels=(0,), bd_labels=(1,), recommendation_labels=None):
+    groups = [list(jc_labels), list(bd_labels)]
+    if recommendation_labels is not None:
+        groups.append(list(recommendation_labels))
+    payload = json.dumps(groups, separators=(",", ":"))
     encoded = ",".join(str(ord(char) + 7) for char in payload)
     row = """
     <tr data-single="{single}" data-key="{key}" data-idx="{idx}">
@@ -28,9 +31,11 @@ def fixture_html(jc_labels=(0,), bd_labels=(1,)):
                     league="北单联赛", home="甲队", away="乙队", badge='<span class="bd-badge">北单</span>', odds="")
     bd1 = row.format(single="0", key="BD|2|E|F", idx=1, number="2", time="2026-09-08 20:00",
                     league="北单联赛", home="丙队", away="丁队", badge="", odds="")
+    recommendation_table = '<table id="reftbl"><tbody><tr data-idx="0"><td>推荐页应忽略</td></tr></tbody></table>' if recommendation_labels is not None else ""
     return f"""<html><body><span>更新时间：2026-09-08 15:51</span>
     <table id="tbl"><tbody>{jc}</tbody></table>
     <table id="bdtbl"><tbody>{bd0}{bd1}</tbody></table>
+    {recommendation_table}
     <script>var _mk = [{encoded}].map(function (c) {{ return String.fromCharCode(c - 7); }}).join('');</script>
     </body></html>"""
 
@@ -44,6 +49,13 @@ class DrawExclusionTests(unittest.TestCase):
         self.assertEqual(page.matches[0].away_team, "客队")
         self.assertEqual(page.matches[0].visible_asian_handicap, -0.75)
         self.assertEqual(page.matches[0].visible_draw_1x2, 3.5)
+
+    def test_parser_ignores_appended_recommendation_group(self):
+        page = parse_page(fixture_html(recommendation_labels=(0, 1, 2)))
+        self.assertEqual(len(page.matches), 3)
+        self.assertEqual(page.label_indices, {"JC": (0,), "BD": (1,)})
+        self.assertEqual([m.source_market for m in page.matches], ["JC", "BD", "BD"])
+        self.assertEqual([m.website_draw_exclusion_label for m in page.matches], [1, 0, 1])
 
     def test_research_match_id_is_stable_under_nfkc_case_and_spaces(self):
         kickoff = "2026-09-08T18:30:00+08:00"
