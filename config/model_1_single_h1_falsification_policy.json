@@ -1,10 +1,10 @@
 {
-  "version": "MODEL_1-SINGLE-H1-FALSIFICATION-2026-09-16.1",
+  "version": "MODEL_1-SINGLE-H1-FALSIFICATION-2026-09-16.2",
   "model_id": "MODEL_1",
   "status": "ACTIVE_TARGETED_USER_OVERRIDE",
   "effective_date": "2026-09-16",
   "authority": "USER_EXPLICIT_INSTRUCTION",
-  "purpose": "Remove the mandatory independent H2/counter-ticket construction while preserving a hard adversarial falsification layer before the only formal ticket.",
+  "purpose": "Use one working hypothesis while preserving a hard adversarial falsification layer before the only formal ticket; explicitly challenge bookmaker-intent interpretation and favourite-default bias.",
   "stage_replacement": {
     "base_stage": "independent_red_team_h2",
     "replacement_stage": "single_h1_falsification_audit",
@@ -25,20 +25,25 @@
     "formal_output_remains_exactly_one_ticket": true
   },
   "mandatory_falsification_checks": [
-    "record_three_strongest_counterevidence_items_before_ticket",
-    "record_explicit_h1_failure_conditions",
-    "test_at_least_two plausible alternative_match_paths_without_turning_them_into_second_tickets",
-    "test_market_rationalization_or_story_fit_bias",
-    "test_win_probability_vs_cover_probability_confusion",
-    "test_draw_path_when_draw_is_not_excluded",
-    "test_underdog_outright_path_for_deep_favourites",
-    "test_opening_lifecycle_counterinterpretation",
-    "test_same_time_slice_company_divergence",
-    "test_1x2_ah_ou_conflicts",
-    "test_recent_form_vs_market_conflict",
-    "test_competition_rules_and_game_state_incentives",
-    "test_missing_or_low_quality_data_that_could_reverse_direction",
-    "test whether the thesis explains anomalies or merely narrates them away"
+    "record_three_strongest_counterevidence_items_before ticket",
+    "record explicit H1 failure conditions",
+    "test at least two plausible alternative match paths without turning them into second tickets",
+    "test market rationalization or story-fit bias",
+    "test win probability vs cover probability confusion",
+    "test draw path when draw is not excluded",
+    "test underdog outright path for deep favourites",
+    "test opening lifecycle counterinterpretation",
+    "test same-time-slice company divergence",
+    "test 1X2-AH-OU conflicts",
+    "test recent form vs market conflict",
+    "test competition rules and game-state incentives",
+    "test missing or low-quality data that could reverse direction",
+    "test whether the thesis explains anomalies or merely narrates them away",
+    "test bookmaker role-map interpretation against an alternative Lead/Follow/Divergence reading",
+    "test blocking vs inducement and hot vs cold interpretation with at least one falsifier",
+    "test whether cross-market consensus is merely correlated transmission rather than independent confirmation",
+    "when draw is EXCLUDED, test the opposite outright winner without granting the favourite any default priority",
+    "when draw is EXCLUDED, verify that the selected winner follows from protection/selling structure rather than stronger-team or lower-odds default"
   ],
   "falsification_verdicts": [
     "SURVIVES",
@@ -50,9 +55,19 @@
     "allowed": true,
     "must_not_require_a_prebuilt_h2": true,
     "trigger": "material_counterevidence_or_failed_failure_condition",
-    "action": "discard_old_h1_and_rebuild_from_stage_1_to_15_evidence_before_formal_ticket",
+    "action": "discard old H1 and rebuild from stage 1 to 15 evidence before formal ticket",
     "silent_flip_forbidden": true,
-    "if_an_actionable_ticket_was_already_issued": "explicit_correction_old_to_new_required"
+    "if_an_actionable_ticket_was_already_issued": "explicit correction old to new required"
+  },
+  "bookmaker_intent_falsification": {
+    "policy": "config/model_1_bookmaker_intent_policy.json",
+    "mandatory": true,
+    "bookmaker_profiles_are_priors_only": true,
+    "per_match_role_map_must_be_challenged": true,
+    "selected_operator_intent_requires_counterinterpretation": true,
+    "popular_side_default_forbidden": true,
+    "draw_excluded_binary_winner_audit_must_survive_falsification": true,
+    "stronger_team_or_lower_odds_alone_cannot_survive_falsification": true
   },
   "drift_mode": {
     "active": true,
@@ -66,8 +81,8 @@
     "formal_weight": "NONE",
     "role": "SHADOW_DIAGNOSTIC_INPUT",
     "user_disagreement_does_not_automatically_flip_ticket": true,
-    "record_reason_for_disagreement_when_user_volunteers_it": true,
-    "compare_user_challenge_with_model_failure_modes_post_match": true,
+    "record_reason_for_disagreement_when user volunteers it": true,
+    "compare user challenge with model failure modes post match": true,
     "do_not_use_real_money_validation_as_a_requirement": true,
     "purpose": "Identify recurring variables or logic failures that MODEL_1 fails to encode."
   },
@@ -87,7 +102,8 @@
       "A low total line may encode probability mass near the line rather than a genuinely low-event match.",
       "Favourite win probability and deep-handicap cover probability are separate questions.",
       "A late synchronized buyback or retreat can invalidate an earlier lifecycle story and must be re-tested rather than explained away.",
-      "Repeated errors in the same structural direction are diagnostic evidence, not an excuse to invoke variance first."
+      "Repeated errors in the same structural direction are diagnostic evidence, not an excuse to invoke variance first.",
+      "After draw exclusion, favourite selection is not a default; the remaining home-vs-away winner must be distinguished through bookmaker protection/selling structure."
     ]
   },
   "anti_backfit": {
