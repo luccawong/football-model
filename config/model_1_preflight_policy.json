@@ -1,13 +1,14 @@
 {
-  "version": "MODEL_1-PREFLIGHT-POLICY-1.1.0",
+  "version": "MODEL_1-PREFLIGHT-POLICY-1.2.0",
   "model_id": "MODEL_1",
-  "effective_date": "2026-09-14",
-  "authorization": "Explicit user instruction: MODEL_1 SOP order detection is a hard execution gate; if any required stage is missing or out of order, formal ticket output is forbidden.",
+  "effective_date": "2026-09-15",
+  "authorization": "Explicit user instruction: after sustained directional drift, H1 anchoring and ceremonial Red Team behavior are formal execution defects. Blind H2 reconstruction and equal-status adjudication are mandatory hard gates.",
   "formal": true,
   "stage_role": "PRE_TICKET_HARD_GATE_OUTSIDE_18_STAGE_ORDER",
   "failure_status": "PRECHECK_BLOCKED_NO_TICKET",
   "failure_is_not_pass": true,
-  "purpose": "Stop formal output until the current MODEL_1 contract has actually been executed for the match, with all required SOP stages completed in the canonical order.",
+  "purpose": "Stop formal output until the current MODEL_1 contract, anti-anchoring ledger, blind H2 reconstruction, and equal-status H1/H2 adjudication have actually been completed.",
+  "targeted_override_source": "config/model_1_red_team_independence_override.json",
   "sop_order_gate": {
     "enabled": true,
     "canonical_order_source": "config/active_decision_policy.json::analysis_order",
@@ -41,11 +42,26 @@
       "independent_red_team_h2",
       "formal_main_ticket"
     ],
-    "failure_action": "STOP_AND_COMPLETE_MISSING_OR_OUT_OF_ORDER_STAGE_BEFORE_ANY_GRADE_OR_TICKET",
+    "failure_action": "STOP_AND_COMPLETE_MISSING_OR_OUT_OF_ORDER_STAGE_BEFORE_ANY_GRADE_OR_FORMAL_OUTPUT",
     "failure_must_not_be_converted_to_pass": true
+  },
+  "anti_anchoring_gate": {
+    "enabled": true,
+    "neutral_evidence_ledger_required_before_h1": true,
+    "facts_inferences_assumptions_conclusions_separated": true,
+    "strongest_h1_contradictions_required": 3,
+    "market_rationalization_guard_required": true,
+    "h2_must_be_blind_to_h1_direction_grade_reasoning": true,
+    "h2_fresh_reconstruction_required": true,
+    "h2_independent_candidate_required": true,
+    "h1_reveal_only_after_h2_freeze": true,
+    "h1_h2_equal_status_adjudication_required": true,
+    "h1_has_no_incumbency_advantage": true,
+    "drift_mode_acknowledgement_required": true
   },
   "required_checks": [
     "current MODEL_1 policy loaded",
+    "targeted Red Team independence override loaded",
     "Titan match identity verified",
     "all 18 canonical SOP stages completed in exact order",
     "opening-only first impression completed",
@@ -53,10 +69,18 @@
     "AH all-valid-MAIN-line company divergence audit completed",
     "AH line and water lifecycle completed",
     "1X2-to-AH coherence audit completed",
-    "independent OU direction plus reference line completed even when OU is not a ticket",
+    "independent OU direction plus reference line completed even when OU is not a formal selection",
     "correct-score direction consistency gate passed",
     "draw-exclusion state loaded",
-    "independent Red Team H2 completed with formal verdict",
+    "neutral evidence ledger complete before H1",
+    "three strongest contradictions to H1 recorded",
+    "market rationalization guard completed",
+    "Red Team H2 generated blind to H1",
+    "Red Team H2 fresh reconstruction completed",
+    "Red Team independent candidate frozen before H1 reveal",
+    "H1 revealed only after H2 freeze",
+    "H1/H2 equal-status adjudication completed",
+    "drift mode acknowledged",
     "no unresolved critical execution conflict",
     "ticket-lock mechanism ready"
   ],
@@ -67,12 +91,13 @@
     "critical_execution_conflict_blocks_output": true
   },
   "output_semantics": {
-    "formal_ticket_before_preflight_pass_forbidden": true,
+    "formal_output_before_preflight_pass_forbidden": true,
     "A_range_or_B_range_grade_before_preflight_pass_forbidden": true,
     "formal_main_ticket_stage_cannot_self_validate_prior_missing_stages": true,
     "preflight_failure_requires_finishing_missing_work_not_switching_to_PASS": true,
     "formal_trace_must_store_preflight_result": true,
-    "formal_trace_must_store_stage_completion_vector": true
+    "formal_trace_must_store_stage_completion_vector": true,
+    "declaring_red_team_independent_without_blind_trace_is_insufficient": true
   },
   "implementation": {
     "validator": "gpt/preflight_gate.py",
