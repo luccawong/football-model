@@ -1,23 +1,22 @@
 """Hard pre-ticket gate for MODEL_1.
 
-The gate exists to prevent cross-chat/process drift.  It does not predict a match and
-it does not add a second opinion.  It verifies that the already-authorized MODEL_1
-work was actually completed before an actionable formal ticket can be emitted.
+The gate exists to prevent cross-chat/process drift. It verifies that the authorized
+MODEL_1 work was actually completed before any formal output can be emitted.
 
-PRECHECK_BLOCKED is not PASS.  It means the formal analysis is incomplete and must
-finish the missing work before any ticket/grade is allowed.
+PRECHECK_BLOCKED is not PASS. It means the formal analysis is incomplete and must
+finish the missing work before any formal output is allowed.
 """
 from __future__ import annotations
 
 from dataclasses import dataclass, asdict
-from typing import Any, Mapping, Sequence
+from typing import Any, Mapping
 
 
-PREFLIGHT_VERSION = "MODEL_1-PREFLIGHT-1.0.0"
+PREFLIGHT_VERSION = "MODEL_1-PREFLIGHT-1.1.0"
 
 
 class PreflightGateError(ValueError):
-    """Raised when MODEL_1 is not ready to emit a formal ticket."""
+    """Raised when MODEL_1 is not ready to emit a formal output."""
 
 
 @dataclass(frozen=True)
@@ -33,6 +32,7 @@ class PreflightResult:
 
 _REQUIRED_TRUE_FLAGS: tuple[str, ...] = (
     "current_model_1_policy_loaded",
+    "targeted_red_team_override_loaded",
     "titan_match_identity_verified",
     "opening_only_impression_completed",
     "same_time_slice_audit_completed",
@@ -42,28 +42,23 @@ _REQUIRED_TRUE_FLAGS: tuple[str, ...] = (
     "ou_independent_direction_completed",
     "score_direction_consistency_gate_passed",
     "draw_exclusion_state_loaded",
+    "neutral_evidence_ledger_complete",
+    "h1_contradictions_recorded",
+    "market_rationalization_guard_complete",
     "red_team_h2_completed",
     "red_team_h2_independent",
+    "red_team_h2_blind_to_h1",
+    "red_team_h2_fresh_reconstruction",
+    "red_team_h2_independent_candidate_frozen",
+    "h1_revealed_after_h2_freeze",
+    "h1_h2_equal_status_adjudication_complete",
+    "drift_mode_acknowledged",
     "ticket_lock_ready",
 )
 
 
 def validate_preflight_packet(packet: Mapping[str, Any]) -> PreflightResult:
-    """Validate hard readiness requirements before any formal ticket is emitted.
-
-    Required semantics:
-    - all existing MODEL_1 rules are loaded for this run;
-    - Titan identity/opening/same-slice/AH lifecycle + all-line divergence are done;
-    - OU has an independent OVER/UNDER direction and reference line even if no OU bet;
-    - score Top3 consistency gate has passed;
-    - draw-exclusion state has been loaded;
-    - Red Team H2 is completed independently;
-    - there is no unresolved *critical execution* conflict;
-    - the ticket-lock mechanism is ready.
-
-    Non-critical missing data are allowed when explicitly disclosed.  Missingness is
-    not automatically negative evidence.
-    """
+    """Validate hard readiness requirements before any formal output is emitted."""
 
     failures: list[str] = []
     for key in _REQUIRED_TRUE_FLAGS:
@@ -84,10 +79,20 @@ def validate_preflight_packet(packet: Mapping[str, Any]) -> PreflightResult:
     if verdict not in {"CONFIRM", "DOWNGRADE", "UPGRADE", "OVERTURN"}:
         failures.append("red_team_verdict")
 
+    if packet.get("red_team_h1_visible_during_h2") is True:
+        failures.append("red_team_h1_visible_during_h2")
+
+    candidate = packet.get("red_team_independent_candidate")
+    if not isinstance(candidate, Mapping):
+        failures.append("red_team_independent_candidate")
+    else:
+        for key in ("market", "line", "side", "confidence"):
+            if candidate.get(key) in (None, ""):
+                failures.append(f"red_team_independent_candidate.{key}")
+
     if packet.get("unresolved_critical_execution_conflict") is True:
         failures.append("unresolved_critical_execution_conflict")
 
-    # Missing data can exist, but must be named/disclosed before ticketing.
     if packet.get("missing_core_data_present") is True and packet.get("missing_core_data_disclosed") is not True:
         failures.append("missing_core_data_disclosed")
 
@@ -107,12 +112,10 @@ def validate_preflight_packet(packet: Mapping[str, Any]) -> PreflightResult:
 
 
 def require_preflight_pass(packet: Mapping[str, Any]) -> PreflightResult:
-    """Raise if the preflight gate is not fully satisfied."""
-
     result = validate_preflight_packet(packet)
     if not result.passed:
         raise PreflightGateError(
-            "MODEL_1 preflight blocked formal ticket: " + ", ".join(result.failures)
+            "MODEL_1 preflight blocked formal output: " + ", ".join(result.failures)
         )
     return result
 
@@ -123,11 +126,7 @@ def packet_from_stage_evidence(
     current_model_1_policy_loaded: bool,
     unresolved_critical_execution_conflict: bool = False,
 ) -> dict[str, Any]:
-    """Build the preflight packet from formal 18-stage evidence.
-
-    This intentionally reads already-produced stage evidence instead of asking the
-    caller to manually repeat each gate result.
-    """
+    """Build the preflight packet from formal stage evidence."""
 
     market = stage_evidence.get("market_snapshot", {})
     opening = stage_evidence.get("opening_first_impression", {})
@@ -135,6 +134,7 @@ def packet_from_stage_evidence(
     one_x_two = stage_evidence.get("one_x_two_real_vs_camouflage_open", {})
     ah = stage_evidence.get("asian_handicap_europe_asia_conversion", {})
     totals = stage_evidence.get("totals", {})
+    uncertainty = stage_evidence.get("uncertainty_audit", {})
     draw = stage_evidence.get("draw_exclusion_winner_audit", {})
     score = stage_evidence.get("correct_score_poisson_bayesian", {})
     red = stage_evidence.get("red_team_h2", {})
@@ -143,8 +143,10 @@ def packet_from_stage_evidence(
     missing_core = market.get("missing_core_data")
     missing_present = bool(missing_core) and str(missing_core).strip().upper() not in {"NONE", "NO", "[]", "{}"}
 
+    independent_candidate = red.get("independent_candidate")
     return {
         "current_model_1_policy_loaded": bool(current_model_1_policy_loaded),
+        "targeted_red_team_override_loaded": bool(red.get("targeted_override_loaded")),
         "titan_match_identity_verified": bool(market.get("match_identity_qc")),
         "opening_only_impression_completed": bool(opening.get("opening_only_view") and opening.get("opening_structure_conclusion")),
         "same_time_slice_audit_completed": bool(one_x_two.get("same_time_slice_comparison")),
@@ -157,8 +159,19 @@ def packet_from_stage_evidence(
         "score_direction_consistency_gate_passed": bool(score.get("direction_consistency_gate")),
         "draw_exclusion_state_loaded": "authoritative_draw_label" in draw,
         "draw_exclusion_state": draw.get("authoritative_draw_label"),
+        "neutral_evidence_ledger_complete": bool(uncertainty.get("neutral_evidence_ledger_complete")),
+        "h1_contradictions_recorded": bool(uncertainty.get("h1_contradictions_recorded")),
+        "market_rationalization_guard_complete": bool(uncertainty.get("market_rationalization_guard_complete")),
         "red_team_h2_completed": bool(red.get("h2_alternative") and red.get("strongest_counterevidence")),
         "red_team_h2_independent": bool(red.get("independent_h2_completed", False)),
+        "red_team_h2_blind_to_h1": bool(red.get("h2_blind_to_h1", False)),
+        "red_team_h1_visible_during_h2": bool(red.get("h1_visible_during_h2", False)),
+        "red_team_h2_fresh_reconstruction": bool(red.get("fresh_reconstruction_completed", False)),
+        "red_team_h2_independent_candidate_frozen": isinstance(independent_candidate, Mapping),
+        "red_team_independent_candidate": independent_candidate,
+        "h1_revealed_after_h2_freeze": bool(red.get("h1_revealed_after_h2_freeze", False)),
+        "h1_h2_equal_status_adjudication_complete": bool(red.get("equal_status_adjudication_complete", False)),
+        "drift_mode_acknowledged": bool(red.get("drift_mode_acknowledged", False)),
         "red_team_verdict": red.get("red_team_verdict"),
         "ticket_lock_ready": bool(final.get("ticket_locked")),
         "unresolved_critical_execution_conflict": bool(unresolved_critical_execution_conflict),
