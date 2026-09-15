@@ -76,14 +76,21 @@ def _decode_label_indices(html: str) -> dict[str, tuple[int, ...]]:
         payload = json.loads(decoded)
     except (ValueError, TypeError, json.JSONDecodeError) as exc:
         raise DrawSiteParseError("encoded label payload could not be decoded") from exc
+
+    # The audited draw-exclusion contract only owns the first two groups:
+    # JC and BD. The site may append unrelated groups (for example a
+    # recommendation page). Those groups must not block or enter the draw
+    # exclusion pipeline. We still fail closed if either core group changes
+    # shape, because that would affect the labels we actually consume.
+    if not isinstance(payload, list) or len(payload) < 2:
+        raise DrawSiteParseError("encoded label payload has an unexpected shape")
+    core_groups = payload[:2]
     if (
-        not isinstance(payload, list)
-        or len(payload) != 2
-        or any(not isinstance(group, list) for group in payload)
-        or any(not isinstance(index, int) for group in payload for index in group)
+        any(not isinstance(group, list) for group in core_groups)
+        or any(not isinstance(index, int) for group in core_groups for index in group)
     ):
         raise DrawSiteParseError("encoded label payload has an unexpected shape")
-    return {"JC": tuple(payload[0]), "BD": tuple(payload[1])}
+    return {"JC": tuple(core_groups[0]), "BD": tuple(core_groups[1])}
 
 
 def _teams(cell) -> tuple[str, str]:
