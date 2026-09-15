@@ -1,0 +1,89 @@
+{
+  "artifact_version": "MODEL_1-RECENT-FORM-CALIBRATION-1.0.0",
+  "source_group": "RECENT_FORM",
+  "effect_mode": "QUANTIFIED_OBSERVATION",
+  "calibration_ref": "RECENT_FORM_V1/英超/OPENING",
+  "calibration_version": "MODEL_1-RECENT-FORM-V1-20260915",
+  "competition": "英超",
+  "market_phase": "OPENING",
+  "activation": "SHADOW",
+  "runtime_eligible": false,
+  "coefficients": [
+    0.0064990832231809886,
+    0.0007579695503523061,
+    -0.03478383898778783,
+    0.000615202497749167
+  ],
+  "response_coefficients": [
+    [
+      -0.02611511200480356,
+      -0.013855263256676046,
+      0.0089229488277463,
+      0.011016221504148082
+    ],
+    [
+      0.03911327845116554,
+      0.015371202357380659,
+      -0.07849062680332196,
+      -0.009785816508649748
+    ]
+  ],
+  "intercept": [
+    0.07858629729036344,
+    0.14350283841401335
+  ],
+  "robust_scaler": {
+    "center": [
+      -0.020365098475940282,
+      -0.004088779560740998,
+      -0.02204369497447945,
+      -0.0048469539063291985
+    ],
+    "scale": [
+      0.11603758362167446,
+      0.11644077251894606,
+      0.1256044908272978,
+      0.1330679523504854
+    ],
+    "fit_scope": "TRAIN_ONLY_MEDIAN_MAD"
+  },
+  "cov_log_lambda": [
+    [
+      0.7045657014014846,
+      -0.015813105985785402
+    ],
+    [
+      -0.015813105985785402,
+      0.7733773947905356
+    ]
+  ],
+  "train_range": "2021-2022..2023-2024",
+  "validation_range": "2024-2025",
+  "test_range": "2025-2026",
+  "selection": {
+    "feature_spec": "{\"half_life_days\": 120.0, \"shrinkage_matches\": 8.0, \"window\": 5}",
+    "ridge": 0.25,
+    "fold_nll": [
+      3.0002280626136075,
+      3.054803550908861
+    ],
+    "mean_nll": 3.027515806761234
+  },
+  "activation_reasons": [
+    "VALIDATION:NLL_IMPROVEMENT_BELOW_FROZEN_THRESHOLD",
+    "VALIDATION:NLL_BOOTSTRAP_NOT_STRICTLY_BETTER",
+    "TEST:NLL_IMPROVEMENT_BELOW_FROZEN_THRESHOLD",
+    "TEST:NLL_BOOTSTRAP_NOT_STRICTLY_BETTER",
+    "TEST:TOP3_HARM"
+  ],
+  "provenance": {
+    "source": "titan数据库.zip -> football_odds_2021_2026.sqlite",
+    "source_sha256": "cb409b3ceb882491671c08abbf6815fdfbaa398010de0377ad1d7bcf0d1531a7",
+    "formal_model_1_weight_impact": "NONE",
+    "team_goal_baseline_usage": "PAST_MATCH_OPPONENT_NORMALIZATION_ONLY",
+    "no_future_leakage": true,
+    "source_match_kickoff_rule": "source_match_kickoff < target_match_kickoff",
+    "market_definition": "STAGE14_CORRELATED_CORE_CLUSTER_PINNACLE_BET365_MACAU"
+  },
+  "artifact_sha256": "4c63ce8965e646b5954a30e51a00f5ae64c09954fb940acdbe2442e2966cb2f2"
+}
