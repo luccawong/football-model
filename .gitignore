@@ -21,3 +21,4 @@ draw_exclusion_research/raw/
 draw_exclusion/raw/
 draw_exclusion/database/*.db*
 draw_exclusion/database/*.sqlite*
+database/research/recent_form_v1/market_cluster_cache.json

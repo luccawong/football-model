@@ -1,0 +1,88 @@
+{
+  "artifact_version": "MODEL_1-RECENT-FORM-CALIBRATION-1.0.0",
+  "source_group": "RECENT_FORM",
+  "effect_mode": "QUANTIFIED_OBSERVATION",
+  "calibration_ref": "RECENT_FORM_V1/法甲/OPENING",
+  "calibration_version": "MODEL_1-RECENT-FORM-V1-20260915",
+  "competition": "法甲",
+  "market_phase": "OPENING",
+  "activation": "SHADOW",
+  "runtime_eligible": false,
+  "coefficients": [
+    -0.016941451463390593,
+    0.018000575022623082,
+    -0.02479836857604902,
+    -0.024193444846171086
+  ],
+  "response_coefficients": [
+    [
+      -0.05376826849835586,
+      0.010852195844061295,
+      0.00990895878891527,
+      -0.03705651236499358
+    ],
+    [
+      0.01988536557157467,
+      0.025148954201184865,
+      -0.059505695941013306,
+      -0.011330377327348599
+    ]
+  ],
+  "intercept": [
+    0.03105393910147818,
+    0.15683923785488152
+  ],
+  "robust_scaler": {
+    "center": [
+      -0.0419865499784263,
+      -0.03102428446285546,
+      -0.0395358460775309,
+      -0.013658570416652149
+    ],
+    "scale": [
+      0.11007842623465787,
+      0.11585498676243054,
+      0.11041985274295966,
+      0.11332067208552908
+    ],
+    "fit_scope": "TRAIN_ONLY_MEDIAN_MAD"
+  },
+  "cov_log_lambda": [
+    [
+      0.7202895159528482,
+      0.027985716588153818
+    ],
+    [
+      0.027985716588153818,
+      0.7520465338501547
+    ]
+  ],
+  "train_range": "2021-2022..2023-2024",
+  "validation_range": "2024-2025",
+  "test_range": "2025-2026",
+  "selection": {
+    "feature_spec": "{\"half_life_days\": 120.0, \"shrinkage_matches\": 8.0, \"window\": 10}",
+    "ridge": 0.25,
+    "fold_nll": [
+      2.9082595870637813,
+      2.892399581529187
+    ],
+    "mean_nll": 2.9003295842964842
+  },
+  "activation_reasons": [
+    "VALIDATION:NLL_IMPROVEMENT_BELOW_FROZEN_THRESHOLD",
+    "VALIDATION:NLL_BOOTSTRAP_NOT_STRICTLY_BETTER",
+    "TEST:NLL_IMPROVEMENT_BELOW_FROZEN_THRESHOLD",
+    "TEST:NLL_BOOTSTRAP_NOT_STRICTLY_BETTER"
+  ],
+  "provenance": {
+    "source": "titan数据库.zip -> football_odds_2021_2026.sqlite",
+    "source_sha256": "cb409b3ceb882491671c08abbf6815fdfbaa398010de0377ad1d7bcf0d1531a7",
+    "formal_model_1_weight_impact": "NONE",
+    "team_goal_baseline_usage": "PAST_MATCH_OPPONENT_NORMALIZATION_ONLY",
+    "no_future_leakage": true,
+    "source_match_kickoff_rule": "source_match_kickoff < target_match_kickoff",
+    "market_definition": "STAGE14_CORRELATED_CORE_CLUSTER_PINNACLE_BET365_MACAU"
+  },
+  "artifact_sha256": "dbc88590a5302feef7079af3ef232dc9412a29da245fc8a55fe89855789901db"
+}
