@@ -1,0 +1,192 @@
+{
+  "status": "PASS",
+  "draws": 500,
+  "research_only": true,
+  "cases": [
+    {
+      "competition": "英超",
+      "match_id": "2789129",
+      "history_lambda_home": 2.4169636600819673,
+      "history_lambda_away": 1.048608186686152,
+      "market_lambda_home": 2.7115743799615704,
+      "market_lambda_away": 0.9000939916337933,
+      "market_home_lambda_residual": 0.2946107198796031,
+      "market_away_lambda_residual": -0.14851419505235874,
+      "market_total_residual": 0.14609652482724433,
+      "market_goal_residual": 0.4431249149319618,
+      "standardized_residuals": {
+        "z_robust_home": 0.864376314058114,
+        "z_robust_away": -0.4937932184856032,
+        "z_robust_total": 0.3788162192779808,
+        "z_robust_margin": 0.8352776310609435
+      },
+      "deviation_labels": [
+        "HOME_ATTACK_MARKUP",
+        "AWAY_ATTACK_DISCOUNT",
+        "TOTAL_MARKUP",
+        "HOME_MARGIN_MARKUP"
+      ],
+      "baseline_status": "AVAILABLE",
+      "stage14_top3_before": [
+        "2-0",
+        "3-0",
+        "3-1"
+      ],
+      "stage14_top3_after": [
+        "2-0",
+        "3-0",
+        "3-1"
+      ],
+      "stage14_top3_unchanged": true,
+      "formal_model_1_weight_impact": "NONE"
+    },
+    {
+      "competition": "西甲",
+      "match_id": "2804299",
+      "history_lambda_home": 1.519264135146799,
+      "history_lambda_away": 1.004393083167105,
+      "market_lambda_home": 1.2663006270065638,
+      "market_lambda_away": 1.081267390440811,
+      "market_home_lambda_residual": -0.25296350814023527,
+      "market_away_lambda_residual": 0.07687430727370592,
+      "market_total_residual": -0.1760892008665289,
+      "market_goal_residual": -0.3298378154139412,
+      "standardized_residuals": {
+        "z_robust_home": -0.9488753046523531,
+        "z_robust_away": 0.37534337375158816,
+        "z_robust_total": -0.47153609091911214,
+        "z_robust_margin": -0.8642741633505203
+      },
+      "deviation_labels": [
+        "HOME_ATTACK_DISCOUNT",
+        "AWAY_ATTACK_MARKUP",
+        "TOTAL_DISCOUNT",
+        "AWAY_MARGIN_MARKUP"
+      ],
+      "baseline_status": "AVAILABLE",
+      "stage14_top3_before": [
+        "1-0",
+        "2-1",
+        "2-0"
+      ],
+      "stage14_top3_after": [
+        "1-0",
+        "2-1",
+        "2-0"
+      ],
+      "stage14_top3_unchanged": true,
+      "formal_model_1_weight_impact": "NONE"
+    },
+    {
+      "competition": "意甲",
+      "match_id": "2784485",
+      "history_lambda_home": 1.218728530080317,
+      "history_lambda_away": 0.883093671007715,
+      "market_lambda_home": 1.5118012925205326,
+      "market_lambda_away": 0.7111604260444125,
+      "market_home_lambda_residual": 0.29307276244021563,
+      "market_away_lambda_residual": -0.17193324496330242,
+      "market_total_residual": 0.1211395174769132,
+      "market_goal_residual": 0.46500600740351805,
+      "standardized_residuals": {
+        "z_robust_home": 1.0998571805183683,
+        "z_robust_away": -0.8731362183213895,
+        "z_robust_total": 0.35699358514783147,
+        "z_robust_margin": 1.2534630077436584
+      },
+      "deviation_labels": [
+        "HOME_ATTACK_MARKUP",
+        "AWAY_ATTACK_DISCOUNT",
+        "TOTAL_MARKUP",
+        "HOME_MARGIN_MARKUP"
+      ],
+      "baseline_status": "AVAILABLE",
+      "stage14_top3_before": [
+        "1-0",
+        "2-0",
+        "2-1"
+      ],
+      "stage14_top3_after": [
+        "1-0",
+        "2-0",
+        "2-1"
+      ],
+      "stage14_top3_unchanged": true,
+      "formal_model_1_weight_impact": "NONE"
+    },
+    {
+      "competition": "德甲",
+      "match_id": "2799407",
+      "history_lambda_home": 2.471731041302776,
+      "history_lambda_away": 1.0470130934769757,
+      "market_lambda_home": 3.1593489756414894,
+      "market_lambda_away": 0.9351299708039147,
+      "market_home_lambda_residual": 0.6876179343387134,
+      "market_away_lambda_residual": -0.111883122673061,
+      "market_total_residual": 0.5757348116656527,
+      "market_goal_residual": 0.7995010570117742,
+      "standardized_residuals": {
+        "z_robust_home": 2.2221928651004923,
+        "z_robust_away": -0.3924326362519727,
+        "z_robust_total": 1.6806408145010343,
+        "z_robust_margin": 1.6489557665395913
+      },
+      "deviation_labels": [
+        "HOME_ATTACK_MARKUP",
+        "AWAY_ATTACK_DISCOUNT",
+        "TOTAL_MARKUP",
+        "HOME_MARGIN_MARKUP"
+      ],
+      "baseline_status": "AVAILABLE",
+      "stage14_top3_before": [
+        "3-0",
+        "4-0",
+        "4-1"
+      ],
+      "stage14_top3_after": [
+        "3-0",
+        "4-0",
+        "4-1"
+      ],
+      "stage14_top3_unchanged": true,
+      "formal_model_1_weight_impact": "NONE"
+    },
+    {
+      "competition": "法甲",
+      "match_id": "2800027",
+      "history_lambda_home": 1.5850065898238777,
+      "history_lambda_away": 1.3434469059602345,
+      "market_lambda_home": 1.1828842837271676,
+      "market_lambda_away": 1.7765094161895998,
+      "market_home_lambda_residual": -0.40212230609671007,
+      "market_away_lambda_residual": 0.43306251022936526,
+      "market_total_residual": 0.030940204132655413,
+      "market_goal_residual": -0.8351848163260753,
+      "standardized_residuals": {
+        "z_robust_home": -1.46075937494308,
+        "z_robust_away": 1.8012977300541662,
+        "z_robust_total": 0.08861626367234782,
+        "z_robust_margin": -1.9454744203785344
+      },
+      "deviation_labels": [
+        "HOME_ATTACK_DISCOUNT",
+        "AWAY_ATTACK_MARKUP",
+        "TOTAL_MARKUP",
+        "AWAY_MARGIN_MARKUP"
+      ],
+      "baseline_status": "AVAILABLE",
+      "stage14_top3_before": [
+        "1-2",
+        "0-2",
+        "0-1"
+      ],
+      "stage14_top3_after": [
+        "1-2",
+        "0-2",
+        "0-1"
+      ],
+      "stage14_top3_unchanged": true,
+      "formal_model_1_weight_impact": "NONE"
+    }
+  ]
+}

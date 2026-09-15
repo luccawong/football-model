@@ -26,6 +26,34 @@ class PacketBridgeError(ValueError):
     pass
 
 
+def _team_goal_baseline_audit(
+    *, quant_packet: Mapping[str, Any], competition: str, season: str,
+    home_team: str, away_team: str, kickoff: str,
+    database: str | Path | None = None,
+) -> dict[str, Any]:
+    """Attach audit-only team-goal context; baseline failure never blocks Stage14."""
+    try:
+        from gpt.team_goal_baseline import build_team_goal_baseline_packet
+        kwargs: dict[str, Any] = {
+            "competition": competition, "season": season,
+            "home_team": home_team, "away_team": away_team,
+            "kickoff": kickoff, "match_id": quant_packet.get("match_id"),
+            "quant_packet": quant_packet,
+        }
+        if database is not None:
+            kwargs["database"] = database
+        audit = build_team_goal_baseline_packet(**kwargs)
+        audit.setdefault("formal_model_1_weight_impact", "NONE")
+        audit.setdefault("research_only", True)
+        return audit
+    except Exception as exc:  # research context is explicitly non-blocking
+        return {
+            "status": "MISSING", "reason": "BASELINE_AUDIT_ERROR", "detail": str(exc),
+            "research_only": True, "formal_model_1_weight_impact": "NONE",
+            "no_future_leakage": True,
+        }
+
+
 def _require_formal_ou_direction(
     execution_path: Mapping[str, Any] | None,
 ) -> dict[str, Any]:
@@ -94,6 +122,7 @@ def build_feature_packet(
     missing_core_timelines: Sequence[str] | None = None,
     source_conflicts: Sequence[str] | None = None,
     external_draw_root: Path | None = None,
+    team_goal_baseline_context: Mapping[str, Any] | None = None,
 ) -> dict[str, Any]:
     """Create the MODEL_1 feature/QC packet without inventing missing evidence."""
     gate = module_gate(module_records)
@@ -120,6 +149,10 @@ def build_feature_packet(
         "source_conflicts": list(source_conflicts or []),
         "missing_is_negative_evidence": False,
         "external_draw_teacher": teacher,
+        "team_goal_baseline_context": dict(team_goal_baseline_context or {
+            "status": "MISSING", "reason": "NOT_ATTACHED", "research_only": True,
+            "formal_model_1_weight_impact": "NONE",
+        }),
     }
 
 
@@ -139,6 +172,7 @@ def build_correct_score_quant_evidence(
     bayesian_context_update: Mapping[str, Any] | None = None,
     final_top3: Sequence[str] | None = None,
     direction_consistency_gate: bool | None = None,
+    team_goal_baseline_database: str | Path | None = None,
 ) -> dict[str, Any]:
     """Build formal MODEL_1 Stage14 evidence from a true Bayesian posterior.
 
@@ -190,6 +224,18 @@ def build_correct_score_quant_evidence(
 
     predictive = stage14.get("posterior_predictive", {})
     top3_rows = list(stage14.get("top3", []))
+    baseline_audit = None
+    context_for_audit = prior_context or quant_packet.get("prior_context") or quant_packet.get("match_context")
+    if isinstance(context_for_audit, Mapping):
+        baseline_audit = _team_goal_baseline_audit(
+            quant_packet=quant_packet,
+            competition=str(context_for_audit.get("competition") or context_for_audit.get("league") or ""),
+            season=str(context_for_audit.get("season") or ""),
+            home_team=str(context_for_audit.get("home_team") or ""),
+            away_team=str(context_for_audit.get("away_team") or ""),
+            kickoff=str(context_for_audit.get("kickoff") or context_for_audit.get("match_date") or ""),
+            database=team_goal_baseline_database,
+        )
     return {
         "packet_bridge_version": PACKET_BRIDGE_VERSION,
         "model_id": "MODEL_1",
@@ -228,6 +274,7 @@ def build_correct_score_quant_evidence(
         "legacy_single_company_ignored": company is not None,
         "legacy_context_blob_preserved_only": dict(bayesian_context_update or {}),
         "legacy_direction_flag_preserved_only": direction_consistency_gate,
+        "team_goal_baseline_audit": baseline_audit or {"status": "MISSING", "reason": "CONTEXT_UNAVAILABLE", "research_only": True, "formal_model_1_weight_impact": "NONE"},
     }
 
 
@@ -268,6 +315,7 @@ def build_production_correct_score_evidence(
     market_sigma_floor: float = 0.12,
     max_goals: int = 12,
     draws: int = 4000,
+    team_goal_baseline_database: str | Path | None = None,
 ) -> dict[str, Any]:
     """Production bridge whose default AUTO mode always chooses a formal model."""
     formal_execution_path = _require_formal_ou_direction(execution_path)
@@ -291,6 +339,13 @@ def build_production_correct_score_evidence(
         raise PacketBridgeError(
             f"Formal Stage14 unavailable: {stage14.get('reason', stage14.get('status'))}"
         )
+    baseline_audit = stage14.get("team_goal_baseline_audit") or _team_goal_baseline_audit(
+        quant_packet=quant_packet, competition=competition, season=season,
+        home_team=home_team, away_team=away_team, kickoff=kickoff,
+        database=team_goal_baseline_database,
+    )
+    stage14 = dict(stage14)
+    stage14["team_goal_baseline_audit"] = baseline_audit
     return {
         "packet_bridge_version": PACKET_BRIDGE_VERSION,
         "model_id": "MODEL_1",
@@ -304,4 +359,5 @@ def build_production_correct_score_evidence(
         "execution_path": stage14.get("execution_path", {}),
         "OU_gate_status": stage14.get("OU_gate_status"),
         "no_fake_historical_prior": stage14.get("no_fake_historical_prior", False),
+        "team_goal_baseline_audit": baseline_audit,
     }

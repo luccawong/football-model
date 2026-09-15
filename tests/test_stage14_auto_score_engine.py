@@ -152,3 +152,14 @@ def test_production_bridge_defaults_to_auto_market_formal_with_ou_direction():
     assert out["OU_gate_status"]=="APPLIED_HARD_DIRECTION_ONLY"
     assert all(sum(int(x) for x in score.split("-"))>2.5 for score in out["top3_scores"])
     assert out["no_fake_historical_prior"] is True
+
+
+def test_missing_team_goal_audit_does_not_block_or_change_stage14(tmp_path):
+    base = call(mode="MARKET_ONLY_FORMAL")
+    audited = call(mode="MARKET_ONLY_FORMAL", team_goal_baseline_database=tmp_path / "missing.sqlite")
+    assert audited["team_goal_baseline_audit"]["status"] == "MISSING"
+    assert audited["team_goal_baseline_audit"]["formal_model_1_weight_impact"] == "NONE"
+    assert [(r["score"], r["probability"]) for r in audited["raw_top10"]] == [
+        (r["score"], r["probability"]) for r in base["raw_top10"]
+    ]
+    assert [r["score"] for r in audited["top3"]] == [r["score"] for r in base["top3"]]

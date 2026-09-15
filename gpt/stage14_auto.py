@@ -293,6 +293,29 @@ def _historical_contract(
     return out
 
 
+def _attach_team_goal_baseline_audit(
+    out: dict[str, Any], *, quant_packet: Mapping[str, Any], competition: str,
+    season: str, home_team: str, away_team: str, kickoff: str,
+    database: str | Path | None,
+) -> dict[str, Any]:
+    """Attach non-blocking historical team-goal context after score calculation."""
+    if database is None:
+        return out
+    try:
+        from gpt.team_goal_baseline import build_team_goal_baseline_packet
+        audit = build_team_goal_baseline_packet(
+            competition=competition, season=season, home_team=home_team,
+            away_team=away_team, kickoff=kickoff, match_id=quant_packet.get("match_id"),
+            quant_packet=quant_packet, database=database,
+        )
+    except Exception as exc:
+        audit = {"status": "MISSING", "reason": "BASELINE_AUDIT_ERROR", "detail": str(exc),
+                 "research_only": True, "formal_model_1_weight_impact": "NONE"}
+    out = dict(out)
+    out["team_goal_baseline_audit"] = audit
+    return out
+
+
 def resolve_score_engine(
     competition: str,
     season: str,
@@ -312,6 +335,7 @@ def resolve_score_engine(
     market_sigma_floor: float = 0.12,
     max_goals: int = 12,
     draws: int = 4000,
+    team_goal_baseline_database: str | Path | None = None,
 ) -> dict[str, Any]:
     """Unified production Stage14 resolver. AUTO is the formal default."""
     selected_mode = str(mode).strip().upper()
@@ -375,7 +399,12 @@ def resolve_score_engine(
             out.setdefault("snapshot_phase", phase)
             out.setdefault("no_fake_historical_prior", True)
             return out
-        return _historical_contract(out, activation=activation, phase=phase, usefulness=usefulness)
+        out = _historical_contract(out, activation=activation, phase=phase, usefulness=usefulness)
+        return _attach_team_goal_baseline_audit(
+            out, quant_packet=quant_packet, competition=str(competition), season=str(season),
+            home_team=str(home_team), away_team=str(away_team), kickoff=str(kickoff),
+            database=team_goal_baseline_database,
+        )
 
     out = build_formal_market_score_packet(
         quant_packet,
@@ -388,4 +417,8 @@ def resolve_score_engine(
     )
     out["prior_usefulness_gate"] = usefulness
     out["historical_prior_resolution_error"] = resolution_error
-    return out
+    return _attach_team_goal_baseline_audit(
+        out, quant_packet=quant_packet, competition=str(competition), season=str(season),
+        home_team=str(home_team), away_team=str(away_team), kickoff=str(kickoff),
+        database=team_goal_baseline_database,
+    )

@@ -1,0 +1,1080 @@
+{
+  "engine_version": "TITAN-BIG5-TEAM-GOAL-BASELINE-RESEARCH-1.0.0",
+  "status": "RESEARCH_ONLY",
+  "source_sha256": "cb409b3ceb882491671c08abbf6815fdfbaa398010de0377ad1d7bcf0d1531a7",
+  "source_audit": {
+    "source_rows_big5": 8898,
+    "usable_matches_big5": 8898,
+    "excluded_invalid_or_missing_result": 0,
+    "excluded_duplicate_match_id": 0,
+    "excluded_duplicate_fixture": 0,
+    "competition_ids": [
+      "11",
+      "31",
+      "34",
+      "36",
+      "8"
+    ]
+  },
+  "split": {
+    "warmup": 2021,
+    "train": [
+      2022,
+      2023
+    ],
+    "validation": 2024,
+    "test": 2025
+  },
+  "selected_variants": {
+    "11": "time_decay",
+    "31": "time_decay",
+    "34": "time_decay",
+    "36": "time_decay",
+    "8": "time_decay"
+  },
+  "competitions": {
+    "11": {
+      "competition": "法甲",
+      "selected_on_train_only": "time_decay",
+      "selection_metric": "poisson_score_nll",
+      "variants": {
+        "five_year_mean": {
+          "train": {
+            "n": 686,
+            "poisson_score_nll": 2.9277415564592695,
+            "total_goals_mae": 1.3015613191383864,
+            "goal_margin_mae": 1.266382671317381,
+            "home_goals_rmse": 1.1691194200142925,
+            "away_goals_rmse": 1.1350169649090378,
+            "total_goals_bias": -0.021207296779669035,
+            "goal_margin_bias": 0.07163621695035553,
+            "promoted_or_new_fixture_n": 142,
+            "promoted_or_new_fixture_nll": 2.8648351937747742
+          },
+          "validation": {
+            "n": 306,
+            "poisson_score_nll": 3.0145158746537133,
+            "total_goals_mae": 1.333850143629921,
+            "goal_margin_mae": 1.413067325940947,
+            "home_goals_rmse": 1.284166403949348,
+            "away_goals_rmse": 1.13856390343959,
+            "total_goals_bias": -0.19578612657017605,
+            "goal_margin_bias": -0.013788383698027243,
+            "promoted_or_new_fixture_n": 0,
+            "promoted_or_new_fixture_nll": null
+          },
+          "test": {
+            "n": 306,
+            "poisson_score_nll": 3.0601275907495427,
+            "total_goals_mae": 1.4868784497949687,
+            "goal_margin_mae": 1.3174528362716558,
+            "home_goals_rmse": 1.27880290359331,
+            "away_goals_rmse": 1.2573108232478603,
+            "total_goals_bias": 0.002405557650361344,
+            "goal_margin_bias": -0.07009666261434458,
+            "promoted_or_new_fixture_n": 34,
+            "promoted_or_new_fixture_nll": 3.0977216956134037
+          },
+          "all_oos": {
+            "n": 1298,
+            "poisson_score_nll": 2.9794080186012724,
+            "total_goals_mae": 1.352861336299653,
+            "goal_margin_mae": 1.3130028367956703,
+            "home_goals_rmse": 1.2233869530917032,
+            "away_goals_rmse": 1.1658201046996606,
+            "total_goals_bias": -0.05679711839777824,
+            "goal_margin_bias": 0.018084453510291282,
+            "promoted_or_new_fixture_n": 176,
+            "promoted_or_new_fixture_nll": 2.9098246316299647
+          }
+        },
+        "recent_two_seasons": {
+          "train": {
+            "n": 686,
+            "poisson_score_nll": 2.930159356470807,
+            "total_goals_mae": 1.3099144214054246,
+            "goal_margin_mae": 1.2690025094190371,
+            "home_goals_rmse": 1.1720164160667244,
+            "away_goals_rmse": 1.1394413261710752,
+            "total_goals_bias": -0.021720347574700684,
+            "goal_margin_bias": 0.04423334644406201,
+            "promoted_or_new_fixture_n": 143,
+            "promoted_or_new_fixture_nll": 2.8638686103792974
+          },
+          "validation": {
+            "n": 306,
+            "poisson_score_nll": 3.0479760777831086,
+            "total_goals_mae": 1.3262414520890393,
+            "goal_margin_mae": 1.4266113134922636,
+            "home_goals_rmse": 1.282981529206726,
+            "away_goals_rmse": 1.179878114916992,
+            "total_goals_bias": -0.20265475952126863,
+            "goal_margin_bias": 0.0053968238191270616,
+            "promoted_or_new_fixture_n": 3,
+            "promoted_or_new_fixture_nll": 2.2886498313833727
+          },
+          "test": {
+            "n": 306,
+            "poisson_score_nll": 3.111165581066918,
+            "total_goals_mae": 1.5271718238942966,
+            "goal_margin_mae": 1.3692419253651373,
+            "home_goals_rmse": 1.2958088083538675,
+            "away_goals_rmse": 1.3050126441569785,
+            "total_goals_bias": 0.14060969730096667,
+            "goal_margin_bias": 0.006845553209049026,
+            "promoted_or_new_fixture_n": 36,
+            "promoted_or_new_fixture_nll": 3.0450590155523614
+          },
+          "all_oos": {
+            "n": 1298,
+            "poisson_score_nll": 3.0006060602057594,
+            "total_goals_mae": 1.3649813216756732,
+            "goal_margin_mae": 1.329789532012189,
+            "home_goals_rmse": 1.2287655922100753,
+            "away_goals_rmse": 1.1898952239857679,
+            "total_goals_bias": -0.026106276945806695,
+            "goal_margin_bias": 0.02626366951559972,
+            "promoted_or_new_fixture_n": 182,
+            "promoted_or_new_fixture_nll": 2.890226842517992
+          }
+        },
+        "time_decay": {
+          "train": {
+            "n": 686,
+            "poisson_score_nll": 2.9239930172925694,
+            "total_goals_mae": 1.3099284735117624,
+            "goal_margin_mae": 1.2585497085069584,
+            "home_goals_rmse": 1.1688380271272607,
+            "away_goals_rmse": 1.1331875805228417,
+            "total_goals_bias": -0.013867520887136192,
+            "goal_margin_bias": 0.057531585740100935,
+            "promoted_or_new_fixture_n": 142,
+            "promoted_or_new_fixture_nll": 2.8607181699280027
+          },
+          "validation": {
+            "n": 306,
+            "poisson_score_nll": 3.0082547755944145,
+            "total_goals_mae": 1.3193794370723575,
+            "goal_margin_mae": 1.4105625829295192,
+            "home_goals_rmse": 1.2728281506738697,
+            "away_goals_rmse": 1.143702966257061,
+            "total_goals_bias": -0.1640613758140843,
+            "goal_margin_bias": -0.014669214741243946,
+            "promoted_or_new_fixture_n": 0,
+            "promoted_or_new_fixture_nll": null
+          },
+          "test": {
+            "n": 306,
+            "poisson_score_nll": 3.0763412730877384,
+            "total_goals_mae": 1.497674955134036,
+            "goal_margin_mae": 1.3240979527155294,
+            "home_goals_rmse": 1.276978313769417,
+            "away_goals_rmse": 1.2758452758430279,
+            "total_goals_bias": 0.059232312996686784,
+            "goal_margin_bias": -0.03110317529126304,
+            "promoted_or_new_fixture_n": 34,
+            "promoted_or_new_fixture_nll": 3.074579865093786
+          },
+          "all_oos": {
+            "n": 1298,
+            "poisson_score_nll": 2.979773190107429,
+            "total_goals_mae": 1.3564172394793739,
+            "goal_margin_mae": 1.3098391555802456,
+            "home_goals_rmse": 1.2199974759614776,
+            "away_goals_rmse": 1.1708018752294906,
+            "total_goals_bias": -0.03204222846741072,
+            "goal_margin_bias": 0.0196150357995086,
+            "promoted_or_new_fixture_n": 176,
+            "promoted_or_new_fixture_nll": 2.9020323610395735
+          }
+        },
+        "current_season_history_shrinkage": {
+          "train": {
+            "n": 686,
+            "poisson_score_nll": 2.943443167278527,
+            "total_goals_mae": 1.3231125577956815,
+            "goal_margin_mae": 1.2721239818967969,
+            "home_goals_rmse": 1.1771851973350362,
+            "away_goals_rmse": 1.1454979575664246,
+            "total_goals_bias": -0.02650262429917474,
+            "goal_margin_bias": 0.12734117391843036,
+            "promoted_or_new_fixture_n": 142,
+            "promoted_or_new_fixture_nll": 2.8701755094405765
+          },
+          "validation": {
+            "n": 306,
+            "poisson_score_nll": 3.0077460628778954,
+            "total_goals_mae": 1.3262400073261238,
+            "goal_margin_mae": 1.3900569801107268,
+            "home_goals_rmse": 1.2746638452160965,
+            "away_goals_rmse": 1.1343135078054956,
+            "total_goals_bias": -0.25093551249829577,
+            "goal_margin_bias": -0.0020182065701238095,
+            "promoted_or_new_fixture_n": 0,
+            "promoted_or_new_fixture_nll": null
+          },
+          "test": {
+            "n": 306,
+            "poisson_score_nll": 3.0937777455555917,
+            "total_goals_mae": 1.5011134611405703,
+            "goal_margin_mae": 1.3529004307833048,
+            "home_goals_rmse": 1.2976465540024293,
+            "away_goals_rmse": 1.2795097589263462,
+            "total_goals_bias": 3.8931636823007403e-05,
+            "goal_margin_bias": -0.13791205001562953,
+            "promoted_or_new_fixture_n": 34,
+            "promoted_or_new_fixture_nll": 3.0185695374499644
+          },
+          "all_oos": {
+            "n": 1298,
+            "poisson_score_nll": 2.994043372984373,
+            "total_goals_mae": 1.3658130785813885,
+            "goal_margin_mae": 1.318969198239425,
+            "home_goals_rmse": 1.2297929281089905,
+            "away_goals_rmse": 1.1759113316184262,
+            "total_goals_bias": -0.07315497227491868,
+            "goal_margin_bias": 0.03431231648135803,
+            "promoted_or_new_fixture_n": 176,
+            "promoted_or_new_fixture_nll": 2.898842537578753
+          }
+        }
+      }
+    },
+    "31": {
+      "competition": "西甲",
+      "selected_on_train_only": "time_decay",
+      "selection_metric": "poisson_score_nll",
+      "variants": {
+        "five_year_mean": {
+          "train": {
+            "n": 760,
+            "poisson_score_nll": 2.8404185580673027,
+            "total_goals_mae": 1.2959441001209275,
+            "goal_margin_mae": 1.1608167861994658,
+            "home_goals_rmse": 1.2023655737410701,
+            "away_goals_rmse": 1.022686192688091,
+            "total_goals_bias": -0.10407445426522316,
+            "goal_margin_bias": -0.020296536681132887,
+            "promoted_or_new_fixture_n": 146,
+            "promoted_or_new_fixture_nll": 2.844759270603203
+          },
+          "validation": {
+            "n": 380,
+            "poisson_score_nll": 2.7808383860847123,
+            "total_goals_mae": 1.2402486449611323,
+            "goal_margin_mae": 1.1258455369709022,
+            "home_goals_rmse": 1.1090484021986744,
+            "away_goals_rmse": 1.0320075613140385,
+            "total_goals_bias": -0.09927562135314634,
+            "goal_margin_bias": 0.05976247129981834,
+            "promoted_or_new_fixture_n": 38,
+            "promoted_or_new_fixture_nll": 2.861095090299884
+          },
+          "test": {
+            "n": 380,
+            "poisson_score_nll": 2.8000306945263667,
+            "total_goals_mae": 1.1924797543021408,
+            "goal_margin_mae": 1.1198776185822252,
+            "home_goals_rmse": 1.1335500241483154,
+            "away_goals_rmse": 0.9460256041428775,
+            "total_goals_bias": -0.10660925507597849,
+            "goal_margin_bias": -0.12050056654767652,
+            "promoted_or_new_fixture_n": 38,
+            "promoted_or_new_fixture_nll": 2.6680819565506706
+          },
+          "all_oos": {
+            "n": 1520,
+            "poisson_score_nll": 2.8154265491864185,
+            "total_goals_mae": 1.256154149876282,
+            "goal_margin_mae": 1.1418391819880136,
+            "home_goals_rmse": 1.1625714990379579,
+            "away_goals_rmse": 1.006451457812667,
+            "total_goals_bias": -0.10350844623989273,
+            "goal_margin_bias": -0.025332792152530984,
+            "promoted_or_new_fixture_n": 222,
+            "promoted_or_new_fixture_nll": 2.8173134292269757
+          }
+        },
+        "recent_two_seasons": {
+          "train": {
+            "n": 760,
+            "poisson_score_nll": 2.8476521551501235,
+            "total_goals_mae": 1.304568024506639,
+            "goal_margin_mae": 1.1599976022317788,
+            "home_goals_rmse": 1.2023417720777068,
+            "away_goals_rmse": 1.0299068439899501,
+            "total_goals_bias": -0.09931461232968726,
+            "goal_margin_bias": -0.00633456998972392,
+            "promoted_or_new_fixture_n": 148,
+            "promoted_or_new_fixture_nll": 2.836388116437028
+          },
+          "validation": {
+            "n": 380,
+            "poisson_score_nll": 2.7958002588833137,
+            "total_goals_mae": 1.2425950093619937,
+            "goal_margin_mae": 1.142337596062756,
+            "home_goals_rmse": 1.1112410134422106,
+            "away_goals_rmse": 1.0415037612267746,
+            "total_goals_bias": -0.028985061333996313,
+            "goal_margin_bias": 0.0455399986611785,
+            "promoted_or_new_fixture_n": 39,
+            "promoted_or_new_fixture_nll": 2.8690794782214217
+          },
+          "test": {
+            "n": 380,
+            "poisson_score_nll": 2.7977734003105694,
+            "total_goals_mae": 1.1902715789479488,
+            "goal_margin_mae": 1.132066915026624,
+            "home_goals_rmse": 1.1127807003590002,
+            "away_goals_rmse": 0.9600765794186762,
+            "total_goals_bias": -0.09642464478360532,
+            "goal_margin_bias": -0.14363798686191986,
+            "promoted_or_new_fixture_n": 40,
+            "promoted_or_new_fixture_nll": 2.641014713366765
+          },
+          "all_oos": {
+            "n": 1520,
+            "poisson_score_nll": 2.822219492373535,
+            "total_goals_mae": 1.2605006593308048,
+            "goal_margin_mae": 1.1485999288882345,
+            "home_goals_rmse": 1.158057527803937,
+            "away_goals_rmse": 1.015860883388132,
+            "total_goals_bias": -0.08100973269424401,
+            "goal_margin_bias": -0.027691782045047287,
+            "promoted_or_new_fixture_n": 227,
+            "promoted_or_new_fixture_nll": 2.8075776626343
+          }
+        },
+        "time_decay": {
+          "train": {
+            "n": 760,
+            "poisson_score_nll": 2.8389844554304426,
+            "total_goals_mae": 1.3010962662878414,
+            "goal_margin_mae": 1.1599383196330866,
+            "home_goals_rmse": 1.2023524046111589,
+            "away_goals_rmse": 1.0236438040131695,
+            "total_goals_bias": -0.09339307513972198,
+            "goal_margin_bias": -0.019073084061897456,
+            "promoted_or_new_fixture_n": 146,
+            "promoted_or_new_fixture_nll": 2.839913763675881
+          },
+          "validation": {
+            "n": 380,
+            "poisson_score_nll": 2.7759695266487063,
+            "total_goals_mae": 1.2372749665879053,
+            "goal_margin_mae": 1.122314137789803,
+            "home_goals_rmse": 1.1024396498279312,
+            "away_goals_rmse": 1.0325761619319964,
+            "total_goals_bias": -0.0548248392513262,
+            "goal_margin_bias": 0.05479588114189967,
+            "promoted_or_new_fixture_n": 38,
+            "promoted_or_new_fixture_nll": 2.873342617175438
+          },
+          "test": {
+            "n": 380,
+            "poisson_score_nll": 2.7865185740818452,
+            "total_goals_mae": 1.1797293348888613,
+            "goal_margin_mae": 1.12138967755632,
+            "home_goals_rmse": 1.1109770754732609,
+            "away_goals_rmse": 0.9496617934306482,
+            "total_goals_bias": -0.09210889485121423,
+            "goal_margin_bias": -0.13283599478137426,
+            "promoted_or_new_fixture_n": 38,
+            "promoted_or_new_fixture_nll": 2.6580046108318798
+          },
+          "all_oos": {
+            "n": 1520,
+            "poisson_score_nll": 2.8101142528978573,
+            "total_goals_mae": 1.2547992085131128,
+            "goal_margin_mae": 1.1408951136530754,
+            "home_goals_rmse": 1.155524324007107,
+            "away_goals_rmse": 1.0079390268117956,
+            "total_goals_bias": -0.08342997109549602,
+            "goal_margin_bias": -0.029046570440817366,
+            "promoted_or_new_fixture_n": 222,
+            "promoted_or_new_fixture_nll": 2.8144982169412467
+          }
+        },
+        "current_season_history_shrinkage": {
+          "train": {
+            "n": 760,
+            "poisson_score_nll": 2.853163078912327,
+            "total_goals_mae": 1.300420641244566,
+            "goal_margin_mae": 1.1634037564613031,
+            "home_goals_rmse": 1.2085224225008768,
+            "away_goals_rmse": 1.029791513121919,
+            "total_goals_bias": -0.1066223286280977,
+            "goal_margin_bias": 0.03298512452013959,
+            "promoted_or_new_fixture_n": 146,
+            "promoted_or_new_fixture_nll": 2.8252257225410173
+          },
+          "validation": {
+            "n": 380,
+            "poisson_score_nll": 2.779224892005765,
+            "total_goals_mae": 1.237359457997332,
+            "goal_margin_mae": 1.1371708541702785,
+            "home_goals_rmse": 1.0968508313058054,
+            "away_goals_rmse": 1.0381806368722306,
+            "total_goals_bias": -0.0817815251943465,
+            "goal_margin_bias": 0.0638333282016171,
+            "promoted_or_new_fixture_n": 38,
+            "promoted_or_new_fixture_nll": 2.858794249458459
+          },
+          "test": {
+            "n": 380,
+            "poisson_score_nll": 2.804179695982279,
+            "total_goals_mae": 1.186763592735675,
+            "goal_margin_mae": 1.1296201907687442,
+            "home_goals_rmse": 1.125558169107577,
+            "away_goals_rmse": 0.9580221150744233,
+            "total_goals_bias": -0.10864338761087955,
+            "goal_margin_bias": -0.09557977038300901,
+            "promoted_or_new_fixture_n": 38,
+            "promoted_or_new_fixture_nll": 2.6615369293285815
+          },
+          "all_oos": {
+            "n": 1520,
+            "poisson_score_nll": 2.8224326864531775,
+            "total_goals_mae": 1.2562410833055346,
+            "goal_margin_mae": 1.148399639465407,
+            "home_goals_rmse": 1.160928058662101,
+            "away_goals_rmse": 1.0144661808981068,
+            "total_goals_bias": -0.10091739251535543,
+            "goal_margin_bias": 0.008555951714721836,
+            "promoted_or_new_fixture_n": 222,
+            "promoted_or_new_fixture_nll": 2.802952884166199
+          }
+        }
+      }
+    },
+    "34": {
+      "competition": "意甲",
+      "selected_on_train_only": "time_decay",
+      "selection_metric": "poisson_score_nll",
+      "variants": {
+        "five_year_mean": {
+          "train": {
+            "n": 750,
+            "poisson_score_nll": 2.820634470701133,
+            "total_goals_mae": 1.2445734685427465,
+            "goal_margin_mae": 1.1858182282494303,
+            "home_goals_rmse": 1.1560579304173118,
+            "away_goals_rmse": 1.0407833863357185,
+            "total_goals_bias": 0.13979046262854064,
+            "goal_margin_bias": -0.054034015062555826,
+            "promoted_or_new_fixture_n": 145,
+            "promoted_or_new_fixture_nll": 2.8126091383525886
+          },
+          "validation": {
+            "n": 380,
+            "poisson_score_nll": 2.7726793000551826,
+            "total_goals_mae": 1.224227670905843,
+            "goal_margin_mae": 1.1244859682901673,
+            "home_goals_rmse": 1.057627424826405,
+            "away_goals_rmse": 1.075247539888848,
+            "total_goals_bias": 0.045613217731793006,
+            "goal_margin_bias": 0.08094098054870752,
+            "promoted_or_new_fixture_n": 74,
+            "promoted_or_new_fixture_nll": 2.8316476197647966
+          },
+          "test": {
+            "n": 380,
+            "poisson_score_nll": 2.7912341729403214,
+            "total_goals_mae": 1.2992908298795998,
+            "goal_margin_mae": 1.1677824572214428,
+            "home_goals_rmse": 1.1490569353450628,
+            "away_goals_rmse": 1.0302125562223168,
+            "total_goals_bias": 0.1500169197551637,
+            "goal_margin_bias": 0.04781603622958219,
+            "promoted_or_new_fixture_n": 38,
+            "promoted_or_new_fixture_nll": 2.74122310084962
+          },
+          "all_oos": {
+            "n": 1510,
+            "poisson_score_nll": 2.801167531631881,
+            "total_goals_mae": 1.2532232660301525,
+            "goal_margin_mae": 1.1658448164778041,
+            "home_goals_rmse": 1.1302983682208758,
+            "away_goals_rmse": 1.0469352031245844,
+            "total_goals_bias": 0.118663774315529,
+            "goal_margin_bias": 0.005564341111810059,
+            "promoted_or_new_fixture_n": 257,
+            "promoted_or_new_fixture_nll": 2.8075359017743406
+          }
+        },
+        "recent_two_seasons": {
+          "train": {
+            "n": 750,
+            "poisson_score_nll": 2.825927903297444,
+            "total_goals_mae": 1.2484361116614733,
+            "goal_margin_mae": 1.197291616087774,
+            "home_goals_rmse": 1.1554204681494222,
+            "away_goals_rmse": 1.048642959323625,
+            "total_goals_bias": 0.0940088623084909,
+            "goal_margin_bias": -0.02683729935766022,
+            "promoted_or_new_fixture_n": 147,
+            "promoted_or_new_fixture_nll": 2.8213235768777887
+          },
+          "validation": {
+            "n": 380,
+            "poisson_score_nll": 2.8010220381768063,
+            "total_goals_mae": 1.243110672289105,
+            "goal_margin_mae": 1.162267935147663,
+            "home_goals_rmse": 1.0782683455143562,
+            "away_goals_rmse": 1.0867491438843766,
+            "total_goals_bias": 0.007068014906420341,
+            "goal_margin_bias": 0.11410386385522364,
+            "promoted_or_new_fixture_n": 75,
+            "promoted_or_new_fixture_nll": 2.8800835373356564
+          },
+          "test": {
+            "n": 380,
+            "poisson_score_nll": 2.7918127870547367,
+            "total_goals_mae": 1.2888528193595294,
+            "goal_margin_mae": 1.1841630506143466,
+            "home_goals_rmse": 1.1412519198035156,
+            "away_goals_rmse": 1.0345061941170082,
+            "total_goals_bias": 0.08171749755419325,
+            "goal_margin_bias": -0.009061140015898859,
+            "promoted_or_new_fixture_n": 40,
+            "promoted_or_new_fixture_nll": 2.750169749309697
+          },
+          "all_oos": {
+            "n": 1510,
+            "poisson_score_nll": 2.8110749411000473,
+            "total_goals_mae": 1.2572670268692616,
+            "goal_margin_mae": 1.1851738322221161,
+            "home_goals_rmse": 1.1328895248517694,
+            "away_goals_rmse": 1.0548548168256493,
+            "total_goals_bias": 0.0690365175274181,
+            "goal_margin_bias": 0.013104808305098165,
+            "promoted_or_new_fixture_n": 262,
+            "promoted_or_new_fixture_nll": 2.8272809964641104
+          }
+        },
+        "time_decay": {
+          "train": {
+            "n": 750,
+            "poisson_score_nll": 2.8096015489022363,
+            "total_goals_mae": 1.2379267063626482,
+            "goal_margin_mae": 1.1730987880924462,
+            "home_goals_rmse": 1.1459161001943905,
+            "away_goals_rmse": 1.0353009451091528,
+            "total_goals_bias": 0.0908814078805212,
+            "goal_margin_bias": -0.03959592784215841,
+            "promoted_or_new_fixture_n": 145,
+            "promoted_or_new_fixture_nll": 2.8066326434260866
+          },
+          "validation": {
+            "n": 380,
+            "poisson_score_nll": 2.779965386626868,
+            "total_goals_mae": 1.2350199258186663,
+            "goal_margin_mae": 1.1336801188443544,
+            "home_goals_rmse": 1.0637487914837582,
+            "away_goals_rmse": 1.0761980078509945,
+            "total_goals_bias": 0.02649829941530568,
+            "goal_margin_bias": 0.0835487031845678,
+            "promoted_or_new_fixture_n": 74,
+            "promoted_or_new_fixture_nll": 2.835062541262213
+          },
+          "test": {
+            "n": 380,
+            "poisson_score_nll": 2.780447472546422,
+            "total_goals_mae": 1.2797316383261017,
+            "goal_margin_mae": 1.168729757496387,
+            "home_goals_rmse": 1.1409858812583513,
+            "away_goals_rmse": 1.021698794639185,
+            "total_goals_bias": 0.08177421275204626,
+            "goal_margin_bias": 0.02355245192514161,
+            "promoted_or_new_fixture_n": 38,
+            "promoted_or_new_fixture_nll": 2.727479246540247
+          },
+          "all_oos": {
+            "n": 1510,
+            "poisson_score_nll": 2.7948066544122705,
+            "total_goals_mae": 1.2477156451304618,
+            "goal_margin_mae": 1.162079366939612,
+            "home_goals_rmse": 1.124542198274445,
+            "away_goals_rmse": 1.0423714859578626,
+            "total_goals_bias": 0.07238715929402957,
+            "goal_margin_bias": 0.007285756993424341,
+            "promoted_or_new_fixture_n": 257,
+            "promoted_or_new_fixture_nll": 2.803115068944419
+          }
+        },
+        "current_season_history_shrinkage": {
+          "train": {
+            "n": 750,
+            "poisson_score_nll": 2.826115022658249,
+            "total_goals_mae": 1.2758112917092332,
+            "goal_margin_mae": 1.1788112431574294,
+            "home_goals_rmse": 1.1535801870642541,
+            "away_goals_rmse": 1.0611953096280247,
+            "total_goals_bias": 0.23289280698219128,
+            "goal_margin_bias": -0.11421521277545445,
+            "promoted_or_new_fixture_n": 145,
+            "promoted_or_new_fixture_nll": 2.8184586797509836
+          },
+          "validation": {
+            "n": 380,
+            "poisson_score_nll": 2.7897616604281237,
+            "total_goals_mae": 1.2415132187893214,
+            "goal_margin_mae": 1.1420903027339295,
+            "home_goals_rmse": 1.0706483950914474,
+            "away_goals_rmse": 1.0848498193364535,
+            "total_goals_bias": 0.06379859370385821,
+            "goal_margin_bias": 0.07112420563604967,
+            "promoted_or_new_fixture_n": 74,
+            "promoted_or_new_fixture_nll": 2.8247617587688
+          },
+          "test": {
+            "n": 380,
+            "poisson_score_nll": 2.810276221554108,
+            "total_goals_mae": 1.324932273086006,
+            "goal_margin_mae": 1.1896266242042615,
+            "home_goals_rmse": 1.1640173652168142,
+            "away_goals_rmse": 1.0442603267294857,
+            "total_goals_bias": 0.26823925929985376,
+            "goal_margin_bias": 0.04190940425250824,
+            "promoted_or_new_fixture_n": 38,
+            "promoted_or_new_fixture_nll": 2.7589164438941154
+          },
+          "all_oos": {
+            "n": 1510,
+            "poisson_score_nll": 2.8129805709582345,
+            "total_goals_mae": 1.2795415600626157,
+            "goal_margin_mae": 1.172291963314293,
+            "home_goals_rmse": 1.1359640748204682,
+            "away_goals_rmse": 1.0629851577560816,
+            "total_goals_bias": 0.19923443005169114,
+            "goal_margin_bias": -0.028283866108568752,
+            "promoted_or_new_fixture_n": 257,
+            "promoted_or_new_fixture_nll": 2.8114696637383667
+          }
+        }
+      }
+    },
+    "36": {
+      "competition": "英超",
+      "selected_on_train_only": "time_decay",
+      "selection_metric": "poisson_score_nll",
+      "variants": {
+        "five_year_mean": {
+          "train": {
+            "n": 760,
+            "poisson_score_nll": 3.092771558592856,
+            "total_goals_mae": 1.4015682211621723,
+            "goal_margin_mae": 1.4037362524195969,
+            "home_goals_rmse": 1.3249951312619024,
+            "away_goals_rmse": 1.1892439562158514,
+            "total_goals_bias": -0.20468490478181442,
+            "goal_margin_bias": 0.013172756919098477,
+            "promoted_or_new_fixture_n": 182,
+            "promoted_or_new_fixture_nll": 3.0738236666942953
+          },
+          "validation": {
+            "n": 380,
+            "poisson_score_nll": 2.990662797808225,
+            "total_goals_mae": 1.281061093026752,
+            "goal_margin_mae": 1.3547742325315704,
+            "home_goals_rmse": 1.235209398293968,
+            "away_goals_rmse": 1.1406536709057655,
+            "total_goals_bias": 0.012885825025071674,
+            "goal_margin_bias": 0.25314206603290346,
+            "promoted_or_new_fixture_n": 38,
+            "promoted_or_new_fixture_nll": 2.926738019065855
+          },
+          "test": {
+            "n": 380,
+            "poisson_score_nll": 2.9041199141589544,
+            "total_goals_mae": 1.2385211740577002,
+            "goal_margin_mae": 1.2351977239779635,
+            "home_goals_rmse": 1.1368897577205166,
+            "away_goals_rmse": 1.0737267339254621,
+            "total_goals_bias": 0.1260262994552582,
+            "goal_margin_bias": 0.025311410893082448,
+            "promoted_or_new_fixture_n": 38,
+            "promoted_or_new_fixture_nll": 2.87952636280543
+          },
+          "all_oos": {
+            "n": 1520,
+            "poisson_score_nll": 3.0200814572882266,
+            "total_goals_mae": 1.3306796773521998,
+            "goal_margin_mae": 1.349361115337183,
+            "home_goals_rmse": 1.2579233655691293,
+            "away_goals_rmse": 1.1491934422551424,
+            "total_goals_bias": -0.06761442127082468,
+            "goal_margin_bias": 0.07619974769104568,
+            "promoted_or_new_fixture_n": 258,
+            "promoted_or_new_fixture_nll": 3.023542456780896
+          }
+        },
+        "recent_two_seasons": {
+          "train": {
+            "n": 760,
+            "poisson_score_nll": 3.099753360249778,
+            "total_goals_mae": 1.397426490693092,
+            "goal_margin_mae": 1.4129824797781965,
+            "home_goals_rmse": 1.3226931092193244,
+            "away_goals_rmse": 1.1942825723303403,
+            "total_goals_bias": -0.17274401223069277,
+            "goal_margin_bias": 0.02873594886058998,
+            "promoted_or_new_fixture_n": 183,
+            "promoted_or_new_fixture_nll": 3.069209078012636
+          },
+          "validation": {
+            "n": 380,
+            "poisson_score_nll": 2.9829642654787114,
+            "total_goals_mae": 1.3208715534356974,
+            "goal_margin_mae": 1.3461628677882793,
+            "home_goals_rmse": 1.2406854440432131,
+            "away_goals_rmse": 1.1296451741111193,
+            "total_goals_bias": 0.1854110444066111,
+            "goal_margin_bias": 0.1900586888809344,
+            "promoted_or_new_fixture_n": 40,
+            "promoted_or_new_fixture_nll": 2.92577878069957
+          },
+          "test": {
+            "n": 380,
+            "poisson_score_nll": 2.9194309303459995,
+            "total_goals_mae": 1.256348446139623,
+            "goal_margin_mae": 1.2368875319389139,
+            "home_goals_rmse": 1.1447852462473087,
+            "away_goals_rmse": 1.0865917232567341,
+            "total_goals_bias": 0.0845745622019789,
+            "goal_margin_bias": -0.0372976643839958,
+            "promoted_or_new_fixture_n": 40,
+            "promoted_or_new_fixture_nll": 2.8853564847958246
+          },
+          "all_oos": {
+            "n": 1520,
+            "poisson_score_nll": 3.0254754790810656,
+            "total_goals_mae": 1.3430182452403763,
+            "goal_margin_mae": 1.3522538398208956,
+            "home_goals_rmse": 1.2598479822421822,
+            "away_goals_rmse": 1.1521069305392762,
+            "total_goals_bias": -0.01887560446319889,
+            "goal_margin_bias": 0.05255823055452954,
+            "promoted_or_new_fixture_n": 263,
+            "promoted_or_new_fixture_nll": 3.019432212532806
+          }
+        },
+        "time_decay": {
+          "train": {
+            "n": 760,
+            "poisson_score_nll": 3.0768665094881964,
+            "total_goals_mae": 1.3920488110900464,
+            "goal_margin_mae": 1.3963210142168296,
+            "home_goals_rmse": 1.3113293853189512,
+            "away_goals_rmse": 1.1863647455573343,
+            "total_goals_bias": -0.1759319798935232,
+            "goal_margin_bias": 0.010603167856826953,
+            "promoted_or_new_fixture_n": 182,
+            "promoted_or_new_fixture_nll": 3.0706226002511747
+          },
+          "validation": {
+            "n": 380,
+            "poisson_score_nll": 2.9726309561698487,
+            "total_goals_mae": 1.286355693742112,
+            "goal_margin_mae": 1.3304516946917224,
+            "home_goals_rmse": 1.227150649040228,
+            "away_goals_rmse": 1.1250394676711173,
+            "total_goals_bias": 0.08473636152530953,
+            "goal_margin_bias": 0.19677551550737915,
+            "promoted_or_new_fixture_n": 38,
+            "promoted_or_new_fixture_nll": 2.947053368700453
+          },
+          "test": {
+            "n": 380,
+            "poisson_score_nll": 2.8984037856655744,
+            "total_goals_mae": 1.2453759880000217,
+            "goal_margin_mae": 1.2211013872026266,
+            "home_goals_rmse": 1.1306835819735883,
+            "away_goals_rmse": 1.0729385618326472,
+            "total_goals_bias": 0.13714152934727541,
+            "goal_margin_bias": -0.002147854680206404,
+            "promoted_or_new_fixture_n": 38,
+            "promoted_or_new_fixture_nll": 2.8788105551539944
+          },
+          "all_oos": {
+            "n": 1520,
+            "poisson_score_nll": 3.006191940202951,
+            "total_goals_mae": 1.328957325980556,
+            "goal_margin_mae": 1.3360487775820022,
+            "home_goals_rmse": 1.2473485470776022,
+            "away_goals_rmse": 1.1436600872077174,
+            "total_goals_bias": -0.032496517228615324,
+            "goal_margin_bias": 0.0539584991352067,
+            "promoted_or_new_fixture_n": 258,
+            "promoted_or_new_fixture_nll": 3.0241710943883047
+          }
+        },
+        "current_season_history_shrinkage": {
+          "train": {
+            "n": 760,
+            "poisson_score_nll": 3.1054419075722355,
+            "total_goals_mae": 1.406892224008042,
+            "goal_margin_mae": 1.4087392108816268,
+            "home_goals_rmse": 1.3238513239645586,
+            "away_goals_rmse": 1.2047534086905127,
+            "total_goals_bias": -0.25214301153493407,
+            "goal_margin_bias": -0.0800414242198768,
+            "promoted_or_new_fixture_n": 182,
+            "promoted_or_new_fixture_nll": 3.1154817972826985
+          },
+          "validation": {
+            "n": 380,
+            "poisson_score_nll": 3.00670763127396,
+            "total_goals_mae": 1.2913024910841995,
+            "goal_margin_mae": 1.381018999637181,
+            "home_goals_rmse": 1.261872328559932,
+            "away_goals_rmse": 1.1362042205806189,
+            "total_goals_bias": 0.0746743243714648,
+            "goal_margin_bias": 0.3144168731464719,
+            "promoted_or_new_fixture_n": 38,
+            "promoted_or_new_fixture_nll": 3.0156557234684875
+          },
+          "test": {
+            "n": 380,
+            "poisson_score_nll": 2.920556642030547,
+            "total_goals_mae": 1.2812668070024018,
+            "goal_margin_mae": 1.2311402039836223,
+            "home_goals_rmse": 1.1495137965753717,
+            "away_goals_rmse": 1.092044180835198,
+            "total_goals_bias": 0.23036030738765748,
+            "goal_margin_bias": -0.046007740616850444,
+            "promoted_or_new_fixture_n": 38,
+            "promoted_or_new_fixture_nll": 2.8919397050102016
+          },
+          "all_oos": {
+            "n": 1520,
+            "poisson_score_nll": 3.034537022112244,
+            "total_goals_mae": 1.34658843652567,
+            "goal_margin_mae": 1.3574094063460138,
+            "home_goals_rmse": 1.2667742890929525,
+            "away_goals_rmse": 1.16042902360119,
+            "total_goals_bias": -0.04981284782768649,
+            "goal_margin_bias": 0.027081571022466947,
+            "promoted_or_new_fixture_n": 258,
+            "promoted_or_new_fixture_nll": 3.0678539278590757
+          }
+        }
+      }
+    },
+    "8": {
+      "competition": "德甲",
+      "selected_on_train_only": "time_decay",
+      "selection_metric": "poisson_score_nll",
+      "variants": {
+        "five_year_mean": {
+          "train": {
+            "n": 612,
+            "poisson_score_nll": 3.137083684679339,
+            "total_goals_mae": 1.415939168296162,
+            "goal_margin_mae": 1.4761543332345797,
+            "home_goals_rmse": 1.3969493019827304,
+            "away_goals_rmse": 1.1879855993953692,
+            "total_goals_bias": 0.014730817285449482,
+            "goal_margin_bias": -0.03835089078504884,
+            "promoted_or_new_fixture_n": 132,
+            "promoted_or_new_fixture_nll": 3.184858997405373
+          },
+          "validation": {
+            "n": 306,
+            "poisson_score_nll": 3.1118722378181896,
+            "total_goals_mae": 1.4282755214499465,
+            "goal_margin_mae": 1.3847157027694033,
+            "home_goals_rmse": 1.3049616315410237,
+            "away_goals_rmse": 1.1915309684723954,
+            "total_goals_bias": 0.058708001082377934,
+            "goal_margin_bias": 0.2267443518310413,
+            "promoted_or_new_fixture_n": 66,
+            "promoted_or_new_fixture_nll": 2.9581221996060876
+          },
+          "test": {
+            "n": 306,
+            "poisson_score_nll": 3.0797065912835264,
+            "total_goals_mae": 1.3862795998905477,
+            "goal_margin_mae": 1.3570707445353247,
+            "home_goals_rmse": 1.2878613600705464,
+            "away_goals_rmse": 1.175009350448222,
+            "total_goals_bias": -0.1648761132362999,
+            "goal_margin_bias": 0.012455643982108881,
+            "promoted_or_new_fixture_n": 34,
+            "promoted_or_new_fixture_nll": 2.8666760545395187
+          },
+          "all_oos": {
+            "n": 1224,
+            "poisson_score_nll": 3.116436549615094,
+            "total_goals_mae": 1.411608364483206,
+            "goal_margin_mae": 1.4235237784434724,
+            "home_goals_rmse": 1.3476318532129838,
+            "away_goals_rmse": 1.1856446127751634,
+            "total_goals_bias": -0.019176619395755722,
+            "goal_margin_bias": 0.040624553560763096,
+            "promoted_or_new_fixture_n": 232,
+            "promoted_or_new_fixture_nll": 3.073726028818339
+          }
+        },
+        "recent_two_seasons": {
+          "train": {
+            "n": 612,
+            "poisson_score_nll": 3.14692781689223,
+            "total_goals_mae": 1.4269008196557411,
+            "goal_margin_mae": 1.480713406355085,
+            "home_goals_rmse": 1.4034541987139024,
+            "away_goals_rmse": 1.194085949343359,
+            "total_goals_bias": 0.012460733847777261,
+            "goal_margin_bias": -0.012291332826931924,
+            "promoted_or_new_fixture_n": 132,
+            "promoted_or_new_fixture_nll": 3.1843504231737247
+          },
+          "validation": {
+            "n": 306,
+            "poisson_score_nll": 3.1576025367294873,
+            "total_goals_mae": 1.4560892316262908,
+            "goal_margin_mae": 1.4444123695164548,
+            "home_goals_rmse": 1.3374777289200752,
+            "away_goals_rmse": 1.2213653222947392,
+            "total_goals_bias": 0.09219034314407198,
+            "goal_margin_bias": 0.21014028943900212,
+            "promoted_or_new_fixture_n": 66,
+            "promoted_or_new_fixture_nll": 2.991080999628234
+          },
+          "test": {
+            "n": 306,
+            "poisson_score_nll": 3.1039972072595594,
+            "total_goals_mae": 1.3947054854760352,
+            "goal_margin_mae": 1.3822483909904728,
+            "home_goals_rmse": 1.3057870189247371,
+            "away_goals_rmse": 1.184560629113481,
+            "total_goals_bias": -0.13106607893817745,
+            "goal_margin_bias": -0.09313665100685514,
+            "promoted_or_new_fixture_n": 35,
+            "promoted_or_new_fixture_nll": 2.878136924018453
+          },
+          "all_oos": {
+            "n": 1224,
+            "poisson_score_nll": 3.138863844443374,
+            "total_goals_mae": 1.426149089103451,
+            "goal_margin_mae": 1.4470218933042718,
+            "home_goals_rmse": 1.3632033771529581,
+            "away_goals_rmse": 1.1986033167178702,
+            "total_goals_bias": -0.003488567024637735,
+            "goal_margin_bias": 0.023105243194570736,
+            "promoted_or_new_fixture_n": 233,
+            "promoted_or_new_fixture_nll": 3.0836068419529665
+          }
+        },
+        "time_decay": {
+          "train": {
+            "n": 612,
+            "poisson_score_nll": 3.1320559921513635,
+            "total_goals_mae": 1.4102976204472346,
+            "goal_margin_mae": 1.4727093500525685,
+            "home_goals_rmse": 1.401265966587157,
+            "away_goals_rmse": 1.1819873766657414,
+            "total_goals_bias": 0.006838309467195812,
+            "goal_margin_bias": -0.027444583249873596,
+            "promoted_or_new_fixture_n": 132,
+            "promoted_or_new_fixture_nll": 3.1939124361094042
+          },
+          "validation": {
+            "n": 306,
+            "poisson_score_nll": 3.1247824788707876,
+            "total_goals_mae": 1.449884742111894,
+            "goal_margin_mae": 1.3985741313105233,
+            "home_goals_rmse": 1.3160988577578834,
+            "away_goals_rmse": 1.2007007826722775,
+            "total_goals_bias": 0.060628011202369,
+            "goal_margin_bias": 0.21544763427484376,
+            "promoted_or_new_fixture_n": 66,
+            "promoted_or_new_fixture_nll": 2.9687158897515205
+          },
+          "test": {
+            "n": 306,
+            "poisson_score_nll": 3.084688289750588,
+            "total_goals_mae": 1.3765759401690973,
+            "goal_margin_mae": 1.3586054339560851,
+            "home_goals_rmse": 1.2998590821692373,
+            "away_goals_rmse": 1.1714357347961157,
+            "total_goals_bias": -0.13883093391109436,
+            "goal_margin_bias": -0.03566763122966642,
+            "promoted_or_new_fixture_n": 34,
+            "promoted_or_new_fixture_nll": 2.8862932811491837
+          },
+          "all_oos": {
+            "n": 1224,
+            "poisson_score_nll": 3.118395688231029,
+            "total_goals_mae": 1.4117639807938647,
+            "goal_margin_mae": 1.4256495663429376,
+            "home_goals_rmse": 1.355437425254329,
+            "away_goals_rmse": 1.1840747830544178,
+            "total_goals_bias": -0.01613157594358344,
+            "goal_margin_bias": 0.03122270913635756,
+            "promoted_or_new_fixture_n": 232,
+            "promoted_or_new_fixture_nll": 3.084765783832388
+          }
+        },
+        "current_season_history_shrinkage": {
+          "train": {
+            "n": 612,
+            "poisson_score_nll": 3.141513598052474,
+            "total_goals_mae": 1.4237484146966701,
+            "goal_margin_mae": 1.4890048756957375,
+            "home_goals_rmse": 1.412646539090787,
+            "away_goals_rmse": 1.1856942114736169,
+            "total_goals_bias": -0.05826590302279172,
+            "goal_margin_bias": 0.009306511850324762,
+            "promoted_or_new_fixture_n": 132,
+            "promoted_or_new_fixture_nll": 3.2138809564200734
+          },
+          "validation": {
+            "n": 306,
+            "poisson_score_nll": 3.1493127077716703,
+            "total_goals_mae": 1.47020171598657,
+            "goal_margin_mae": 1.428225377992877,
+            "home_goals_rmse": 1.334903299051119,
+            "away_goals_rmse": 1.21387524201748,
+            "total_goals_bias": 0.036877502930488214,
+            "goal_margin_bias": 0.36949393871554764,
+            "promoted_or_new_fixture_n": 66,
+            "promoted_or_new_fixture_nll": 2.9985344111312453
+          },
+          "test": {
+            "n": 306,
+            "poisson_score_nll": 3.0990124226344866,
+            "total_goals_mae": 1.3894697346532878,
+            "goal_margin_mae": 1.3618924156784287,
+            "home_goals_rmse": 1.3010920596834392,
+            "away_goals_rmse": 1.1836034970198772,
+            "total_goals_bias": -0.15396583187793234,
+            "goal_margin_bias": 0.01671995589186987,
+            "promoted_or_new_fixture_n": 34,
+            "promoted_or_new_fixture_nll": 2.8516056402810057
+          },
+          "all_oos": {
+            "n": 1224,
+            "poisson_score_nll": 3.1328380816277797,
+            "total_goals_mae": 1.4267920700082992,
+            "goal_margin_mae": 1.442031886265695,
+            "home_goals_rmse": 1.3661943359565663,
+            "away_goals_rmse": 1.1922826707187315,
+            "total_goals_bias": -0.05840503374825685,
+            "goal_margin_bias": 0.10120672957701689,
+            "promoted_or_new_fixture_n": 232,
+            "promoted_or_new_fixture_nll": 3.09952650496408
+          }
+        }
+      }
+    }
+  },
+  "model_1_fixed_weights_modified": false,
+  "market_residual_calibration": {
+    "8": 4,
+    "36": 4,
+    "11": 4,
+    "31": 4,
+    "34": 4
+  }
+}
