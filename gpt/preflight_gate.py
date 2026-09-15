@@ -3,6 +3,12 @@
 The gate exists to prevent cross-chat/process drift. It verifies that the authorized
 MODEL_1 work was actually completed before any formal output can be emitted.
 
+2026-09-16 targeted override:
+- MODEL_1 uses one working hypothesis (H1).
+- The former mandatory independent H2/counter-ticket construction is removed.
+- Stage 17 is a hard single-H1 falsification audit that may directly overturn and
+  rebuild H1 before the only formal ticket is emitted.
+
 PRECHECK_BLOCKED is not PASS. It means the formal analysis is incomplete and must
 finish the missing work before any formal output is allowed.
 """
@@ -12,7 +18,7 @@ from dataclasses import dataclass, asdict
 from typing import Any, Mapping
 
 
-PREFLIGHT_VERSION = "MODEL_1-PREFLIGHT-1.1.0"
+PREFLIGHT_VERSION = "MODEL_1-PREFLIGHT-1.2.0"
 
 
 class PreflightGateError(ValueError):
@@ -32,7 +38,7 @@ class PreflightResult:
 
 _REQUIRED_TRUE_FLAGS: tuple[str, ...] = (
     "current_model_1_policy_loaded",
-    "targeted_red_team_override_loaded",
+    "single_h1_falsification_override_loaded",
     "titan_match_identity_verified",
     "opening_only_impression_completed",
     "same_time_slice_audit_completed",
@@ -45,16 +51,23 @@ _REQUIRED_TRUE_FLAGS: tuple[str, ...] = (
     "neutral_evidence_ledger_complete",
     "h1_contradictions_recorded",
     "market_rationalization_guard_complete",
-    "red_team_h2_completed",
-    "red_team_h2_independent",
-    "red_team_h2_blind_to_h1",
-    "red_team_h2_fresh_reconstruction",
-    "red_team_h2_independent_candidate_frozen",
-    "h1_revealed_after_h2_freeze",
-    "h1_h2_equal_status_adjudication_complete",
+    "falsification_audit_completed",
+    "h1_failure_conditions_recorded",
+    "counterevidence_tested",
+    "alternative_match_paths_tested",
+    "competition_rules_gate_passed",
     "drift_mode_acknowledged",
+    "final_direction_survives_falsification",
     "ticket_lock_ready",
 )
+
+
+_VALID_FALSIFICATION_VERDICTS = {
+    "SURVIVES",
+    "DOWNGRADE",
+    "UPGRADE",
+    "OVERTURN_AND_REBUILD",
+}
 
 
 def validate_preflight_packet(packet: Mapping[str, Any]) -> PreflightResult:
@@ -75,20 +88,20 @@ def validate_preflight_packet(packet: Mapping[str, Any]) -> PreflightResult:
     if draw_state not in {"EXCLUDED", "NOT_EXCLUDED", "UNKNOWN"}:
         failures.append("draw_exclusion_state")
 
-    verdict = str(packet.get("red_team_verdict") or "").strip().upper()
-    if verdict not in {"CONFIRM", "DOWNGRADE", "UPGRADE", "OVERTURN"}:
-        failures.append("red_team_verdict")
+    verdict = str(packet.get("falsification_verdict") or "").strip().upper()
+    if verdict not in _VALID_FALSIFICATION_VERDICTS:
+        failures.append("falsification_verdict")
 
-    if packet.get("red_team_h1_visible_during_h2") is True:
-        failures.append("red_team_h1_visible_during_h2")
+    if verdict == "OVERTURN_AND_REBUILD":
+        if packet.get("old_h1_discarded") is not True:
+            failures.append("old_h1_discarded")
+        if packet.get("rebuilt_h1_frozen") is not True:
+            failures.append("rebuilt_h1_frozen")
+        if packet.get("rebuilt_h1_rechecked") is not True:
+            failures.append("rebuilt_h1_rechecked")
 
-    candidate = packet.get("red_team_independent_candidate")
-    if not isinstance(candidate, Mapping):
-        failures.append("red_team_independent_candidate")
-    else:
-        for key in ("market", "line", "side", "confidence"):
-            if candidate.get(key) in (None, ""):
-                failures.append(f"red_team_independent_candidate.{key}")
+    if packet.get("second_formal_candidate_constructed") is True:
+        failures.append("second_formal_candidate_constructed")
 
     if packet.get("unresolved_critical_execution_conflict") is True:
         failures.append("unresolved_critical_execution_conflict")
@@ -126,7 +139,13 @@ def packet_from_stage_evidence(
     current_model_1_policy_loaded: bool,
     unresolved_critical_execution_conflict: bool = False,
 ) -> dict[str, Any]:
-    """Build the preflight packet from formal stage evidence."""
+    """Build the preflight packet from formal stage evidence.
+
+    New callers should provide ``single_h1_falsification_audit``. During the
+    transition, a legacy ``red_team_h2`` mapping can still be read as the source
+    container, but no H2 candidate, blindness protocol, or H1-vs-H2 adjudication
+    is required or accepted as a formal prerequisite.
+    """
 
     market = stage_evidence.get("market_snapshot", {})
     opening = stage_evidence.get("opening_first_impression", {})
@@ -137,16 +156,33 @@ def packet_from_stage_evidence(
     uncertainty = stage_evidence.get("uncertainty_audit", {})
     draw = stage_evidence.get("draw_exclusion_winner_audit", {})
     score = stage_evidence.get("correct_score_poisson_bayesian", {})
-    red = stage_evidence.get("red_team_h2", {})
+    falsification = stage_evidence.get(
+        "single_h1_falsification_audit",
+        stage_evidence.get("red_team_h2", {}),
+    )
     final = stage_evidence.get("formal_main_exactly_one", {})
 
     missing_core = market.get("missing_core_data")
     missing_present = bool(missing_core) and str(missing_core).strip().upper() not in {"NONE", "NO", "[]", "{}"}
 
-    independent_candidate = red.get("independent_candidate")
+    competition_rules_relevant = bool(
+        falsification.get("competition_rules_relevant", False)
+        or uncertainty.get("competition_rules_relevant", False)
+    )
+    competition_rules_checked = bool(
+        falsification.get("competition_rules_checked", False)
+        or uncertainty.get("competition_rules_checked", False)
+    )
+    competition_rules_gate_passed = (not competition_rules_relevant) or competition_rules_checked
+
+    verdict = str(falsification.get("falsification_verdict") or "").strip().upper()
+
     return {
         "current_model_1_policy_loaded": bool(current_model_1_policy_loaded),
-        "targeted_red_team_override_loaded": bool(red.get("targeted_override_loaded")),
+        "single_h1_falsification_override_loaded": bool(
+            falsification.get("single_h1_override_loaded")
+            or falsification.get("targeted_override_loaded")
+        ),
         "titan_match_identity_verified": bool(market.get("match_identity_qc")),
         "opening_only_impression_completed": bool(opening.get("opening_only_view") and opening.get("opening_structure_conclusion")),
         "same_time_slice_audit_completed": bool(one_x_two.get("same_time_slice_comparison")),
@@ -161,18 +197,22 @@ def packet_from_stage_evidence(
         "draw_exclusion_state": draw.get("authoritative_draw_label"),
         "neutral_evidence_ledger_complete": bool(uncertainty.get("neutral_evidence_ledger_complete")),
         "h1_contradictions_recorded": bool(uncertainty.get("h1_contradictions_recorded")),
-        "market_rationalization_guard_complete": bool(uncertainty.get("market_rationalization_guard_complete")),
-        "red_team_h2_completed": bool(red.get("h2_alternative") and red.get("strongest_counterevidence")),
-        "red_team_h2_independent": bool(red.get("independent_h2_completed", False)),
-        "red_team_h2_blind_to_h1": bool(red.get("h2_blind_to_h1", False)),
-        "red_team_h1_visible_during_h2": bool(red.get("h1_visible_during_h2", False)),
-        "red_team_h2_fresh_reconstruction": bool(red.get("fresh_reconstruction_completed", False)),
-        "red_team_h2_independent_candidate_frozen": isinstance(independent_candidate, Mapping),
-        "red_team_independent_candidate": independent_candidate,
-        "h1_revealed_after_h2_freeze": bool(red.get("h1_revealed_after_h2_freeze", False)),
-        "h1_h2_equal_status_adjudication_complete": bool(red.get("equal_status_adjudication_complete", False)),
-        "drift_mode_acknowledged": bool(red.get("drift_mode_acknowledged", False)),
-        "red_team_verdict": red.get("red_team_verdict"),
+        "market_rationalization_guard_complete": bool(
+            uncertainty.get("market_rationalization_guard_complete")
+            or falsification.get("market_rationalization_guard_complete")
+        ),
+        "falsification_audit_completed": bool(falsification.get("falsification_audit_completed")),
+        "h1_failure_conditions_recorded": bool(falsification.get("h1_failure_conditions_recorded")),
+        "counterevidence_tested": bool(falsification.get("counterevidence_tested")),
+        "alternative_match_paths_tested": bool(falsification.get("alternative_match_paths_tested")),
+        "competition_rules_gate_passed": bool(competition_rules_gate_passed),
+        "drift_mode_acknowledged": bool(falsification.get("drift_mode_acknowledged", False)),
+        "final_direction_survives_falsification": bool(falsification.get("final_direction_survives_falsification", False)),
+        "falsification_verdict": verdict,
+        "old_h1_discarded": bool(falsification.get("old_h1_discarded", False)),
+        "rebuilt_h1_frozen": bool(falsification.get("rebuilt_h1_frozen", False)),
+        "rebuilt_h1_rechecked": bool(falsification.get("rebuilt_h1_rechecked", False)),
+        "second_formal_candidate_constructed": bool(falsification.get("second_formal_candidate_constructed", False)),
         "ticket_lock_ready": bool(final.get("ticket_locked")),
         "unresolved_critical_execution_conflict": bool(unresolved_critical_execution_conflict),
         "missing_core_data_present": missing_present,
