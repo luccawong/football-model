@@ -1,0 +1,64 @@
+{
+  "version": "MODEL_1-RED-TEAM-INDEPENDENCE-1.0.0",
+  "model_id": "MODEL_1",
+  "effective_date": "2026-09-15",
+  "formal": true,
+  "authorization": "Explicit user instruction to correct sustained directional drift, H1 anchoring, and non-independent Red Team execution.",
+  "changes_numeric_weights": false,
+  "changes_stage_order": false,
+  "changes_market_sources": false,
+  "drift_mode": {
+    "active": true,
+    "default_attribution": "MODEL_OR_EXECUTION_FAILURE_UNTIL_DISPROVEN",
+    "forbid_variance_as_first_explanation": true,
+    "forbid_post_result_story_as_exoneration": true
+  },
+  "pre_h1": {
+    "neutral_evidence_ledger_required": true,
+    "separate_fact_inference_assumption_conclusion": true,
+    "material_signal_requires_primary_and_alternative_interpretation": true,
+    "material_signal_requires_falsifier": true,
+    "strongest_contradictions_to_h1_required": 3,
+    "directional_story_before_ledger_complete_forbidden": true
+  },
+  "market_rationalization_guard": {
+    "enabled": true,
+    "competing_explanations_per_material_move": 2,
+    "same_time_slice_cross_market_test_required": true,
+    "opening_validity_test_required": true,
+    "rejected_interpretation_reason_required": true
+  },
+  "blind_h2": {
+    "required": true,
+    "h1_direction_visible": false,
+    "h1_grade_visible": false,
+    "h1_reasoning_visible": false,
+    "input_scope": "STAGES_1_TO_15_ONLY",
+    "fresh_reconstruction_required": true,
+    "independent_candidate_required": true,
+    "candidate_fields": ["market", "line", "side", "confidence", "core_evidence", "strongest_counterevidence"],
+    "generic_risk_list_is_not_h2": true,
+    "downgrade_without_independent_candidate_forbidden": true
+  },
+  "adjudication": {
+    "reveal_h1_only_after_h2_frozen": true,
+    "h1_and_h2_equal_status": true,
+    "h1_has_no_incumbency_advantage": true,
+    "disagreement_requires_fresh_evidence_adjudication": true,
+    "rejecting_h2_requires_specific_evidence_error": true,
+    "verdicts": ["CONFIRM", "DOWNGRADE", "UPGRADE", "OVERTURN"]
+  },
+  "preflight_required": [
+    "targeted_override_loaded",
+    "neutral_evidence_ledger_complete",
+    "h1_contradictions_recorded",
+    "market_rationalization_guard_complete",
+    "h2_blind_to_h1",
+    "h2_fresh_reconstruction_complete",
+    "h2_independent_candidate_frozen",
+    "h1_revealed_after_h2_freeze",
+    "equal_status_adjudication_complete",
+    "drift_mode_acknowledged"
+  ],
+  "missing_any_preflight_requirement": "PRECHECK_BLOCKED_NO_TICKET"
+}
