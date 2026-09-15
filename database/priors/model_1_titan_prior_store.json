@@ -352,7 +352,7 @@
   "model_files": {
     "欧冠": {
       "path": "european_runtime/ucl.json",
-      "sha256": "0b66307b834faa0fff938b84201488055a46e1a8fa2c055fa28b998bb54b6b08",
+      "sha256": "d24b5af6f8d0f586890bc35fda7cb844371cdab5b9662d4ac52d71d1f9eb98f3",
       "format": "SPARSE_PRECISION_JSON",
       "purpose": "ACTIVE_UCL_RUNTIME_RECOVERY"
     }
