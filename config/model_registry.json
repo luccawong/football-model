@@ -1,5 +1,5 @@
 {
-  "registry_version": "FOOTBALL-MODEL-REGISTRY-1.2.1",
+  "registry_version": "FOOTBALL-MODEL-REGISTRY-1.2.2",
   "default_model_id": "MODEL_1",
   "selection_policy": "USE_DEFAULT_UNLESS_USER_EXPLICITLY_SELECTS_OR_CREATES_ANOTHER_MODEL",
   "models": [
@@ -15,8 +15,9 @@
         "start_date": "2026-09-10",
         "end_date": "2026-10-10"
       },
-      "description": "Current user-approved full football SOP with Titan-only formal market source, draw-exclusion forward test, explicit off-field/weather audit, independent Red Team, formal Bayesian-Poisson/Dixon-Coles Stage14 and one formal main output. Targeted user-authorized overrides are loaded from active_override_manifest.",
+      "description": "Current user-approved full football SOP with Titan-only formal market source, draw-exclusion forward test, explicit off-field/weather audit, formal Bayesian-Poisson/Dixon-Coles Stage14 and one formal main output. As of 2026-09-16 the mandatory independent H2/counter-ticket process is replaced by a single-H1 falsification audit that may directly overturn and rebuild H1 before ticketing. Targeted user-authorized overrides are loaded from active_override_manifest.",
       "canonical_memory": "gpt/FOOTBALL_CANONICAL_MEMORY.md",
+      "agent_operating_manual": "gpt/MODEL_1_AGENT_HANDOFF_20260916.md",
       "sop": "gpt/FOOTBALL_SOP.md",
       "decision_policy": "config/active_decision_policy.json",
       "score_policy": "config/model_1_score_policy.json",
