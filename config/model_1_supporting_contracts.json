@@ -1,5 +1,5 @@
 {
-  "version": "MODEL_1-SUPPORTING-CONTRACTS-1.6.0",
+  "version": "MODEL_1-SUPPORTING-CONTRACTS-1.7.0",
   "model_id": "MODEL_1",
   "formal_runtime": {
     "sop": "gpt/FOOTBALL_SOP.md",
@@ -9,7 +9,8 @@
     "opening_baseline_policy": "config/opening_baseline_policy.json",
     "ah_opening_divergence_policy": "config/ah_opening_divergence_policy.json",
     "preflight_policy": "config/model_1_preflight_policy.json",
-    "red_team_independence_override": "config/model_1_red_team_independence_override.json",
+    "single_h1_falsification_policy": "config/model_1_single_h1_falsification_policy.json",
+    "bookmaker_intent_policy": "config/model_1_bookmaker_intent_policy.json",
     "off_field_weather_policy": "config/off_field_weather_policy.json",
     "context_utility_market_policy": "config/model_1_context_utility_market_policy.json",
     "bookmaker_risk_policy": "config/model_1_bookmaker_risk_policy.json",
@@ -34,12 +35,30 @@
       "draw_exclusion_forward_test_unchanged": true
     },
     {
-      "path": "config/model_1_red_team_independence_override.json",
+      "path": "config/model_1_single_h1_falsification_policy.json",
       "authority": "TARGETED_USER_AUTHORIZED_FORMAL_PROCESS_OVERRIDE",
       "fixed_numeric_weight": false,
       "stage_order_changed": false,
+      "stage_17_replacement": "independent_red_team_h2 -> single_h1_falsification_audit",
       "market_source_changed": false,
       "global_freeze_ended": false
+    },
+    {
+      "path": "config/model_1_bookmaker_intent_policy.json",
+      "authority": "TARGETED_USER_AUTHORIZED_FORMAL_AUDIT_OVERRIDE",
+      "fixed_numeric_weight": false,
+      "company_weight_change": false,
+      "draw_exclusion_label_semantics_changed": false,
+      "purpose": "Per-match bookmaker Lead/Follow/Divergence classification plus blocking/inducement/hot/cold audit; draw-excluded winner branch has no favourite default.",
+      "global_freeze_ended": false
+    }
+  ],
+  "superseded_process_artifacts": [
+    {
+      "path": "config/model_1_red_team_independence_override.json",
+      "status": "SUPERSEDED_FOR_STAGE_17_BY_SINGLE_H1_FALSIFICATION_POLICY",
+      "preserve_for_audit_history": true,
+      "formal_runtime_effect": "NONE_WHERE_CONFLICTS_WITH_2026-09-16_SINGLE_H1_OVERRIDE"
     }
   ],
   "supporting_memory": [
@@ -92,7 +111,7 @@
     "end_date_beijing": "2026-10-10",
     "new_formal_rule_changes_allowed": "ONLY_WITH_EXPLICIT_TARGETED_USER_OVERRIDE",
     "new_ideas_during_freeze": "LOG_ONLY_UNLESS_EXPLICIT_TARGETED_USER_OVERRIDE",
-    "latest_targeted_override": "2026-09-15 H1 anchoring control + blind independent H2 + equal-status adjudication + drift-mode process hardening"
+    "latest_targeted_override": "2026-09-16 bookmaker prior profiles + per-match Lead/Follow/Divergence + blocking/inducement/hot/cold audit + no favourite default after draw exclusion"
   },
-  "conflict_rule": "Newest explicit user instruction and current formal MODEL_1 policy outrank legacy/supporting research. Conflicts must be surfaced and versioned, never silently resolved by older artifacts."
+  "conflict_rule": "Newest explicit user instruction and current targeted MODEL_1 overrides outrank legacy/supporting artifacts. The 2026-09-16 single-H1 falsification policy supersedes older blind-H2 process language where they conflict. Conflicts must be surfaced and versioned, never silently resolved by older artifacts."
 }
