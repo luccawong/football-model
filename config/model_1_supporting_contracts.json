@@ -1,5 +1,5 @@
 {
-  "version": "MODEL_1-SUPPORTING-CONTRACTS-1.5.0",
+  "version": "MODEL_1-SUPPORTING-CONTRACTS-1.6.0",
   "model_id": "MODEL_1",
   "formal_runtime": {
     "sop": "gpt/FOOTBALL_SOP.md",
@@ -9,6 +9,7 @@
     "opening_baseline_policy": "config/opening_baseline_policy.json",
     "ah_opening_divergence_policy": "config/ah_opening_divergence_policy.json",
     "preflight_policy": "config/model_1_preflight_policy.json",
+    "red_team_independence_override": "config/model_1_red_team_independence_override.json",
     "off_field_weather_policy": "config/off_field_weather_policy.json",
     "context_utility_market_policy": "config/model_1_context_utility_market_policy.json",
     "bookmaker_risk_policy": "config/model_1_bookmaker_risk_policy.json",
@@ -31,6 +32,14 @@
       "fixed_numeric_weight": false,
       "global_freeze_ended": false,
       "draw_exclusion_forward_test_unchanged": true
+    },
+    {
+      "path": "config/model_1_red_team_independence_override.json",
+      "authority": "TARGETED_USER_AUTHORIZED_FORMAL_PROCESS_OVERRIDE",
+      "fixed_numeric_weight": false,
+      "stage_order_changed": false,
+      "market_source_changed": false,
+      "global_freeze_ended": false
     }
   ],
   "supporting_memory": [
@@ -83,7 +92,7 @@
     "end_date_beijing": "2026-10-10",
     "new_formal_rule_changes_allowed": "ONLY_WITH_EXPLICIT_TARGETED_USER_OVERRIDE",
     "new_ideas_during_freeze": "LOG_ONLY_UNLESS_EXPLICIT_TARGETED_USER_OVERRIDE",
-    "latest_targeted_override": "2026-09-14 bookmaker / market-maker risk-view audit extension; draw-exclusion forward-test semantics unchanged"
+    "latest_targeted_override": "2026-09-15 H1 anchoring control + blind independent H2 + equal-status adjudication + drift-mode process hardening"
   },
   "conflict_rule": "Newest explicit user instruction and current formal MODEL_1 policy outrank legacy/supporting research. Conflicts must be surfaced and versioned, never silently resolved by older artifacts."
 }
